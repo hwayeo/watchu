@@ -1,6 +1,6 @@
 package kr.watchu.user.domain;
 
-public class NaverUserCommand { 
+public class NaverUserCommand {
 	private String id;
 	private String profile_image;
 	private String age;
