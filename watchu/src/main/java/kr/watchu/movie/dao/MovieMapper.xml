@@ -140,7 +140,7 @@
             main_genre like '%' || #{keyword} || '%' or
             sub_genre like '%' || #{keyword} || '%'
          </if>
-         <if test="keyword != '' and keyfield == '' and genre == 'list'" >
+         <if test="keyword != '' and keyfield == ''" >
             main_genre like '%' || #{keyword} || '%' or
             sub_genre like '%' || #{keyword} || '%'
          </if>
