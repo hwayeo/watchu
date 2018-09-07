@@ -3,19 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 모바일 환경의 상단 -->
 <div class="visible-xs">
-		<input type="hidden" id="ajx_genre" value="${param.genre}">
+		<%-- <input type="hidden" id="ajx_genre" value="${param.genre}">
 		<input type="hidden" id="ajx_keyfield" value="${param.keyfield}">
-		<input type="hidden" id="ajx_keyword" value="${param.keyword}">
-		
-		<form action="movieList.do" method="get" id="movieSearch">
+		<input type="hidden" id="ajx_keyword" value="${param.keyword}"> --%>
 			<div class="input-group input-group-lg" id="md-search">
-				<input type="hidden" name="keyfield" value="all">
-				<input type="text" name="keyword" class="form-control" placeholder="작품 제목,배우,감독 검색">
+				<input type="text" name="keyword" id="movie-search-keyword" class="form-control" placeholder="작품 제목,배우,감독 검색">
 				<span class="input-group-btn">
         			<button class="btn btn-default gbutton" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
     	  		</span>
 			</div>
-		</form>
 </div>
 <!-- 모바일 환경에서 사라짐 -->
 <nav class="navbar hidden-xs" id="etc-navbar">
@@ -25,12 +21,12 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-main">
-      <form class="navbar-form" role="search" action="movieList.do" method="get" id="movieSearch">
+      <form class="navbar-form" role="search" action="movieList.do" method="get" id="movieSearch2">
         <div id="search-field" class="input-group input-group-lg">
         	<input type="hidden" name="keyfield" value="all">
       		<input type="text" name="keyword" class="form-control" placeholder="작품 제목,배우,감독 검색">
       		<span class="input-group-btn">
-        		<button class="btn btn-default gbutton" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
+        		<button class="btn btn-default gbutton2" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
       		</span>
       </div>
       </form>

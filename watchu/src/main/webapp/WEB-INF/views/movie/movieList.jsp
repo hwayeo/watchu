@@ -21,17 +21,18 @@
 	</nav>
 
 <!-- 검색하면 값 남기기 -->
-<input type="hidden" id="ajx_keyfield" value="${param.keyfield}">
-<input type="hidden" id="ajx_keyword" value="${param.keyword}">
-<input type="hidden" id="ajx_genre" value="${param.genre}">
-
+<%-- <input type="hidden" id="ajx_keyfield" value="${param.keyfield}">
+<input type="hidden" id="ajx_keyword" value="${param.keyword}"> --%>
+<input type="hidden" class="page-type" value="movieList">
 <!-- for:each문으로 데이터를 가져와 리스트를 생성할것 -->
 <!-- 모바일 환경 -->
-<form action="movieList.do" method="get">
+<form action="movieList.do" method="get" id="listForm" name="listForm">
 <div id="categoryHr">
-<select class="visible-xs visible-sm form-control glist" name="keyfield">
+<!-- <input type="hidden" id="ajx_genre" value="list" name="genre"> -->
+<select class="visible-xs visible-sm form-control glist" name="keyword">
+		<option value="">모든 장르</option>
 	<c:forEach var="cl" items="${list2}">
-		<option value="genre">${cl.genre}</option>
+		<option value="${cl.genre}">${cl.genre}</option>
 	</c:forEach>
 </select>
 <select class="visible-xs visible-sm form-control">
@@ -138,7 +139,3 @@
 		</div>
 	</div> --%>
 </div>
-<c:forEach var="ml" items="${list}">
-	<input type="hidden" value="${ml.movie_num}">
-	<input type="hidden" value="${ml.country}">
-</c:forEach>

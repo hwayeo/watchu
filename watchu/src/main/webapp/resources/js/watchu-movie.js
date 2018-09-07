@@ -9,26 +9,53 @@ $(document).ready(function(){
  	var currentPage;
 	var count;
 	var rowCount;
-	var keyfield = $('#ajx_keyfield').val();
-	var keyword = $('#ajx_keyword').val();
-	var genre = $('#ajx_genre').val();
+	//var keyfield = $('#ajx_keyfield').val();
+	var keyfield;
+	var keyword;
+	//var keyword = $('#ajx_keyword').val();
+	//var genre = $('#ajx_genre').val();
 	var width = $(document).width();
 	
-	console.log(keyfield);
-	console.log(keyword);
-	console.log(genre);
+	//console.log(keyfield);
+	//console.log(keyword);
+	//console.log(genre);
 	
-	$('.gbutton').on('click',function(){
-		$('#movieSearch').submit();
+	$('.gbutton').on('click',function(event){
+		keyfield = 'all';
+		keyword = $('#movie-search-keyword').val();
+		var type = $('.page-type').val();
+		
+		console.log('keyfield:'+keyfield);
+		console.log('keyword:'+keyword);
+		console.log('type:'+type);
+		if(type == 'movieList'){
+			selectList(1,keyword,keyfield);
+		}else if(type == 'movieHome'){
+			
+		}else if(type == 'movieEva'){
+			
+		}
+		event.preventDefault();
+	});
+	$('.gbutton2').on('click',function(){
+		$('#movieSearch2').submit();
+	});
+	
+	$('.glist').on('change',function(){
+		keyfield = 'genre';
+		keyword = $(this).find('option:selected').val();
+		selectList(1,keyword,keyfield);
+		//$('#listForm').submit();
 	});
 	
 	
- 	$("select").change(function(){
+ 	/*$("select").change(function(){
 		var list = $(this).find('option:selected');
- 		console.log(list.text());
-		console.log(keyfield);
-		console.log(keyword);
-	});
+ 		console.log("리스트 : "+list.text());
+		console.log("keyfield : "+keyfield);
+		console.log("keyword : "+keyword);
+		console.log("장르 : "+genre);
+	});*/
  	
  	//영화 홈 화면 출력
 	function selectHome(pageNum,movie_num){
@@ -40,7 +67,7 @@ $(document).ready(function(){
 		}
  		$.ajax({ 
 			type:'post',
-			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword,genre:genre},
+			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword},
 			url:'movieMlist.do',
 			dataType:'json',
 			cache:false,
@@ -69,14 +96,14 @@ $(document).ready(function(){
 	}
 	selectHome(1,$('#movie_num').val());
  	//영화 목록 화면
-	function selectList(pageNum,movie_num,keyword,keyfield){
+	function selectList(pageNum,keyword,keyfield){
 		currentPage = pageNum;
  		if(pageNum == 1){
 			$('.slist').empty();
 		}
  		$.ajax({ 
 			type:'post',
-			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword,genre:genre},
+			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword},
 			url:'movieMlist2.do',
 			dataType:'json',
 			cache:false,
@@ -105,7 +132,7 @@ $(document).ready(function(){
  			}
 		});
 	}
-	selectList(1,$('#movie_num').val(),keyword,keyfield,genre);
+	selectList(1,$('#movie_num').val(),keyword,keyfield);
  	//영화 평가 화면
 	function selectEva(pageNum,movie_num,keyword,keyfield){
 		var elist = '';
