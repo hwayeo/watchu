@@ -34,6 +34,8 @@
             </form>
             <!-- 검색폼 끝 -->
             
+            	<input type="hidden" id="user_id" name="user_id" value="${user.id}"><!-- ajax에서 씀 -->
+            
 				<div class="panel panel-default">
                 <div class="panel-heading">팔로잉 목록</div>
                 
@@ -78,7 +80,7 @@
 						</c:forEach>
                     	</c:if>
                 </ul>
-                <div class="align-center">${pagingHtml}</div>
+                <div class="text-center">${pagingHtml}</div>
             </div>
         </div>
     </div>

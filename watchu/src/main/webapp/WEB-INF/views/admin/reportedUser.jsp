@@ -26,16 +26,14 @@
 			<table class="table table-hover table-condensed">
 				<tr>
 					<th class="col-md-2">번호</th>
-					<th class="col-md-6">신고내용</th>
+					<th class="col-md-8">신고내용</th>
 					<th class="">작성자</th>
-					<th class="">처리상태</th>
 				</tr>
 				<c:forEach var="report" items="${list}">
 				<tr>
 					<td onclick="location.href='reportDetail.do?num=${report.report_num}'" style="cursor:pointer;">${report.report_num}</td>
 					<td>${report.report_content}</td>
 					<td>${report.id}</td>
-					<td>완료/미완료</td>
 				</tr>
 				</c:forEach>
 			</table>

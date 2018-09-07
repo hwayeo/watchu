@@ -132,9 +132,9 @@ $(document).ready(function(){
  			}
 		});
 	}
-	selectList(1,$('#movie_num').val(),keyword,keyfield);
+	selectList(1,keyword,keyfield);
  	//영화 평가 화면
-	function selectEva(pageNum,movie_num,keyword,keyfield){
+	function selectEva(pageNum,keyword,keyfield){
 		var elist = '';
 		currentPage = pageNum;
  		if(pageNum == 1){
@@ -142,7 +142,7 @@ $(document).ready(function(){
 		}
  		$.ajax({
 			type:'post',
-			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword,genre:genre},
+			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword},
 			url:'movieMlist2.do',
 			dataType:'json',
 			cache:false,

@@ -13,11 +13,10 @@
 <div class="container">  
          <div class="row"> 
             <div class="col-xs-12 col-md-12"><!-- 시작 -->
-            <div class="col-md-10 col-md-offset-2">
     
                      <form:form commandName="command" action="write.do" id="insert_Form" enctype="multipart/form-data">
                      <form:errors element="div" cssClass="error-color"/>	
-                        	 <div class="col-md-6">
+                        	 <div class="col-md-6 text-center">
                                 
                                     <div class="form-group row">
                                             <label>프로필 사진 설정</label>
@@ -46,10 +45,9 @@
 											</div>
 
 										</div>
-									</div>
 
 							
-                            </div>
+                            
                             <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="col-md-4">
@@ -135,17 +133,16 @@
                                         	<input type="submit" class="btn btn-primary" value="가입">
                                         	<input type="button" class="btn btn-primary" value="취소" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
                                         </div>
-                                    	<!-- </div>  -->   
+                                    	 
                                     
                                     </div>
-                                    <br>
-                                    <br>
-                                    <br>
                                                                
-                    </form:form>
-                            </div>  
+                    
+                            </div>
+                         </form:form>
+                       </div>  
                     
                 </div>
             </div>
         </div>
-    </div>
+    

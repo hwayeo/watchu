@@ -25,6 +25,7 @@
      		<!-- 검색폼 시작 -->
   			<form class="navbar-form" role="search" id="search_form" action="follow.do" method="get" >
                 <div class="input-group">
+                	<input type="hidden" id="id" name="id" value="${user.id}">
               	    <input type="hidden" name="keyfield" id="keyfield">
                     <input type="text" class="form-control" placeholder="Search" name="keyword" id="keyword">
                     <div class="input-group-btn">
@@ -37,7 +38,7 @@
 				<div class="panel panel-default">
                 <div class="panel-heading">추천친구 목록</div>
                 
-                <input type="hidden" id="user_id" name="user_id" value="${user.id}">
+                <input type="hidden" id="user_id" name="user_id" value="${user.id}"><!-- ajax에서 씀 -->
                 
                 <ul class="list-group">
                 
@@ -81,7 +82,7 @@
 						</c:if>
                     
                 </ul>
-                <div class="align-center">${pagingHtml}</div>
+                <div class="text-center">${pagingHtml}</div>
             </div>
         </div>
     </div>
