@@ -35,7 +35,8 @@ import kr.watchu.util.PagingUtil;
 	public Map<String,Object> getMovieList(
 			@RequestParam(value="pageNum",defaultValue="1") int currentPage,
 			@RequestParam(value="keyfield",defaultValue="") String keyfield,
-			@RequestParam(value="keyword",defaultValue="" ) String keyword){
+			@RequestParam(value="keyword",defaultValue="" ) String keyword,
+			@RequestParam(value="genre",defaultValue="" ) String genre){
 		
 		int rowCount = 4;
 		int pageCount = 10;
@@ -43,6 +44,7 @@ import kr.watchu.util.PagingUtil;
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
+		map.put("genre",genre);
 		
 		if(log.isDebugEnabled()) {
 			log.debug("<<ajaxpage>> : " + currentPage);
@@ -77,8 +79,8 @@ import kr.watchu.util.PagingUtil;
 	public Map<String,Object> getMovieList2(
 			@RequestParam(value="pageNum",defaultValue="1") int currentPage,
 			@RequestParam(value="keyfield",defaultValue="") String keyfield,
-			@RequestParam(value="keyword",defaultValue="" ) String keyword
-			){
+			@RequestParam(value="keyword",defaultValue="" ) String keyword,
+			@RequestParam(value="genre",defaultValue="" ) String genre){
 		
 		int rowCount = 24;
 		int pageCount = 10;
@@ -87,6 +89,7 @@ import kr.watchu.util.PagingUtil;
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
+		map.put("genre", genre);
 		
 		if(log.isDebugEnabled()) {
 			log.debug("<<ajax2page>> : " + currentPage);

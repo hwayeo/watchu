@@ -1,4 +1,7 @@
 @media screen and (min-width:768px) and (max-width:2550px){
+.navWatch{
+	display:none;
+}	
 .drop{
 	margin-right:30px;
 	padding-right:30px;
@@ -84,6 +87,10 @@
 }
 
 @media screen and (min-width:0px) and (max-width:767px){
+.navWatch{
+	display:block;
+}
+	
 .drop{
 	margin-right:30px;
 	padding-right:30px;

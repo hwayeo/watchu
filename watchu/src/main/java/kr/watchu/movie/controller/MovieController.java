@@ -26,14 +26,15 @@ public class MovieController {
 	private MovieService movieService;
 	
 	@Resource
-	private GenreService genreService;
+	private GenreService genreService; 
 	
 	//===영화 메인 목록===//
 	@RequestMapping("/movie/movieHome.do")
 	public ModelAndView mlist1(
 			@RequestParam(value="pageNum",defaultValue="1") int currentPage,
 			@RequestParam(value="keyfield",defaultValue="") String keyfield,
-			@RequestParam(value="keyword",defaultValue="" ) String keyword) {
+			@RequestParam(value="keyword",defaultValue="" ) String keyword,
+			@RequestParam(value="genre",defaultValue="" ) String genre) {
 		
 		int rowCount = 4;
 		int pageCount = 10;
@@ -41,6 +42,7 @@ public class MovieController {
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
+		map.put("genre", genre);
 		
 		//총 글 카운트
 		int count = movieService.selectMovieCnt(map);
@@ -74,7 +76,8 @@ public class MovieController {
 	public ModelAndView mlist2(
 			@RequestParam(value="pageNum",defaultValue="1") int currentPage,
 			@RequestParam(value="keyfield",defaultValue="") String keyfield,
-			@RequestParam(value="keyword",defaultValue="" ) String keyword) {
+			@RequestParam(value="keyword",defaultValue="" ) String keyword,
+			@RequestParam(value="genre",defaultValue="" ) String genre) {
 		
 		int rowCount = 24;
 		int pageCount = 10;
@@ -82,6 +85,7 @@ public class MovieController {
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
+		map.put("genre", genre);
 		
 		//총 글 카운트
 		int count = movieService.selectMovieCnt(map);
@@ -118,7 +122,8 @@ public class MovieController {
 	public ModelAndView mlist3(
 			@RequestParam(value="pageNum",defaultValue="1") int currentPage,
 			@RequestParam(value="keyfield",defaultValue="") String keyfield,
-			@RequestParam(value="keyword",defaultValue="" ) String keyword) {
+			@RequestParam(value="keyword",defaultValue="" ) String keyword,
+			@RequestParam(value="genre",defaultValue="" ) String genre) {
 		
 		int rowCount = 24;
 		int pageCount = 10;
@@ -126,6 +131,7 @@ public class MovieController {
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
+		map.put("genre", genre);
 		
 		//총 글 카운트
 		int count = movieService.selectMovieCnt(map);

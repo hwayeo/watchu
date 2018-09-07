@@ -10,8 +10,18 @@ $(document).ready(function(){
 	var count;
 	var rowCount;
 	var keyfield = $('#ajx_keyfield').val();
-	var keyword = $('#ajx_keyword').val();;
+	var keyword = $('#ajx_keyword').val();
+	var genre = $('#ajx_genre').val();
 	var width = $(document).width();
+	
+	console.log(keyfield);
+	console.log(keyword);
+	console.log(genre);
+	
+	$('.gbutton').on('click',function(){
+		$('#movieSearch').submit();
+	});
+	
 	
  	$("select").change(function(){
 		var list = $(this).find('option:selected');
@@ -30,7 +40,7 @@ $(document).ready(function(){
 		}
  		$.ajax({ 
 			type:'post',
-			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword},
+			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword,genre:genre},
 			url:'movieMlist.do',
 			dataType:'json',
 			cache:false,
@@ -66,7 +76,7 @@ $(document).ready(function(){
 		}
  		$.ajax({ 
 			type:'post',
-			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword},
+			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword,genre:genre},
 			url:'movieMlist2.do',
 			dataType:'json',
 			cache:false,
@@ -95,7 +105,7 @@ $(document).ready(function(){
  			}
 		});
 	}
-	selectList(1,$('#movie_num').val(),keyword,keyfield);
+	selectList(1,$('#movie_num').val(),keyword,keyfield,genre);
  	//영화 평가 화면
 	function selectEva(pageNum,movie_num,keyword,keyfield){
 		var elist = '';
@@ -105,7 +115,7 @@ $(document).ready(function(){
 		}
  		$.ajax({
 			type:'post',
-			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword},
+			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword,genre:genre},
 			url:'movieMlist2.do',
 			dataType:'json',
 			cache:false,
@@ -212,4 +222,23 @@ $(document).ready(function(){
 			}
  		});
 	}
+	
+	//스크롤 이벤트 발생시 pageNum값을 증가 시킨다.
+ 	$(window).scroll(function(){
+ 		if($(window).scrollTop() == $(document).height() - $(window).height()){ 
+ 			if(currentPage>=Math.ceil(count/rowCount)){
+ 			}else{
+ 				console.log("keyfield : "+keyfield);
+ 				console.log("keyword : "+keyword);
+ 				console.log("page : "+currentPage);
+ 				console.log("count : "+count);
+ 				console.log("rowCount : "+rowCount);
+ 
+ 				pageNum = currentPage + 1;
+ 				selectList(pageNum,$('#movie_num').val(),keyword,keyfield);
+ 				selectEva(pageNum,$('#movie_num').val(),keyword,keyfield);
+ 			}
+ 		}
+ 	});
+ 	
 });

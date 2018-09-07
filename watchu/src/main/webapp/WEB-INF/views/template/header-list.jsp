@@ -3,11 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 모바일 환경의 상단 -->
 <div class="visible-xs">
-		<form>
+		<input type="hidden" id="ajx_genre" value="${param.genre}">
+		<input type="hidden" id="ajx_keyfield" value="${param.keyfield}">
+		<input type="hidden" id="ajx_keyword" value="${param.keyword}">
+		
+		<form action="movieList.do" method="get" id="movieSearch">
 			<div class="input-group input-group-lg" id="md-search">
-				<input type="text" class="form-control" placeholder="작품 제목,배우,감독 검색">
+				<input type="hidden" name="keyfield" value="all">
+				<input type="text" name="keyword" class="form-control" placeholder="작품 제목,배우,감독 검색">
 				<span class="input-group-btn">
-        			<button class="btn btn-default" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
+        			<button class="btn btn-default gbutton" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
     	  		</span>
 			</div>
 		</form>
@@ -20,11 +25,12 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-main">
-      <form class="navbar-form" role="search">
+      <form class="navbar-form" role="search" action="movieList.do" method="get" id="movieSearch">
         <div id="search-field" class="input-group input-group-lg">
-      		<input type="text" class="form-control" placeholder="작품 제목,배우,감독 검색">
+        	<input type="hidden" name="keyfield" value="all">
+      		<input type="text" name="keyword" class="form-control" placeholder="작품 제목,배우,감독 검색">
       		<span class="input-group-btn">
-        		<button class="btn btn-default" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
+        		<button class="btn btn-default gbutton" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
       		</span>
       </div>
       </form>

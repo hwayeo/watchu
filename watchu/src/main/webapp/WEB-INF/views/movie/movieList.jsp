@@ -2,26 +2,28 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<nav class="navbar navbar-default navWatch">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-movie">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand">영화메뉴</a>
+		</div>
+		<div class="collapse navbar-collapse navbar-movie">
+		<ul class="nav navbar-nav">
+			<li><a href="movieHome.do">홈</a></li>
+			<li><a href="movieList.do">카테고리</a></li>
+			<li><a href="movieEva.do">평가하기</a></li>
+		</ul>
+		</div>
+	</nav>
+
 <!-- 검색하면 값 남기기 -->
-<form action="movieList.do" method="get">
-    <input type="hidden" id="ajx_keyfield" value="${param.keyfield}">
-    <input type="hidden" id="ajx_keyword" value="${param.keyword}">
-	<ul class="search">
-		<li>
-			<select name="keyfield">
-				<option value="title" <c:if test="${param.keyfield == 'title'}">selected</c:if>>제목</option>
-				<option value="country" <c:if test="${param.keyfield == 'country'}">selected</c:if>>나라</option>
-				<option value="genre" <c:if test="${param.keyfield == 'gnere'}">selected</c:if>>장르</option>
-			</select>
-		</li>
-		<li>
-			<input type="text" name="keyword" id="keyword" value="${param.keyword}">
-		</li>
-		<li>
-			<input type="submit" value="찾기">
-		</li>
-	</ul>
-</form>
+<input type="hidden" id="ajx_keyfield" value="${param.keyfield}">
+<input type="hidden" id="ajx_keyword" value="${param.keyword}">
+<input type="hidden" id="ajx_genre" value="${param.genre}">
 
 <!-- for:each문으로 데이터를 가져와 리스트를 생성할것 -->
 <!-- 모바일 환경 -->

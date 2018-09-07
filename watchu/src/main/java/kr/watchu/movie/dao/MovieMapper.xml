@@ -19,14 +19,15 @@
             main_genre like '%' || #{keyword} || '%' or
             sub_genre like '%' || #{keyword} || '%'
          </if>
-         <if test="nya2 != '' and nya == 'title'" >
-            title like '%' || #{nya2} || '%'
-         </if>
-         <!-- <if test="keyword != '' and keyfield.equals('all')" >
+         <if test="keyword != '' and keyfield== 'all'" >
             title like '%' || #{keyword} || '%' or
             director like '%' || #{keyword} || '%' or
             actors like '%' || #{keyword} || '%'   
-         </if> -->
+         </if>
+         <if test="keyword != '' and keyfield == '' and genre == 'list'" >
+            main_genre like '%' || #{keyword} || '%' or
+            sub_genre like '%' || #{keyword} || '%'
+         </if>
       </where>   
       ORDER BY released desc)a)
    <![CDATA[
@@ -47,11 +48,15 @@
             main_genre like '%' || #{keyword} || '%' or
             sub_genre like '%' || #{keyword} || '%'
          </if>
-         <!-- <if test="keyword != '' and keyfield.equals('all')" >
+         <if test="keyword != '' and keyfield == '' and genre == 'list'" >
+            main_genre like '%' || #{keyword} || '%' or
+            sub_genre like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield== 'all'" >
             title like '%' || #{keyword} || '%' or
             director like '%' || #{keyword} || '%' or
             actors like '%' || #{keyword} || '%'   
-         </if> -->
+         </if>
       </where>
    </select>
    
@@ -80,11 +85,15 @@
             main_genre like '%' || #{keyword} || '%' or
             sub_genre like '%' || #{keyword} || '%'
          </if>
-         <!-- <if test="keyword != '' and keyfield.equals('all')" >
+         <if test="keyword != '' and keyfield == '' and genre == 'list'" >
+            main_genre like '%' || #{keyword} || '%' or
+            sub_genre like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield== 'all'" >
             title like '%' || #{keyword} || '%' or
             director like '%' || #{keyword} || '%' or
             actors like '%' || #{keyword} || '%'   
-         </if> -->
+         </if>
       </where>   
       ORDER BY released desc)a)
    <![CDATA[
@@ -104,6 +113,15 @@
             main_genre like '%' || #{keyword} || '%' or
             sub_genre like '%' || #{keyword} || '%'
          </if>
+         <if test="keyword != '' and keyfield == '' and genre == 'list'" >
+            main_genre like '%' || #{keyword} || '%' or
+            sub_genre like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield== 'all'" >
+            title like '%' || #{keyword} || '%' or
+            director like '%' || #{keyword} || '%' or
+            actors like '%' || #{keyword} || '%'   
+         </if>
       </where>
    </select>
    
@@ -122,11 +140,15 @@
             main_genre like '%' || #{keyword} || '%' or
             sub_genre like '%' || #{keyword} || '%'
          </if>
-         <!-- <if test="keyword != '' and keyfield.equals('all')" >
+         <if test="keyword != '' and keyfield == '' and genre == 'list'" >
+            main_genre like '%' || #{keyword} || '%' or
+            sub_genre like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield== 'all'" >
             title like '%' || #{keyword} || '%' or
             director like '%' || #{keyword} || '%' or
             actors like '%' || #{keyword} || '%'   
-         </if> -->
+         </if>
       </where>   
       ORDER BY released desc)a)
    <![CDATA[
@@ -145,6 +167,15 @@
          <if test="keyword != '' and keyfield == 'genre'" >
             main_genre like '%' || #{keyword} || '%' or
             sub_genre like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == '' and genre == 'list'" >
+            main_genre like '%' || #{keyword} || '%' or
+            sub_genre like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield== 'all'" >
+            title like '%' || #{keyword} || '%' or
+            director like '%' || #{keyword} || '%' or
+            actors like '%' || #{keyword} || '%'   
          </if>
       </where>
    </select>

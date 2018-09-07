@@ -28,7 +28,34 @@ public class UserCommand {
 	private byte[] profile_img;
 	private Date reg_date;
 	private String permit;
+	private Integer total_likes;
+	private Integer total_reported;
+	private String type;
 	
+	public Integer getTotal_likes() {
+		return total_likes;
+	}
+
+	public void setTotal_likes(Integer total_likes) {
+		this.total_likes = total_likes;
+	}
+
+	public Integer getTotal_reported() {
+		return total_reported;
+	}
+
+	public void setTotal_reported(Integer total_reported) {
+		this.total_reported = total_reported;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public String getPermit() {
 		return permit;
 	}
@@ -135,6 +162,8 @@ public class UserCommand {
 	public String toString() {
 		return "UserCommand [id=" + id + ", auth=" + auth + ", passwd=" + passwd + ", name=" + name + ", phone=" + phone
 				+ ", email=" + email + ", follow=" + follow + ", follower=" + follower + ", block=" + block
-				+ ", upload=" + upload + ", reg_date=" + reg_date + ", permit=" + permit + "]";
+				+ ", upload=" + upload + ", profile_img=" + Arrays.toString(profile_img) + ", reg_date=" + reg_date
+				+ ", permit=" + permit + ", total_likes=" + total_likes + ", total_reported=" + total_reported
+				+ ", type=" + type + "]";
 	}
 }
