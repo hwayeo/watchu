@@ -22,6 +22,7 @@ public class NaverCommand {
 	public void setResponse(NaverUserCommand response) {
 		this.response = response;
 	}
+	
 	@Override
 	public String toString() {
 		return "NaverCommand [resultcode=" + resultcode + ", message=" + message + ", response=" + response + "]";

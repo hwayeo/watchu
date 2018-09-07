@@ -35,8 +35,8 @@ import kr.watchu.util.StringUtil;
 
 @Controller
 public class UserController {
-	
 	private Logger log = Logger.getLogger(this.getClass());
+	
 	private int rowCount = 10;
 	private int pageCount = 10;
 	

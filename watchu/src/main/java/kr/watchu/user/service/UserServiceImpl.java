@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 import kr.watchu.movie.dao.CommentMapper;
 import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.user.dao.UserMapper;
+import kr.watchu.user.domain.NaverCommand;
 import kr.watchu.user.domain.UserCommand;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
-	
 	@Resource
 	private UserMapper userMapper;
 
@@ -67,7 +67,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void insertFollower(UserCommand user) {
 		userMapper.insertFollower(user);
-		
 	}
 
 
@@ -82,9 +81,9 @@ public class UserServiceImpl implements UserService {
 	public List<CommentCommand> CommentList(String id) {
 		return userMapper.CommentList(id);
 	}
-	
 
-	
-	
-
+	@Override
+	public void insertSocialUser(NaverCommand suser) {
+		userMapper.insertsocialUser(suser);
+	}
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -31,6 +32,7 @@ import kr.watchu.user.domain.NaverCommand;
 import kr.watchu.user.domain.NaverLoginBO;
 import kr.watchu.user.domain.UserCommand;
 import kr.watchu.user.service.UserService;
+import kr.watchu.util.CipherTemplate;
 
 
 @Controller
@@ -39,7 +41,7 @@ public class SocialLoginController {
 
 	private UserService userService;
 	private UserCommand userCommand;
-
+	
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
@@ -88,13 +90,28 @@ public class SocialLoginController {
 		//로그인 사용자 정보를 읽어온다.
 		String apiResult = naverLoginBO.getUserProfile(oauthToken);
 
-		//result로 가져온 값을 json 파싱 후 필요한 값만 가져와서 db에 저장
+		//result로 가져온 값을 json 파싱 후 필요한 값만 가져오게 빈 객체에서 설정
 		ObjectMapper mapper = new ObjectMapper();
 		NaverCommand naverCommand = mapper.readValue(apiResult,NaverCommand.class);
-
+		
+		//가져온 값을 확인
 		if(log.isDebugEnabled()) {
 			log.debug("<<naverCommand>> : " + naverCommand);
 		}
+		
+		/*
+		//id값의 일치 여부를 확인 후 db에 저장
+		if() {
+			//id가 일치하지 않을 시 
+			//id가 일치하지만 auth가 다른 id인지 판별
+			
+		}else {
+			
+		}*/
+		
+		//회원가입이 성공 시 바로 로그인 처리
+		session.setAttribute("user_id", naverCommand);
+		
 
 		/* 네이버 로그인 성공 페이지 View 호출 */
 		return "loginSuccess";

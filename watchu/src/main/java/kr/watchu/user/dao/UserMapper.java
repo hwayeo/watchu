@@ -9,12 +9,18 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import kr.watchu.movie.domain.CommentCommand;
+import kr.watchu.user.domain.NaverCommand;
 import kr.watchu.user.domain.UserCommand;
  
 public interface UserMapper {
 	//회원등록
 	@Insert("INSERT INTO user_basic (id,auth,permit) VALUES (#{id},1,#{permit})")
 	public void insertUser(UserCommand user);
+	
+	//social 회원등록
+	@Insert("INSERT INTO user_basic (id,auth,email,name) VALUES (#{response.id},1,{#response.email},{#response.name})")
+	public void insertsocialUser(NaverCommand nuser);
+	
 	//상세정보등록
 	@Insert("INSERT INTO user_info (id,passwd,name,phone,email,profile_img,reg_date) VALUES (#{id},#{passwd},#{name},#{phone},#{email},#{profile_img},SYSDATE)")
 	public void insertUserDetail(UserCommand user);
