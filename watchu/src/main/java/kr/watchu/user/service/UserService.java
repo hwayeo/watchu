@@ -30,5 +30,5 @@ public interface UserService {
 	
 	// ¸ñ·Ï
 	public List<CommentCommand> CommentList(String id);
-
+	
 }

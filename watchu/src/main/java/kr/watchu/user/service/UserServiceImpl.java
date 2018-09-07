@@ -25,7 +25,6 @@ public class UserServiceImpl implements UserService {
 		userMapper.insertRelation(user.getId());
 	}
 
-
 	@Override
 	public UserCommand selectUser(String id) {
 		return userMapper.selectUser(id);
@@ -34,7 +33,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUser(UserCommand user) {
 		userMapper.updateUser(user);
-		
 	}
 
 	@Override
@@ -42,8 +40,6 @@ public class UserServiceImpl implements UserService {
 		userMapper.deleteUserRelation(id);
 		userMapper.deleteUserDetail(id);
 		userMapper.deleteUser(id);
-	
-		
 	}
 
 	@Override
@@ -56,26 +52,20 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectUserList(map);
 	}
 
-
 	@Override
 	public void insertFollow(UserCommand user) {
 		userMapper.insertFollow(user);
-		
 	}
-
 
 	@Override
 	public void insertFollower(UserCommand user) {
 		userMapper.insertFollower(user);
 	}
 
-
 	@Override
 	public void insertBlock(UserCommand user) {
 		userMapper.insertBlock(user);
 	}
-
-
 
 	@Override
 	public List<CommentCommand> CommentList(String id) {

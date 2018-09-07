@@ -85,7 +85,7 @@ public class SocialLoginController {
 			log.debug("token 확인:" + session + "," + code + "," + state);
 		}
 
-		System.out.println("네이버 로그인이 성공하였습니다.");
+		System.out.println("네이버 로그인이 성공하였습니다."); 
 
 		//로그인 사용자 정보를 읽어온다.
 		String apiResult = naverLoginBO.getUserProfile(oauthToken);
