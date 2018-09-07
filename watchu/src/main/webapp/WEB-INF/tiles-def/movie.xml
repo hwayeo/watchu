@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="movieHome" template="/WEB-INF/views/template/layout-movie.jsp">
+		<put-attribute name="title" value="왓츄 - 영화목록"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/header-list.jsp"/>
+		<put-attribute name="movieHome" value="/WEB-INF/views/movie/movieHome.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+	</definition>
+	
+	<definition name="movieList" extends="movieHome">
+		<put-attribute name="title" value="왓츄 - 영화목록"/>
+		<put-attribute name="movieHome" value="/WEB-INF/views/movie/movieList.jsp"/>
+	</definition>
+	 
+	<definition name="movieEva" extends="movieHome">
+		<put-attribute name="title" value="왓츄 - 영화목록"/>
+		<put-attribute name="movieHome" value="/WEB-INF/views/movie/movieEva.jsp"/>
+	</definition>
+	
+ 	<definition name="movieDetail" extends="userWrite">
+		<put-attribute name="title" value="왓츄 - 상세정보"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/header-movie.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/movie/movieDetail.jsp"/>
+	</definition>
+	
+</tiles-definitions>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

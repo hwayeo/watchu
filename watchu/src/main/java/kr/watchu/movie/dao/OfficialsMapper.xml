@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="kr.watchu.movie.dao.OfficialsMapper">
+	<!-- select -->
+	<select id="selectOffList" parameterType="map" resultType="OfficialsCommand">
+		SELECT
+			*
+		FROM (SELECT
+				a.*, rownum rnum
+			FROM (SELECT
+					*
+				FROM officials
+				
+				<where> 
+			 		<if test="keyword != '' and keyfield == 'name'">
+			 			name like '%' || #{keyword} || '%'
+			 		</if>
+			 		<!-- 완전 동일한 것만 찾을 지, 포함된 것도 찾을 지 결정할 것 -->
+			 		<if test="keyword != '' and keyfield == 'filmograp'">
+			 			filmograp like '%' || #{keyword} || '%'
+			 		</if>
+			 		<!-- <if test="keyword != '' and keyfield.equals('all')">
+			 			filmograp like '%' || #{keyword} || '%' or
+			 			name '%' || #{keyword} || '%'
+			 		</if> -->
+		 		</where>
+				
+				ORDER BY off_num)a)
+	<![CDATA[WHERE rnum >= #{start} AND rnum <= #{end}]]>
+	</select>
+
+	<!-- 검색기능(cnt) -->
+	<select id="selectOffCnt" parameterType="map" resultType="integer">
+		SELECT
+			count(*)
+		FROM officials
+		<where>
+			 <if test="keyword != '' and keyfield == 'name'">
+			 	name like '%' || #{keyword} || '%'
+			 </if>
+			 <!-- 완전 동일한 것만 찾을 지, 포함된 것도 찾을 지 결정할 것 -->
+			 <if test="keyword != '' and keyfield == 'filmograp'">
+			 	filmograp '%' || #{keyword} || '%'
+			 </if>
+			 <!-- <if test="keyword != '' and keyfield.equals('all')">
+			 	name like '%' || #{keyword} || '%' or
+			 	filmograp like '%' || #{keyword} || '%' or
+			 </if> -->
+		 </where>
+	</select>
+	
+	<!-- 글 수정 -->
+	<update id="update">
+		<if test="off_photo == ''">
+			UPDATE officials SET name=#{name}, jobs=#{jobs}, filmograp=#{filmograp} WHERE off_num=#{off_num}
+		</if>
+		<if test="off_photo != ''">
+			UPDATE officials SET name=#{name}, jobs=#{jobs}, filmograp=#{filmograp}, off_photo=#{off_photo} WHERE off_num=#{off_num}
+		</if>
+	</update>
+	
+	<!-- 감독&배우 자동완성 -->
+	<select id="selectOffAjaxList" parameterType="map" resultType="OfficialsCommand">
+		SELECT 
+			* 
+		FROM officials 
+		<where>
+			<if test="keyword != '' and keyfield == 'DIRECTOR'">
+			 	name like '%' || #{keyword} || '%' and jobs=#{keyfield}
+			</if>
+			<if test="keyword != '' and keyfield == 'ACTOR'">
+			 	name like '%' || #{keyword} || '%' and jobs=#{keyfield}
+			</if>
+		</where>
+	</select>
+		<!-- SELECT 
+		* 
+		FROM officials 
+		WHERE name like '%' || #{keyword} || '%' and jobs='DIRECTOR' -->
+</mapper>

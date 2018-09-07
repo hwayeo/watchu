@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="userWrite" template="/WEB-INF/views/template/layout.jsp">
+		<put-attribute name="title" value="왓츄 - 회원가입"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/user/userWrite.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+	</definition>
+	
+	<definition name="userWrite2" extends="userWrite">
+		<put-attribute name="title" value="왓츄 - 회원가입성공"/>
+		<put-attribute name="body" value="/WEB-INF/views/user/userWrite2.jsp"/>
+	</definition>
+	
+	<definition name="userLogin" template="/WEB-INF/views/user/userLogin.jsp">
+		<put-attribute name="title" value="왓츄 - 로그인"/>
+	</definition>
+	
+	<definition name="userModify" extends="userWrite">
+		<put-attribute name="title" value="왓츄 - 프로필수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/user/userModify.jsp"/>
+	</definition>
+	<definition name="userDelete" extends="userWrite">
+		<put-attribute name="title" value="왓츄 - 프로필삭제"/>
+		<put-attribute name="body" value="/WEB-INF/views/user/userDelete.jsp"/>
+	</definition>
+	
+	<definition name="userTimeline" extends="userWrite">
+		<put-attribute name="title" value="왓츄 - 타임라인"/>
+		<put-attribute name="body" value="/WEB-INF/views/user/userTimeline.jsp"/>
+	</definition>
+	
+	<!-- 고객센터 -->
+	<definition name="userSupportList" extends="userWrite">
+		<put-attribute name="title" value="왓츄 - 고객센터"/>
+		<put-attribute name="body" value="/WEB-INF/views/user/userSupportList.jsp"/>
+	</definition>
+	<definition name="userSupportWrite" extends="userWrite">
+		<put-attribute name="title" value="왓츄 - 고객센터 - 글쓰기"/>
+		<put-attribute name="body" value="/WEB-INF/views/user/userSupportWrite.jsp"/>
+	</definition>
+	<definition name="userSupportView" extends="userWrite">
+		<put-attribute name="title" value="왓츄 - 고객센터 - 상세글"/>
+		<put-attribute name="body" value="/WEB-INF/views/user/userSupportView.jsp"/>
+	</definition>
+	<definition name="userSupportModify" extends="userWrite">
+		<put-attribute name="title" value="왓츄 - 고객센터 - 글 수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/user/userSupportModify.jsp"/>
+	</definition>
+	
+</tiles-definitions>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

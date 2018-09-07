@@ -1,0 +1,273 @@
+@media screen and (min-width:768px) and (max-width:2550px) {
+	body {
+		background: url(../images/bg.jpg) no-repeat fixed;
+		background-size: cover
+	}
+	.container {
+		width: 100%;
+		margin: 0 auto
+	}
+	.box {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 40%;
+		height: 500px;
+		background: rgba(255, 255, 255, 0.1);
+		box-sizing: border-box;
+		box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+		border-radius: 10px;
+	}
+	.box h2 {
+		margin: 60px 0 80px 0;
+		padding: 0;
+		font-size: 32px;
+		color: white;
+		text-align: center;
+	}
+	.box .input {
+		margin-bottom: 25px;
+	}
+	.box .inputbox {
+		position: relative;
+		width: 80%;
+		height: 75px;
+		margin: 0 auto;
+	}
+	.box .inputbox input {
+		width: 100%;
+		padding: 10px 0;
+		font-size: 16px;
+		letter-spacing: 1.5px;
+		color: white;
+		margin-bottom: 30px;
+		border: none;
+		border-bottom: 1px solid white;
+		outline: none;
+		background: transparent;
+	}
+	.box .inputbox label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 5px 0;
+		font-size: 16px;
+		color: white;
+		pointer-events: none;
+		transition: .3s;
+	}
+	.box .inputbox input:focus ~ label, .box .inputbox input:valid ~ label {
+		top: -30px;
+		left: 0;
+		color: #03a9f4;
+		font-size: 16px;
+	}
+	.loginBtn {
+		text-align: center;
+	}
+	.loginBtn input[type="submit"] {
+		background: #03a9f4;
+		text-align: center;
+		font-size: 18px;
+		border: none;
+		outline: none;
+		color: #fff;
+		padding: 10px 20px;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+	.loginBtn input[type="button"] {
+		background: #c6c6c6;
+		text-align: center;
+		font-size: 18px;
+		border: none;
+		outline: none;
+		color: #fff;
+		padding: 10px 20px;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+}
+@media screen and (min-width:481px) and (max-width:767px) {
+	body {
+		background: url(../images/bg.jpg) no-repeat fixed;
+		background-size: cover
+	}
+	.container {
+		width: 100%;
+		margin: 0 auto
+	}
+	.box {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 60%;
+		height: 500px;
+		background: rgba(255, 255, 255, 0.1);
+		box-sizing: border-box;
+		box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+		border-radius: 10px;
+	}
+	.box h2 {
+		margin: 60px 0 80px 0;
+		padding: 0;
+		font-size: 32px;
+		color: white;
+		text-align: center;
+	}
+	.box .input {
+		margin-bottom: 25px;
+	}
+	.box .inputbox {
+		position: relative;
+		width: 80%;
+		height: 75px;
+		margin: 0 auto;
+	}
+	.box .inputbox input {
+		width: 100%;
+		padding: 10px 0;
+		font-size: 16px;
+		letter-spacing: 1.5px;
+		color: white;
+		margin-bottom: 30px;
+		border: none;
+		border-bottom: 1px solid white;
+		outline: none;
+		background: transparent;
+	}
+	.box .inputbox label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 5px 0;
+		font-size: 16px;
+		color: white;
+		pointer-events: none;
+		transition: .3s;
+	}
+	.box .inputbox input:focus ~ label, .box .inputbox input:valid ~ label {
+		top: -30px;
+		left: 0;
+		color: #03a9f4;
+		font-size: 16px;
+	}
+	.loginBtn {
+		text-align: center;
+	}
+	.loginBtn input[type="submit"] {
+		background: #03a9f4;
+		text-align: center;
+		font-size: 18px;
+		border: none;
+		outline: none;
+		color: #fff;
+		padding: 10px 20px;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+	.loginBtn input[type="button"] {
+		background: #c6c6c6;
+		text-align: center;
+		font-size: 18px;
+		border: none;
+		outline: none;
+		color: #fff;
+		padding: 10px 20px;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+}
+@media screen and (min-width:0px) and (max-width:480px) {
+	body {
+		background: url(../images/bg.jpg) no-repeat fixed;
+		background-size: cover
+	}
+	.container {
+		width: 100%;
+		margin: 0 auto
+	}
+	.box {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 80%;
+		height: 500px;
+		background: rgba(255, 255, 255, 0.1);
+		box-sizing: border-box;
+		box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+		border-radius: 10px;
+	}
+	.box h2 {
+		margin: 60px 0 80px 0;
+		padding: 0;
+		font-size: 32px;
+		color: white;
+		text-align: center;
+	}
+	.box .input {
+		margin-bottom: 25px;
+	}
+	.box .inputbox {
+		position: relative;
+		width: 80%;
+		height: 75px;
+		margin: 0 auto;
+	}
+	.box .inputbox input {
+		width: 100%;
+		padding: 10px 0;
+		font-size: 16px;
+		letter-spacing: 1.5px;
+		color: white;
+		margin-bottom: 30px;
+		border: none;
+		border-bottom: 1px solid white;
+		outline: none;
+		background: transparent;
+	}
+	.box .inputbox label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 5px 0;
+		font-size: 16px;
+		color: white;
+		pointer-events: none;
+		transition: .3s;
+	}
+	.box .inputbox input:focus ~ label, .box .inputbox input:valid ~ label {
+		top: -30px;
+		left: 0;
+		color: #03a9f4;
+		font-size: 16px;
+	}
+	.loginBtn {
+		text-align: center;
+	}
+	.loginBtn input[type="submit"] {
+		background: #03a9f4;
+		text-align: center;
+		font-size: 18px;
+		border: none;
+		outline: none;
+		color: #fff;
+		padding: 10px 20px;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+	.loginBtn input[type="button"] {
+		background: #c6c6c6;
+		text-align: center;
+		font-size: 18px;
+		border: none;
+		outline: none;
+		color: #fff;
+		padding: 10px 20px;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+}

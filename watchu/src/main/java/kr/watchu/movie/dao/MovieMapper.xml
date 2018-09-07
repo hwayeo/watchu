@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="kr.watchu.movie.dao.MovieMapper">
+   <select id="selectMovieList" parameterType="map" resultType="MovieCommand">
+   SELECT * FROM
+   (SELECT a.*,rownum rnum FROM
+   (SELECT * FROM movie_info
+      <where>
+         <if test="keyword != '' and keyfield == 'title'" >
+            title like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == 'country'" >
+            country like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == 'genre'" >
+            main_genre like '%' || #{keyword} || '%' or
+            sub_genre like '%' || #{keyword} || '%'
+         </if>
+         <if test="nya2 != '' and nya == 'title'" >
+            title like '%' || #{nya2} || '%'
+         </if>
+         <!-- <if test="keyword != '' and keyfield.equals('all')" >
+            title like '%' || #{keyword} || '%' or
+            director like '%' || #{keyword} || '%' or
+            actors like '%' || #{keyword} || '%'   
+         </if> -->
+      </where>   
+      ORDER BY released desc)a)
+   <![CDATA[
+      WHERE rnum >= #{start} AND rnum <= #{end}
+   ]]>   
+   </select>
+   
+   <select id="selectMovieCnt" parameterType="map" resultType="integer">
+      SELECT count(*) FROM movie_info
+      <where>
+         <if test="keyword != '' and keyfield == 'title'" >
+            title like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == 'country'" >
+            country like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == 'genre'" >
+            main_genre like '%' || #{keyword} || '%' or
+            sub_genre like '%' || #{keyword} || '%'
+         </if>
+         <!-- <if test="keyword != '' and keyfield.equals('all')" >
+            title like '%' || #{keyword} || '%' or
+            director like '%' || #{keyword} || '%' or
+            actors like '%' || #{keyword} || '%'   
+         </if> -->
+      </where>
+   </select>
+   
+   <!-- 글 수정 -->
+<!--  <update id="updateMovie">
+      <if test="poster_img == '' and banner_img == ''">
+         UPDATE movie_info SET title=#{title}, country=#{country}, released=#{released}, director=${director}, summary=#{summary}, main_genre=#{main_genre}, sub_genre=#{sub_genre}, trailer=#{trailer} WHERE movie_num=#{movie_num}
+      </if>
+      <if test="poster_img != '' and banner_img != ''">
+         UPDATE movie_info SET title=#{title}, country=#{country}, released=#{released}, director=${director}, summary=#{summary}, poster_img=#{poster_img}, banner_img=#{banner_img}, main_genre=#{main_genre}, sub_genre=#{sub_genre}, trailer=#{trailer} WHERE movie_num=#{movie_num}
+      </if>
+   </update> -->
+      
+   <select id="selectMovieAjaxList" parameterType="Map" resultType="MovieCommand">
+   SELECT * FROM
+   (SELECT a.*,rownum rnum FROM
+   (SELECT * FROM movie_info 
+      <where>
+         <if test="keyword != '' and keyfield == 'title'" >
+            title like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == 'country'" >
+            country like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == 'genre'" >
+            main_genre like '%' || #{keyword} || '%' or
+            sub_genre like '%' || #{keyword} || '%'
+         </if>
+         <!-- <if test="keyword != '' and keyfield.equals('all')" >
+            title like '%' || #{keyword} || '%' or
+            director like '%' || #{keyword} || '%' or
+            actors like '%' || #{keyword} || '%'   
+         </if> -->
+      </where>   
+      ORDER BY released desc)a)
+   <![CDATA[
+      WHERE rnum >= #{start} AND rnum <= #{end}
+   ]]>   
+   </select>
+   <select id="selectMovieAjaxCnt" parameterType="map" resultType="Integer">
+      SELECT count(*) FROM movie_info
+      <where>
+         <if test="keyword != '' and keyfield == 'title'" >
+            title like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == 'country'" >
+            country like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == 'genre'" >
+            main_genre like '%' || #{keyword} || '%' or
+            sub_genre like '%' || #{keyword} || '%'
+         </if>
+      </where>
+   </select>
+   
+   <select id="selectMovieAjaxList2" parameterType="Map" resultType="MovieCommand">
+   SELECT * FROM
+   (SELECT a.*,rownum rnum FROM
+   (SELECT * FROM movie_info 
+      <where>
+         <if test="keyword != '' and keyfield == 'title'" >
+            title like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == 'country'" >
+            country like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == 'genre'" >
+            main_genre like '%' || #{keyword} || '%' or
+            sub_genre like '%' || #{keyword} || '%'
+         </if>
+         <!-- <if test="keyword != '' and keyfield.equals('all')" >
+            title like '%' || #{keyword} || '%' or
+            director like '%' || #{keyword} || '%' or
+            actors like '%' || #{keyword} || '%'   
+         </if> -->
+      </where>   
+      ORDER BY released desc)a)
+   <![CDATA[
+      WHERE rnum >= #{start} AND rnum <= #{end}
+   ]]>   
+   </select>
+   <select id="selectMovieAjaxCnt2" parameterType="map" resultType="Integer">
+      SELECT count(*) FROM movie_info
+      <where>
+         <if test="keyword != '' and keyfield == 'title'" >
+            title like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == 'country'" >
+            country like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == 'genre'" >
+            main_genre like '%' || #{keyword} || '%' or
+            sub_genre like '%' || #{keyword} || '%'
+         </if>
+      </where>
+   </select>
+</mapper> 

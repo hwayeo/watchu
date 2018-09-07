@@ -1,0 +1,88 @@
+@charset "UTF-8"
+/*푸터 고정*/
+#footer{
+	position:relative;
+	clear:both;
+	top:400px;
+	left:0;	
+	bottom:0;
+	min-height:100px;
+	background:rgb(220,220,220);
+}
+.navbar{
+	vertical-align:middle;
+	margin-bottom:0;
+	padding-top:5px;
+	padding-bottom:10px;
+	width:100%;
+	border-bottom:1px solid rgba(120,120,120,0.2);
+	box-shadow:2px 2px 5px rgba(120,120,120,0.1);
+}
+.custom-icon{
+	background-color:#f74788;
+}
+.nav > li a{
+	padding-top:20px;
+	font-size:1.0em;
+	color:black;
+}
+#brand_text{
+	color:#f74788;
+	font-size:1.5em;	
+	margin-top:10px;
+	padding-left:20px;
+}
+/*관리자 레이아웃 CSS*/
+div#admin{
+	width:100%;
+	}
+div#main_menu{
+	margin-top:20px;
+	float:left;
+	width:20%;
+	padding:50px 30px 0 50px;
+	margin:0 auto;
+}
+div#main_body{
+	margin-top:20px;
+	float:left;
+	width:80%;
+	padding:50px 50px 0 30px;
+	margin:0 auto;
+}
+
+/* 관리자 메뉴 */
+div.admin_menu a{
+	text-decoration:none;
+	color:#000000;
+}
+div.admin_menu a:hover{
+	color:#ff2f6e;
+}
+
+/* 페이징 버튼 색상(not yet) */
+ul.paging {
+	background-color:#ff2f6e;
+}
+
+/* 자동 완성 */
+.ui-autocomplete {
+z-index: 2150000000;
+}
+
+/* 관계자목록 */
+.content-header{
+	padding-bottom: 20px;
+}
+.content-header .search{
+	float: right;
+}
+div .off_photo{margin-top: 0px;}
+
+
+/* 영화목록: 상세 정보 테이블 - 추후 수정 예정 */
+.movieView table tr td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.movieView{margin-bottom: 10px;}

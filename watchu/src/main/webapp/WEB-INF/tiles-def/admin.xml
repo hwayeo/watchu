@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="admin" template="/WEB-INF/views/template/layout-admin.jsp">
+		<put-attribute name="title" value="왓츄 -관리자"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/header-admin.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/views/template/menu.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_movieList.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer-admin.jsp"/>
+	</definition>
+	<!-- 영화목록페이지를 admin페이지 main으로 설정함(08/23) -->
+	
+	<definition name="admin_movieList" extends="admin">
+		<put-attribute name="title" value="왓츄 -영화 목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_movieList.jsp"/>
+	</definition>
+	<definition name="admin_movieWrite" extends="admin">
+		<put-attribute name="title" value="왓츄 -영화 등록"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_movieWrite.jsp"/>
+	</definition>
+	<definition name="admin_movieDetail" extends="admin">
+		<put-attribute name="title" value="왓츄 -영화 상세 정보"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_movieDetail.jsp"/>
+	</definition>
+	
+	<definition name="officialList" extends="admin">
+		<put-attribute name="title" value="왓츄 -영화 관계자 목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/officialList.jsp"/>
+	</definition>
+	<definition name="officialDetail" extends="admin">
+		<put-attribute name="title" value="왓츄 -영화 관계자 상세/수정 및 삭제"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/officialDetail.jsp"/>
+	</definition>
+	
+	<definition name="genreList" extends="admin">
+		<put-attribute name="title" value="왓츄 -영화 장르 목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/genreList.jsp"/>
+	</definition>
+	
+	<definition name="movieRating" extends="admin">
+		<put-attribute name="title" value="왓츄 -영화 별점 관리"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/movieRating.jsp"/>
+	</definition>
+	
+	<definition name="userList" extends="admin">
+		<put-attribute name="title" value="왓츄 -회원 목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/userList.jsp"/>
+	</definition>
+	<definition name="userDetail" extends="admin">
+		<put-attribute name="title" value="왓츄 -회원 상세/수정 및 삭제"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/userDetail.jsp"/>
+	</definition>
+	
+	<definition name="reportedUser" extends="admin">
+		<put-attribute name="title" value="왓츄 -신고 회원 내역"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/reportedUser.jsp"/>
+	</definition>
+	<definition name="reportedDetail" extends="admin">
+		<put-attribute name="title" value="왓츄 -신고 상세내용"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/reportedDetail.jsp"/>
+	</definition>
+	<definition name="userSupportList" extends="admin">
+		<put-attribute name="title" value="왓츄 -고객 문의"/>
+		<put-attribute name="body" value="/WEB-INF/views/user/userSupportList.jsp"/>
+	</definition>
+	
+	<!-- 관리자 로그인 -->
+	<definition name="adminLogin" template="/WEB-INF/views/admin/adminLogin.jsp">
+		<put-attribute name="title" value="왓츄 -관리자 로그인"/>
+	</definition>
+</tiles-definitions>
