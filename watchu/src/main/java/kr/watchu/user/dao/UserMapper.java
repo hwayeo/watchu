@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Update;
 import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.user.domain.NaverCommand;
 import kr.watchu.user.domain.UserCommand;
- 
+  
 public interface UserMapper {
 	//회원등록
 	@Insert("INSERT INTO user_basic (id,auth,permit) VALUES (#{id},1,#{permit})")

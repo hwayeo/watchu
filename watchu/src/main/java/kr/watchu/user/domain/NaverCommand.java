@@ -1,6 +1,6 @@
 package kr.watchu.user.domain;
 
-public class NaverCommand {
+public class NaverCommand { 
 	private String resultcode;
 	private String message;
 	private NaverUserCommand response;

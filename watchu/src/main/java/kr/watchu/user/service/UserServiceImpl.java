@@ -13,7 +13,7 @@ import kr.watchu.user.dao.UserMapper;
 import kr.watchu.user.domain.NaverCommand;
 import kr.watchu.user.domain.UserCommand;
 
-@Service("userService")
+@Service("userService") 
 public class UserServiceImpl implements UserService {
 	@Resource
 	private UserMapper userMapper;

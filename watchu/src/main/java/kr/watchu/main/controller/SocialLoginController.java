@@ -81,7 +81,7 @@ public class SocialLoginController {
 		/* 네이버 아이디로 로그인 인증이 끝나면 callback처리과정에서 AccessToken을 발급받을 수 있다. */
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 
-		if(log.isDebugEnabled()) {
+		if(log.isDebugEnabled()) { 
 			log.debug("token 확인:" + session + "," + code + "," + state);
 		}
 

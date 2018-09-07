@@ -7,7 +7,7 @@ import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.user.domain.NaverCommand;
 import kr.watchu.user.domain.UserCommand;
 
-public interface UserService {
+public interface UserService {  
 	//회원등록
 	public void insertUser(UserCommand user);
 	//social 회원등록
