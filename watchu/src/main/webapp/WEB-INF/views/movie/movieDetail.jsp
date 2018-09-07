@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/movie-detail.css">	
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/watchu-view.css">	
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/modal-comment.js"></script>
 <div id="main-page">
 	<div id="main_banner">
 		<div id="img-test">
@@ -27,12 +28,12 @@
 		</div>
 	
 	<div class="col-sm-6 col-md-6 col-xs-6" id="poster2">
-		 <h3><b>${movie.title}</b></h3>
-		 	<p>${movie.released}.${movie.main_genre}.${movie.country}</p>
+		 <h3><b style="font-size:30px;">${movie.title}</b></h3>
+		 	<p style="font-size:18px;">${movie.released}.${movie.main_genre}.${movie.country}</p>
 		 		<hr width="65%" align="left">	
-					<p>평점★4.5</p>
+					<p style="font-size:18px;">평점★4.5</p>
 				<hr width="65%" align="left">
-			<div style="width: 250px;">별점</div>
+			<div style="width: 250px; font-size:18px;">별점</div>
 		</div>
 	</div>
 		<!-- 영화 기본정보 pc화면 끝 -->
@@ -143,7 +144,7 @@
 				</c:if>
 				
 				<div class="basic-information"><h4><b>기본정보</b></h4></div>
-				 <div class="more-view"><a style="cursor:pointer; color: #ffc0d3;" data-toggle="modal" data-target="#moreinfo"><b>더보기</b></a></div>	
+				<div class="more-view"><a style="cursor:pointer; color: #ffc0d3;" data-toggle="modal" data-target="#moreinfo"><b>더보기</b></a></div>	
 				<br>
 			
 				<div class="summary">${movie.summary}</div>
@@ -176,12 +177,13 @@
 				<c:forEach var="list" items="${commentList}">
 					<div class="division1">
 					<div class=inner-box1>
-					<div class="comment-title"><img src="${pageContext.request.contextPath}/main/imageView.do?id=${list.id}" 
-					width="35" height="35" class="img-circle"></div>
-					<div><h4>${list.id}</h4></div>
+					<div class="comment-title"><img src="../main/imageView.do?id=${list.id}" 
+					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;"></div>
+					<div><h4 class="comment-id">${list.id}</h4></div>
+					<div class="more-view2"><a style="cursor:pointer; color: #ffc0d3;" data-toggle="modal" data-target="#morecomment" class="modal-comment"><b>더보기</b></a></div>	
 					</div>
 					<hr>
-					<div class="inner-box2"><a style="cursor:pointer; color:black;" data-toggle="modal" data-target="#morecomment">${list.content}</a></div>
+					<div class="inner-box2">${list.content}</div>
 					<hr>
 					<div class="inner-box3">좋아요 : ${list.likes}</div>  
 					<hr>
@@ -302,9 +304,10 @@
 				<c:forEach var="list" items="${commentList}">
 					<div class="division1">
 					<div class=inner-box1>
-					<div class="comment-title"><img src="${pageContext.request.contextPath}/main/imageView.do?id=${list.id}" 
-					width="35" height="35" class="img-circle"></div>
-					<div><h4>${list.id}</h4></div>
+					<div class="comment-title"><img src="../main/imageView.do?id=${list.id}" 
+					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;"></div>
+					<div><h4 class="comment-id">${list.id}</h4></div>
+					<div class="more-view2"><a style="cursor:pointer; color: #ffc0d3;" data-toggle="modal" data-target="#morecomment" class="modal-comment"><b>더보기</b></a></div>	
 					</div>
 					<hr>
 					<div class="inner-box2">${list.content}</div>
@@ -377,7 +380,7 @@
 					<form:form commandName="commentCommand" action="updateCommentWrite.do" id="commentRegisterForm"> 
 					<input type="hidden" name="movie_num" value="${movie.movie_num}">
 					<input type="hidden" name="id" value="${user_id}">
-					<textarea name="content" id="text" placeholder="${comment.content}" class="form-control" rows="5"></textarea><br>
+					<textarea name="content" id="text" class="form-control" rows="5">${comment.content}</textarea><br>
 					<div class="text-right">
 						<button class="btn" data-dismiss="modal">닫기</button>
 						<button class="btn btn-primary" value="submit">코멘트 작성</button>
@@ -445,16 +448,15 @@
 				
 					<div class="division1">
 					<div class=inner-box1>
-					<div class="comment-title"><img src="${pageContext.request.contextPath}/main/imageView.do?id=${comment.id}" 
-					width="35" height="35" class="img-circle"></div>
-					<div><h4>${comment.id}</h4></div>
+					<div class="comment-title" id="modal-output-title"></div>
+					<div><h4 id="modal-output-id"></h4></div>
 					</div>
 					<hr>
-					<div class="inner-box2"><a style="cursor:pointer; color:black;" data-toggle="modal" data-target="#morecomment" id="modalcomment">${comment.content}</a></div>
+					<div class="modal-contentbox" id="modal-output-content">${comment.content}</div>
 					<hr>
-					<div class="inner-box3">좋아요 : ${comment.likes}</div>  
+					<div class="inner-box3" id="modal-output-likes">좋아요 : ${comment.likes}</div>  
 					<hr>
-					<div class="inner-box4">작성날짜 : ${comment.reg_date}</div>                
+					<div class="inner-box4" id="modal-output-reg_date">작성날짜 : ${comment.reg_date}</div>                
 					</div>
 				
 				</div>
