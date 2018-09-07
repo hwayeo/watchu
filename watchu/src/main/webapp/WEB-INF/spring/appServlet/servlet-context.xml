@@ -64,5 +64,8 @@
 		 </beans:property>
 	</beans:bean>
 	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="kr.watchu.user.domain.NaverLoginBO" />
+	
 	<!-- 데이터 작업 없이 뷰 호출 - 메인페이지 -->
 </beans:beans>
