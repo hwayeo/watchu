@@ -14,11 +14,11 @@
 
 <div class="container">  
          <div class="row"> 
-            <div class="col-md-10 col-md-offset-2">
+            <div class="col-xs-12 col-md-12"><!-- 시작 -->
     
                      <form:form commandName="command" action="updateUser.do" id="updateUser_Form" enctype="multipart/form-data">
                      
-                        	 <div class="col-md-6">
+                        	 <div class="col-md-6 text-center">
                                 
                                     <div class="form-group row">
                                         <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-3">
@@ -27,10 +27,6 @@
                                     </div>
                                     <hr>
                            
-									<!-- <div class="form-group row">
-										<label
-											class="col-xs-3 col-xs-offset-5 col-md-3 col-md-offset-5">-프로필-</label>
-									</div> -->
 									<div class="form-group row">
 										<div class="col-md-8 col-md-offset-2">
 											
