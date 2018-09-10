@@ -3,12 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 모바일 환경의 상단 -->
 <div class="visible-xs">
-		<form>
+		<!-- submit 이벤트를 위해서 다시 추가했습니다. -->
+		<input type="hidden" id="ajx_keyfield" value="${param.keyfield}">
+		<input type="hidden" id="ajx_keyword" value="${param.keyword}">
+		
+		
+		<!-- 모바일 환경 이벤트 -->
+		<form class="navbar-form" role="search" action="movieList.do" method="get" id="movieSearch">
 			<div class="input-group input-group-lg" id="md-search">
-				<input type="text" class="form-control" placeholder="작품 제목,배우,감독 검색">
+				<!-- submit 이벤트에 keyfield값을 전달하기 위해 hidden값으로 추가했습니다. -->
+				<input type="hidden" name="keyfield" value="all">
+				<input type="text" name="keyword" id="movie-search-keyword" class="form-control" placeholder="작품 제목,배우,감독 검색">
 				<span class="input-group-btn">
-        			<button class="btn btn-default" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
-    	  		</span>
+        			<button class="btn btn-default gbutton" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
+    			</span>
 			</div>
 		</form>
 </div>
@@ -20,14 +28,17 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-main">
-      <form class="navbar-form" role="search">
+      <form class="navbar-form" role="search" action="movieList.do" method="get" id="movieSearch2">
         <div id="search-field" class="input-group input-group-lg">
-      		<input type="text" class="form-control" placeholder="작품 제목,배우,감독 검색">
+        	<!-- submit 이벤트에 keyfield값을 전달하기 위해 hidden값으로 추가했습니다. -->
+        	<input type="hidden" name="keyfield" value="all">
+      		<input type="text" name="keyword" id="movie-search-keyword2" class="form-control" placeholder="작품 제목,배우,감독 검색">
       		<span class="input-group-btn">
-        		<button class="btn btn-default" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
+        		<button class="btn btn-default gbutton2" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
       		</span>
-      </div>
+      	</div>
       </form>
+      
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">영화<span class="caret"></span></a>

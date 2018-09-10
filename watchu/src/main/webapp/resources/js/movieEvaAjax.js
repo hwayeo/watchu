@@ -1,103 +1,68 @@
 $(document).ready(function(){
 	
-	$(window).on('resize',function(){
-		width = $(document).width();
-		selectEva(1,$('#movie_num').val(),keyword,keyfield);
-	});
-	//브라우저 창 넓이
-	
  	var currentPage;
 	var count;
 	var rowCount;
-	var keyfield = $('#ajx_keyfield').val();
-	var keyword = $('#ajx_keyword').val();;
+	var keyfield;
+	var keyword;
+	var type = $('.page-type').val();
 	var width = $(document).width();
 	
- 	$("select").change(function(){
-		var list = $(this).find('option:selected');
- 		console.log(list.text());
-		console.log(keyfield);
-		console.log(keyword);
+	//평가창에서의 브라우저 창 넓이
+	$(window).on('resize',function(){
+		width = $(document).width();
+		selectList(1,keyword,keyfield);
 	});
- 	
- 	//영화 홈 화면 출력
-	function selectHome(pageNum,movie_num){
-		currentPage = pageNum;
- 		if(pageNum == 1){
-			$('.mlist').empty();
-			$('.mlist2').empty();
-			$('.mlist3').empty();
-		}
- 		$.ajax({ 
-			type:'post',
-			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword},
-			url:'movieMlist.do',
-			dataType:'json',
-			cache:false,
-			timeout:30000,
-			success:function(data){
-				count = data.count;
-				rowCount = data.rowCount;
-				var list = data.list;
- 				if(count < 0 || list == null){
-				}else{
-					$(list).each(function(index,item){
-						var mlist = '<div class="col-sm-6 col-md-3 col-xs-6" id="main-category">';
-						mlist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img src="../resources/images/img4.jpg"></div>';
-						mlist += '<div class="sub-category caption">';
-						mlist += '<p class="ptitle">'+item.title+'</p>';
-						mlist += '</div>';
-						mlist += '</div>';
- 						$('.mlist').append(mlist);                  
-						$('.mlist2').append(mlist);
-						$('.mlist3').append(mlist);
-					});
-				}
-			},error:function(){
-			}
-		});
-	}
-	selectHome(1,$('#movie_num').val());
- 	//영화 목록 화면
-	function selectList(pageNum,movie_num,keyword,keyfield){
-		currentPage = pageNum;
- 		if(pageNum == 1){
-			$('.slist').empty();
-		}
- 		$.ajax({ 
-			type:'post',
-			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword},
-			url:'movieMlist2.do',
-			dataType:'json',
-			cache:false,
-			timeout:30000,
-			success:function(data){
-				count = data.count;
-				rowCount = data.rowCount;
-				var list = data.list;
- 				if(count < 0 || list == null){
-					var slist = '<div class="col-sm-6 col-md-3 col-xs-6" id="main-category">';
-					slist += '검색 결과가 없습니다';
-					slist += '</div>';
-				}else{
-					$(list).each(function(index,item){
-						var slist = '<div class="col-sm-6 col-md-3 col-xs-6" id="main-category">';
-						slist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img src="../resources/images/img4.jpg"></div>';
-						slist += '<div class="sub-category caption">';
-						slist += '<p class="ptitle">'+item.title+'</p>';
-						slist += '<p class="pgeren">'+item.country+'</p>';
-						slist += '</div>';
-						slist += '</div>';                  
- 						$('.slist').append(slist);
-					});
-				}
-			},error:function(){
+	
+	//스크롤 이벤트 발생시 pageNum값을 증가 시킨다.
+ 	$(window).scroll(function(){
+ 		if($(window).scrollTop() == $(document).height() - $(window).height()){ 
+ 			if(currentPage>=Math.ceil(count/rowCount)){
+ 			}else{
+ 				pageNum = currentPage + 1;
+ 				selectEva(pageNum,keyword,keyfield);
  			}
-		});
-	}
-	selectList(1,$('#movie_num').val(),keyword,keyfield);
+ 		}
+ 	});
+	
+	/*---------------movieList 호출---------------------*/
+	$('.gbutton').on('click',function(event){
+		keyfield = 'all';
+		keyword = $('#movie-search-keyword').val();
+		if(type == 'movieEva'){
+			$('#movieSearch').submit();
+		}
+	});
+	$('.gbutton2').on('click',function(){
+		keyfield = 'all';
+		keyword = $('#movie-search-keyword2').val();
+		if(type == 'movieEva'){
+			$('#movieSearch2').submit();
+		}
+	});
+	
+	/*기본 검색 및 호출시 상태*/
+	selectEva(1,keyword,keyfield);
+	/*---------------movieList 호출---------------------*/
+	
+	/*---------------카테고리 변경 호출---------------------*/
+	/*장르 선택*/
+	$('.genre-category').on('change',function(){
+		keyfield = 'genre';
+		keyword = $(this).find('option:selected').val();
+		selectEva(1,keyword,keyfield);
+	});
+	
+	/*국가 선택*/
+	$('.country-category').on('change',function(){
+		keyfield = 'country';
+		keyword = $(this).find('option:selected').val();
+		selectEva(1,keyword,keyfield);
+	});
+	/*---------------카테고리 변경 호출---------------------*/
+ 	
  	//영화 평가 화면
-	function selectEva(pageNum,movie_num,keyword,keyfield){
+	function selectEva(pageNum,keyword,keyfield){
 		var elist = '';
 		currentPage = pageNum;
  		if(pageNum == 1){
@@ -121,7 +86,11 @@ $(document).ready(function(){
 						if(width > 425){
 							elist += '<div class="col-sm-6 col-md-3 col-xs-6" id="main-category">';
 							elist += '<div class="thumbnail">';
+							if(item.poster_img == null){
 							elist += '<img src="../resources/images/img4.jpg" class="mimg">';
+							}else{
+							elist += '<img src="imageView.do?movie_num='+item.movie_num+'&type=poster" class="mimg">';
+							}
 							elist += '<div class="overlay">';
 							elist += '<div class="list-contents">';
 							elist += '<p class="subtitle">'+item.title+'</p>';
@@ -158,7 +127,11 @@ $(document).ready(function(){
 							elist += '<div class="row">';
 							elist += '   <div class="col-xs-12 movie-cell">';
 							elist += '	    <div class="col-xs-4 posters">';
-							elist += '	 	    <img src="../resources/images/billy.jpg" class="img-responsive posters">';  
+							if(item.poster_img == null){
+							elist += '	 	    <img src="../resources/images/billy.jpg" class="img-responsive posters">';
+							}else{
+							elist += '			<img src="imageView.do?movie_num='+item.movie_num+'&type=poster" class="img-responsive posters">';
+							}  
 							elist += '		</div>';
 							elist += '	<div class="col-xs-8 info-cell">';
 							elist += '   <div class="row">';

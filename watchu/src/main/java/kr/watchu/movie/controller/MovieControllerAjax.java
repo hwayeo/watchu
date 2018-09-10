@@ -77,8 +77,7 @@ import kr.watchu.util.PagingUtil;
 	public Map<String,Object> getMovieList2(
 			@RequestParam(value="pageNum",defaultValue="1") int currentPage,
 			@RequestParam(value="keyfield",defaultValue="") String keyfield,
-			@RequestParam(value="keyword",defaultValue="" ) String keyword
-			){
+			@RequestParam(value="keyword",defaultValue="" ) String keyword){
 		
 		int rowCount = 24;
 		int pageCount = 10;
