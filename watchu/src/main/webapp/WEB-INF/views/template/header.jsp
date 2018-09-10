@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 모바일 환경의 상단 -->
 <div class="visible-xs">
-		<form>
+		<form action="${pageContext.request.contextPath}/main/search.do">
 			<div class="input-group input-group-lg" id="md-search">
-				<input type="text" class="form-control" placeholder="작품 제목,배우,감독 검색">
+				<input type="text" class="form-control" name="keyword" placeholder="작품 제목,배우,감독 검색">
 				<span class="input-group-btn">
         			<button class="btn btn-default" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
     	  		</span>
@@ -20,9 +20,9 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-main">
-      <form class="navbar-form" role="search">
+      <form class="navbar-form" role="search" action="${pageContext.request.contextPath}/main/search.do">
         <div id="search-field" class="input-group input-group-lg">
-      		<input type="text" class="form-control" placeholder="작품 제목,배우,감독 검색">
+      		<input type="text" class="form-control" name="keyword" placeholder="작품 제목,배우,감독 검색">
       		<span class="input-group-btn">
         		<button class="btn btn-default" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
       		</span>

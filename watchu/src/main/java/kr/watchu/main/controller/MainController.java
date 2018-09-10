@@ -170,19 +170,23 @@ public class MainController {
 		return mav; 
 	}*/
 	
-	/*@RequestMapping("/main/search.do")
+	@RequestMapping("/main/search.do")
 	public ModelAndView search(@RequestParam(value="keyword",defaultValue="") String keyword) {
 		ModelAndView mav = new ModelAndView();
 		
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("keyword",keyword);
+		map.put("keyword", keyword);
+		map.put("start", 1);
+		map.put("end", 4);
+		map.put("keyfield", "title");
+		
+		//검색된 영화
 		
 		List<MovieCommand> movieList = movieService.selectMovieList(map);
-		
 		mav.setViewName("result");
 		mav.addObject("movieList", movieList);
 		return mav;
-	}*/
+	}
 	
 	@RequestMapping("/main/autoComplete.do")
 	@ResponseBody

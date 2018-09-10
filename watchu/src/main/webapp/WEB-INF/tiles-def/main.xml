@@ -12,7 +12,7 @@
 		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
 	</definition>
 
-	<definition name="result" extends="main">
+	<definition name="result" template="/WEB-INF/views/template/layout.jsp">
 		<put-attribute name="title" value="왓츄 - 검색결과"/>
 		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/main/result.jsp"/>
