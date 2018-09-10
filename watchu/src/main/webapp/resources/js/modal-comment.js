@@ -35,12 +35,13 @@ $(document).ready(function(){
 	})
 	
 	$(function(){
-		$('.division1').hover(function(){
-			$('.bx-wrapper .bx-prev').show();
-			$('.bx-wrapper .bx-next').show();
-		},function(){
-			$('.bx-wrapper .bx-prev').hide();
-			$('.bx-wrapper .bx-next').hide();
+		$('.division1').mouseover(function(){
+			$('.bx-prev').show();
+			$('.bx-next').show();
+		$('.bx-controls-direction').mouseout(function(){
+			//$('.bx-prev').hide();
+			//$('.bx-next').hide();
 		});
 	});
+});
 });
