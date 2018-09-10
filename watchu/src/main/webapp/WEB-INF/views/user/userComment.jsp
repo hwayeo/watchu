@@ -2,16 +2,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setup.css">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-	<div class="container text-center">
+<div id="main-content">
+	<div class="container text-center"> 
 		<h2>코멘트</h2><hr/>
 	</div>
 <div class="tab-content container">
-	<form:form commandName="commentCommand"> 
-		<input type="hidden" name="comment_num" value="${list.comment_num}">
-		<input type="hidden" name="id" value="${user_id}">
-		<input type="hidden" name="content" value="${list.content}">
-		<input type="hidden" name="movie_num" value="${list.movie_num}">
-	</form:form>
 	<div id="home" class="tab-pane fade in active">
 		<div class="nav-collapse">
 				<ul class="nav">
@@ -37,21 +32,20 @@
 							</c:if> 
 							<c:if test="${!empty user.profile_img}">
 								<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}" class="img-circle review" style="width: 50px; height: 50px;"> ${user_id}
-								<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}" class="img-circle"> ${user_id}
 							</c:if>
 						</a>	
 					</div><br>
 					
-					<div class="container" onclick="location.href='userComment_detail.do'" style="cursor:pointer;">  
+					<div class="container" onclick="location.href='userComment_detail.do?movie_num=${list.movie_num}&id=${list.id}'" style="cursor:pointer;">  
 						<div class="col-md-2">
 							<a href="#"> 
-								<img class="media-object" src="${pageContext.request.contextPath}/resources/images/gad.jpg">
+								<img class="media-object" src="${pageContext.request.contextPath}/main/imageView.do?id=${list.poster_img}">
 							</a>
 						</div>
 						<div class="col-md-9">
 						
 							<span class="media-heading">${list.title}</span>
-							<p class="ptag"> &emsp; &emsp;${list.released}</p>
+							<p class="ptag"> &emsp; &emsp; ${list.released} 개봉</p>
 							<span class="commentspan">&emsp;&emsp;${list.content}</span> 
 							<br><br><br><br><br> 
 							<ul class="list-inline list-unstyled">
@@ -67,11 +61,9 @@
 					</div>
 					</div>
 				</div><br>
-				<a href="#">좋아요</a>&emsp;
-				<a href="userCommentWrite.do" data-toggle="modal" data-target="#CommentWrite">댓글</a>&emsp;
-				
-				<a href="#">공유</a>
-				<a href="#" style="text-align:right"><span class="glyphicon glyphicon-option-horizontal"></span></a>
+				<a class="like2" href="#" style="padding-left:30px">좋아요</a>&emsp;
+				<a class="like2" href="userCommentWrite.do" data-toggle="modal" data-target="#CommentWrite">댓글</a>&emsp;
+				<a class="like2" href="#">공유</a>
 			</div>
 		</div>
 		</c:forEach>
@@ -99,4 +91,4 @@
 			</div>
 		</div>
 	</div>
-</div></div>
+</div></div></div> 

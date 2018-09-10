@@ -12,8 +12,8 @@
 				<div class="col-xs-8 col-md-10">
 				</div>
 				<div class="col-xs-4 col-md-2">
-					<a href="follow.do?id=${user_id}" class="glyphicon glyphicon-user"></a>&emsp;
-					<a href="setup.do?id=${user_id}" class="glyphicon glyphicon-cog" data-toggle="modal" data-target="#myModal2"></a>
+					<a href="follow.do?id=${user_id}" class="glyphicon glyphicon-user" style="font-size:20px; color:gray;"></a>&emsp;
+					<a href="setup.do?id=${user_id}" class="glyphicon glyphicon-cog" style="font-size:20px; color:gray;" data-toggle="modal" data-target="#myModal2"></a>
 				</div><hr/>
 			</div>
 			
@@ -21,47 +21,43 @@
 				<a href="#" class="following_profile_img"> 
 					<c:if test="${empty user.profile_img}">
 							<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg"
-											class="img-circle" id="following_profile_img"
-											style="width: 50px; height: 50px;">
+											class="img-circle2" id="following_profile_img" style="width: 60px; height: 60px;">
 					</c:if> 
 					<c:if test="${!empty user.profile_img}">
-							<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}" width="70" height="70" class="img-circle">
+							<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}"class="img-circle2" style="width: 60px; height: 60px;">
 					</c:if>
 				</a> 
 				<p style="font-size:22px"> ${user.name}</p>
 				<div>
 					<ul class="wcPc-Arrange">
 						<li class="wcPc-ArrangeSizeFit" style="list-style:none;">
-								<a href="myfollowing.do?id=${user_id}">Following&emsp;</a>
-								<a href="myfollowing.do?id=${user_id}">${list.size()}</a>
+								<a class="mylike" href="myfollowing.do?id=${user_id}">Following&emsp;</a>
+								<a class="num" href="myfollowing.do?id=${user_id}">${list.size()}</a>
 						</li>
 						<li class="wcPc-ArrangeSizeFit" style="list-style:none;">
-								<a href="myfollower.do?id=${user_id}">Followers&emsp;</a>
-								<a href="myfollower.do?id=${user_id}">${list2.size()}</a>
+								<a class="mylike" href="myfollower.do?id=${user_id}">Followers&emsp;</a>
+								<a class="num" href="myfollower.do?id=${user_id}">${list2.size()}</a>
 						</li>
 						<li class="wcPc-ArrangeSizeFit" style="list-style:none;">
-								<a href="myBlock.do?id=${user_id}">Block&emsp;</a>
-								<a href="myBlock.do">${blockList.size()}</a>
+								<a class="mylike" href="myBlock.do?id=${user_id}">Block&emsp;</a>
+								<a class="num" href="myBlock.do">${blockList.size()}</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-md-2"></div>
-			<div class="col-xs-5 col-md-1"><br>
-				<button class="btn btn-md btn-primary active" type="button" onclick="location.href='updateUser.do'">프로필 수정</button>
-			</div><hr><br><br>
 		</div>
 		
 		<div class="col-xs-12 col-md-12"> 
-		<div class="container" style="border:1px solid gray"><br>
-				<div class="col-xs-7 col-md-7 text-center">
-					<span class="wc-StatLabel2 wcPc-block"><a onclick="location.href='userMypage_movie.do'">영화</a></span> 234<br>
-					<span class="wc-StatLabel wcPc-block"><a onclick="location.href='userWish.do'">보고싶어요</a></span> 12
-					
+		<div class="container" style="border:1px solid #c1c1c1"><br>
+				<div class="col-xs-4 col-md-4 text-center">
+					<span class="wc-StatLabel2 wcPc-block"><a class="mylike" onclick="location.href='userMypage_movielist.do'">영화</a></span> 234<br>
 				</div>
-				<div class="col-xs-5 col-md-5">
-					<span class="wc-StatLabel wcPc-block"><a onclick="location.href='userComment.do'">코멘트</a></span> 11<br>
-					<span class="wc-StatLabel wcPc-block"><a onclick="location.href='userLikeComment.do'">좋아요</a></span> 120<br><br>
+				<div class="col-xs-4 col-md-4 text-center">
+					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userComment.do'">코멘트</a></span> 11<br>
+				</div>
+				<div class="col-xs-4 col-md-4">
+					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userLikeComment.do'">좋아요</a></span> 120<br><br>
 				</div>
 		</div>
 		</div>
@@ -73,7 +69,7 @@
 			</div>
 			<div class="col-xs-1 col-md-2"></div>
 			<div class="col-xs-2 col-md-2"><br><br>
-				<button class="btn btn-md btn-primary active" type="button">취향 분석</button> 
+				<button class="btn btn-md btn-primary active" type="button" style="background-color:#f74788;border-color:#f74788;">취향 분석</button> 
 			</div>
 		</div>
 			
@@ -124,7 +120,7 @@
 
 						<li class="list-group-item">
 							<div class="">
-								<a href="updateUser.do"><label>내 설정</label></a>
+								<a href="updateUser.do"><label>프로필 수정</label></a>
 							</div>
 						</li>
 

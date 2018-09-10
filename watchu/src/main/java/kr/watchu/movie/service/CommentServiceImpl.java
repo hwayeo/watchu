@@ -100,4 +100,9 @@ public class CommentServiceImpl implements CommentService{
 		return 0;
 	}
 
+	@Override
+	public CommentCommand commentDetail(Map<String, Object> map) {
+		return commentMapper.commentDetail(map);
+	}
+
 }

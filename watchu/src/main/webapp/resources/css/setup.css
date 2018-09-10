@@ -122,7 +122,10 @@
 	width: 180px;
 	height: 140px;
 }
-
+.img-circle2 { /*프로필사진*/
+    border-radius: 100%;
+    max-width: 20%;
+}
 
 /*코멘트*/
 .img-circle {
@@ -156,12 +159,57 @@ ptag {
 }
 
 /*코멘트 디테일*/
+img.img-circle {
+	border-radius: 100%;
+    max-width: 50%;
+}
 .classpadding{
-	padding-left: 100px;
+	padding-left: 0px;
 	padding-top: 10px;
 }
+p.days{
+	margin-left: 64%;
+    font-size: 11px;
+    color: gray;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+span.media-heading.user_name {
+    margin-left: -1px;
+    font-size: 16px;
+    font-weight: 550;
+}
+span.detailcomm {
+    padding-left: 8px;
+    font-size: 13px;
+}
+a.like {
+    color: #F74788;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+a.like2 {
+    color: #F74788;
+    padding-right: 5px;
+}
+a.profile_img {
+    color: black;
+    font-size: 15px;
+}
+span.commmm {
+    font-size: 26px;
+    font-weight: 550;
+}
 
-
+/*마이페이지*/
+a.mylike {
+    color: gray;
+    font-size: 13px;
+}
+a.num {
+    color: black;
+    padding-left: 0px;
+}
 }
 
 
@@ -289,7 +337,10 @@ ptag {
 	width: 180px;
 	height: 140px;
 }
-
+.img-circle2 { /*프로필사진*/
+    border-radius: 100%;
+    max-width: 40%;
+}
 
 /*코멘트*/
 .img-circle {
@@ -313,12 +364,62 @@ ptag{
    }
 .list-inline {
     padding-left: 0;
-    margin-left: -40px;
+    margin-left: 10px;
     list-style: none;
     font-size: 10px;
 }
 
 
 /*코멘트 디테일*/
+img.img-circle {
+	border-radius: 100%;
+    max-width: 50%;
+}
+p.days{
+	margin-left: 80%;
+    font-size: 9px;
+    color: gray;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+span.media-heading.user_name {
+    margin-left: -1px;
+    font-size: 14px;
+    font-weight: 550;
+}
+span.detailcomm {
+    padding-left: 5px;
+    font-size: 12px;
+}
+a.like {
+    color: #F74788;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+a.profile_img {
+    color: black;
+    font-size: 15px;
+}
+span.reviewm {
+    padding-left: 0px;
+    font-size: 12px;
+}
+span.commmm {
+    font-size: 25px;
+    font-weight: 550;
+}
 
+a.mylike {
+    color: gray;
+    font-size: 12px;
+}
+a.num {
+    color: black;
+    padding-left: 0px;
+}
+a.like2 {
+    color: #F74788;
+    padding-right: 30px;
+    font-size: 12px;
+}
 }

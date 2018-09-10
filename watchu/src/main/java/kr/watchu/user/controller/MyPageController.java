@@ -140,27 +140,38 @@ public class MyPageController {
 		if (count > 0) {
 			list = commentService.selectMyCommentList(id);
 		}
-
+		UserCommand user = userService.selectUser(id);
+		
 		mav.setViewName("userComment");
 		mav.addObject("commentList", list);
 		mav.addObject("count", count);
+		mav.addObject("user",user);
 
 		return mav;
 	}
 	
 	//코멘트 상세페이지
 	@RequestMapping("/user/userComment_detail.do")
-	public String comment_detail(HttpSession session,Model model) {
-		String id = (String)session.getAttribute("user_id");
-		UserCommand user = userService.selectUser(id);
+	public ModelAndView comment_detail(@RequestParam("movie_num") Integer movie_num,
+									   @RequestParam("id") String id) {
+		ModelAndView mav = new ModelAndView();
 		
-		if(log.isDebugEnabled()) {
-			log.debug("<<userCommand>> : " + user);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("movie_num", movie_num);
+		map.put("id", id);
+		
+		CommentCommand comment = commentService.commentDetail(map);
+		
+		if (log.isDebugEnabled()) {
+			log.debug("<<comment>> : " + comment);
 		}
 		
-		model.addAttribute("user", user);
+		UserCommand user = userService.selectUser(id);
 		
-		return "userComment_detail";
+		mav.setViewName("userComment_detail");
+		mav.addObject("comment",comment);
+		mav.addObject("user",user);
+		return mav;
 	}
 	
 	//좋아요한 코멘트

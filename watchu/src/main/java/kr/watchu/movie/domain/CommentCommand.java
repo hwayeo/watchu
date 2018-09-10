@@ -2,6 +2,7 @@ package kr.watchu.movie.domain;
 
 import java.sql.Date;
 
+
 public class CommentCommand {
 	
 	private Integer comment_num;
@@ -11,7 +12,28 @@ public class CommentCommand {
 	private Integer likes;
 	private Date reg_date;
 	private int recomment_cnt;
+	private String title;
+	private Date released;
+	private byte[] poster_img;
 	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public Date getReleased() {
+		return released;
+	}
+	public void setReleased(Date released) {
+		this.released = released;
+	}
+	public byte[] getPoster_img() {
+		return poster_img;
+	}
+	public void setPoster_img(byte[] poster_img) {
+		this.poster_img = poster_img;
+	}
 	public Integer getComment_num() {
 		return comment_num;
 	}

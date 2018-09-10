@@ -9,6 +9,7 @@ import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.movie.domain.RecommentCommand;
 
 public interface CommentService {
+	
 	//======= ÄÚ¸àÆ®
 	//ÄÚ¸àÆ® ¾²±â
 	public void insertComment(CommentCommand comment);
@@ -29,6 +30,9 @@ public interface CommentService {
 	public List<CommentCommand> selectMyCommentList(String id);
 
 	public int selectMyCommentCnt(String id);
+	//»ó¼¼ ÄÚ¸àÆ®
+	public CommentCommand commentDetail(Map<String, Object> map);
+	
 	//======= ÄÚ¸àÆ® ´ñ±Û
 	//ÄÚ¸àÆ® ¾²±â
 	public void insertRecomment(RecommentCommand recomment);
