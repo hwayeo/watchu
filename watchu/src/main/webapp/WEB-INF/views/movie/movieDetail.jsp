@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.bxslider.min.js"></script>
 
  
-<div id="main-page">
+<div id="main-page"> 
 	<div id="main_banner">
 		<div id="img-test">
 			<%-- 배너이미지 주석처리
