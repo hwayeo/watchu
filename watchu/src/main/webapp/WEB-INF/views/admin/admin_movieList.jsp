@@ -9,7 +9,7 @@
 		<br>
 		<div class="content-header">
 			<!-- 검색 -->
-			<form action="admin_movieList.do" id="movie_search" method="get">
+			<form action="admin_movieList.do" class="confirm_search" method="get">
 			<select name="keyfield">
 				<option value="title">영화명</option>
 				<option value="director">감독명</option>
@@ -32,7 +32,7 @@
 				<tr>
 					<td>${movie.movie_num}</td>
 					<td onclick="location.href='admin_movieDetail.do?movie_num=${movie.movie_num}'" style="cursor:pointer;">${movie.title}</td>
-					<td><input type="checkbox" data-num="${movie.movie_num}" name="checked"></td>
+					<td><input type="checkbox" name="movieChecked" value="${movie.movie_num}"/></td>
 				</tr>
 				</c:forEach>
 			</table>
@@ -40,11 +40,8 @@
 
 			<!-- 영화 등록 및 삭제버튼 -->
 			<div class="edit_btn" align="right">
-				<input type="button" value="영화 등록" onclick="location.href='admin_movieWrite.do'">
-				<input type="button" value="선택 삭제">
-				<!-- <input type="button" value="영화 등록" id="register_movie"
-					data-toggle="modal" data-target="#registerModal"> <input
-					type="submit" value="선택 삭제" id="delete_movie"> -->
+				<input type="button" value="영화 등록" onclick="location.href='admin_movieWrite.do'" class="btn btn-primary">
+				<input type="button" value="선택 삭제" id="check_movieDel" class="btn btn-danger">
 			</div>
 			<br>
 

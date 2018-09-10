@@ -51,9 +51,9 @@
 	</table>
 	
 	<div class="edit_btn" align="right">
-		<input type="button" value="삭제" onclick="location.href='officialDelete.do?off_num=${officials.off_num}'">
-		<input type="submit" value="수정">
-		<input type="button" onclick="location.href='officialList.do'" value="목록">
-		</div>
+		<a href="location.href='officialDelete.do?off_num=${officials.off_num}'" class="btn btn-danger confirm_del">삭제</a>
+		<input type="button" onclick="location.href='officialList.do'" value="목록" class="btn btn-default">
+		<input type="submit" value="수정" class="confirm_mod btn btn-primary">
+	</div>
 	</form:form>
 </div>

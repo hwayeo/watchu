@@ -16,7 +16,7 @@
 			</span>
 			
 			<!-- 검색 -->
-			<form action="officialList.do" id="official_search" method="get" class="search">
+			<form action="officialList.do" class="confirm_search" method="get" class="search">
 			<select name="keyfield">
 				<option value="name">이름</option>
 				<option value="filmograp">작품명</option>
@@ -40,7 +40,7 @@
 					<td>${official.off_num}</td>
 					<td onclick="location.href='offcialDetail.do?off_num=${official.off_num}'" style="cursor:pointer;">${official.name}</td>
 					<td>${official.jobs}</td>
-					<td><input type="checkbox" name="checked"></td>
+					<td><input type="checkbox" name="offChecked" value="${official.off_num}"/></td>
 				</tr>
 				</c:forEach>
 			</table>
@@ -49,9 +49,9 @@
 			<!-- 영화 관계자 등록 및 삭제버튼 -->
 			<div class="edit_btn" align="right">
 				<input type="button" value="영화관계자등록" id="officials_movie"
-					data-toggle="modal" data-target="#officialsModal">
+					data-toggle="modal" data-target="#officialsModal" class="btn btn-primary">
 				<!-- <input type="button" value="영화 등록" id="register_movie" data-toggle="modal" data-target="#registerModal"> -->
-				<input type="submit" value="선택 삭제" id="delete_movie">
+				<input type="button" value="선택 삭제" id="check_offDel" class="btn btn-danger">
 			</div>
 			<br>
 
@@ -88,7 +88,8 @@
 				</div>
 				<div class="form-group">
 					<label for="jobs">구분</label>
-	         		<form:input path="jobs"/>
+					<form:radiobutton path="jobs" value="ACTOR" label="ACTOR"/>
+					<form:radiobutton path="jobs" value="DIRECTOR" label="DIRECTOR"/>
 	         		<form:errors path="jobs" cssClass="error-color"/>
 				</div>
 				<div class="form-group">
@@ -103,7 +104,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-				<button type="submit" class="btn btn-default">등록</button>
+				<button type="submit" class="btn btn-primary">등록</button>
 			</div>
 			</form:form>
 		</div>

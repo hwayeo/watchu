@@ -184,9 +184,9 @@
 	
 	</div>
 	<div class="edit_btn" align="right">
-		<input type="button" value="삭제" onclick="location.href='admin_movieDelete.do?movie_num=${movie.movie_num}'" id="del_movie">
-		<input type="submit" value="수정">
-		<input type="button" onclick="location.href='admin_movieList.do'" value="목록">
+		<a href="location.href='admin_movieDelete.do?movie_num=${movie.movie_num}'" class="btn btn-danger confirm_del">삭제</a>
+		<input type="button" onclick="location.href='admin_movieList.do'" value="목록" class="btn btn-default">
+		<input type="submit" value="수정" class="confirm_mod btn btn-primary">
 	</div>
 	</form:form>
 </div> 

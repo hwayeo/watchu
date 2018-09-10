@@ -70,8 +70,8 @@
 	</ul>
 
 	<div class="edit_btn" align="right">
-		<input type="button" value="목록" onclick="location.href='admin_movieList.do'">
-		<input type="submit" value="등록">
+		<input type="button" value="목록" onclick="location.href='admin_movieList.do'" class="btn btn-default">
+		<input type="submit" value="등록" class="btn btn-primary">
 	</div>
 	</form:form>
 </div>

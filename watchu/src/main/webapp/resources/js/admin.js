@@ -1,15 +1,26 @@
 $(document).ready(function(){
-	//영화 삭제 시 경고창
+//삭제 경고창
+$('.edit_btn .confirm_del').on('click', function(){
+	if(confirm("삭제하시겠습니까?") == false) {
+		return false;
+	}
+});
 	
-	//장르 검색 유효성 체크
-	$('#genre_search').submit(function(){
-		if($('#keyword').val() == ''){
-			alert('검색어를 입력하세요!');
-			$('#keyword').focus();
-			return false;
-		}
-	});
+//수정 경고창
+$('.edit_btn .confirm_mod').on('click', function(){
+	if(confirm('수정하시겠습니까?') == false) return false;
+});
 
+//장르 검색 유효성 체크
+$('.confirm_search').submit(function(){
+	if($('#keyword').val() == ''){
+		alert('검색어를 입력하세요!');
+		$('#keyword').focus();
+		return false;
+	}
+});
+
+	
 //genreModify 모달에 데이터 넘기기
 	$('.modify_btn').on('click', function () {
 		var num = $(this).attr('data-whatever');
@@ -51,6 +62,14 @@ $('.auto_director').keydown(function (event) {
 		$('.input_director').val(director_value);
 		director_count++;
     }
+	/*if (event.keyCode === 13) {
+		event.preventDefault();
+		if(director_count > 0) director_value += ',';
+		director_value += $(this).val();
+		console.log(director_value);
+		$('.input_director').val(director_value);
+		director_count++;
+    }*/
 });
 
 $('.auto_director').keypress(function (event) {
@@ -101,7 +120,6 @@ $('.auto_actor').keydown(function (event) {
 	//배우 목록
 	if (event.keyCode === 13) {
 		event.preventDefault();
-		$('.input_actor').val('');
 		if(actor_count > 0) actor_value += ',';
 		actor_value += $(this).val();
 		console.log(actor_value);
@@ -110,13 +128,10 @@ $('.auto_actor').keydown(function (event) {
     }
 });
 
-$('.auto_actor').keypress(function (event) {
-	
+$('.auto_actor').keypress(function (event) {	
 	var keyword = $(this).val();
 	var keyfield = 'ACTOR';
-	
 	actor_List(keyword,keyfield);
-	$('.auto_actor').val('').focus();
 });
 
 function actor_List(keyword,keyfield){
@@ -176,22 +191,107 @@ function genre_List(keyword,keyfield){
 	$('.auto_genre').autocomplete({source: genreList});
 }
 
+//======영화_선택항목 삭제=====//
+$('#check_movieDel').click(function(){
+	//체크박스 값을 배열에 담음
+	var c_movie = [];
+	$("input[name='movieChecked']:checked").each(function(){
+		c_movie.push($(this).val());
+		console.log(c_movie);
+	});
+	if(c_movie.length == 0){
+		alert('삭제할 항목을 선택하세요.');
+	}else{
+		if(confirm('선택항목을 삭제하시겠습니까?') == true){
+			$.ajax({
+				url: '/watchu/admin/check_movieDel.do',
+				type: 'post',
+				dataType: 'text',
+				data: {c_movieTest:c_movie},
+				success: function(data){
+					console.log(data);
+					alert("삭제 완료");
+					location.href="/watchu/admin/admin_movieList.do";
+				},
+				error: function(request, status, error){
+					alert("code: " + request.status + "message: " + request.responseText + "error: " + error);
+				}
+			});
+			//배열 초기화
+			c_movie = new Array();
+		}else{
+			location.reload(true); //취소 시 페이지 reload
+		}
+	}
+});
+
+//======관계자_선택항목 삭제=====//
+$('#check_offDel').click(function(){
+	//체크박스 값을 배열에 담음
+	var c_off = [];
+	$("input[name='offChecked']:checked").each(function(){
+		c_off.push($(this).val());
+		console.log(c_off);
+	});
+	if(c_off.length == 0){
+		alert('삭제할 항목을 선택하세요.');
+	}else{
+		if(confirm('삭제하시겠습니까?') == true){
+			$.ajax({
+				url: '/watchu/admin/check_offDel.do',
+				type: 'post',
+				dataType: 'text',
+				data: {c_offTest:c_off},
+				success: function(data){
+					console.log(data);
+					alert("삭제 완료");
+					location.href="/watchu/admin/officialList.do";
+				},
+				error: function(request, status, error){
+					alert("code: " + request.status + "message: " + request.responseText + "error: " + error);
+				}
+			});
+			//배열 초기화
+			c_off = new Array();
+		}else{
+			location.reload(true); //취소 시 페이지 reload
+		}
+	}
+});
+
 //======장르_선택항목 삭제=====//
-var checked_genre = '';
-var checked_count = 0;
-$("#check_genreDel").click(function() {
-	$("input[name=genreChecked]:checked").each(function() {
-		if(checked_count > 0) checked_genre += ',';
-		checked_genre += $(this).val();
-		console.log(checked_genre);
-		checked_count++;
+$('#check_genreDel').click(function(){
+	//체크박스 값을 배열에 담음
+	var c_genre = [];
+	$("input[name='genreChecked']:checked").each(function(){
+		c_genre.push($(this).val());
+		console.log(c_genre);
 	});
-	
-	$.ajax({
-		type: 'post',
-		url: '/watchu/admin/check_genreDel.do',
-		data: {}
-	});
+	if(c_genre.length == 0){
+		alert('삭제할 항목을 선택하세요.');
+	}else{
+		if(confirm('삭제하시겠습니까?') == true){
+			//jQuery.ajaxSettings.traditional = true; //배열을 넘기기위한 ajax 셋팅
+			$.ajax({
+				url: '/watchu/admin/check_genreDel.do',
+				type: 'post',
+				dataType: 'text',
+				data: {c_genreTest:c_genre},
+				success: function(data){
+					console.log(data);
+					alert("삭제 완료");
+					location.href="/watchu/admin/genreList.do";
+				},
+				error: function(request, status, error){
+					alert("code: " + request.status + "message: " + request.responseText + "error: " + error);
+				}
+			});
+			//배열 초기화
+			c_genre = new Array();
+		}else{
+			location.reload(true); //취소 시 페이지 reload
+		}
+	}
 });
 
 

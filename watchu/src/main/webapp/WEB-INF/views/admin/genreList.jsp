@@ -9,7 +9,7 @@
 		<br>
 		<div class="content-header">
 			<!-- 검색 -->
-			<form action="genreList.do" id="genre_search" method="get">
+			<form action="genreList.do" class="confirm_search" method="get">
 			<select name="keyfield">
 				<option value="genre_num">장르 코드</option>
 				<option value="genre">장르명</option>
@@ -32,9 +32,6 @@
 					<td>${genre.genre_num}</td>
 					<td class="modify_btn" style="cursor:pointer;" data-toggle="modal" data-target="#genreModify" data-whatever="${genre.genre_num}">${genre.genre}</td>
 					<td><input type="checkbox" name="genreChecked" value="${genre.genre_num}"/></td>
-<%-- 				<td>${genre.genre_num}</td>
-					<td onclick="location.href='genreDetail.do?genre_num=${genre.genre_num}'" style="cursor:pointer;" data-toggle="modal" data-target="#genreModify">${genre.genre}</td>
-					<td><input type="checkbox" name="checked"></td> --%>
 				</tr>
 				</c:forEach>
 			</table>
@@ -42,9 +39,8 @@
 
 			<!-- 장르 등록 및 삭제버튼 -->
 			<div class="edit_btn" align="right">
-				<input type="button" value="장르 등록" id="register_genre" data-toggle="modal" data-target="#genreModal">
-				<input type="button" value="선택 삭제" id="check_genreDel">
-				<!-- <input type="submit" value="선택 삭제" id="delete_genre" action="genreDelete.do"> -->
+				<input type="button" value="장르 등록" id="register_genre" data-toggle="modal" data-target="#genreModal" class="btn btn-primary">
+				<input type="button" value="선택 삭제" id="check_genreDel" class="btn btn-danger">
 			</div>
 			<br>
 
@@ -84,7 +80,7 @@
          	
         <div class="modal-footer">
         	<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-        	<button type="submit" class="btn btn-default">등록</button>
+        	<button type="submit" class="btn btn-primary">등록</button>
         </div>
         </form:form>
    </div>
@@ -119,9 +115,11 @@
         </div>
          	
         <div class="modal-footer">
-        	<input id="modifyBtn" type="button" value="삭제" onclick="location.href='genreDelete.do?genre_num='">
-			<input type="submit" value="수정">
-			<input type="button" onclick="location.href='genreList.do'" value="목록">
+        <div class="edit_btn">
+			<a href="location.href='genreDelete.do?genre_num='" class="btn btn-danger confirm_del">삭제</a>
+			<input type="button" onclick="location.href='genreList.do'" value="목록" class="btn btn-default">
+			<input type="submit" value="수정" class="confirm_mod btn btn-primary">
+		</div>
         </div>
         </form:form>
    </div>
