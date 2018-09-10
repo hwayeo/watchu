@@ -28,10 +28,10 @@
 					<div class="container">
 						<a onclick="location.href='userMypage.do'" class="profile_img"> 
 							<c:if test="${empty user.profile_img}">
-								<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" class="img-circle" id="profile_img"> ${user_id}
+								<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" class="img-circle" id="profile_img">&emsp;${user_id}
 							</c:if> 
 							<c:if test="${!empty user.profile_img}">
-								<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}" class="img-circle review" style="width: 50px; height: 50px;"> ${user_id}
+								<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}" class="img-circle review" style="width: 50px; height: 50px;">&emsp;${user_id}
 							</c:if>
 						</a>	
 					</div><br>
@@ -51,9 +51,9 @@
 							<ul class="list-inline list-unstyled">
 								&emsp;<li><span><i class="glyphicon glyphicon-calendar"></i> ${list.reg_date} </span></li>
 								<li>|</li>
-								<span><i class="glyphicon glyphicon-thumbs-up"></i> ${list.likes}likes</span>
+								<span><i class="glyphicon glyphicon-thumbs-up"></i> ${list.likes}</span>
 								<li>|</li>
-								<span><i class="glyphicon glyphicon-comment"></i> 2comments</span>
+								<span><i class="glyphicon glyphicon-comment"></i> 2</span>
 								<li>|</li>
 								<span><i class="glyphicon glyphicon-star"></i> 4.5</span>
 								<li>|</li>

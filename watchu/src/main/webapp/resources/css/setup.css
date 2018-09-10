@@ -200,7 +200,23 @@ span.commmm {
     font-size: 26px;
     font-weight: 550;
 }
-
+span.com_title {
+    font-size: 25px;
+    margin-left: -3px;
+}
+span.com_rele {
+    font-size: 12px;
+    margin-left: 10px;
+    color: gray;
+}
+span.star {
+    font-size: 13px;
+    color: #ffba0c;
+}
+.media:first-child {
+    margin-top: 0;
+    margin-left: -10px;
+}
 /*마이페이지*/
 a.mylike {
     color: gray;
@@ -350,7 +366,8 @@ a.num {
 .media-heading {
     margin-top: 0;
     margin-left: 18px;
-    font-size: 23px;
+    font-size: 17px;
+    font-weight: 600;
 }
 .media-object {
     display: block;
@@ -364,11 +381,19 @@ ptag{
    }
 .list-inline {
     padding-left: 0;
-    margin-left: 10px;
+    margin-left: -23px;
     list-style: none;
     font-size: 10px;
 }
-
+p.ptag { /*개봉일자*/
+    margin-left: 10px;
+    margin-top: 1px;
+    margin-bottom: 10px;
+}
+span.commentspan { /*리뷰쓰는곳*/
+    font-size: 13px;
+    margin-left: 8px;
+}
 
 /*코멘트 디테일*/
 img.img-circle {
@@ -405,7 +430,7 @@ span.reviewm {
     font-size: 12px;
 }
 span.commmm {
-    font-size: 25px;
+    font-size: 18px;
     font-weight: 550;
 }
 
@@ -419,7 +444,26 @@ a.num {
 }
 a.like2 {
     color: #F74788;
-    padding-right: 30px;
+    padding-right: 1px;
+    margin-left: 20px;
     font-size: 12px;
+}
+span.com_title {
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: -3px;
+}
+span.com_rele {
+    font-size: 10px;
+    margin-left: -2px;
+    color: gray;
+}
+span.star {
+    font-size: 11px;
+    color: #ffba0c;
+}
+.media:first-child {
+    margin-top: 0;
+    margin-left: -17px;
 }
 }
