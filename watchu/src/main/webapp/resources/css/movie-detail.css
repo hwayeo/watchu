@@ -60,7 +60,7 @@
     padding-left: 5px;
     overflow:auto;
     font-size: 15px;
-    text-align:left;
+    text-align:center;
     padding-bottom: 10px;
 }
 
@@ -95,10 +95,10 @@
 	background: #f8f8f8;
     width: 600px;
     float: left;
-    margin-left: 10px;
+    margin-left: 6px;
     margin-top: 10px;
-    border-radius: 10px;
-    width:93%;
+    border-radius: 14px;
+    
 		
 }
 
@@ -119,9 +119,23 @@
 }
 
 #comment-box{
-	overflow-y: scroll;
-    margin-left: 15px;
+	overflow: hidden;
     height: 320px;
+    margin-left: -18.5px;
+    width: 101.9%;
+    margin-top: 20px;
+    margin-bottom: -40px;
+}
+#modal-commentbox{
+	overflow: hidden;
+    height: 300px;
+}
+
+.comment-division{
+	background: #f8f8f8;
+    width: 100%;
+    float: left;
+    margin-top: 20px;
 }
 
 .thumbnail{
@@ -300,3 +314,12 @@ hr.one{
     margin-right: 10px
 }
 
+.mobile-division1{
+	background: #f8f8f8;
+    width: 600px;
+    float: left;
+    margin-left: 20px;
+    margin-top: px;
+    padding-right: 30px;
+    border-radius: 14px;
+}
