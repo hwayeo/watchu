@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/confirmId.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/profile_img.js"></script>
 
 <div id="page-register">
 	<div id="form-register">
@@ -16,6 +17,7 @@
     
                      <form:form commandName="command" action="write.do" id="insert_Form" enctype="multipart/form-data">
                      <form:errors element="div" cssClass="error-color"/>	
+                        	
                         	 <div class="col-md-6 text-center">
                                 
                                     <div class="form-group row">
@@ -25,28 +27,30 @@
                            
 											
 									<div class="profile">
-												
-										<a href="#" class="profile_img" data-toggle="dropdown"><img
-										src="${pageContext.request.contextPath}/resources/images/default-profile.jpg"
-										class="img-size img-circle" id="profile_img" style="width:100px;height:100px;"></a>
-												
-										<ul class="dropdown-menu">
-											<li><a href="#" class="rollbackImage">기본이미지</a></li>
-											<li><a href="#" class="modifyImage" >앨범에서 선택
-											<input type="file" name="upload" id="upload" >
-											</a></li>
-										</ul>
-												<ul class="dropdown-menu">
-													<li><a href="#" class="rollbackImage">기본이미지</a></li>
-													<li><a href="#" class="modifyImage" >앨범에서 선택
-													<input type="file" name="upload" id="upload">
-													</a></li>
-												</ul>
-											</div>
-
+										
+										<div>
+											<a href="#" class="profile_img" data-toggle="dropdown">
+												<!-- 선택한이미지 -->
+												<img id="MyProfileImg" src="#" class="img-circle" style="width:100px;height:100px;display: none;"/>
+												<!-- 기본이미지 -->
+												<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg"
+												class="img-circle" id="profile_img" style="width:100px;height:100px;">
+											</a>
+													
+											<ul class="dropdown-menu">
+												<li><a class="rollbackImage" style="cursor:pointer;">
+													<b>기본이미지</b>
+												</a></li>
+												<li><a href="#" class="modifyImage">
+													<b>앨범에서 선택</b>
+													<input type="file" name="upload" id="upload" >
+												</a></li>
+											</ul>
 										</div>
 
-							
+									</div>
+
+							</div>
                             
                             <div class="col-md-6">
                                     <div class="form-group row">
@@ -140,9 +144,9 @@
                     
                             </div>
                          </form:form>
-                       </div>  
-                    
-                </div>
-            </div>
-        </div>
+                    </div>
+            </div>  
+       </div>
+</div>
+       
     
