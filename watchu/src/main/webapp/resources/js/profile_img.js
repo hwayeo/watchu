@@ -23,6 +23,7 @@ $(document).ready(function(){
 	    });
 	    
 	    $('.rollbackImage').click(function(){
+	    	$("#upload").val("");//input file 초기화
 	    	$('#profile_img').show();
 	    	$('#MyProfileImg').hide();
 	    });
