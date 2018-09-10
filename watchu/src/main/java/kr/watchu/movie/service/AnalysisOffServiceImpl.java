@@ -28,32 +28,27 @@ public class AnalysisOffServiceImpl implements AnalysisOffService {
 
 	@Override
 	public AnalysisOffCommand selectInfo(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectInfo(map);
 	}
 
 	@Override
-	public void deleteByMovie() {
-		// TODO Auto-generated method stub
-		
+	public void deleteByMovie(Integer movie_num) {
+		mapper.deleteByMovie(movie_num);
 	}
 
 	@Override
-	public void deleteById() {
-		// TODO Auto-generated method stub
-		
+	public void deleteById(String id) {
+		mapper.deleteById(id);
 	}
 
 	@Override
 	public Integer selectCnt(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectCnt(map);
 	}
 
 	@Override
 	public List<AnalysisOffCommand> selectList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectList(map);
 	}
 
 }

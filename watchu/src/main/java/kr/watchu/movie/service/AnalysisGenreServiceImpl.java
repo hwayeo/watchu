@@ -28,32 +28,27 @@ public class AnalysisGenreServiceImpl implements AnalysisGenreService {
 
 	@Override
 	public AnalysisGenreCommand selectInfo(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectInfo(map);
 	}
 
 	@Override
 	public void deleteByMovie(Integer movie_num) {
-		// TODO Auto-generated method stub
-		
+		mapper.deleteByMovie(movie_num);
 	}
 
 	@Override
 	public void deleteById(String id) {
-		// TODO Auto-generated method stub
-		
+		mapper.deleteById(id);
 	}
 
 	@Override
 	public Integer selectCnt(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectCnt(map);
 	}
 
 	@Override
 	public List<AnalysisGenreCommand> selectList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectList(map);
 	}
 
 }

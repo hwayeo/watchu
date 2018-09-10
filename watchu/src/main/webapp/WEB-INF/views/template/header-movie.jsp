@@ -26,8 +26,8 @@
         <div id="search-field" class="input-group input-group-lg">
       		<input type="text" class="form-control" placeholder="작품 제목,배우,감독 검색">
       		<span class="input-group-btn">
-        		<button class="btn btn-default" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
-      		</span>
+        		<button class="btn btn-default" type="submit"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
+      		</span>	
       </div>
       </form>
       <ul class="nav navbar-nav navbar-right">

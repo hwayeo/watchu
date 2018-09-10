@@ -13,9 +13,9 @@ public interface AnalysisOffService {
 	public AnalysisOffCommand selectInfo(Map<String, Object> map);
 	
 	//관리자가 영화를 삭제할때
-	public void deleteByMovie();
+	public void deleteByMovie(Integer movie_num);
 	//유저가 회원탈퇴를 할때
-	public void deleteById();
+	public void deleteById(String id);
 	
 	public Integer selectCnt(Map<String, Object> map);
 	public List<AnalysisOffCommand> selectList(Map<String, Object> map);
