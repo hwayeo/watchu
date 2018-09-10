@@ -19,13 +19,15 @@ DROP TABLE USER_BASIC CASCADE CONSTRAINTS;
 CREATE TABLE USER_BASIC(
 		ID                            		VARCHAR2(15)		 NOT NULL,
 		AUTH                          		NUMBER(1)		 NOT NULL,
-		PERMIT                        		VARCHAR2(50)		 NULL 
+		PERMIT                        		VARCHAR2(50)		 NULL ,
+		TYPE                          		VARCHAR2(50)		 NULL 
 );
 
 COMMENT ON TABLE USER_BASIC is '회원 등급';
 COMMENT ON COLUMN USER_BASIC.ID is 'ID';
 COMMENT ON COLUMN USER_BASIC.AUTH is 'AUTH';
 COMMENT ON COLUMN USER_BASIC.PERMIT is '인증코드';
+COMMENT ON COLUMN USER_BASIC.TYPE is '로그인종류';
 
 
 /**********************************/
@@ -126,13 +128,15 @@ COMMENT ON COLUMN MOVIE_INFO.REG_DATE is '등록날짜';
 CREATE TABLE MOVIE_RATED(
 		MOVIE_NUM                     		NUMBER		 NOT NULL,
 		ID                            		VARCHAR2(15)		 NOT NULL,
-		RATE                          		NUMBER(1)		 NOT NULL
+		RATE                          		NUMBER(1)		 NOT NULL,
+		REG_DATE                      		DATE		 NULL 
 );
 
 COMMENT ON TABLE MOVIE_RATED is '사용자가 평가한 영화의 평점이 저장되는 테이블';
 COMMENT ON COLUMN MOVIE_RATED.MOVIE_NUM is '영화번호';
 COMMENT ON COLUMN MOVIE_RATED.ID is 'ID';
 COMMENT ON COLUMN MOVIE_RATED.RATE is '평점';
+COMMENT ON COLUMN MOVIE_RATED.REG_DATE is '평가날짜';
 
 
 /**********************************/
@@ -161,7 +165,8 @@ CREATE TABLE ANALYSIS_OFFICIALS(
 		MOVIE_NUM                     		NUMBER		 NOT NULL,
 		USER_ID                       		VARCHAR2(20)		 NOT NULL,
 		OFF_NUM                       		NUMBER		 NOT NULL,
-		RATE                          		NUMBER(1)		 NOT NULL
+		RATE                          		NUMBER(1)		 NOT NULL,
+		REG_DATE                      		DATE		 NULL 
 );
 
 COMMENT ON TABLE ANALYSIS_OFFICIALS is '사용자가 평가한 영화의 감독과 평점이 저장되는 테이블';
@@ -169,6 +174,7 @@ COMMENT ON COLUMN ANALYSIS_OFFICIALS.MOVIE_NUM is '영화번호';
 COMMENT ON COLUMN ANALYSIS_OFFICIALS.USER_ID is '평가자';
 COMMENT ON COLUMN ANALYSIS_OFFICIALS.OFF_NUM is 'OFF_NUM';
 COMMENT ON COLUMN ANALYSIS_OFFICIALS.RATE is '평점';
+COMMENT ON COLUMN ANALYSIS_OFFICIALS.REG_DATE is '평가날짜';
 
 
 /**********************************/
@@ -178,7 +184,8 @@ CREATE TABLE ANALYSIS_GENRE(
 		MOVIE_NUM                     		NUMBER		 NOT NULL,
 		USER_ID                       		VARCHAR2(20)		 NOT NULL,
 		GENRE_NUM                     		NUMBER		 NOT NULL,
-		RATE                          		NUMBER(1)		 NOT NULL
+		RATE                          		NUMBER(1)		 NOT NULL,
+		REG_DATE                      		DATE		 NULL 
 );
 
 COMMENT ON TABLE ANALYSIS_GENRE is '사용자가 평가한 영화의 장르와 평점이 저장되는 테이블';
@@ -186,6 +193,7 @@ COMMENT ON COLUMN ANALYSIS_GENRE.MOVIE_NUM is '영화번호';
 COMMENT ON COLUMN ANALYSIS_GENRE.USER_ID is '평가자';
 COMMENT ON COLUMN ANALYSIS_GENRE.GENRE_NUM is '장르 코드';
 COMMENT ON COLUMN ANALYSIS_GENRE.RATE is '평점';
+COMMENT ON COLUMN ANALYSIS_GENRE.REG_DATE is '평가날짜';
 
 
 /**********************************/
@@ -333,3 +341,21 @@ ALTER TABLE USER_CONTACT ADD CONSTRAINT IDX_USER_CONTACT_FK0 FOREIGN KEY (ID) RE
 ALTER TABLE ADMIN_RECONTACT ADD CONSTRAINT IDX_ADMIN_RECONTACT_PK PRIMARY KEY (RECONTACT_NUM);
 ALTER TABLE ADMIN_RECONTACT ADD CONSTRAINT IDX_ADMIN_RECONTACT_FK0 FOREIGN KEY (CONTACT_NUM) REFERENCES USER_CONTACT (CONTACT_NUM);
 
+/*영화번호 시퀀스*/
+CREATE SEQUENCE MOVIE_SEQ;
+/*배우,감독 시퀀스*/
+CREATE SEQUENCE OFFICIALS_SEQ;
+/*장르 시퀀스*/
+CREATE SEQUENCE GENRE_SEQ;
+
+/*신고 시퀀스*/
+
+CREATE SEQUENCE REPORT_SEQ;
+/*고객문의 시퀀스*/
+CREATE SEQUENCE CONTACT_SEQ;
+/*고객문의답변 시퀀스*/
+CREATE SEQUENCE RECONTACT_SEQ;
+/*영화코멘트 시퀀스*/
+CREATE SEQUENCE COMMENT_SEQ;
+/*영화코멘트 댓글 시퀀스*/
+CREATE SEQUENCE RECOMMENT_SEQ;
