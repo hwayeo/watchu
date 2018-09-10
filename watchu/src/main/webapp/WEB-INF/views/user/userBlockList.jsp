@@ -20,8 +20,13 @@
 
 
 <div class="container">
-    <div class="row" style="margin: 80px;">
-     <div class="col-md-8 col-md-offset-4" style="margin: 80px;" >
+    <div class="row" style="margin-top:100px;">
+   		 <div class="col-xs-12 col-md-12" ><!-- 시작 -->
+   		 	
+   		 	<div class="col-md-2">
+     		</div>
+     		
+     		<div class="col-md-7">
      		<!-- 검색폼 시작 -->
   			<form class="navbar-form" role="search" id="search_form" action="" method="get" >
                 <div class="input-group">
@@ -76,9 +81,16 @@
 						</c:forEach>
                     	</c:if>
                 </ul>
-                <div class="align-center">${pagingHtml}</div>
+                <div class="text-center">${pagingHtml}</div>
             </div>
-        </div>
+            
+            </div>
+            
+            <div class="col-md-3">
+     		</div>
+            
+            
+        </div><!-- 끝 -->
     </div>
 </div>
 </body>
