@@ -17,7 +17,7 @@ $(document).ready(function(){
 		var reg_date = $(this).parents('.division1').find('.inner-box4').text();
 		$('#modal-output-reg_date').text(reg_date);
 		
-	});
+	}); 
 	
 	function cleanModal(){
 		$('#modal-output-id').text('');
