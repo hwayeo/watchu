@@ -53,6 +53,14 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/userSupportModify.jsp"/>
 	</definition>
 	
+	<definition name="userPage" extends="userWrite">
+		<put-attribute name="title" value="왓츄 - 다른유저페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/user/userPage.jsp"/>
+	</definition>
+	<definition name="userReport" extends="userWrite">
+		<put-attribute name="title" value="왓츄 - 신고페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/user/userReport.jsp"/>
+	</definition>
 </tiles-definitions>
 
 

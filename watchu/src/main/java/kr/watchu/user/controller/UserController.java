@@ -728,9 +728,7 @@ public class UserController {
 	}
 	//데이터보내기
 	@RequestMapping(value="/user/insertReport.do",method=RequestMethod.POST)
-	public ModelAndView userReport(@ModelAttribute("reportCommand") ReportCommand report,@RequestParam("id") String id,HttpSession session) {
-		
-		ModelAndView mav = new ModelAndView();
+	public String userReport(@ModelAttribute("reportCommand") ReportCommand report,@RequestParam("id") String id,HttpSession session) {
 		
 		String user_id = (String)session.getAttribute("user_id");
 		
@@ -742,7 +740,6 @@ public class UserController {
 		}
 		reportService.insertReport(report);
 		
-		mav.setViewName("userPage");
-		return mav;
+		return "redirect:userPage.do?id="+id;
 	}
 }	
