@@ -122,27 +122,29 @@ public class MyPageController {
 		return "userMypage_movielist";
 	}
 	
-	//ÄÚ¸àÆ®
+	// ÄÚ¸àÆ®
 	@RequestMapping("/user/userComment.do")
 	public ModelAndView comment(HttpSession session) {
-		
+
 		ModelAndView mav = new ModelAndView();
-		String id = (String)session.getAttribute("user_id");
-		
-		if(log.isDebugEnabled()) {
-			log.debug("<<user_id>> : "+id);
+		String id = (String) session.getAttribute("user_id");
+
+		if (log.isDebugEnabled()) {
+			log.debug("<<user_id>> : " + id);
 		}
-		
+
 		int count = commentService.selectMyCommentCnt(id);
-		
+
 		List<CommentCommand> list = null;
-		if(count >0) {
+
+		if (count > 0) {
 			list = commentService.selectMyCommentList(id);
 		}
-		
+
 		mav.setViewName("userComment");
-		mav.addObject("commentList",list);
-		mav.addObject("count",count);
+		mav.addObject("commentList", list);
+		mav.addObject("count", count);
+
 		return mav;
 	}
 	
