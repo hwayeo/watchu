@@ -21,10 +21,10 @@
 						<c:if test="${empty anotheruser.profile_img}">
 								<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg"
 												class="img-circle" id="following_profile_img"
-												style="width: 50px; height: 50px;">
+												style="width: 70px; height: 70px;">
 						</c:if> 
 						<c:if test="${!empty anotheruser.profile_img}">
-								<img src="${pageContext.request.contextPath}/main/imageView.do?id=${anotheruser.id}" width="70" height="70" >
+								<img src="${pageContext.request.contextPath}/main/imageView.do?id=${anotheruser.id}" class="img-circle" style="width: 70px; height: 70px;" >
 						</c:if>
 					</a> 
 				</div><!-- 프로필사진영역 끝-->

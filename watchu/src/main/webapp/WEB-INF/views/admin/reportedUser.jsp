@@ -33,7 +33,7 @@
 				<c:forEach var="report" items="${list}">
 				<tr>
 					<td onclick="location.href='reportDetail.do?num=${report.report_num}'" style="cursor:pointer;">${report.report_num}</td>
-					<td>${report.report_content}</td>
+					<td onclick="location.href='reportDetail.do?num=${report.report_num}'" style="cursor:pointer;">${report.report_content}</td>
 					<td>${report.id}</td>
 					<td>완료/미완료</td>
 				</tr>

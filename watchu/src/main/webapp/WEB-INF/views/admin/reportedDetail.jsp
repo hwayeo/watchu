@@ -1,27 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
- <script>
- $(document).ready(function(){
-	 
-	 
-	 
-	 
-	 
-	 
- });
- 
- </script>
+
 <div class="admin-main">
 	<div class="tab-pane" id="reported_user">
 		<h2>신고 상세정보</h2>
 		<br>
 		<div class="content-header">
-			
 		</div>
-
+	
 		<div class="content-body">
-			<div class="col-md-6" style="border:1px solid#e5e3e3;">
+			<div class="col-xs-12 col-md-12" ><!-- 시작 -->
+			
+			<div class="col-xs-6 col-md-2" >
+			</div>
+			
+			<div class="col-md-7" style="border:1px solid#e5e3e3;">
 				       
 						<div class="form group">
 							<div>
@@ -50,6 +44,11 @@
 						</div>
 						
 			</div>
+			
+			<div class="col-xs-6 col-md-3" >
+			</div>
+			
+		</div><!-- 끝 -->
 		</div>
 	</div>
 </div>
