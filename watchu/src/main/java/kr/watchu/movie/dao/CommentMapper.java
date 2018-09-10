@@ -50,7 +50,7 @@ public interface CommentMapper {
 	// »ó¼¼ ÄÚ¸àÆ®
 	@Select("SELECT i.title,i.poster_img,i.released FROM movie_info i RIGHT OUTER JOIN (SELECT * FROM movie_comment WHERE id=#{id})c ON i.movie_num=c.movie_num WHERE i.movie_num=#{movie_num}")
 	public CommentCommand commentDetail(Map<String, Object> map);
-	
+	 
 	//======= ÄÚ¸àÆ® ´ñ±Û
 	//ÄÚ¸àÆ® ¾²±â
 	public void insertRecomment(RecommentCommand recomment);

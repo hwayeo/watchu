@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class CommentCommand {
 	
-	private Integer comment_num;
+	private Integer comment_num;  
 	private Integer movie_num;
 	private String id;
 	private String content;

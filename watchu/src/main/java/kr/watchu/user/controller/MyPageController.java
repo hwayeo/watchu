@@ -151,7 +151,7 @@ public class MyPageController {
 	}
 	
 	//코멘트 상세페이지
-	@RequestMapping("/user/userComment_detail.do")
+	@RequestMapping("/user/userComment_detail.do") 
 	public ModelAndView comment_detail(@RequestParam("movie_num") Integer movie_num,
 									   @RequestParam("id") String id) {
 		ModelAndView mav = new ModelAndView();
@@ -161,7 +161,7 @@ public class MyPageController {
 		map.put("id", id);
 		
 		CommentCommand comment = commentService.commentDetail(map);
-		
+		 
 		if (log.isDebugEnabled()) {
 			log.debug("<<comment>> : " + comment);
 		}

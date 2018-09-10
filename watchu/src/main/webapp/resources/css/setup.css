@@ -5,7 +5,7 @@
       list-style:none;
    }
     .panel-body:not(.two-col) {
-        padding: 0px;
+        padding: 0px; 
     }
 
     .glyphicon {

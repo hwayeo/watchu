@@ -13,7 +13,7 @@ import kr.watchu.movie.domain.RecommentCommand;
 
 @Service("commentService")
 public class CommentServiceImpl implements CommentService{
-	
+	 
 	@Resource
 	private CommentMapper commentMapper;
 	

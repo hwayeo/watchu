@@ -20,7 +20,7 @@
 						</ul></li>
 				</ul><hr>
 		</div> 
-	<div class="container">
+	<div class="container"> 
 		<c:forEach var="list" items="${commentList}">
 		<div class="well"> 
 			<div class="media">

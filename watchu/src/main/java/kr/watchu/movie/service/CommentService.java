@@ -9,7 +9,7 @@ import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.movie.domain.RecommentCommand;
 
 public interface CommentService {
-	
+	 
 	//======= ÄÚ¸àÆ®
 	//ÄÚ¸àÆ® ¾²±â
 	public void insertComment(CommentCommand comment);
