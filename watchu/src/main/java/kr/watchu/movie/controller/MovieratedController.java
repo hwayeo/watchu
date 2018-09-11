@@ -101,6 +101,7 @@ public class MovieratedController {
 		if(origin == null) {
 			//insert
 			
+			try {
 				ms.insertMovierated(im);
 				if(log.isDebugEnabled()) {
 					log.debug("<<++µ¿ÀÛ++>>");
@@ -134,6 +135,9 @@ public class MovieratedController {
 					}
 				}
 				map.put("result", "insert");
+			}catch(Exception e){
+				map.put("result", "failure");
+			}
 		}else {
 			//update
 			try {

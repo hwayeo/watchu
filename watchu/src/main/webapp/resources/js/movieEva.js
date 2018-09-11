@@ -55,7 +55,7 @@ $(document).ready(function(){
 				}
 
 				// radio 별 평가 후 초기화
-				$('input:radio[name=rating]:input[value=""]').attr("checked", true); 
+				$('input[name=rating]').attr("checked", false); 
 			},
 			error:function(){
 				alert('네트워크 오류');

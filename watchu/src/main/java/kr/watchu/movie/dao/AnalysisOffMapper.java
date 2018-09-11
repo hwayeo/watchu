@@ -14,7 +14,7 @@ public interface AnalysisOffMapper {
 
 	@Insert("INSERT INTO analysis_officials (movie_num,id,name,rate,reg_date) VALUES(#{movie_num},#{id},#{name},#{rate},sysdate)")
 	public void insertOffRate(AnalysisOffCommand rate);
-	@Update("UPDATE analysis_officials SET rate=#{rate} WHERE movie_num=#{movie_num} AND id=#{id}")
+	@Update("UPDATE analysis_officials SET rate=#{rate}, reg_date=sysdate WHERE movie_num=#{movie_num} AND id=#{id}")
 	public void updateOffRate(AnalysisOffCommand rate);
 	
 	@Select("SELECT * FROM analysis_officials WHERE movie_num=#{movie_num} AND id=#{id}")

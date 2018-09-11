@@ -14,7 +14,7 @@ public interface AnalysisGenreMapper {
 	
 	@Insert("INSERT INTO analysis_genre (movie_num,id,genre,rate,reg_date) VALUES (#{movie_num},#{id},#{genre},#{rate},sysdate)")
 	public void insertGenreRate(AnalysisGenreCommand rate);
-	@Update("UPDATE analysis_genre SET rate=#{rate} WHERE movie_num=#{movie_num} AND id=#{id}")
+	@Update("UPDATE analysis_genre SET rate=#{rate}, reg_date=sysdate WHERE movie_num=#{movie_num} AND id=#{id}")
 	public void updateGenreRate(AnalysisGenreCommand rate);
 	
 	@Select("SELECT * FROM analysis_genre WHERE movie_num=#{movie_num} AND id=#{id}")

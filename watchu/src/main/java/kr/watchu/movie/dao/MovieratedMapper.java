@@ -20,7 +20,7 @@ public interface MovieratedMapper {
    public MovieratedCommand selectMovierated(Map<String,Object> map);
    
    //영화 점수 재평가(update) -> 동일한 영화를 평가했는지 확인 후 있으면 업데이트
-   @Update("UPDATE movie_rated SET rate=#{rate} WHERE movie_num=#{movie_num} and id=#{id}")
+   @Update("UPDATE movie_rated SET rate=#{rate}, reg_date=sysdate WHERE movie_num=#{movie_num} and id=#{id}")
    public void updateMovierated(MovieratedCommand im);
    
    //영화 삭제 전 평가 삭제
