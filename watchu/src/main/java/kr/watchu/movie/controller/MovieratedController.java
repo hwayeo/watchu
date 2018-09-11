@@ -61,9 +61,6 @@ public class MovieratedController {
 	public Map<String,String> insertRated(@ModelAttribute("rateCommand") MovieratedCommand im) {
 		
 		
-		if(log.isDebugEnabled()) {
-			log.debug("[[rateCommand]] : " + im);
-		}
 		Map<String,String> map = new HashMap<String, String>();
 	
 		//기존 영화 평가 데이터를 받아오기 위해 파라미터값을 넣어주는 맵
@@ -74,6 +71,7 @@ public class MovieratedController {
 		MovieCommand movie = movieService.selectMovie(im.getMovie_num());
 
 		String main_genre = movie.getMain_genre();
+		
 		AnalysisGenreCommand main = new AnalysisGenreCommand();
 		if(main_genre!=null) {
 			main.setId(im.getId());
@@ -94,17 +92,18 @@ public class MovieratedController {
 			sub.setGenre(sub_genre);
 			sub.setRate(im.getRate());
 		}
-		
 		MovieratedCommand origin = ms.selectMovierated(data);
+		
+		if(log.isDebugEnabled()) {
+			log.debug("<<origin>> : " + origin);
+		}
 		
 		if(origin == null) {
 			//insert
 			
-			try {
 				ms.insertMovierated(im);
 				if(log.isDebugEnabled()) {
-					log.debug("<<main>> : " + main);
-					log.debug("<<sub>> : " + sub);
+					log.debug("<<++동작++>>");
 				}
 				if(main_genre!=null) {
 					analysisGenreService.insertGenreRate(main);
@@ -135,9 +134,6 @@ public class MovieratedController {
 					}
 				}
 				map.put("result", "insert");
-			}catch(Exception e){
-				map.put("result", "failure");
-			}
 		}else {
 			//update
 			try {

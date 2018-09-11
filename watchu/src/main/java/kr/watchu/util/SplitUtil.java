@@ -11,7 +11,6 @@ public class SplitUtil {
 			}else {
 				newlist[i] = list[i];
 			}
-			System.out.println(newlist[i]);
 		}
 		return newlist;
 	}

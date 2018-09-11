@@ -11,7 +11,7 @@ $(document).ready(function(){
 	//평가창에서의 브라우저 창 넓이
 	$(window).on('resize',function(){
 		width = $(document).width();
-		selectList(1,keyword,keyfield);
+		selectEva(1,keyword,keyfield);
 	});
 	
 	//스크롤 이벤트 발생시 pageNum값을 증가 시킨다.
@@ -89,7 +89,7 @@ $(document).ready(function(){
 							if(item.poster_img == null){
 							elist += '<img src="../resources/images/img4.jpg" class="mimg">';
 							}else{
-							elist += '<img src="imageView.do?movie_num='+item.movie_num+'&type=poster" class="mimg">';
+							elist += '<img src="../movie/imageView.do?movie_num='+item.movie_num+'&type=poster" class="mimg">';
 							}
 							elist += '<div class="overlay">';
 							elist += '<div class="list-contents">';
@@ -130,7 +130,7 @@ $(document).ready(function(){
 							if(item.poster_img == null){
 							elist += '	 	    <img src="../resources/images/billy.jpg" class="img-responsive posters">';
 							}else{
-							elist += '			<img src="imageView.do?movie_num='+item.movie_num+'&type=poster" class="img-responsive posters">';
+							elist += '			<img src="../movie/imageView.do?movie_num='+item.movie_num+'&type=poster" class="img-responsive posters">';
 							}  
 							elist += '		</div>';
 							elist += '	<div class="col-xs-8 info-cell">';

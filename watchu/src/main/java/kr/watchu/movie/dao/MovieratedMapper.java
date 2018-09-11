@@ -12,7 +12,7 @@ import kr.watchu.movie.domain.MovieratedCommand;
 
 public interface MovieratedMapper {
    //영화 점수 등록
-   @Insert("INSERT INTO movie_rated(movie_num,id,rate) VALUES(#{movie_num},#{id},#{rate})")
+   @Insert("INSERT INTO movie_rated(movie_num,id,rate,reg_date) VALUES(#{movie_num},#{id},#{rate},sysdate)")
    public void insertMovierated(MovieratedCommand im);
    
    //점수 호출
