@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.watchu.movie.service.CommentService;
 import kr.watchu.user.domain.ContactCommand;
 import kr.watchu.user.domain.ReportCommand;
 import kr.watchu.user.domain.UserCommand;
@@ -51,6 +52,9 @@ public class UserController {
 	
 	@Resource
 	private CipherTemplate cipherAES;
+	
+	@Resource
+	private CommentService commentService;
 	
 	/*@Resource
 	private SplitUtil split;*/
@@ -615,6 +619,8 @@ public class UserController {
 			blockList.clear();
 		}
 		
+		//코맨트 숫자
+		Integer comment_count = commentService.selectMyCommentCnt(id);
 		
 		mav.setViewName("userPage");
 		mav.addObject("anotheruser",anotheruser);
@@ -623,6 +629,7 @@ public class UserController {
 		mav.addObject("list2",follower3);
 		mav.addObject("mylist",user_follow3);
 		mav.addObject("blockList",blockList);
+		mav.addObject("comment_count",comment_count);
 		
 		return mav;
 	}

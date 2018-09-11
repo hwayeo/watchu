@@ -100,11 +100,14 @@ public class MyPageController {
 			blockList.clear();
 		}
 		
+		//코맨트 숫자
+		Integer comment_count = commentService.selectMyCommentCnt(id);
+		
 		model.addAttribute("user", user);
 		model.addAttribute("list",follow3);
 		model.addAttribute("list2",follower3);
 		model.addAttribute("blockList",blockList);
-				
+		model.addAttribute("comment_count", comment_count);		
 				
 		
 		return "userMypage";
@@ -124,28 +127,26 @@ public class MyPageController {
 	
 	// 코멘트
 	@RequestMapping("/user/userComment.do")
-	public ModelAndView comment(HttpSession session) {
+	public ModelAndView comment(HttpSession session,@RequestParam(value="id") String user_id) {
 
 		ModelAndView mav = new ModelAndView();
 		String id = (String) session.getAttribute("user_id");
 
-		if (log.isDebugEnabled()) {
-			log.debug("<<user_id>> : " + id);
-		}
-
-		int count = commentService.selectMyCommentCnt(id);
-
+		Integer count = commentService.selectMyCommentCnt(user_id);
+		
 		List<CommentCommand> list = null;
 
 		if (count > 0) {
-			list = commentService.selectMyCommentList(id);
+			list = commentService.selectMyCommentList(user_id);
 		}
-		UserCommand user = userService.selectUser(id);
+		UserCommand user = userService.selectUser(user_id);//겟방식으로 아이디를 넘긴 사람의 커맨드
+		UserCommand loginUser = userService.selectUser(id);//로그인한 사람의 커맨드
 		
 		mav.setViewName("userComment");
 		mav.addObject("commentList", list);
 		mav.addObject("count", count);
 		mav.addObject("user",user);
+		mav.addObject("loginUser",loginUser);
 
 		return mav;
 	}

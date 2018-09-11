@@ -28,15 +28,15 @@
 					<div class="container">
 						<a onclick="location.href='userMypage.do'" class="profile_img"> 
 							<c:if test="${empty user.profile_img}">
-								<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" class="img-circle" id="profile_img">&emsp;${user_id}
+								<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" class="img-circle" id="profile_img">&emsp;${user.id}
 							</c:if> 
 							<c:if test="${!empty user.profile_img}">
-								<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}" class="img-circle review" style="width: 50px; height: 50px;">&emsp;${user_id}
+								<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}" class="img-circle review" style="width: 50px; height: 50px;">&emsp;${user.id}
 							</c:if>
 						</a>	
 					</div><br>
 					
-					<div class="container" onclick="location.href='userComment_detail.do?movie_num=${list.movie_num}&id=${list.id}'" style="cursor:pointer;">  
+					<div class="container" onclick="location.href='userComment_detail.do?movie_num=${list.movie_num}&id=${user.id}'" style="cursor:pointer;">  
 						<div class="col-md-2">
 							<a href="#"> 
 								<img class="media-object" src="${pageContext.request.contextPath}/main/imageView.do?id=${list.poster_img}">

@@ -14,13 +14,13 @@
 								<div class="container">
 									<a onclick="location.href='userMypage.do'" class="profile_img">  
 										<c:if test="${empty user.profile_img}">
-											<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" class="img-circle" id="profile_img" style="width: 50px; height: 50px;"> ${user_id}
+											<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" class="img-circle" id="profile_img" style="width: 50px; height: 50px;"> ${user.id}
 										</c:if> 
 										<c:if test="${!empty user.profile_img}">
-											<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user_id}" width="50" height="50" class="img-circle">&emsp;${user_id}
+											<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}" width="50" height="50" class="img-circle">&emsp;${user.id}
 										</c:if>
 									</a><br>
-									<span style="color: gray; font-size: 7px">${user.reg_date}</span><br>
+									<span style="color: gray; font-size: 7px">${comment.reg_date}</span><br>
 									<span class="com_title">${comment.title}</span> 
 									<span class="com_rele">  ${comment.released} 개봉</span><br> 
 									<span class="star"><i class="glyphicon glyphicon-star"></i> 4.5</span>

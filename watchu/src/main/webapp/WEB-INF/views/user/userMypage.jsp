@@ -54,7 +54,7 @@
 					<span class="wc-StatLabel2 wcPc-block"><a class="mylike" onclick="location.href='userMypage_movielist.do'">영화</a></span> 234<br>
 				</div>
 				<div class="col-xs-4 col-md-4 text-center">
-					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userComment.do'">코멘트</a></span> 11<br>
+					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userComment.do?id=${user_id}'">코멘트</a></span>${comment_count}<br>
 				</div>
 				<div class="col-xs-4 col-md-4">
 					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userLikeComment.do'">좋아요</a></span> 120<br><br>

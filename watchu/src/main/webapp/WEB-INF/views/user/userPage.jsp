@@ -121,7 +121,7 @@
 				</div>			
 				<span>코멘트</span>
 				<div>
-					<a onclick="location.href='userComment.do?id=${anotheruser.id}'">0</a>
+					<a onclick="location.href='userComment.do?id=${anotheruser.id}'">${comment_count}</a>
 				</div>
 			</div>
 		</div>
