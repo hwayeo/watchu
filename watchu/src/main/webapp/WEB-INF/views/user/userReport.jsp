@@ -34,7 +34,6 @@
 								<select class="form-control">
 									<option>욕설사용</option>
 									<option>부적절한내용기재</option>
-									<option>ㅇㅇ</option>
 									<option>기타</option>
 								</select>
 							</div>
