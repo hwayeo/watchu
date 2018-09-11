@@ -66,7 +66,7 @@
 	
 	#socialLogin{
 		width:100%;
-		margin: 50px 350px 0 50px;
+		margin: 50px 350px 0 80px;
 	}
 	
 	#socialLogin a{
@@ -196,6 +196,22 @@
 		cursor: pointer;
 		border-radius: 5px;
 	}
+	
+	#socialLogin{
+		width:100%;
+		margin: 50px 350px 0 50px;
+	}
+	
+	#socialLogin a{
+		text-align:center;
+		font-size:18px;
+		font-weight:600;
+		text-decoration:none;
+		color:white;
+	}
+	#socialLogin a:hover{	
+		color:red;
+	}
 }
 @media screen and (min-width:0px) and (max-width:480px) {
 	body {
@@ -286,5 +302,21 @@
 		padding: 10px 20px;
 		cursor: pointer;
 		border-radius: 5px;
+	}
+	
+	#socialLogin{
+		width:100%;
+		margin: 50px 350px 0 40px;
+	}
+	
+	#socialLogin a{
+		text-align:center;
+		font-size:18px;
+		font-weight:600;
+		text-decoration:none;
+		color:white;
+	}
+	#socialLogin a:hover{	
+		color:red;
 	}
 }
