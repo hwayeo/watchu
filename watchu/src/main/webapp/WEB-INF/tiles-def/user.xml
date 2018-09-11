@@ -35,6 +35,15 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/userTimeline.jsp"/>
 	</definition>
 	
+	<!-- social 로그인 -->
+	<definition name="socialLogin" template="/WEB-INF/views/user/socialLogin.jsp">
+		<put-attribute name="title" value="왓츄 - 소셜로그인"/>
+	</definition>
+	
+	<definition name="loginSuccess" template="/WEB-INF/views/main/main.jsp">
+		<put-attribute name="title" value="왓츄 - 소셜로그인 성공"/>
+	</definition>
+	
 	<!-- 고객센터 -->
 	<definition name="userSupportList" extends="userWrite">
 		<put-attribute name="title" value="왓츄 - 고객센터"/>

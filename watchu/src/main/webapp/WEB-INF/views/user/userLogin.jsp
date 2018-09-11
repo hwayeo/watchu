@@ -36,6 +36,10 @@
 					<input type="submit" value="로그인">
 					<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 				</div>
+				
+				<div id="socialLogin">
+					<a href="socialLogin.do">소셜 아이디로 로그인</a>
+				</div>
 			</form:form>
 		</div>
 	</div>

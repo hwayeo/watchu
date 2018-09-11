@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.watchu.movie.domain.CommentCommand;
+import kr.watchu.user.domain.NaverUserCommand;
 import kr.watchu.user.domain.UserCommand;
 
 public interface UserService {
@@ -11,6 +12,12 @@ public interface UserService {
 	public void insertUser(UserCommand user);
 	//상세정보보기
 	public UserCommand selectUser(String id); 
+	
+	//social 회원등록
+	public void insertsocialUser(NaverUserCommand nuser);
+	//social 상세정보보기
+	public NaverUserCommand selectsocialUser(String id);
+	
 	//수정
 	public void updateUser(UserCommand user);
 	//삭제

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.watchu.movie.dao.CommentMapper;
 import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.user.dao.UserMapper;
+import kr.watchu.user.domain.NaverUserCommand;
 import kr.watchu.user.domain.UserCommand;
 
 @Service("userService")
@@ -24,7 +25,6 @@ public class UserServiceImpl implements UserService {
 		userMapper.insertUserDetail(user);	
 		userMapper.insertRelation(user.getId());
 	}
-
 
 	@Override
 	public UserCommand selectUser(String id) {
@@ -42,8 +42,6 @@ public class UserServiceImpl implements UserService {
 		userMapper.deleteUserRelation(id);
 		userMapper.deleteUserDetail(id);
 		userMapper.deleteUser(id);
-	
-		
 	}
 
 	@Override
@@ -56,13 +54,11 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectUserList(map);
 	}
 
-
 	@Override
 	public void insertFollow(UserCommand user) {
 		userMapper.insertFollow(user);
 		
 	}
-
 
 	@Override
 	public void insertFollower(UserCommand user) {
@@ -70,21 +66,25 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
-
 	@Override
 	public void insertBlock(UserCommand user) {
 		userMapper.insertBlock(user);
 	}
 
-
-
 	@Override
 	public List<CommentCommand> CommentList(String id) {
 		return userMapper.CommentList(id);
 	}
-	
 
-	
-	
+	@Override
+	public void insertsocialUser(NaverUserCommand nuser) {
+		userMapper.insertsocialUser(nuser);
+		userMapper.insertsocialUserDetail(nuser);
+		userMapper.insertsocialRelation(nuser.getId());
+	}
 
+	@Override
+	public NaverUserCommand selectsocialUser(String id) {
+		return userMapper.selectsocialUser(id);
+	}
 }

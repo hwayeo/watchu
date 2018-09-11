@@ -9,12 +9,14 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import kr.watchu.movie.domain.CommentCommand;
+import kr.watchu.user.domain.NaverUserCommand;
 import kr.watchu.user.domain.UserCommand;
  
 public interface UserMapper {
 	//회원등록
 	@Insert("INSERT INTO user_basic (id,auth,permit) VALUES (#{id},1,#{permit})")
 	public void insertUser(UserCommand user);
+	
 	//상세정보등록
 	@Insert("INSERT INTO user_info (id,passwd,name,phone,email,profile_img,reg_date) VALUES (#{id},#{passwd},#{name},#{phone},#{email},#{profile_img},SYSDATE)")
 	public void insertUserDetail(UserCommand user);
@@ -22,6 +24,19 @@ public interface UserMapper {
 	//회원상세정보확인
 	@Select("select * from user_basic b left outer join user_info i on b.id=i.id left outer join user_relation c on b.id=c.id where i.id=#{id}")
 	public UserCommand selectUser(String id);
+	
+	//social 회원등록
+	@Insert("INSERT INTO user_basic (id,auth,permit,type) VALUES (#{id},1,null,'naver')")
+	public void insertsocialUser(NaverUserCommand nuser);
+
+	//social 상세정보등록
+	@Select("INSERT INTO user_info (id,name,email,reg_date) VALUES (#{id},#{name},#{email},SYSDATE)")
+	public void insertsocialUserDetail(NaverUserCommand nuser);
+
+	//social 상세정보확인
+	@Select("SELECT * FROM user_basic a left outer join user_info b on a.id = b.id left outer join user_relation c on a.id=c.id WHERE b.id=#{id}")
+	public NaverUserCommand selectsocialUser(String id);
+		
 	//수정
 	@Update("update user_info set passwd=#{passwd},name=#{name},phone=#{phone},email=#{email},profile_img=#{profile_img} where id=#{id}")
 	public void updateUser(UserCommand user);
@@ -42,6 +57,10 @@ public interface UserMapper {
 	//회원가입시 user_relation 테이블에 등록
 	@Insert("INSERT INTO user_relation (id) VALUES (#{id})")
 	public void insertRelation(String id);
+	//회원가입 시 user_relation 테이블에 등록
+	@Insert("INSERT INTO user_relation (id) VALUES (#{id})")
+	public void insertsocialRelation(String id);
+	
 	//내 팔로우에 상대방 추가
 	@Update("update user_relation set follow=#{follow} where id=#{id}")
 	public void insertFollow(UserCommand user);
