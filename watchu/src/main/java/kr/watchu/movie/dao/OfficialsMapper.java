@@ -21,7 +21,7 @@ public interface OfficialsMapper {
 	@Select("SELECT * FROM officials WHERE name=#{name}")
 	public OfficialsCommand selectOfficials(String name);
 	//수정
-	//@Update("UPDATE officials SET name=#{name}, jobs=#{jobs}, filmograp=#{filmograp}, off_photo=#{off_photo} WHERE off_num=#{off_num}")
+	@Update("UPDATE officials SET name=#{name}, jobs=#{jobs}, filmograp=#{filmograp}, off_photo=#{off_photo} WHERE off_num=#{off_num}")
 	public void update(OfficialsCommand officials);
 	//삭제
 	//삭제시 관련 테이블의 정보도 삭제 해야함

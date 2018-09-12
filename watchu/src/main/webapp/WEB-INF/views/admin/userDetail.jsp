@@ -13,13 +13,21 @@
 			<td>
 			<ul>
 				<li><label for="id">아이디</label>
-				<input type="text" name="id" id="id" readonly></li>
+				${user.id}
 				<li><label for="name">이름</label>
 				<form:input path="name"/>
 				<form:errors path="name" cssClass="error-color"/></li>
-				<li></li>
+				<li><label for="phone">연락처</label>
+				<form:input path="phone"/>
+				<form:errors path="phone" cssClass="error-color"/></li>
+				<li><label for="email">이메일</label>
+				<form:input path="email"/>
+				<form:errors path="email" cssClass="error-color"/></li>
+				<li><label for="reg_date">가입일</label>${user.reg_date}</li>
 				<hr size="1" noshade>
-				<li></li>
+				<li><label for="total_likes">누적 좋아요 수</label>${user.total_likes}</li>
+				<li><label for="total_reported">누적 신고 수</label>${user.total_likes}</li>				
+				<li><label for="auth">누적 신고 수</label>${user.total_likes}</li>				
 			</ul>
 			</td>
 		</tr>
