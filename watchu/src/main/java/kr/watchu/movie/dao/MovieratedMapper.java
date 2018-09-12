@@ -16,7 +16,7 @@ public interface MovieratedMapper {
    public void insertMovierated(MovieratedCommand im);
    
    //점수 호출
-   @Select("SELECT * FROM movie_rated WHERE movie_num=#{movie_num} and id=#{id}")
+   @Select("SELECT * FROM movie_rated WHERE movie_num=#{movie_num} AND id=#{id}")
    public MovieratedCommand selectMovierated(Map<String,Object> map);
    
    //영화 점수 재평가(update) -> 동일한 영화를 평가했는지 확인 후 있으면 업데이트

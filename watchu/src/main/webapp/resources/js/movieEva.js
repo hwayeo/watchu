@@ -36,6 +36,7 @@ $(document).ready(function(){
 	});
 
 	function movieRate(movie_num,rate,id){
+		console.log(movie_num + " : " + rate+ " : " + id);
 		$.ajax({
 			url:'rating.do',
 			type:'post',
@@ -55,7 +56,7 @@ $(document).ready(function(){
 				}
 
 				// radio 별 평가 후 초기화
-				$('input[name=rating]').attr("checked", false); 
+				$('input[name=rating]').prop("checked", false); 
 			},
 			error:function(){
 				alert('네트워크 오류');

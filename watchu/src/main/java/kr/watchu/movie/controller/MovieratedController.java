@@ -26,7 +26,7 @@ public class MovieratedController {
 	private Logger log = Logger.getLogger(this.getClass());
 
 	@Resource 
-	private MovieratedService ms;
+	private MovieratedService movieratedService;
 	
 	@Resource 
 	private MovieService movieService;
@@ -60,17 +60,16 @@ public class MovieratedController {
 	@ResponseBody
 	public Map<String,String> insertRated(@ModelAttribute("rateCommand") MovieratedCommand im) {
 		
+		MovieCommand movie = movieService.selectMovie(im.getMovie_num());
+		
+		if(log.isDebugEnabled()) {
+			log.debug("<<movie>> : " + movie);
+		}
 		
 		Map<String,String> map = new HashMap<String, String>();
-	
-		//기존 영화 평가 데이터를 받아오기 위해 파라미터값을 넣어주는 맵
-		Map<String,Object> data = new HashMap<String,Object>();
-		data.put("id", im.getId());
-		data.put("movie_num", im.getMovie_num());
-		
-		MovieCommand movie = movieService.selectMovie(im.getMovie_num());
 
 		String main_genre = movie.getMain_genre();
+		String sub_genre = movie.getSub_genre();
 		
 		AnalysisGenreCommand main = new AnalysisGenreCommand();
 		if(main_genre!=null) {
@@ -80,10 +79,10 @@ public class MovieratedController {
 			main.setRate(im.getRate());
 		}
 		
-		String[] directors = SplitUtil.splitByComma(movie.getDirector());
-		String[] actors = SplitUtil.splitByComma(movie.getActors());
+		if(log.isDebugEnabled()) {
+			log.debug("<<main>> : " + main);
+		}
 		
-		String sub_genre = movie.getSub_genre();
 		AnalysisGenreCommand sub = null;
 		sub = new AnalysisGenreCommand();
 		if(sub_genre!=null) {
@@ -92,7 +91,26 @@ public class MovieratedController {
 			sub.setGenre(sub_genre);
 			sub.setRate(im.getRate());
 		}
-		MovieratedCommand origin = ms.selectMovierated(data);
+		
+		if(log.isDebugEnabled()) {
+			log.debug("<<sub>> : " + sub);
+		}
+		
+		String[] directors = SplitUtil.splitByComma(movie.getDirector());
+		String[] actors = SplitUtil.splitByComma(movie.getActors());
+		
+		if(log.isDebugEnabled()) {
+			log.debug("<<directors>> : " + directors.toString());
+			log.debug("<<actors>> : " + actors.toString());
+		}
+		
+		//기존 영화 평가 데이터를 받아오기 위해 파라미터값을 넣어주는 맵
+		Map<String,Object> data = new HashMap<String,Object>();
+		data.put("id", im.getId());
+		data.put("movie_num", im.getMovie_num());
+		
+		MovieratedCommand origin = movieratedService.selectMovierated(data);
+
 		
 		if(log.isDebugEnabled()) {
 			log.debug("<<origin>> : " + origin);
@@ -102,7 +120,7 @@ public class MovieratedController {
 			//insert
 			
 			try {
-				ms.insertMovierated(im);
+				movieratedService.insertMovierated(im);
 				if(log.isDebugEnabled()) {
 					log.debug("<<++동작++>>");
 				}
@@ -141,7 +159,7 @@ public class MovieratedController {
 		}else {
 			//update
 			try {
-				ms.updateMovierated(im);
+				movieratedService.updateMovierated(im);
 				if(log.isDebugEnabled()) {
 					log.debug("<<main>> : " + main);
 					log.debug("<<sub>> : " + sub);

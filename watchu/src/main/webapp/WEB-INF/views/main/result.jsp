@@ -13,15 +13,25 @@
 					<div class="row">
 						<c:forEach var="list" items="${movieList}" varStatus="status">
 							<c:if test="${status.index < 3}">
-								<div class="col-xs-4 col-md-3">
-									<img src="${pageContext.request.contextPath}/resources/images/billy.jpg" class="img-responsive">
+								<div class="col-xs-4 col-md-3" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${list.movie_num}'" style="cursor:pointer;">
+									<c:if test="${empty item.poster_img}">
+										<img src="${pageContext.request.contextPath}/resources/images/default-poster.jpg" class="img-responsive">
+									</c:if>
+									<c:if test="${!empty item.poster_img}">
+										<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${list.movie_num}&type=poster" class="img-responsive">
+									</c:if>
 									<p>${list.title}</p>
-									<span>별점</span>
+									<span>${list.rate}</span>
 								</div>
 							</c:if>
 							<c:if test="${status.index == 3}">
-								<div class="hidden-xs visible-md visible-lg col-md-3">
-									<img src="${pageContext.request.contextPath}/resources/images/billy.jpg" class="img-responsive">
+								<div class="hidden-xs visible-md visible-lg col-md-3" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${list.movie_num}'" style="cursor:pointer;">
+									<c:if test="${empty item.poster_img}">
+										<img src="${pageContext.request.contextPath}/resources/images/default-poster.jpg" class="img-responsive">
+									</c:if>
+									<c:if test="${!empty item.poster_img}">
+										<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${list.movie_num}&type=poster" class="img-responsive">
+									</c:if>
 									<p>${list.title}</p>
 									<span>별점</span>
 								</div>

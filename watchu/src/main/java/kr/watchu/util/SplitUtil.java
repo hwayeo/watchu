@@ -8,7 +8,6 @@ public class SplitUtil {
 		}else {
 			list = str.split(",");
 		}
-		System.out.println("[[list]] : " + list);
 		String newlist[] = new String[list.length];
 		for(int i=0;i<list.length;i++) {
 			if(list[i].substring(0,1).equals(" ")) {
@@ -16,6 +15,9 @@ public class SplitUtil {
 			}else {
 				newlist[i] = list[i];
 			}
+		}
+		for (int i = 0; i < newlist.length; i++) {
+			System.out.println("index:"+i+" - "+ newlist[i]);
 		}
 		return newlist;
 	}

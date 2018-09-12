@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/watchu-main.js"></script>
 <div id="main-page">
 	<div id="main_banner">
@@ -21,13 +23,18 @@
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 			<h4>오늘은 이거다!</h4>
-			<div class="items-box" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${randomMovie.movie_num}'">
+			<div class="items-box" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${randomMovie.movie_num}'" style="cursor:pointer;">
 				<div class="img-box">
-					<img src="${pageContext.request.contextPath}/resources/images/main-banner-test.jpg" class="img-responsive main-img">
+					<c:if test="${empty randomMovie.poster_img}">
+						<img src="${pageContext.request.contextPath}/resources/images/default-banner.jpg" class="img-responsive main-img">
+					</c:if>
+					<c:if test="${!empty randomMovie.poster_img}">
+						<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${randomMovie.movie_num}&type=banner" class="img-responsive main-img">
+					</c:if>
 				</div>
 				<div class="text-box">	
 					<p class="movie-title"><a href="#" class="movie-link">${randomMovie.title}</a><p>
-					<p class="sub-title">슈퍼히어로 . 2018</p>
+					<p class="sub-title">${randomMovie.main_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${randomMovie.released}" pattern="YYYY"/></p>
 				</div>
 			</div>
 		</div>

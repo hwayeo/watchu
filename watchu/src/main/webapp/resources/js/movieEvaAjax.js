@@ -87,7 +87,7 @@ $(document).ready(function(){
 							elist += '<div class="col-sm-6 col-md-3 col-xs-6" id="main-category">';
 							elist += '<div class="thumbnail">';
 							if(item.poster_img == null){
-							elist += '<img src="../resources/images/img4.jpg" class="mimg">';
+							elist += '<img src="../resources/images/default-poster.jpg" class="mimg">';
 							}else{
 							elist += '<img src="../movie/imageView.do?movie_num='+item.movie_num+'&type=poster" class="mimg">';
 							}
@@ -128,7 +128,7 @@ $(document).ready(function(){
 							elist += '   <div class="col-xs-12 movie-cell">';
 							elist += '	    <div class="col-xs-4 posters">';
 							if(item.poster_img == null){
-							elist += '	 	    <img src="../resources/images/billy.jpg" class="img-responsive posters">';
+							elist += '	 	    <img src="../resources/images/default-poster.jpg" class="img-responsive posters">';
 							}else{
 							elist += '			<img src="../movie/imageView.do?movie_num='+item.movie_num+'&type=poster" class="img-responsive posters">';
 							}  
