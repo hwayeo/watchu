@@ -5,6 +5,8 @@ public class SplitUtil {
 		String[] list; 
 		if(str.substring(0, 1).equals(",")) {
 			list = str.substring(1).split(",");
+		}else if(str.substring(0, 1).equals(",") && str.substring(str.length()-1,str.length()).equals(",")) {
+			list = str.substring(1,str.length()-1).split(",");
 		}else {
 			list = str.split(",");
 		}
@@ -17,7 +19,7 @@ public class SplitUtil {
 			}
 		}
 		for (int i = 0; i < newlist.length; i++) {
-			System.out.println("index:"+i+" - "+ newlist[i]);
+			System.out.println("index:"+i+" -"+ newlist[i]);
 		}
 		return newlist;
 	}

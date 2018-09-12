@@ -11,7 +11,9 @@ $(document).ready(function(){
 	//평가창에서의 브라우저 창 넓이
 	$(window).on('resize',function(){
 		width = $(document).width();
-		selectEva(1,keyword,keyfield);
+		if(width <= 425){
+			selectEva(1,keyword,keyfield);
+		}
 	});
 	
 	//스크롤 이벤트 발생시 pageNum값을 증가 시킨다.
