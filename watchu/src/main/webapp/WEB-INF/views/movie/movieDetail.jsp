@@ -2,18 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/movie-detail.css">	
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/watchu-view.css">	
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.bxslider.min.css">	
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/starRated.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/modal-comment.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.bxslider.min.js"></script>
-
  
 <div id="main-page"> 
 	<div id="main_banner">
 		<div id="img-test">
 			<%-- 배너이미지 주석처리
 			<img src="imageView.do?movie_num=${movie.movie_num}&imgType=banner"> --%>
+			<div class="preview">
+				<span class="glyphicon glyphicon-play-circle" onclick="location.href='https://www.youtube.com/embed/${movie.trailer}'" style="cursor:pointer"></span>
+			</div>
 		</div> 
 	</div>
 </div>
@@ -35,23 +39,74 @@
 	
 	<div class="col-sm-6 col-md-6 col-xs-6" id="poster2">
 		 <h3><b style="font-size:30px;">${movie.title}</b></h3>
-		 	<p style="font-size:18px;">${movie.released}.${movie.main_genre}.${movie.country}</p>
+		 	<p style="font-size:18px;"><fmt:formatDate value="${movie.released}" pattern="yyyy"/>&nbsp;&middot;&nbsp;${movie.main_genre}&nbsp;&middot;&nbsp;${movie.country}</p>
 		 		<hr width="65%" align="left">	
-					<p style="font-size:18px;">평점★4.5</p>
+					<p style="font-size:18px;">평점★${movie.rate }</p>
 				<hr width="65%" align="left">
-			<div style="width: 250px; font-size:18px;">별점</div>
+			<div class="starRating">
+				<fieldset class="rating">
+					<input type="radio" id="star5">
+					<label class="full" for="star5"></label>
+					<input type="radio" id="star4half">
+					<label class="half" for="star4half"></label>
+					<input type="radio" id="star4">
+					<label class="full" for="star4"></label>
+					<input type="radio" id="star3half">
+					<label class="half" for="star3half"></label>
+					<input type="radio" id="star3">
+					<label class="full" for="star3"></label>
+					<input type="radio" id="star2half">
+					<label class="half" for="star2half"></label>
+					<input type="radio" id="star2">
+					<label class="full" for="star2"></label>
+					<input type="radio" id="star1half">
+					<label class="half"for="star1half"></label>
+					<input type="radio" id="star1">
+					<label class="full" for="star1"></label>
+					<input type="radio" id="half">
+					<label class="half"for="half"></label>
+				</fieldset>
+			</div>
 		</div>
 	</div>
 		<!-- 영화 기본정보 pc화면 끝 -->
 		
 		<!-- 영화 기본정보 모바일 화면 -->
-		<div class="col-sm-12 col-md-12-xs-12 hidden-md hidden-lg hidden-sm" style="text-align:center"> 
+		<div class="col-sm-12 col-md-12 col-xs-12 hidden-md hidden-lg hidden-sm" style="text-align:center"> 
 		<h3>${movie.title}</h3>
-		 	<p>${movie.released}.${movie.main_genre}.${movie.country}</p>
+		 	<p style="font-size:18px;"><fmt:formatDate value="${movie.released}" pattern="yyyy"/>&nbsp;&middot;&nbsp;${movie.main_genre}&nbsp;&middot;&nbsp;${movie.country}</p>
 		 		<hr width="98%" align="left">	
-					<p>평점★4.5</p>
+					<p>평점★  ${movie.rate }</p>
 				<hr width="98%" align="left">
-		<div style="width: 250px;">별점</div>
+			
+			<div >
+			<div class="starRating">
+				<fieldset class="rating">
+					<input type="radio" id="star5">
+					<label class="full" for="star5"></label>
+					<input type="radio" id="star4half">
+					<label class="half" for="star4half"></label>
+					<input type="radio" id="star4">
+					<label class="full" for="star4"></label>
+					<input type="radio" id="star3half">
+					<label class="half" for="star3half"></label>
+					<input type="radio" id="star3">
+					<label class="full" for="star3"></label>
+					<input type="radio" id="star2half">
+					<label class="half" for="star2half"></label>
+					<input type="radio" id="star2">
+					<label class="full" for="star2"></label>
+					<input type="radio" id="star1half">
+					<label class="half"for="star1half"></label>
+					<input type="radio" id="star1">
+					<label class="full" for="star1"></label>
+					<input type="radio" id="half">
+					<label class="half"for="half"></label>
+				</fieldset>
+			</div>
+			</div>
+	
+	
 		<hr width="98%" align="left">
 		
 		<c:if test="${empty user_id}">
@@ -165,24 +220,24 @@
 				<div id = slide_actors>
 					<ul class="slide_actors">
 				<c:forEach var="list" items="${actorList}">
-					<div class="actor_box">
-					<div class="actor_photo"><img src="../main/imageView.do?id=${list.off_photo}" 
-					width="55" height="55" class="img-circle" style="float: left; margin-right: 10px;">
-					</div>
+						<div class="actor_box">
+							<div class="actor_photo"><img src="../main/imageView.do?id=${list.off_photo}" 
+								width="55" height="55" class="img-circle" style="float: left; margin-right: 10px;">
+							</div>
 					<div class="name_box">
-					<div class="actor_name">${list.name}</div>
-					<c:if test="${list.jobs eq 'DIRECTOR'}">
-					<div class="actor_jobs">감독</div>
-					</c:if>
+						<div class="actor_name">${list.name}</div>
+							<c:if test="${list.jobs eq 'DIRECTOR'}">
+								<div class="actor_jobs">감독</div>
+							</c:if>
 					<c:if test="${list.jobs eq 'ACTOR'}">
-					<div class="actor_jobs">배우</div>
+						<div class="actor_jobs">배우</div>
 					</c:if>
-					</div>
-					</div>
-				</c:forEach>
+						</div>
+						</div>
+					</c:forEach>
 					</ul>
-					</div>
-					
+				</div>
+			
 				<hr>
 
 				<div>
@@ -314,9 +369,28 @@
 				<div>
 					<h4><b>출연제작</b></h4>
 				</div>
-				<div></div>
-				<div></div>
-				<hr>
+				
+				<div id = slide_actors>
+					<ul class="slide_actors">
+				<c:forEach var="list" items="${actorList}">
+						<div class="actor_box">
+							<div class="actor_photo"><img src="../main/imageView.do?id=${list.off_photo}" 
+								width="55" height="55" class="img-circle" style="float: left; margin-right: 10px;">
+							</div>
+					<div class="name_box">
+						<div class="actor_name">${list.name}</div>
+							<c:if test="${list.jobs eq 'DIRECTOR'}">
+								<div class="actor_jobs">감독</div>
+							</c:if>
+					<c:if test="${list.jobs eq 'ACTOR'}">
+						<div class="actor_jobs">배우</div>
+					</c:if>
+						</div>
+						</div>
+					</c:forEach>
+					</ul>
+				</div>
+			<hr>
 
 				<div>
 					<h4><b>별점 그래프</b></h4>
@@ -396,6 +470,9 @@
 					<input type="hidden" name="movie_num" value="${movie.movie_num}">
 					<input type="hidden" name="id" value="${user_id}">
 					<textarea name="content" id="text" placeholder="이 작품에 대한 생각을 자유롭게 표현해 주세요" class="form-control" rows="5"></textarea><br>
+					<div id = "re_first">
+						<div class="letter-count" style="text-align:center;">1000/1000</div>
+					</div>
 					<div class="text-right">
 						<button class="btn" data-dismiss="modal">닫기</button>
 						<button class="btn btn-primary" value="submit">코멘트 작성</button>
@@ -419,6 +496,9 @@
 					<input type="hidden" name="movie_num" value="${movie.movie_num}">
 					<input type="hidden" name="id" value="${user_id}">
 					<textarea name="content" id="text" class="form-control" rows="5">${comment.content}</textarea><br>
+					<div id = "mre_first">
+						<div class="letter-count" style="text-align:center">1000/1000</div>
+					</div>
 					<div class="text-right">
 						<button class="btn" data-dismiss="modal">닫기</button>
 						<button class="btn btn-primary" value="submit">코멘트 작성</button>
@@ -490,7 +570,7 @@
 					<div><h4 id="modal-output-id"></h4></div>
 					</div>
 					<hr>
-					<div class="modal-contentbox" id="modal-output-content" style="margin-left:20px; font-size:15px;">${comment.content}</div>
+					<div class="modal-contentbox" id="modal-output-content" style="margin-left:20px; font-size:15px; height:100%;">${comment.content}</div>
 					<hr>
 					<div class="inner-box3" id="modal-output-likes">좋아요 : ${comment.likes}</div>  
 					<hr>

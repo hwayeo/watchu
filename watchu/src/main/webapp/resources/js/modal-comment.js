@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	//코멘트 
 	$(document).on('click','.modal-comment',function(){
 		cleanModal();
 		
@@ -26,7 +27,7 @@ $(document).ready(function(){
 		$('#modal-output-reg_date').text('');
 		$('#modal-output-title').empty();
 	}
-	
+	//코멘트 슬라이더 
 	$(function(){
 		$('.slide_comment').bxSlider({
 			controls:true,
@@ -44,6 +45,7 @@ $(document).ready(function(){
 		});
 	});
 });
+	//배우 슬라이더 
 	$(function(){
 		$('.slide_actors').bxSlider({
 			controls:true,
@@ -58,6 +60,35 @@ $(document).ready(function(){
 			$(this).find('.bx-prev').hide();
 			$(this).find('.bx-next').hide();
 			});
+		});
+	});
+	
+	//코멘트 글자수 제한
+	$(document).on('keyup','textarea',function(){
+		var inputLength = $(this).val().length;
+		
+		if(inputLength>1000){
+			$(this).val($(this).val().substring(0,1000));
+		}else{
+			var remain = 1000 - inputLength;
+			remain += '/1000';
+			if($(this).attr('id')=='text'){
+				//등록폼 글자수 
+				$('#re_first .letter-count').text(remain);
+			}else{
+				//수정폼 글자수
+				$('#mre_first .letter-count').text(remain);
+			}
+		}
+	});
+	
+	//재생 색깔 후버
+	$(function(){
+		$('.preview').find('span').hover(
+		function(){
+			$(this).css('color','#d24b7d')
+		},function(){
+			$(this).css('color','#333333')
 		});
 	});
 });

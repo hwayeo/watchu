@@ -19,9 +19,9 @@
 }
 
 #image2{
-	width:150px;
-	height:210px;
-	margin-top:15px;
+	width: 160px;
+    height: 235px;
+    margin-top: 15px;
 }
 
 #image3{
@@ -128,7 +128,6 @@
 }
 #modal-commentbox{
 	overflow: hidden;
-    height: 300px;
 }
 
 .comment-division{
@@ -325,17 +324,33 @@ hr.one{
 }
 
 /*배우 정보*/
-.actor_photo{
-	
-}
-
-.name_box{
-	
-}
 .actor_name{
-	
+	font-size: 17px;
+    font-weight: bolder;
 }
 .actor_box{
-	width:240px !important;
+	width:1.2% !important;
 }
 
+@media screen and (min-width:768px){
+.preview{
+	font-size: 8.0em; /*em쓰면 화면비율에 맞춰서 폰트크기 조절*/
+    text-align: center;
+    padding-top: 130px
+	}
+}
+@media screen and (min-width:425px) and (max-width:767px){
+.preview{
+	font-size: 7.0em;
+    text-align: center;
+    padding-top: 90px;
+		}	
+	}	
+@media screen and (min-width:0px) and (max-width:424px){
+.preview{
+	font-size: 5em;
+    text-align: center;
+    padding-top: 75px;
+    }		
+}	
+}
