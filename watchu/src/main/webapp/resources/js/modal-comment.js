@@ -35,13 +35,29 @@ $(document).ready(function(){
 	})
 	
 	$(function(){
-		$('.division1').mouseover(function(){
-			$('.bx-prev').show();
-			$('.bx-next').show();
+		$('#slidercomment').mouseover(function(){
+			$(this).find('.bx-prev').show();
+			$(this).find('.bx-next').show();
 		$('.bx-controls-direction').mouseout(function(){
-			//$('.bx-prev').hide();
-			//$('.bx-next').hide();
+			$(this).find('.bx-prev').hide();
+			$(this).find('.bx-next').hide();
 		});
 	});
 });
+	$(function(){
+		$('.slide_actors').bxSlider({
+			controls:true,
+			pager:false
+		});
+	});
+	$(function(){
+		$('.bx-wrapper').mouseover(function(){
+			$(this).find('.bx-prev').show();
+			$(this).find('.bx-next').show();
+		$('.bx-controls-direction').mouseout(function(){
+			$(this).find('.bx-prev').hide();
+			$(this).find('.bx-next').hide();
+			});
+		});
+	});
 });

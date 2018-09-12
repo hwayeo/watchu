@@ -21,11 +21,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.movie.domain.MovieCommand;
+import kr.watchu.movie.domain.OfficialsCommand;
 import kr.watchu.movie.service.CommentService;
 import kr.watchu.movie.service.MovieService;
+import kr.watchu.movie.service.OfficialsService;
 import kr.watchu.user.controller.userConfirmIdAjaxController;
 import kr.watchu.user.service.UserService;
 import kr.watchu.util.PagingUtil;
+import kr.watchu.util.SplitUtil;
 import kr.watchu.util.StringUtil;
 
 @Controller
@@ -35,6 +38,8 @@ public class MovieViewController {
 	private MovieService movieService;
 	@Resource
 	private CommentService commentService;
+	@Resource
+	private OfficialsService officialsService;
 	//자바빈 초기화
 	@ModelAttribute("commentCommand")
 	public CommentCommand initCommentCommand() {
@@ -46,9 +51,21 @@ public class MovieViewController {
 	public ModelAndView movieDetail(@RequestParam("movie_num") Integer movie_num, HttpSession session) {
 
 		ModelAndView mav = new ModelAndView();
-
+		
 		//영화 기본 정보
 		MovieCommand movie = movieService.selectMovie(movie_num);
+		
+		List<OfficialsCommand> actorList = new ArrayList<OfficialsCommand>();
+		
+		String[] actors = SplitUtil.splitByComma(movie.getActors());
+		String[] directors = SplitUtil.splitByComma(movie.getDirector());
+		
+		for(int i=0;i<actors.length;i++) {
+			actorList.add(officialsService.selectOfficials(actors[i]));
+		}
+		for(int i=0;i<directors.length;i++) {
+			actorList.add(officialsService.selectOfficials(directors[i]));
+		}
 
 		List<CommentCommand> commentList = new ArrayList<CommentCommand>();
 
@@ -80,7 +97,8 @@ public class MovieViewController {
 		mav.addObject("movie",movie);
 		mav.addObject("commentList",commentList);
 		mav.addObject("commentCnt",commentCnt);
-
+		mav.addObject("actorList",actorList);
+	
 		return mav;
 
 	}
@@ -142,4 +160,5 @@ public class MovieViewController {
 		
 		return "redirect:/movie/movieDetail.do?movie_num="+movie_num;
 	}
+	
 }

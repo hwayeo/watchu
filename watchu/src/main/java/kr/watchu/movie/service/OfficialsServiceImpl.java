@@ -26,6 +26,11 @@ public class OfficialsServiceImpl implements OfficialsService {
 	}
 
 	@Override
+	public OfficialsCommand selectOfficials(String name) {
+		return officialsMapper.selectOfficials(name);
+	}
+
+	@Override
 	public void update(OfficialsCommand officials) {
 		officialsMapper.update(officials);
 		

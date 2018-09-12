@@ -18,6 +18,8 @@ public interface OfficialsMapper {
 	//상세정보
 	@Select("SELECT * FROM officials WHERE off_num=#{off_num}")
 	public OfficialsCommand selectOfficials(Integer off_num);
+	@Select("SELECT * FROM officials WHERE name=#{name}")
+	public OfficialsCommand selectOfficials(String name);
 	//수정
 	//@Update("UPDATE officials SET name=#{name}, jobs=#{jobs}, filmograp=#{filmograp}, off_photo=#{off_photo} WHERE off_num=#{off_num}")
 	public void update(OfficialsCommand officials);

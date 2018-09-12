@@ -8,7 +8,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/modal-comment.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.bxslider.min.js"></script>
 
-  
+ 
 <div id="main-page"> 
 	<div id="main_banner">
 		<div id="img-test">
@@ -158,10 +158,31 @@
 				<hr>
 				
 				<div>
-					<h4><b>출연제작</b></h4>
+					<h4 style="margin-bottom:20px"><b>출연제작</b></h4>
 				</div>
-				<div></div>     
-				<div></div>  
+				
+				
+				<div id = slide_actors>
+					<ul class="slide_actors">
+				<c:forEach var="list" items="${actorList}">
+					<div class="actor_box">
+					<div class="actor_photo"><img src="../main/imageView.do?id=${list.off_photo}" 
+					width="55" height="55" class="img-circle" style="float: left; margin-right: 10px;">
+					</div>
+					<div class="name_box">
+					<div class="actor_name">${list.name}</div>
+					<c:if test="${list.jobs eq 'DIRECTOR'}">
+					<div class="actor_jobs">감독</div>
+					</c:if>
+					<c:if test="${list.jobs eq 'ACTOR'}">
+					<div class="actor_jobs">배우</div>
+					</c:if>
+					</div>
+					</div>
+				</c:forEach>
+					</ul>
+					</div>
+					
 				<hr>
 
 				<div>

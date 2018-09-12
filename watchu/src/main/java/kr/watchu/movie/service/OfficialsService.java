@@ -10,6 +10,7 @@ public interface OfficialsService {
 	public void insert(OfficialsCommand officials);
 	//상세정보
 	public OfficialsCommand selectOfficials(Integer off_num);
+	public OfficialsCommand selectOfficials(String name);
 	//수정
 	public void update(OfficialsCommand officials);
 	//삭제
