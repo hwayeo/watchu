@@ -8,7 +8,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/modal-comment.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.bxslider.min.js"></script>
 
- 
+  
 <div id="main-page"> 
 	<div id="main_banner">
 		<div id="img-test">
