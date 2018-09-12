@@ -29,7 +29,7 @@
 	<div class="mlist"></div>
 </div>
 
-<!-- 추천 영화 태그1 -->
+<!-- 추천 영화 태그1 --> 
 <div class="row">
 	<div class="home-text1">쿵푸영화
 	<a href="movieList.do?keyfield=title&keyword=쿵푸" class="home-text2">쿵푸영화</a></div>

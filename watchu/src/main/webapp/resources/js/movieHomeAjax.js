@@ -11,7 +11,7 @@ $(document).ready(function(){
 		keyfield = 'all';
 		keyword = $('#movie-search-keyword').val();		
 		if(type == 'movieHome'){
-			$('#movieSearch').submit();
+			$('#movieSearch').submit(); 
 		}
 	});
 	$('.gbutton2').on('click',function(){

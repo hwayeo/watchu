@@ -9,7 +9,7 @@ $(document).ready(function(){
 	var keyword2 = $('#ajx_keyword').val();
 	var type = $('.page-type').val();
 	var width = $(document).width();
-	
+	 
 	//스크롤 이벤트 발생시 pageNum값을 증가 시킨다.
  	$(window).scroll(function(){
  		if($(window).scrollTop() == $(document).height() - $(window).height()){ 

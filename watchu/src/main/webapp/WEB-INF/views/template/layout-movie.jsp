@@ -15,7 +15,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body> 
 	<tiles:insertAttribute name="header"/>
 <div id="main-content" class="container">
 	<tiles:insertAttribute name="movieHome"/>

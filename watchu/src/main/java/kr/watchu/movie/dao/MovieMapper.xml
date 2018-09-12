@@ -6,7 +6,7 @@
 <mapper namespace="kr.watchu.movie.dao.MovieMapper">
    <select id="selectMovieList" parameterType="map" resultType="MovieCommand">
    SELECT * FROM
-   (SELECT a.*,rownum rnum FROM
+   (SELECT a.*,rownum rnum FROM 
    (SELECT * FROM movie_info 
       <where>
          <if test="keyword != '' and keyfield == 'title'" >
