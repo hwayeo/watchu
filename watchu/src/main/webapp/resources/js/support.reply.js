@@ -32,7 +32,7 @@ $(document).ready(function(){
 				}else{
 					$(list).each(function(index, item){
 						var output = '<div class="item">';
-							output += 	'<h4>관리자 답변</h4>';
+							output += 	'<h5><b>관리자 답변</b></h5>';
 							output += 	'<div class="sub-item">';
 							output += 		'<p>' + item.recontent + '</p>';
 							output +=		item.reg_date;

@@ -579,6 +579,21 @@ public class AdminController {
 		return new ModelAndView("userDetail", "user", user);
 	}
 	
+	//수정 폼에서 전송된 데이터 처리
+	@RequestMapping(value="/admin/userDetail.do", method=RequestMethod.POST)
+	public String user_submit(@ModelAttribute("user_command") @Valid UserCommand userCommand, BindingResult result, HttpSession session, HttpServletRequest request) {
+		//로그 출력
+		if(log.isDebugEnabled()) {
+			log.debug("<<userCommand>>: " + userCommand);
+		}
+			
+		//관계자 수정
+		userService.adminUpdate(userCommand);
+		userService.adminUpdate2(userCommand);
+			
+		return "redirect:/admin/userList.do";
+	}
+	
 	//====================06_회원 관리_신고 회원====================//
 		//목록
 		@RequestMapping("/admin/reportedUser.do")

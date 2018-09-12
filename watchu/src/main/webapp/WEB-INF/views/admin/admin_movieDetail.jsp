@@ -39,7 +39,7 @@
         			<form:input path="country" />
         			<form:errors path="country" cssClass="error-color" /></li>
 				<li><label for="director">감독: </label>
-        			<input class="auto_director" type="text" name="actors"/>
+        			<input class="auto_director" type="text"/>
 					<input id="director" name="director" value="${movie_command.director}" size="50" class="input_director" readonly="readonly"/>
 					<span>※ 수정 시 기존 데이터는 삭제됩니다 ※</span>
 				<li><label for="trailer">예고편 코드: </label>
@@ -57,13 +57,13 @@
 					<div class="actors">
 					<c:if test="${!empty movie.actors}">
 					<input type="text" id="actors" name="actors" value="${movie_command.actors}" size="70" class="input_actor" readonly="readonly"/>
-					<br>수정 입력: <input class="auto_actor" type="text" name="actors"/>
+					<br>수정 입력: <input class="auto_actor" type="text"/>
 					<span>※ 수정 시 기존 데이터는 삭제됩니다 ※</span>
 					</c:if>
 					<c:if test="${movie.actors == null}">
 					등록된 출연배우 없음
 					<input type="text" id="actors" name="actors" value="${movie_command.actors}" size="70" class="input_actor" readonly="readonly"/>
-					<br>배우 입력: <input class="auto_actor" type="text" name="actors"/>
+					<br>배우 입력: <input class="auto_actor" type="text"/>
 					</c:if>
 					</div>
 				</li>

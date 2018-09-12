@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<div class="detail">
+<div class="detail" style="width:90%">
 	<h2>관계자 상세 정보/수정</h2>
 	<form:form commandName="official_command" action="offcialDetail.do" id="modify_form" enctype="multipart/form-data">
 	    <form:hidden path="off_num"/>

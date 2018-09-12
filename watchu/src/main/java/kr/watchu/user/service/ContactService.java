@@ -28,6 +28,5 @@ public interface ContactService {
 	public int selectRowCountReply(Map<String, Object> map);
 	public void insertReply(AdminRecontactCommand adminRecontactCommand);
 	public void updateReply(AdminRecontactCommand adminRecontactCommand);
-	public void deleteReply(Integer recontact_num);
-	public void deleteReplyByNum(Integer contact_num);	
+	public void deleteReply(Integer recontact_num);	
 }

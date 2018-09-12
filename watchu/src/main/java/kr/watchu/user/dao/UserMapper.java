@@ -55,7 +55,11 @@ public interface UserMapper {
 	//==============관리자==============//
 	//회원 목록
 	public List<UserCommand> selectUserList(Map<String,Object> map);
-	//회원 상세보기 
+	//회원 정보 수정
+	@Update("UPDATE user_info SET name=#{name}, phone=#{phone,jdbcType=VARCHAR}, email=#{email,jdbcType=VARCHAR} WHERE id=#{id}")
+	public void adminUpdate(UserCommand user);
+	@Update("UPDATE user_basic SET auth=#{auth} WHERE id=#{id}")
+	public void adminUpdate2(UserCommand user);
 	//==============관리자==============//
 	
 	

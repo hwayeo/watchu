@@ -39,11 +39,6 @@ public class ContactServiceImpl implements ContactService {
 		contactMapper.deleteReply(recontact_num);
 	}
 
-	@Override
-	public void deleteReplyByNum(Integer contact_num) {
-		contactMapper.deleteReplyByNum(contact_num);
-	}
-
 	@Resource
 	private ContactMapper contactMapper;
 

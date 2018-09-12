@@ -114,17 +114,16 @@ $('.auto_actor').keydown(function (event) {
 	
 	var keyword = $(this).val();
 	var keyfield = 'ACTOR';
-	
 	actor_List(keyword,keyfield);
 	
 	//배우 목록
 	if (event.keyCode === 13) {
-		event.preventDefault();
 		if(actor_count > 0) actor_value += ',';
 		actor_value += $(this).val();
 		console.log(actor_value);
 		$('.input_actor').val(actor_value);
 		actor_count++;
+		event.preventDefault();
     }
 });
 

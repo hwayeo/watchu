@@ -87,4 +87,15 @@ public class UserServiceImpl implements UserService {
 	public NaverUserCommand selectsocialUser(String id) {
 		return userMapper.selectsocialUser(id);
 	}
+
+	//관리자 회원정보 수정
+	@Override
+	public void adminUpdate(UserCommand user) {
+		userMapper.adminUpdate(user);	//회원 정보 수정(이름, 연락처, 이메일)
+	}
+	@Override
+	public void adminUpdate2(UserCommand user) {
+		userMapper.adminUpdate2(user);	//회원 등급 수정	
+	}
+
 }

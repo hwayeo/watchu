@@ -25,6 +25,11 @@ public interface UserService {
 	//목록
 	public int selectUserCnt(Map<String, Object> map);
 	public List<UserCommand> selectUserList(Map<String,Object> map);
+	
+	//관리자 회원 정보 수정
+	public void adminUpdate(UserCommand user);
+	public void adminUpdate2(UserCommand user);
+	
 	//팔로우,팔로워,블락
 	public void insertFollow(UserCommand user);
 	public void insertFollower(UserCommand user);
