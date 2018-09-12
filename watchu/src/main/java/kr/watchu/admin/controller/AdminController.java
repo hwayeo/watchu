@@ -565,6 +565,20 @@ public class AdminController {
 		return mav;
 	}
 	
+	//05_2_회원 상세보기 & 수정 폼 호출
+	@RequestMapping(value="/admin/userDetail.do", method=RequestMethod.GET)
+	public ModelAndView user_detail(@RequestParam("id") String id, Model model) {
+		//로그 출력
+		if(log.isDebugEnabled()) {
+			log.debug("<<id>>: " + id);
+		}
+
+		UserCommand user = userService.selectUser(id);
+		model.addAttribute("user_command", user);
+
+		return new ModelAndView("userDetail", "user", user);
+	}
+	
 	//====================06_회원 관리_신고 회원====================//
 		//목록
 		@RequestMapping("/admin/reportedUser.do")

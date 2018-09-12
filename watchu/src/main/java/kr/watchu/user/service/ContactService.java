@@ -3,6 +3,7 @@ package kr.watchu.user.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.watchu.user.domain.AdminRecontactCommand;
 import kr.watchu.user.domain.ContactCommand;
 
 public interface ContactService {
@@ -21,4 +22,12 @@ public interface ContactService {
 	public int selectContactCnt(Map<String, Object> map);
 	//리스트
 	public List<ContactCommand> selectContactList(Map<String,Object> map);
+	
+	//답변
+	public List<AdminRecontactCommand> selectListReply(Map<String, Object> map);
+	public int selectRowCountReply(Map<String, Object> map);
+	public void insertReply(AdminRecontactCommand adminRecontactCommand);
+	public void updateReply(AdminRecontactCommand adminRecontactCommand);
+	public void deleteReply(Integer recontact_num);
+	public void deleteReplyByNum(Integer contact_num);	
 }

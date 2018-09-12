@@ -61,4 +61,24 @@
 			</if>
 		</where>
 	</select>
+	
+	<!-- 답변목록 -->
+	<select id="selectListReply" parameterType="map" resultType="adminRecontactCommand">
+		SELECT
+			recontact_num,
+			recontent,
+			reg_date,
+			contact_num
+		FROM (SELECT
+				a.*,
+				rownum rnum
+			  FROM (SELECT
+			  			*
+			  	    FROM admin_recontact
+			  	    WHERE contact_num = #{contact_num}
+			  	    ORDER BY recontact_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
 </mapper> 

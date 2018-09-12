@@ -52,35 +52,41 @@
 		</td>
 		</tr>
 		</table>
-		<c:if test="${!empty user_id && user_id == 'admin'}">
-		<hr size="1" width="100%">
-		<!-- 답변 영역 -->
-		<div id="reply_div" align="left">
-			<span class="reply-title">답변 달기</span>
-			<form id="re_form">
-				<input type="hidden" name="contact_num" value="${contact.contact_num}" id="contact_num">
-				<textarea rows="5" cols="50" name="recontent" id="recontent">
-				</textarea> 
-				<div id="re_btn">
-					<input type="submit" value="답변 등록" class="btn btn-primary">
-				</div>
-			</form>
-		</div>
-		</c:if> 
-
 	<hr size="1" width="100%">
 	<div class="align-right text-center">
 		<c:if test="${!empty user_id && user_id == contact.id}">
-			<input type="button" class="btn btn-default" value="수정" onclick="location.href='userSupportUpdate.do?contact_num=${contact.contact_num}'">	
-			<input type="button" class="btn btn-default" value="삭제"  onclick="location.href='userSupportDelete.do?contact_num=${contact.contact_num}'">	  
+			<input type="button" class="btn btn-primary" value="수정" onclick="location.href='userSupportUpdate.do?contact_num=${contact.contact_num}'">	
+			<input type="button" class="btn btn-danger" value="삭제"  onclick="location.href='userSupportDelete.do?contact_num=${contact.contact_num}'">	  
 		</c:if>
 		<c:if test="${!empty user_id && user_id == 'admin'}">
-			<input type="button" class="btn btn-default" value="삭제"  onclick="location.href='userSupportDelete.do?contact_num=${contact.contact_num}'">
+			<input type="button" class="btn btn-danger" value="삭제"  onclick="location.href='userSupportDelete.do?contact_num=${contact.contact_num}'">
 		</c:if>
 		<input type="button" class="btn btn-default" value="목록" onclick="location.href='userSupportList.do'"/>
 	</div>
 	
-
+	<!-- 답변 영역 -->
+	<div id="reply_div" align="center">
+	<c:if test="${!empty user_id && user_id == 'admin'}">
+	<hr size="1" width="100%">
+		<span class="reply-title"><b>답변 달기</b></span>
+		<form id="re_form">
+			<input type="hidden" name="contact_num" value="${contact.contact_num}" id="contact_num">
+			<textarea rows="5" cols="50" name="recontent" id="recontent" placeholder="답변내용을 입력하세요." class="rep-content"<c:if test="${empty user_id}">disabled="disabled"</c:if>><c:if
+					test="${empty user_id}">로그인해야 작성할 수 있습니다.</c:if></textarea> 
+			<c:if test="${!empty user_id}">
+			<div id="re_btn">
+			<input type="submit" value="답변 등록" class="btn btn-primary" class="btnReply">
+			</div>
+			</c:if>
+		</form>
+	</c:if> 
+	</div>
+	<!-- 답변 출력 -->
+	<div id="output"></div>
+	<div class="paging-button" style="display:none;">
+	<div id="loading" style="display:none;">
+		<img src="${pageContext.request.contextPath}/resources/images/ajax-loader.gif">
+	</div>
 </div>
 </div>
 </div>
