@@ -1,4 +1,7 @@
-@media screen and (min-width:768px) and (max-width:2550px){
+@media screen and (min-width:1200px) and (max-width:2550px){
+.movieListButton{
+	display:none;
+}
 .drop{
 	margin-right:30px;
 	padding-right:30px;
@@ -7,7 +10,7 @@
 	padding:15px;
 	font-size:30px;
 	font-weight:bold;
-}
+} 
 .home-text2{
 	padding:10px;
 	text-align:right;
@@ -36,6 +39,7 @@
 #main-category{
 	margin:15px 0;
 	padding:10px;
+	max-height:500px
 }
 
 #thumbnail{
@@ -54,21 +58,13 @@
 	margin:10px 0 80px;
 	z-index:2;
 }
-.movie-sum{
-	overflow:hidden;	
-	white-space: normal; 
-	line-height: 1.2; 
-	height: 3.6em;
-	text-align: left; 
-	word-wrap: break-word; 
-	display: -webkit-box; 
-	-webkit-line-clamp: 3; 
-	-webkit-box-orient: vertical;
-}
 
 .ptitle{
 	font-size:17px;
 	font-weight:800;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
 }
 
 .pgeren{
@@ -82,9 +78,187 @@
 #categoryHr{
 	margin-bottom:15px;
 }
+.navWatch{
+	display:none;
+}
+}
+
+@media screen and (min-width:992px) and (max-width:1199px){
+.movieListButton{
+	display:none;
+}
+.drop{
+	margin-right:30px;
+	padding-right:30px;
+}
+.home-text1{
+	padding:15px;
+	font-size:30px;
+	font-weight:bold;
+} 
+.home-text2{
+	padding:10px;
+	text-align:right;
+	font-size:20px;
+	float:right;
+	text-decoration:none; 
+	color:#999;
+}
+
+#category-menu{
+	padding:10px;
+	font-weight:bold;
+	color:gray;
+}
+
+.rate-menu{
+	padding:10px;
+	font-weight:bold;
+	color:gray;
+}
+
+.category-right{
+	float:right;
+}
+
+#main-category{
+	margin:15px 0;
+	padding:10px;
+	max-height:440px
+}
+
+#thumbnail{
+	margin:0;
+	padding:0;
+}
+
+.sub-category p{
+	font-weight:bold;
+	color:#999;
+	overflow:hidden;
+}
+
+#navline{
+	padding:0 20px;
+	margin:10px 0 80px;
+	z-index:2;
+}
+
+.ptitle{
+	font-size:17px;
+	font-weight:800;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+.pgeren{
+	font-size:15px;
+}
+
+#mscroll{
+	overflow-y:scroll;
+}
+
+#categoryHr{
+	margin-bottom:15px;
+}
+.navWatch{
+	display:none;
+}
+}
+
+@media screen and (min-width:768px) and (max-width:991px){
+.movieListButton{
+	display:none;
+}
+.drop{
+	margin-right:30px;
+	padding-right:30px;
+}
+.home-text1{
+	padding:15px;
+	font-size:30px;
+	font-weight:bold;
+} 
+.home-text2{
+	padding:10px;
+	text-align:right;
+	font-size:20px;
+	float:right;
+	text-decoration:none; 
+	color:#999;
+}
+
+#category-menu{
+	padding:10px;
+	font-weight:bold;
+	color:gray;
+}
+
+.rate-menu{
+	padding:10px;
+	font-weight:bold;
+	color:gray;
+}
+
+.category-right{
+	float:right;
+}
+
+#main-category{
+	margin:15px 0;
+	padding:10px;
+	max-height:360px;
+}
+
+#thumbnail{
+	margin:0;
+	padding:0;
+}
+
+.sub-category p{
+	font-weight:bold;
+	color:#999;
+	overflow:hidden;
+}
+
+#navline{
+	padding:0 20px;
+	margin:10px 0 80px;
+	z-index:2;
+}
+
+.ptitle{
+	font-size:17px;
+	font-weight:800;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+.pgeren{
+	font-size:15px;
+}
+
+#mscroll{
+	overflow-y:scroll;
+}
+
+#categoryHr{
+	margin-bottom:15px;
+}
+.navWatch{
+	display:none;
+}
 }
 
 @media screen and (min-width:0px) and (max-width:767px){
+.movieListButton{
+	margin-bottom:100px;
+	padding-right:100px;
+}
+	
 .drop{
 	margin-right:30px;
 	padding-right:30px;
@@ -118,11 +292,14 @@
 #main-category{
 	margin:15px 0;
 	padding:10px;
+	min-height:320px;
+	max-height:320px;
 }
 
 #thumbnail{
 	margin:0;
 	padding:0;
+	height:320px;
 }
 
 .sub-category p{
@@ -136,24 +313,20 @@
 	margin:0;
 	z-index:2;
 }
-.movie-sum{
-	overflow:hidden;	
-	white-space: normal; 
-	line-height: 1.2; 
-	height: 3.6em;
-	text-align: left; 
-	word-wrap: break-word; 
-	display: -webkit-box; 
-	-webkit-line-clamp: 3; 
-	-webkit-box-orient: vertical;
-}
 
 .ptitle{
 	font-size:13px;
 	font-weight:800;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
 }
 
 .pgeren{
 	font-size:11px;
 }
+.navWatch{
+	display:block;
 }
+}
+

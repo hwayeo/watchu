@@ -26,7 +26,7 @@ public class MovieController {
 	private MovieService movieService;
 
 	@Resource
-	private GenreService genreService; 
+	private GenreService genreService;  
 
 	@RequestMapping("/movie/movieHome.do")
 	public String movieHome() {

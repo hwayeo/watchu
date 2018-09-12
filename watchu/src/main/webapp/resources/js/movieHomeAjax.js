@@ -11,7 +11,7 @@ $(document).ready(function(){
 		keyfield = 'all';
 		keyword = $('#movie-search-keyword').val();		
 		if(type == 'movieHome'){
-			$('#movieSearch').submit();
+			$('#movieSearch').submit(); 
 		}
 	});
 	$('.gbutton2').on('click',function(){
@@ -52,6 +52,8 @@ $(document).ready(function(){
 						}
 						mlist += '<div class="sub-category caption">';
 						mlist += '<p class="ptitle">'+item.title+'</p>';
+						mlist += '<p class="ptitle">'+item.released+'</p>';
+						mlist += '<p class="ptitle">평점 : '+item.rate+'</p>';
 						mlist += '</div>';
 						mlist += '</div>';
  						$('.mlist').append(mlist);
@@ -91,6 +93,8 @@ $(document).ready(function(){
 						}
 						mlist += '<div class="sub-category caption">';
 						mlist += '<p class="ptitle">'+item.title+'</p>';
+						mlist += '<p class="ptitle">'+item.released+'</p>';
+						mlist += '<p class="ptitle">평점 : '+item.rate+'</p>';
 						mlist += '</div>';
 						mlist += '</div>';
  						$('.mlist2').append(mlist);
@@ -129,6 +133,8 @@ $(document).ready(function(){
 						}
 						mlist += '<div class="sub-category caption">';
 						mlist += '<p class="ptitle">'+item.title+'</p>';
+						mlist += '<p class="ptitle">'+item.released+'</p>';
+						mlist += '<p class="ptitle">평점 : '+item.rate+'</p>';
 						mlist += '</div>';
 						mlist += '</div>';
  						$('.mlist3').append(mlist);

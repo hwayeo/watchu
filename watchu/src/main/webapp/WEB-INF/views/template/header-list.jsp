@@ -6,7 +6,7 @@
 		<!-- submit 이벤트를 위해서 다시 추가했습니다. -->
 		<input type="hidden" id="ajx_keyfield" value="${param.keyfield}">
 		<input type="hidden" id="ajx_keyword" value="${param.keyword}">
-		
+		 
 		
 		<!-- 모바일 환경 이벤트 -->
 		<form class="navbar-form" role="search" action="movieList.do" method="get" id="movieSearch">
