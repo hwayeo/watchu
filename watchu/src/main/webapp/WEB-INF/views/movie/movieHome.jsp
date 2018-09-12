@@ -32,13 +32,13 @@
 <!-- 추천 영화 태그1 -->
 <div class="row">
 	<div class="home-text1">쿵푸영화
-	<a href="movieList.do?country=미국" class="home-text2">쿵푸영화</a></div>
+	<a href="movieList.do?keyfield=title&keyword=쿵푸" class="home-text2">쿵푸영화</a></div>
 	<div class="mlist2"></div>
 </div>
 
 <!-- 추천 영화 태그2 -->
 <div class="row">
 	<div class="home-text1">프랑스영화
-	<a href="movieList.do?keyfield=genre&keyword=공포" class="home-text2">프랑스영화</a></div>
+	<a href="movieList.do?keyfield=country&keyword=프랑스" class="home-text2">프랑스영화</a></div>
 	<div class="mlist3"></div>
 </div>

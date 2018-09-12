@@ -39,23 +39,53 @@ $(document).ready(function(){
 			selectList(1,keyword,keyfield);
 		}
 	});
+	$('#movieSearch').on('submit',function(e){
+		keyfield = 'all';
+		keyword = $('#movie-search-keyword').val();
+		selectList(1,keyword,keyfield);
+		e.preventDefault();
+	});
+	$('#movieSearch2').on('submit',function(e){
+		keyfield = 'all';
+		keyword = $('#movie-search-keyword2').val();
+		selectList(1,keyword,keyfield);
+		e.preventDefault();
+	});
 	
 	/*기본 검색 및 호출시 상태*/
 	selectList(1,keyword2,keyfield2);
 	/*---------------movieList 호출---------------------*/
 	
 	/*---------------카테고리 변경 호출---------------------*/
+	/*두개 장르 선택*/
+	$('all-category').on('change',function(){
+		
+	});
+	
 	/*장르 선택*/
 	$('.genre-category').on('change',function(){
 		keyfield = 'genre';
 		keyword = $(this).find('option:selected').val();
+		console.log('===keyfield=== : ' + keyfield);
+		console.log('===keyword=== : ' + keyword);
 		selectList(1,keyword,keyfield);
 	});
 	
 	/*국가 선택*/
 	$('.country-category').on('change',function(){
 		keyfield = 'country';
+		keyword2 = $(this).find('option:selected').val();
+		console.log('===keyfield=== : ' + keyfield);
+		console.log('===keyword2=== : ' + keyword2);
+		selectList(1,keyword2,keyfield);
+	});
+	
+	/*순서 선택*/
+	$('.order-category').on('change',function(){
+		keyfield = 'order';
 		keyword = $(this).find('option:selected').val();
+		console.log('===keyfield=== : ' + keyfield);
+		console.log('===keyword=== : ' + keyword);
 		selectList(1,keyword,keyfield);
 	});
 	/*---------------카테고리 변경 호출---------------------*/
@@ -81,6 +111,7 @@ $(document).ready(function(){
  				if(count < 0 || list == null){
 				}else{
 					$(list).each(function(index,item){
+						var released = item.released;
 						slist = '<div class="col-sm-6 col-md-3 col-xs-6" id="main-category">';
 						if(item.poster_img == null){
 							slist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img src="../resources/images/img4.jpg"></div>';
@@ -90,14 +121,15 @@ $(document).ready(function(){
 						slist += '<div class="sub-category caption">';
 						slist += '<p class="ptitle">'+item.title+item.rate+'</p>';
 						slist += '<p class="pgeren">'+item.country+'</p>';
+						slist += '<p class="pgeren">'+released.substring(0,4)+'</p>';
 						slist += '</div>';
-						slist += '</div>';     
+						slist += '</div>';
 						
  						$('#slist').append(slist);
 					});
 				}
-			},error:function(){
- 			}
+				},error:function(){
+				}
 		});
 	}
 });
