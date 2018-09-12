@@ -91,4 +91,47 @@ public class SupportReplyAjaxController {
 				
 		return mapJson;
 	}
+	
+	//=============== 답변 삭제 ===============//
+	@RequestMapping("/admin/deleteReply.do")
+	@ResponseBody
+	public Map<String, String> deleteReply(@RequestParam("recontact_num") int recontact_num, HttpSession session){
+		if(log.isDebugEnabled()) {
+			log.debug("<<recontact_num>>: " + recontact_num);
+		}
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		String user_id = (String)session.getAttribute("user_id");
+		if(user_id == null) {
+			map.put("result", "logout");
+		}else if(user_id != null) {
+			contactService.deleteReply(recontact_num);
+			map.put("result", "success");
+		}
+		
+		return map;
+	}
+	
+	//=============== 답변 수정 ===============//
+	@RequestMapping("/admin/updateReply.do")
+	@ResponseBody
+	public Map<String, String> modifyReply(AdminRecontactCommand adminRecontactCommand, HttpSession session, HttpServletRequest request){
+		if(log.isDebugEnabled()) {
+			log.debug("<<adminRecontactCommand>>: " + adminRecontactCommand);
+		}
+		
+		Map<String,String> map = new HashMap<String,String>();
+		
+		String user_id = (String)session.getAttribute("user_id");
+		if(user_id == null) {
+			//로그인이 안되어 있는 경우
+			map.put("result", "logout");
+		}else if(user_id != null){
+			contactService.updateReply(adminRecontactCommand);
+			map.put("result", "success");
+		}
+		
+		return map;
+	}
 }

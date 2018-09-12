@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <div class="admin_main">
-	<div id="user_list">
+	<div id="user_list" style="width:90%">
 		<h2>회원 목록</h2>
 		<br>
 		<div class="content-header">
@@ -20,23 +20,17 @@
  
 		<div class="content-body">
 			<!-- 회원 목록 -->
-			<table class="table table-hover table-condensed">
+			<table class="table table-hover table-condensed" style="width:s80%">
 				<tr>
 					<th class="col-md-2">아이디</th>
 					<th class="col-md-2">회원명</th>
-					<th class="col-md-2">전화번호</th>
-					<th class="col-md-3">이메일</th>
 					<th class="col-md-2">가입일</th>
-					<th class="col-md-1">선택</th>
 				</tr>
 				<c:forEach var="user" items="${user_list}">
 				<tr>
 					<td onclick="location.href='userDetail.do?id=${user.id}'" style="cursor:pointer;">${user.id}</td>
 					<td onclick="location.href='userDetail.do?id=${user.id}'" style="cursor:pointer;">${user.name}</td>
-					<td>${user.phone}</td>
-					<td>${user.email}</td>
 					<td>${user.reg_date}</td>
-					<td><input type="checkbox" name="checked"></td>
 				</tr>
 				</c:forEach>
 			</table>

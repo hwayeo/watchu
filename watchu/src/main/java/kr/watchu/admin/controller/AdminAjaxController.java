@@ -125,6 +125,8 @@ public class AdminAjaxController {
 			genreService.deleteGenre(genre_num);
 		}
 	}
+	
+	//======================관계자 구분======================//
 
 
 }

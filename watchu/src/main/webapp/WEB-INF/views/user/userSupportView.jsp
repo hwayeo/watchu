@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/support.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/support.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/support.reply.js"></script>
 <div id="main-content"> 
 <div class="container">
    <h2 class="title">고객센터</h2>
@@ -65,7 +65,7 @@
 	</div>
 	
 	<!-- 답변 영역 -->
-	<div id="reply_div" align="center">
+	<div id="reply_div" align="right">
 	<c:if test="${!empty user_id && user_id == 'admin'}">
 	<hr size="1" width="100%">
 		<span class="reply-title"><b>답변 달기</b></span>

@@ -9,7 +9,7 @@ public interface OfficialsService {
 	//등록
 	public void insert(OfficialsCommand officials);
 	//상세정보
-	public OfficialsCommand selectOfficials(Integer off_num);
+	public OfficialsCommand detailOfficials(Integer off_num);
 	public OfficialsCommand selectOfficials(String name);
 	//수정
 	public void update(OfficialsCommand officials);

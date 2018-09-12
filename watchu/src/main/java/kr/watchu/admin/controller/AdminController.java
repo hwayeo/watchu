@@ -354,7 +354,7 @@ public class AdminController {
 			log.debug("<<off_num>>: " + off_num);
 		}
 
-		OfficialsCommand officials = officialsService.selectOfficials(off_num);
+		OfficialsCommand officials = officialsService.detailOfficials(off_num);
 		model.addAttribute("official_command", officials);
 
 		return new ModelAndView("officialDetail", "officials", officials);
@@ -364,7 +364,7 @@ public class AdminController {
 	@RequestMapping("/admin/off_imgView.do")
 	public ModelAndView viewImage(@RequestParam("off_num") int off_num) {
 		//한 건의 데이터를 받아 객체 생성
-		OfficialsCommand officials = officialsService.selectOfficials(off_num);
+		OfficialsCommand officials = officialsService.detailOfficials(off_num);
 				
 		//데이터를 ModelAndView객체에 차곡차곡 저장
 		ModelAndView mav = new ModelAndView();

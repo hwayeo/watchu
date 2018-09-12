@@ -7,15 +7,6 @@
 	<form:form commandName="movie_command" action="admin_movieDetail.do" id="modify_form" enctype="multipart/form-data">
 	    <form:hidden path="movie_num"/>
 		<form:errors element="div" cssClass="error-color"/>
-	<div class="banner_img">
-	<c:if test="${!empty movie.banner_img}">
-    	<img src="image_View.do?movie_num=${movie.movie_num}&type=banner" width="100%">
-    </c:if>
-	<c:if test="${empty movie.banner_img}">
-	등록된 배너 이미지 없음
-	</c:if>
-	</div>
-	
 	<table>
 		<tr>
 			<td>
@@ -92,6 +83,18 @@
 					</div>
 					</c:if>
 					</div>
+				</li>
+				<hr size="1" noshade>
+				<li>
+				<label for="banner_img">배너사진</label>
+				<div class="banner_img">
+				<c:if test="${!empty movie.banner_img}">
+    			<img src="image_View.do?movie_num=${movie.movie_num}&type=banner" width="500px">
+    			</c:if>
+				<c:if test="${empty movie.banner_img}">
+				등록된 배너 이미지 없음
+				</c:if>
+				</div>
 				</li>
 				<hr size="1" noshade>
 				<li>

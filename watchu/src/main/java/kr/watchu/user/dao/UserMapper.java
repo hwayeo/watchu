@@ -50,8 +50,14 @@ public interface UserMapper {
 	public void deleteUserRelation(String id);
 	
 	//친구목록
-	public int selectUserCnt(Map<String, Object> map);	
+	public int selectUserCnt(Map<String, Object> map);
+	
+	//==============관리자==============//
+	//회원 목록
 	public List<UserCommand> selectUserList(Map<String,Object> map);
+	//회원 상세보기 
+	//==============관리자==============//
+	
 	
 	//친구관계(팔로우,팔로워,블락)
 	//회원가입시 user_relation 테이블에 등록

@@ -21,8 +21,8 @@ public class OfficialsServiceImpl implements OfficialsService {
 	}
 
 	@Override
-	public OfficialsCommand selectOfficials(Integer off_num) {
-		return officialsMapper.selectOfficials(off_num);
+	public OfficialsCommand detailOfficials(Integer off_num) {
+		return officialsMapper.detailOfficials(off_num);
 	}
 
 	@Override

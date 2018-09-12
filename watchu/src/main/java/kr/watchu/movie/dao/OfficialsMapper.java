@@ -17,7 +17,7 @@ public interface OfficialsMapper {
 	public void insert(OfficialsCommand officials);
 	//상세정보
 	@Select("SELECT * FROM officials WHERE off_num=#{off_num}")
-	public OfficialsCommand selectOfficials(Integer off_num);
+	public OfficialsCommand detailOfficials(Integer off_num);
 	@Select("SELECT * FROM officials WHERE name=#{name}")
 	public OfficialsCommand selectOfficials(String name);
 	//수정

@@ -28,6 +28,8 @@ public class UserCommand {
 	private byte[] profile_img;
 	private Date reg_date;
 	private String permit;
+	private int total_likes;	//누적 좋아요 수
+	private int total_reported;	//누적 신고 수
 	
 	public String getPermit() {
 		return permit;
@@ -131,10 +133,26 @@ public class UserCommand {
 		this.block = block;
 	}
 
+	public int getTotal_likes() {
+		return total_likes;
+	}
+
+	public void setTotal_likes(int total_likes) {
+		this.total_likes = total_likes;
+	}
+
+	public int getTotal_reported() {
+		return total_reported;
+	}
+
+	public void setTotal_reported(int total_reported) {
+		this.total_reported = total_reported;
+	}
+
 	@Override
 	public String toString() {
 		return "UserCommand [id=" + id + ", auth=" + auth + ", passwd=" + passwd + ", name=" + name + ", phone=" + phone
 				+ ", email=" + email + ", follow=" + follow + ", follower=" + follower + ", block=" + block
-				+ ", upload=" + upload + ", reg_date=" + reg_date + ", permit=" + permit + "]";
+				+ ", upload=" + upload + ", reg_date=" + reg_date + ", permit=" + permit + ", total_likes=" + total_likes + ", total_reported=" + total_reported + "]";
 	}
 }
