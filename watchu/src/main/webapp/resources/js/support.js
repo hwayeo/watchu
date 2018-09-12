@@ -123,10 +123,73 @@ $(document).ready(function(){
 		$('textarea').val('');		
 	}
 	
+	//-----답변 수정-----//
 	//수정 버튼 클릭 시 수정폼 노출
+	$(document).on('click', '.reply_mod', function(){
+		var recontact_num = $(this).attr('data-num');
+		var recontent = $(this).parent().find('p').text();
+		
+		//댓글 수정 폼
+		var modifyUI = '<form id="mre_form>';
+			modifyUI +=		'<input type="hidden" name="recotact_num" id="mrecontact_num" value="'+recontact_num+'">';
+			modifyUI +=		'<textarea rows="3" cols="50" name="recontent" id="mrecontent" class="rep-content">'+recontent+'<textarea>';
+			modifyUI +=		'<div id="mre_btn>';
+			modifyUI +=			'<input type="submit" value="수정">';
+			modifyUI +=			'<input type="button" value="취소" class="re-reset">';
+			modifyUI +=		'</div>';
+			modifyUI +=		'<hr size="1" noshade>';
+			modifyUI +=	'</form>';
+			
+		initModifyForm();
+		$(this).parent().hide();
+		$(this).parent('.item').append(modifyUI);
+	});
 	
+	//댓글 수정 폼 취소버튼 -> 수정폼 초기화
+	$(document).on('click', '.re-reset', function(){
+		initModifyForm();
+	});
 	
+	//댓글 수정폼 초기화
+	function initModifyForm(){
+		$('.sub-item').show();
+		$('#mre_form').remove();
+	}
 	
+	//답변 수정
+	$(document).on('submit', '#mre_form', function(event){
+		if($('#mrecontent').val() == ''){
+			alert('내용을 입력하세요');
+			$('#mrecontent').focus();
+			return false();
+		}
+		
+		var data = $(this).serialize();
+		console.log(data);
+		
+		$.ajax({
+			url: '/watchu/admin/updateReply.do',
+			type: 'post',
+			data: data,
+			dataType: 'json',
+			cache: false,
+			timeout: 10000,
+			success: function(data){
+				if(data.result == 'logout'){
+					alert('로그인이 필요합니다!');
+				}else if(data.result == 'success'){
+					$('#mre_form').parent().find('p').text($('#mrecontent').val());
+					//수정폼 초기화
+					initModifyForm();
+				}
+			},
+			error: function(){
+				alert('댓글 수정 네트워크 오류!');
+			}
+		});
+		event.preventDefault();
+	});
+
 	//초기 데이터(목록) 호출
 	selectData(1, $('#contact_num').val());
 });

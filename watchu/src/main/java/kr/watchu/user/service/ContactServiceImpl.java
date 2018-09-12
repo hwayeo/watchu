@@ -16,38 +16,32 @@ public class ContactServiceImpl implements ContactService {
 	
 	@Override
 	public List<AdminRecontactCommand> selectListReply(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return contactMapper.selectListReply(map);
 	}
 
 	@Override
 	public int selectRowCountReply(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return contactMapper.selectRowCountReply(map);
 	}
 
 	@Override
 	public void insertReply(AdminRecontactCommand adminRecontactCommand) {
-		// TODO Auto-generated method stub
-		
+		contactMapper.insertReply(adminRecontactCommand);
 	}
 
 	@Override
 	public void updateReply(AdminRecontactCommand adminRecontactCommand) {
-		// TODO Auto-generated method stub
-		
+		contactMapper.updateReply(adminRecontactCommand);
 	}
 
 	@Override
 	public void deleteReply(Integer recontact_num) {
-		// TODO Auto-generated method stub
-		
+		contactMapper.deleteReply(recontact_num);
 	}
 
 	@Override
 	public void deleteReplyByNum(Integer contact_num) {
-		// TODO Auto-generated method stub
-		
+		contactMapper.deleteReplyByNum(contact_num);
 	}
 
 	@Resource
@@ -70,6 +64,7 @@ public class ContactServiceImpl implements ContactService {
 
 	@Override
 	public void deleteContact(Integer contact_num) {
+		contactMapper.deleteReplyByNum(contact_num); //글 삭제 전 답변 삭제
 		contactMapper.deleteContact(contact_num);
 	}
 
