@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.movie.service.CommentService;
+import kr.watchu.movie.service.MovieService;
 import kr.watchu.user.domain.UserCommand;
 import kr.watchu.user.service.UserService;
 import kr.watchu.util.PagingUtil;
@@ -39,6 +40,8 @@ public class MyPageController {
 	private UserService userService;
 	@Resource
 	private CommentService commentService;
+	@Resource
+	private MovieService movieService;
 	
 	//자바빈 초기화
 	@ModelAttribute("userCommand")
@@ -51,6 +54,7 @@ public class MyPageController {
 	public String mypage(HttpSession session,Model model) {
 		String id = (String)session.getAttribute("user_id");
 		UserCommand user = userService.selectUser(id);
+		Map<String,Object> map = new HashMap<String,Object>();
 		
 		if(log.isDebugEnabled()) {
 			log.debug("<<userCommand>> : " + user);
@@ -100,29 +104,58 @@ public class MyPageController {
 			blockList.clear();
 		}
 		
+		
 		//코맨트 숫자
 		Integer comment_count = commentService.selectMyCommentCnt(id);
+		Integer likecomment_count = commentService.selectMyCommentCnt(id);
+		Integer mypage_movielist_count = movieService.selectMovieCnt(map);
 		
 		model.addAttribute("user", user);
 		model.addAttribute("list",follow3);
 		model.addAttribute("list2",follower3);
 		model.addAttribute("blockList",blockList);
-		model.addAttribute("comment_count",comment_count);		
+		model.addAttribute("comment_count",comment_count);	
+		model.addAttribute("likecomment_count",likecomment_count);	
+		model.addAttribute("mypage_movielist_count",mypage_movielist_count);	
 				
 		
 		return "userMypage";
 	}
 	
-	//평가한 영화 목록
+	/*//평가한 영화 목록
 	@RequestMapping("/user/userMypage_movie.do")
 	public String mypage_movie(@RequestParam(value="id") String id) {
 		return "userMypage_movie";
-	}
+	}*/
 	
 	//평가한 영화 목록 더보기
 	@RequestMapping("/user/userMypage_movielist.do")
-	public String mypage_movielist() {
-		return "userMypage_movielist";
+	public ModelAndView mypage_movielist(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+										 HttpSession session) {
+
+		String id = (String)session.getAttribute("user_id");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		int count = movieService.selectMovieCnt(map);  
+		
+		//영화 갯수로 나올거임~! 위에 카운트,리소스,서비스 수정해서 평가한걸로 바꿔야대~!!!!!!!!!!!!!!!!
+		
+		
+		if(log.isDebugEnabled()) {
+			log.debug("<<리스트 총값>> : " + count);
+		}
+		
+		
+		PagingUtil page = new PagingUtil(currentPage,count,rowCount,pageCount,"userMypage_movielist.do");
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("userMypage_movielist");
+		mav.addObject("count",count);
+		mav.addObject("pagingHtml",page.getPagingHtml());
+		
+		return mav;
 	}
 	
 	// 코멘트
@@ -179,11 +212,31 @@ public class MyPageController {
 	
 	//좋아요한 코멘트
 	@RequestMapping("/user/userLikeComment.do")
-	public String likeComment() {
-		return "userLikeComment";
+	public ModelAndView likeComment(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		String id = (String) session.getAttribute("user_id");
+
+		if (log.isDebugEnabled()) {
+			log.debug("<<user_id>> : " + id);
+		}
+
+		int count = commentService.selectMyCommentCnt(id);
+
+		List<CommentCommand> list = null;
+
+		if (count > 0) {
+			list = commentService.selectMyCommentList(id);
+		}
+		UserCommand user = userService.selectUser(id);
+		
+		mav.setViewName("userLikeComment");
+		mav.addObject("commentList", list);
+		mav.addObject("count", count);
+
+		return mav;
 	}
 	
-	//보고싶어요
+	/*//보고싶어요
 	@RequestMapping("/user/userWish.do")
 	public String wish(@RequestParam(value="id") String id) {
 		return "userWish";
@@ -193,7 +246,7 @@ public class MyPageController {
 	@RequestMapping("/user/userWatching.do")
 	public String watching() {
 		return "userWatching";
-	}
+	}*/
 	
 	//댓글 쓰기
 	@RequestMapping("/user/userCommentWrite.do")
