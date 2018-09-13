@@ -78,7 +78,7 @@
 				<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}"><br>
 				<p>${movie.title}</p>
 			</c:if>
-			<%-- <div class="col-md-2"></div>
+			 <div class="col-md-2"></div>
 			<div class="col-xs-4 col-md-2">
 				<img class="image" src="${pageContext.request.contextPath}/resources/images/gad.jpg"><br>
 				<p>가디언즈 오브 갤럭시</p>
@@ -95,7 +95,7 @@
 				<img class="image" src="${pageContext.request.contextPath}/resources/images/gad3.jpg"><br>
 				<p>앤트맨</p>
 			</div>
-			<div class="col-md-2"></div> --%>
+			<div class="col-md-2"></div>
 			
 		</div>
 		
