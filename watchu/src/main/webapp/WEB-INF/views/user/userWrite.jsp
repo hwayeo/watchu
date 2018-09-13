@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/userwrite.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/confirmId.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/profile_img.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/userwrite.js"></script>
 
 <div id="page-register">
 	<div id="form-register">
@@ -13,21 +14,18 @@
 
 <div class="container">  
          <div class="row"> 
-            <div class="col-xs-12 col-md-12"><!-- 시작 -->
-    
+            <div class="col-xs-12 col-md-12">
+    				 <!-- 시작 -->
                      <form:form commandName="command" action="write.do" id="insert_Form" enctype="multipart/form-data">
                      <form:errors element="div" cssClass="error-color"/>	
                         	
                         	 <div class="col-md-6 text-center">
-                                
                                     <div class="form-group row">
                                             <label>프로필 사진 설정</label>
                                     </div>
                                     <hr>
-                           
-											
+                                    	
 									<div class="profile">
-										
 										<div>
 											<a href="#" class="profile_img" data-toggle="dropdown">
 												<!-- 선택한이미지 -->
@@ -47,9 +45,7 @@
 												</a></li>
 											</ul>
 										</div>
-
 									</div>
-
 							</div>
                             
                             <div class="col-md-6">
@@ -64,10 +60,7 @@
 												class="btn btn-default"> <span id="message_id">
 												</span> <img src="${pageContext.request.contextPath}/resources/images/ajax-loader.gif" width="16" height="16"
 												id="loading" style="display: none;">
-											
-												
 										</div>
-                                       
                                     </div>
                                     
                                     <div class="form-group row">
@@ -79,8 +72,7 @@
  											<form:errors path="name"/>
                                         </div>
                                     </div>
-  
-                                    
+
                                     <div class="form-group row">
                                     	<div class="col-md-4">
 										<label for="passwd">비밀번호</label>
@@ -93,8 +85,7 @@
 										<form:errors path="passwd" cssClass="error-color"/>
 										</div>
 									</div>
-									
-      
+
                                     <div class="form-group row">
                                     	<div class="col-md-4">
 										<label for="cpasswd">비밀번호확인</label>
@@ -121,27 +112,31 @@
                                         <div class="col-md-4">
                                             <label for="email">E-mail</label>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-8 email">
                                         	<form:input path="email" cssClass="form-control" placeholder="ex)email@email.com"/>
                                         	<form:errors path="email"/>
                                         </div>
+                                        
+                                        <div class="col-md-8 mailButton">
+                                        	<input type="button" value="인증번호 받기" class="mailBtn">
+                                        </div>
+                                        
+                                        <div class="col-md-8 permitInput">
+                                        	<input type="text" name="permit" id="permit" class="form-control permit" placeholder="전달받은 인증번호를 입력해주세요" />
+                                        	<div>
+                                        		<input type="button" value="인증번호 확인" class="permitBtn">
+                                        		<span class="display"></span>
+                                        	</div>
+                                        </div>
                                     </div>
-                                    		<!-- 임시 -->
-                                    		<input type="hidden" name="permit">
 
 									<div class="form-group row text-center">
-                                        <div class="col-md-4">
-                                        
-                                        </div>
+                                        <div class="col-md-4"></div>
                                         <div class="col-md-8 text-center" style="margin-bottom:40px;">
-                                        	<input type="submit" class="btn btn-primary" value="가입">
+                                        	<input type="submit" class="btn btn-primary" id="submit" value="가입">
                                         	<input type="button" class="btn btn-primary" value="취소" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
                                         </div>
-                                    	 
-                                    
                                     </div>
-                                                               
-                    
                             </div>
                          </form:form>
                     </div>

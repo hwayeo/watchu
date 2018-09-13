@@ -92,6 +92,25 @@
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
 	<bean id="naverLoginBO" class="kr.watchu.user.domain.NaverLoginBO" />
 	
+	<!-- 이메일 관련 -->
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <property name="host" value="smtp.gmail.com" />
+	    <property name="port" value="587" />
+	    <property name="username" value="kth19930527@gmail.com" />
+	    <property name="password" value="alvaromorata09" />
+	    <property name="javaMailProperties">
+	        <props>
+	            <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+	            <prop key="mail.smtp.starttls.enable">true</prop>
+	            <prop key="mail.smtp.auth">true</prop>
+	        </props>
+	    </property>
+	</bean>
+	
+	<bean id="mailService" class="kr.watchu.user.service.MailServiceImpl">
+	    <property name="javaMailSender" ref="javaMailSender" />
+	</bean>
+	
 	<!-- 암호화,복호화 알고리즘 처리 -->
 	<bean id="cipherAES" class="kr.watchu.util.CipherTemplate">
 		<property name="algorithm" value="AES"/>                                     
