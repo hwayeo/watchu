@@ -13,7 +13,7 @@
 				<li class="active"><a data-toggle="tab" href="#home" class="fa fa-clock-o">전체</a></li>
 				<li><a data-toggle="tab" href="#menu1" class="fa fa-gavel">별점순</a></li>
 			</ul>
-
+		
 			<div class="tab-content">
 				<div id="home" class="tab-pane fade in active">
 					<div class="nav-collapse">
@@ -28,418 +28,249 @@
 						</ul>
 						<hr>
 					</div>
-
-					<div class="row container">
-						<div class="col-xs-12 col-md-12">
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
-								<br><span>수어사이드 스쿼드</span>
-								<br><span style="color: #ffbf00">★1.5</span><br><br>
-
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
-								<br><span>앤트맨</span>
-								<br><span style="color: #ffbf00">★5.0</span><br><br>
+					
+					
+					<c:if test="${empty movieList}">
+						<div class="text-center">
+							<img src="../resources/images/ap.jpg"><br>
+							<span style="font-size: 23px;color: #f74788;">평가된 영화가 없어요!</span><br>
+							<span>평가하러가기</span>
+							<a onclick="location.href='/watchu/movie/movieEva.do'" style="color:#f74788;" class="glyphicon glyphicon-hand-right"></a>
+				    	</div>
+					</c:if>
+					<c:if test="${!empty movieList}">
+						<div class="row container">
+							<div class="col-xs-12 col-md-12">
+								<%-- <div class="col-xs-4 col-md-3">
+									<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
+									<br><span>가디언즈 오브 갤럭시</span>
+									<br><span style="color: #ffbf00">★4.5</span><br><br>
+								</div>
+								<div class="col-xs-4 col-md-3">
+									<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
+									<br><span>수어사이드 스쿼드</span>
+									<br><span style="color: #ffbf00">★1.5</span><br><br>
+	
+								</div>
+								<div class="col-xs-4 col-md-3">
+									<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
+									<br><span>앤트맨</span>
+									<br><span style="color: #ffbf00">★5.0</span><br><br>
+								</div> 
+								<div class="col-xs-4 col-md-3">
+									<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
+									<br><span>가디언즈 오브 갤럭시</span>
+									<br><span style="color: #ffbf00">★4.5</span><br><br>
+								</div> --%>
 							</div> 
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-						</div> 
-					</div>
-
+						</div>
+					</c:if>
 				</div>
 				
 				<div id="menu1" class="tab-pane fade">
-				
-				<div class="container">
-					<div class="col-xs-12 col-md-12">
-						<div class="container row">
-							<div class="col-xs-7 col-md-7">
-								<span style="font-size: 30px">5.0 평가함</span>&emsp;32<br><br>
-							</div>
-							<div class="col-xs-1 col-md-3"></div>
-							<div class="col-xs-4 col-md-2">
-								<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-							</div>
-						</div>
-					</div>
+					<c:if test="${empty movieList}">
+						<div class="text-center">
+							<img src="../resources/images/ap.jpg"><br>
+							<span style="font-size: 23px;color: #f74788;">평가한 영화가 없어요!</span><br>
+							<span>평가하러가기</span>
+							<a onclick="location.href='/watchu/movie/movieEva.do'" style="color:#f74788;" class="glyphicon glyphicon-hand-right"></a>
+				    	</div>
+					</c:if>
 					
-					<div class="row container">
-						<div class="col-xs-12 col-md-12">
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
+					<c:if test="${!empty movieList}">
+						<div class="container">
+							<div class="col-xs-12 col-md-12">
+								<div class="container row">
+									<div class="col-xs-7 col-md-7">
+										<span style="font-size: 30px">5.0 평가함</span>&emsp;32<br><br>
+									</div>
+									<div class="col-xs-1 col-md-3"></div>
+									<div class="col-xs-4 col-md-2">
+										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
+									</div>
+								</div>
 							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
-								<br><span>수어사이드 스쿼드</span>
-								<br><span style="color: #ffbf00">★1.5</span><br><br>
-
+							
+							<div class="row container">
+								<div class="col-xs-12 col-md-12">
+									<div class="col-xs-4 col-md-3">
+										<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
+										<br><span>가디언즈 오브 갤럭시</span>
+										<br><span style="color: #ffbf00">★4.5</span><br><br>
+									</div>
+									<div class="col-xs-4 col-md-3">
+										<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
+										<br><span>수어사이드 스쿼드</span>
+										<br><span style="color: #ffbf00">★1.5</span><br><br>
+		
+									</div>
+									<div class="col-xs-4 col-md-3">
+										<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
+										<br><span>앤트맨</span>
+										<br><span style="color: #ffbf00">★5.0</span><br><br>
+									</div> 
+									<div class="col-xs-4 col-md-3">
+										<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
+										<br><span>가디언즈 오브 갤럭시</span>
+										<br><span style="color: #ffbf00">★4.5</span><br><br>
+									</div>
+								</div> 
+							</div> <hr/>
+							 
+							 <div class="col-xs-12 col-md-12">
+								<div class="container row">
+									<div class="col-xs-7 col-md-7">
+										<span style="font-size: 30px">4.5 평가함</span>&emsp;58<br><br>
+									</div>
+									<div class="col-xs-1 col-md-3"></div>
+									<div class="col-xs-4 col-md-2">
+										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
+									</div>
+								</div>
 							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
-								<br><span>앤트맨</span>
-								<br><span style="color: #ffbf00">★5.0</span><br><br>
-							</div> 
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
+							
+							<div class="row container">
+								<div class="col-xs-12 col-md-12">
+								</div>  
+							</div> <hr/>
+							 
+							 <div class="col-xs-12 col-md-12">
+								<div class="container row">
+									<div class="col-xs-7 col-md-7">
+										<span style="font-size: 30px">4.0 평가함</span>&emsp;98<br><br>
+									</div>
+									<div class="col-xs-1 col-md-3"></div>
+									<div class="col-xs-4 col-md-2">
+										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
+									</div>
+								</div>
 							</div>
+							
+							<div class="row container">
+								<div class="col-xs-12 col-md-12">
+								</div> 
+							</div> <hr/>
+							 
+							 <div class="col-xs-12 col-md-12">
+								<div class="container row">
+									<div class="col-xs-7 col-md-7">
+										<span style="font-size: 30px">3.5 평가함</span>&emsp;32<br><br>
+									</div>
+									<div class="col-xs-1 col-md-3"></div>
+									<div class="col-xs-4 col-md-2">
+										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row container">
+								<div class="col-xs-12 col-md-12">
+								</div> 
+							</div> <hr/>
+							
+							<div class="col-xs-12 col-md-12">
+								<div class="container row">
+									<div class="col-xs-7 col-md-7">
+										<span style="font-size: 30px">3.0 평가함</span>&emsp;32<br><br>
+									</div>
+									<div class="col-xs-1 col-md-3"></div>
+									<div class="col-xs-4 col-md-2">
+										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row container">
+								<div class="col-xs-12 col-md-12">
+								</div> 
+							</div> <hr/>
+							
+							<div class="col-xs-12 col-md-12">
+								<div class="container row">
+									<div class="col-xs-7 col-md-7">
+										<span style="font-size: 30px">2.5 평가함</span>&emsp;32<br><br>
+									</div>
+									<div class="col-xs-1 col-md-3"></div>
+									<div class="col-xs-4 col-md-2">
+										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row container">
+								<div class="col-xs-12 col-md-12">
+								</div> 
+							</div> <hr/>
+							
+							<div class="col-xs-12 col-md-12">
+								<div class="container row">
+									<div class="col-xs-7 col-md-7">
+										<span style="font-size: 30px">2.0 평가함</span>&emsp;32<br><br>
+									</div>
+									<div class="col-xs-1 col-md-3"></div>
+									<div class="col-xs-4 col-md-2">
+										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row container">
+								<div class="col-xs-12 col-md-12">
+								</div> 
+							</div> <hr/>
+							
+							<div class="col-xs-12 col-md-12">
+								<div class="container row">
+									<div class="col-xs-7 col-md-7">
+										<span style="font-size: 30px">1.5 평가함</span>&emsp;32<br><br>
+									</div>
+									<div class="col-xs-1 col-md-3"></div>
+									<div class="col-xs-4 col-md-2">
+										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row container">
+								<div class="col-xs-12 col-md-12">
+								</div> 
+							</div> <hr/>
+							
+							<div class="col-xs-12 col-md-12">
+								<div class="container row">
+									<div class="col-xs-7 col-md-7">
+										<span style="font-size: 30px">1.0 평가함</span>&emsp;32<br><br>
+									</div>
+									<div class="col-xs-1 col-md-3"></div>
+									<div class="col-xs-4 col-md-2">
+										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row container">
+								<div class="col-xs-12 col-md-12">
+								</div> 
+							</div> <hr/>
+							
+							<div class="col-xs-12 col-md-12">
+								<div class="container row">
+									<div class="col-xs-7 col-md-7">
+										<span style="font-size: 30px">0.5 평가함</span>&emsp;32<br><br>
+									</div>
+									<div class="col-xs-1 col-md-3"></div>
+									<div class="col-xs-4 col-md-2">
+										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row container">
+								<div class="col-xs-12 col-md-12">
+								</div>  
+							</div> <hr/>
 						</div> 
-					</div> <hr/>
-					 
-					 <div class="col-xs-12 col-md-12">
-						<div class="container row">
-							<div class="col-xs-7 col-md-7">
-								<span style="font-size: 30px">4.5 평가함</span>&emsp;58<br><br>
-							</div>
-							<div class="col-xs-1 col-md-3"></div>
-							<div class="col-xs-4 col-md-2">
-								<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row container">
-						<div class="col-xs-12 col-md-12">
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
-								<br><span>수어사이드 스쿼드</span>
-								<br><span style="color: #ffbf00">★1.5</span><br><br>
-
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
-								<br><span>앤트맨</span>
-								<br><span style="color: #ffbf00">★5.0</span><br><br>
-							</div> 
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-						</div>  
-					</div> <hr/>
-					 
-					 <div class="col-xs-12 col-md-12">
-						<div class="container row">
-							<div class="col-xs-7 col-md-7">
-								<span style="font-size: 30px">4.0 평가함</span>&emsp;98<br><br>
-							</div>
-							<div class="col-xs-1 col-md-3"></div>
-							<div class="col-xs-4 col-md-2">
-								<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row container">
-						<div class="col-xs-12 col-md-12">
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
-								<br><span>수어사이드 스쿼드</span>
-								<br><span style="color: #ffbf00">★1.5</span><br><br>
-
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
-								<br><span>앤트맨</span>
-								<br><span style="color: #ffbf00">★5.0</span><br><br>
-							</div> 
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-						</div> 
-					</div> <hr/>
-					 
-					 <div class="col-xs-12 col-md-12">
-						<div class="container row">
-							<div class="col-xs-7 col-md-7">
-								<span style="font-size: 30px">3.5 평가함</span>&emsp;32<br><br>
-							</div>
-							<div class="col-xs-1 col-md-3"></div>
-							<div class="col-xs-4 col-md-2">
-								<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row container">
-						<div class="col-xs-12 col-md-12">
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
-								<br><span>수어사이드 스쿼드</span>
-								<br><span style="color: #ffbf00">★1.5</span><br><br>
-
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
-								<br><span>앤트맨</span>
-								<br><span style="color: #ffbf00">★5.0</span><br><br>
-							</div> 
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-						</div> 
-					</div> <hr/>
-					
-					<div class="col-xs-12 col-md-12">
-						<div class="container row">
-							<div class="col-xs-7 col-md-7">
-								<span style="font-size: 30px">3.0 평가함</span>&emsp;32<br><br>
-							</div>
-							<div class="col-xs-1 col-md-3"></div>
-							<div class="col-xs-4 col-md-2">
-								<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row container">
-						<div class="col-xs-12 col-md-12">
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
-								<br><span>수어사이드 스쿼드</span>
-								<br><span style="color: #ffbf00">★1.5</span><br><br>
-
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
-								<br><span>앤트맨</span>
-								<br><span style="color: #ffbf00">★5.0</span><br><br>
-							</div> 
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-						</div> 
-					</div> <hr/>
-					
-					<div class="col-xs-12 col-md-12">
-						<div class="container row">
-							<div class="col-xs-7 col-md-7">
-								<span style="font-size: 30px">2.5 평가함</span>&emsp;32<br><br>
-							</div>
-							<div class="col-xs-1 col-md-3"></div>
-							<div class="col-xs-4 col-md-2">
-								<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row container">
-						<div class="col-xs-12 col-md-12">
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
-								<br><span>수어사이드 스쿼드</span>
-								<br><span style="color: #ffbf00">★1.5</span><br><br>
-
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
-								<br><span>앤트맨</span>
-								<br><span style="color: #ffbf00">★5.0</span><br><br>
-							</div> 
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-						</div> 
-					</div> <hr/>
-					
-					<div class="col-xs-12 col-md-12">
-						<div class="container row">
-							<div class="col-xs-7 col-md-7">
-								<span style="font-size: 30px">2.0 평가함</span>&emsp;32<br><br>
-							</div>
-							<div class="col-xs-1 col-md-3"></div>
-							<div class="col-xs-4 col-md-2">
-								<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row container">
-						<div class="col-xs-12 col-md-12">
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
-								<br><span>수어사이드 스쿼드</span>
-								<br><span style="color: #ffbf00">★1.5</span><br><br>
-
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
-								<br><span>앤트맨</span>
-								<br><span style="color: #ffbf00">★5.0</span><br><br>
-							</div> 
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-						</div> 
-					</div> <hr/>
-					
-					<div class="col-xs-12 col-md-12">
-						<div class="container row">
-							<div class="col-xs-7 col-md-7">
-								<span style="font-size: 30px">1.5 평가함</span>&emsp;32<br><br>
-							</div>
-							<div class="col-xs-1 col-md-3"></div>
-							<div class="col-xs-4 col-md-2">
-								<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row container">
-						<div class="col-xs-12 col-md-12">
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
-								<br><span>수어사이드 스쿼드</span>
-								<br><span style="color: #ffbf00">★1.5</span><br><br>
-
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
-								<br><span>앤트맨</span>
-								<br><span style="color: #ffbf00">★5.0</span><br><br>
-							</div> 
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-						</div> 
-					</div> <hr/>
-					
-					<div class="col-xs-12 col-md-12">
-						<div class="container row">
-							<div class="col-xs-7 col-md-7">
-								<span style="font-size: 30px">1.0 평가함</span>&emsp;32<br><br>
-							</div>
-							<div class="col-xs-1 col-md-3"></div>
-							<div class="col-xs-4 col-md-2">
-								<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row container">
-						<div class="col-xs-12 col-md-12">
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
-								<br><span>수어사이드 스쿼드</span>
-								<br><span style="color: #ffbf00">★1.5</span><br><br>
-
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
-								<br><span>앤트맨</span>
-								<br><span style="color: #ffbf00">★5.0</span><br><br>
-							</div> 
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-						</div> 
-					</div> <hr/>
-					
-					<div class="col-xs-12 col-md-12">
-						<div class="container row">
-							<div class="col-xs-7 col-md-7">
-								<span style="font-size: 30px">0.5 평가함</span>&emsp;32<br><br>
-							</div>
-							<div class="col-xs-1 col-md-3"></div>
-							<div class="col-xs-4 col-md-2">
-								<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row container">
-						<div class="col-xs-12 col-md-12">
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
-								<br><span>수어사이드 스쿼드</span>
-								<br><span style="color: #ffbf00">★1.5</span><br><br>
-
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
-								<br><span>앤트맨</span>
-								<br><span style="color: #ffbf00">★5.0</span><br><br>
-							</div> 
-							<div class="col-xs-4 col-md-3">
-								<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-								<br><span>가디언즈 오브 갤럭시</span>
-								<br><span style="color: #ffbf00">★4.5</span><br><br>
-							</div>
-						</div>  
-					</div> <hr/>
-					</div> 
+					</c:if>
 				</div>
 			</div>
 		</div>
