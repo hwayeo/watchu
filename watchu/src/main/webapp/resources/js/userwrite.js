@@ -1,10 +1,17 @@
 $(document).ready(function(){
+	var emailCheck = 0;
+	var permitCheck = 0;
+	
 	$('.mailBtn').click(function(){
 		var email = $('#email').val();
 		
 		if(email == null || email == ''){
+			emailCheck = 0;
+			
 			alert('email을 입력해주세요.');
 		}else{
+			emailCheck = 1;
+			
 			//버튼을 누를 시 해당 버튼이 사라짐
 			$('.mailButton').css('display','none');
 			//버튼이 사라지면 인증번호를 쓸 수 있는 input창이 생김
@@ -31,8 +38,6 @@ $(document).ready(function(){
 	
 	//permit에 쓴 값을 controller에 보내서 sessino값과 대조 후 success,error값을 받아오기
 	$('.permitBtn').click(function(){
-		var permitCheck = 0;
-		
 		$.ajax({
 			url:'checkPermit.do',
 			type:'post',
@@ -65,5 +70,21 @@ $(document).ready(function(){
 				alert('네트워크 오류!');
 			}
 		});
+	});
+	
+	//정보를 다 입력했어도 인증번호를 받지 않으면 회원가입이 불가능
+	$('#submit').click(function(){
+		// 조건 1) 인증번호 받기 버튼이 눌려지지 않았을 시   조건2) 인증번호 확인을 받지 않았을 시
+		if(emailCheck == 0 && permitCheck == 0){
+			alert('인증번호를 받아서 입력해주세요.');
+			
+			//버튼 사용 불가능
+			$('#submit').attr('disabled',true);
+		}else if(emailCheck == 0 || permitCheck == 0){
+			//버튼 사용 불가능
+			$('#submit').attr('disabled',true);
+		}else{
+			$('#submit').attr('disabled',false);
+		}
 	});
 });
