@@ -100,11 +100,14 @@ public class MyPageController {
 			blockList.clear();
 		}
 		
+		//코맨트 숫자
+		Integer comment_count = commentService.selectMyCommentCnt(id);
+		
 		model.addAttribute("user", user);
 		model.addAttribute("list",follow3);
 		model.addAttribute("list2",follower3);
 		model.addAttribute("blockList",blockList);
-				
+		model.addAttribute("comment_count",comment_count);		
 				
 		
 		return "userMypage";

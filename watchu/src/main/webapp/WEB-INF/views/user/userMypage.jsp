@@ -54,7 +54,7 @@
 					<span class="wc-StatLabel2 wcPc-block"><a class="mylike" onclick="location.href='userMypage_movielist.do'">영화</a></span> 234<br>
 				</div>
 				<div class="col-xs-4 col-md-4 text-center">
-					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userComment.do'">코멘트</a></span> 11<br>
+					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userComment.do'">코멘트</a></span> ${comment_count}<br>
 				</div>
 				<div class="col-xs-4 col-md-4">
 					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userLikeComment.do'">좋아요</a></span> 120<br><br>
@@ -74,8 +74,11 @@
 		</div>
 			
 		<div class="col-xs-12 col-md-12 text-center"> 
-			
-			<div class="col-md-2"></div>
+			<c:if test="${movie.rate == 5.0}">
+				<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}"><br>
+				<p>${movie.title}</p>
+			</c:if>
+			<%-- <div class="col-md-2"></div>
 			<div class="col-xs-4 col-md-2">
 				<img class="image" src="${pageContext.request.contextPath}/resources/images/gad.jpg"><br>
 				<p>가디언즈 오브 갤럭시</p>
@@ -92,7 +95,8 @@
 				<img class="image" src="${pageContext.request.contextPath}/resources/images/gad3.jpg"><br>
 				<p>앤트맨</p>
 			</div>
-			<div class="col-md-2"></div>
+			<div class="col-md-2"></div> --%>
+			
 		</div>
 		
 		
