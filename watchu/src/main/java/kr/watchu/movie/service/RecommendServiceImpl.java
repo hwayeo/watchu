@@ -31,5 +31,23 @@ public class RecommendServiceImpl implements RecommendService{
 	public List<MovieCommand> selectRatedMovieList(Map<String, Object> map) {
 		return mapper.selectRatedMovieList(map);
 	}
+	
+	@Override
+	public Integer selectRandomBanner() {
+		return mapper.selectRandomBanner();
+	}
+	@Override
+	public MovieCommand selectRandomMovie() {
+		return mapper.selectRandomMovie();
+	}
+	
+	@Override
+	public String selectFavoriteGenre(Map<String, Object> map) {
+		return mapper.selectFavoriteGenre(map);
+	}
+	@Override
+	public float selectPredictionByGenre(Map<String, Object> map) {
+		return mapper.selectPredictionByGenre(map);
+	}
 
 }

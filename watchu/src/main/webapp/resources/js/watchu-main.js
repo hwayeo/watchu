@@ -1,20 +1,6 @@
 $(document).ready(function(){
 	var windowHeight;
 	var windowWidth;
-	//날짜 구하기
-	var date = new Date();
-	var year = date.getFullYear();
-	var month = new String(date.getMonth()+1);
-	var day = new String(date.getDate()-1);
-	
-	if(month.length == 1){
-		month = "0"+month;
-	}
-	if(day.length == 1){
-		day = "0"+day;
-	}
-	
-	var today = year+month+day;
 	
 	windowHeight = $(document).scrollTop();
 	windowWidth = $(document).width();
@@ -47,9 +33,21 @@ $(document).ready(function(){
 
 	//메인 배너 이미지 교체 메서드
 	function showBannerImage(){
-		$('#img-test').css('background-image','url(imageView.do?id=deft)');
+		var movie_num = $('#ranBanner').val();
+		var url ='url(bannerView.do?movie_num='+movie_num+')';
+		$('#img-test').css('background-image',url);
 	};
-
+/*
+	function showRandomMovieImg(){
+		var movie_num = $('#ranMovie').val();
+		var url = 'url(bannerView.do?movie_num='+movie_num+')';
+		$('#rec-random-banner').css('background-image',url).
+		css('height','400px').css('background-repeat','no-repeat').
+		css('background-position','center center').css('background-size','100%')
+		.css('border-top-left-radius','8px').css('border-top-right-radius','8px');
+		
+	}
+	showRandomMovieImg();*/
 	function headerClassControl(){
 		if(windowWidth < 768){
 			if(windowHeight < 20){
@@ -71,12 +69,6 @@ $(document).ready(function(){
 
 	showBannerImage();
 
-
-	function addComma(num) {
-		  var regexp = /\B(?=(\d{3})+(?!\d))/g;
-		   return num.toString().replace(regexp, ',');
-		}
-	
 	
 	/* //검색
 	$('#search-btn').on('click',function(){

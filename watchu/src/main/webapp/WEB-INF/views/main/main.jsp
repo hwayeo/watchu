@@ -13,6 +13,7 @@
 		</div>
 	</div>
 </div>
+<input type="hidden" value="${ranBanner}" id="ranBanner">
 <div class="container" id="main-page-content">
 	<c:if test="${empty user_id}">
 	<div class="row custom-row">
@@ -32,7 +33,8 @@
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 			<h4>오늘은 이거다!</h4>
 			<div class="items-box" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${randomMovie.movie_num}'" style="cursor:pointer;">
-				<div class="img-box">
+				<div class="img-box" id="rec-random-banner">
+					<input type="hidden" value="${randomMovie.movie_num}" id="ranMovie">
 					<c:if test="${empty randomMovie.poster_img}">
 						<img src="${pageContext.request.contextPath}/resources/images/default-banner.jpg" class="img-responsive main-img">
 					</c:if>
@@ -41,43 +43,27 @@
 					</c:if>
 				</div>
 				<div class="text-box">	
-					<p class="movie-title"><a href="#" class="movie-link">${randomMovie.title}</a>&nbsp;<p>
-					<p class="sub-title">${randomMovie.main_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${randomMovie.released}" pattern="YYYY"/></p>
-					<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${randomMovie.rate}</span></span></span>
+					<p class="movie-title" ><a href="#" class="movie-link">${randomMovie.title}</a>&nbsp;<p>
+					<p class="sub-title" style="float:left;">${randomMovie.main_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${randomMovie.released}" pattern="YYYY"/></p>
+					<div class="text-right" style="margin-bottom:10px;">
+						<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${randomMovie.rate}</span></span></span>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row custom-row">
-		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-			<h4>이런 작품은 어때요?</h4>		
-			<div class="items-box-col3">
-				<img src="${pageContext.request.contextPath}/resources/images/main-banner-test.jpg" class="img-responsive main-img-col3">
-				<div class="text-box-col3">	
-					<p class="movie-title"><a href="#" class="movie-link">영화제목</a><p>
-					<p class="sub-title">슈퍼히어로 2018</p>
+		<c:if test="${empty user_id}">
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+					<h4>이런 작품은 어때요?</h4>		
+					<div class="items-box-col3">
+						<img src="${pageContext.request.contextPath}/resources/images/main-banner-test.jpg" class="img-responsive main-img-col3">
+						<div class="text-box-col3">	
+							<p class="movie-title"><a href="#" class="movie-link">영화제목</a><p>
+							<p class="sub-title">슈퍼히어로 2018</p>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-			<h4>이런 작품은 어때요?</h4>		
-			<div class="items-box-col3">
-				<img src="${pageContext.request.contextPath}/resources/images/main-banner-test.jpg" class="img-responsive main-img-col3">
-				<div class="text-box-col3">	
-					<p class="movie-title"><a href="#" class="movie-link">영화제목</a><p>
-					<p class="sub-title">슈퍼히어로 2018</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-12 hidden-sm col-md-4 col-lg-4">
-			<h4>이런 작품은 어때요?</h4>		
-			<div class="items-box-col3">
-				<img src="${pageContext.request.contextPath}/resources/images/main-banner-test.jpg" class="img-responsive main-img-col3">
-				<div class="text-box-col3">	
-					<p class="movie-title"><a href="#" class="movie-link">영화제목</a><p>
-					<p class="sub-title">슈퍼히어로 2018</p>
-				</div>
-			</div>
-		</div>
+		</c:if>
 	</div>
 </div>

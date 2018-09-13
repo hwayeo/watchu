@@ -1,9 +1,31 @@
 $(document).ready(function(){
+	//날짜 구하기
+	var date = new Date();
+	var year = date.getFullYear();
+	var month = new String(date.getMonth()+1);
+	var day = new String(date.getDate()-1);
+	
+	if(month.length == 1){
+		month = "0"+month;
+	}
+	if(day.length == 1){
+		day = "0"+day;
+	}
+	
+	var today = year+month+day;
+	
+
+
+	function addComma(num) {
+		  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+		   return num.toString().replace(regexp, ',');
+		}
+	
 	//박스오피스
 	function boxOffice(){
 		var basicUrl ="http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=eff3e14691bf6fe3fd1b35c8e35a5340";
 		    basicUrl += "&targetDt="+today;
-		    basicUrl += "&itemPerPage=7";
+		    basicUrl += "&itemPerPage=8";
 		var output = '<table class="table boxOffice"></tr>'
 		$.getJSON(basicUrl, function(data){
 			$.each(data, function (index, value) { 
@@ -17,7 +39,6 @@ $(document).ready(function(){
 					}else if(element.rankInten < 0){
 						var rank = element.rankInten;
 						var r = rank.substring(1);
-						console.log(r);
 						output += '<td><span class="glyphicon glyphicon-triangle-bottom rank-minus"></span> '+r+'</td>'
 					}
 					output += '<td>'+element.movieNm+'</td>'

@@ -150,12 +150,14 @@ font-family:'PT Sans', sans-serif;
 }
 .items-box{
 	width:100%;
-	min-height:300px;
+	height:400px;
 }
 .main-img{
 	z-index:1;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
+	height: initial;
+    max-height: initial;
 }
 .text-box{
 	background-color:white;

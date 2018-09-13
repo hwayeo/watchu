@@ -54,29 +54,41 @@ public class MainController {
 	}
 	
 	@RequestMapping("/main/main.do")
-	public ModelAndView process() {
+	public ModelAndView process(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		
-		//랜덤 영화 추천 
-		Map<String,Object> map = new HashMap<String,Object>();
-		int totalMovieCnt = movieService.selectMovieCnt(map);
-		
-		int ranMovie = (int) ((Math.random()*totalMovieCnt)+1);
-		
-		if(log.isDebugEnabled()) {
-			log.debug("<<totalMovieCnt>> : " + totalMovieCnt);
-			log.debug("<<ranMovie>> : " + ranMovie);
-		}
-		
-		MovieCommand randomMovie = movieService.selectMovie(ranMovie);
 		//랜덤 영화 추천
-		
+		MovieCommand randomMovie = recommendService.selectRandomMovie();
+		//무작위 배너
+		int ranBanner = recommendService.selectRandomBanner();
 		//전체 평가 갯수
 		int totalRated = recommendService.selectTotalRated();
 		//전체 평가 갯수
+		
+		String id = (String)session.getAttribute("user_id");
+		if(log.isDebugEnabled()) {
+			log.debug("<<User_id>> : " + id);
+		}
+		
+		//로그인 상태일때
+		if(id!=null) {
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("id", id);
+			map.put("genre", "액션");
+			if(log.isDebugEnabled()) {
+				log.debug("[[-----진입------]] : ");
+			}
+			float prediction = recommendService.selectPredictionByGenre(map);
+			if(log.isDebugEnabled()) {
+				log.debug("[[-----prediction------]] : " + prediction);
+			}
+		}else {
+			//로그인이 아닐떄
+		}
 		mav.setViewName("main");
-		mav.addObject("randomMovie",randomMovie);
 		mav.addObject("totalRated",totalRated);
+		mav.addObject("randomMovie",randomMovie);
+		mav.addObject("ranBanner",ranBanner);
 		return mav;
 	}
 
@@ -167,17 +179,18 @@ public class MainController {
 		return mav; 
 	}
 	
-/*	@RequestMapping("/main/imageView.do")
+	@RequestMapping("/main/bannerView.do")
 	public ModelAndView viewImage(@RequestParam("movie_num") Integer movie_num) {
-		
-		if(log.isDebugEnabled()) {
-		}
 		ModelAndView mav = new ModelAndView();
+		
+		MovieCommand movie = movieService.selectMovie(movie_num);
+		
 		mav.setViewName("imageView");
-		mav.addObject("filename","profile.jpg");
-		mav.addObject("imageFile");
+		mav.addObject("filename","banner.jpg");
+		mav.addObject("imageFile",movie.getBanner_img());
+		
 		return mav; 
-	}*/
+	}
 	
 	@RequestMapping("/main/search.do")
 	public ModelAndView search(@RequestParam(value="keyword",defaultValue="") String keyword) {
