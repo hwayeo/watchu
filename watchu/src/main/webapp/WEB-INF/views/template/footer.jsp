@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div id="footer">
 	<div class="container hidden-xs">
 		<div id="footer-menu">
-			<p id="rated">지금까지 <span id="ratedCnt"><span class="glyphicon glyphicon-star"></span> 000,000,000개의 평가</span>가 쌓였어요.</p>
+			<p id="rated">지금까지 <span id="ratedCnt"><span class="glyphicon glyphicon-star"></span>&nbsp;<fmt:formatNumber value="${totalRated}" pattern="###,###,###"/>&nbsp;개의 평가</span>가 쌓였어요.</p>
 			<ul id="footer-list">
 				<li><a href="#">서비스 이용약관</a></li>
 				<li><a href="#">개인정보 취급 방침</a></li>

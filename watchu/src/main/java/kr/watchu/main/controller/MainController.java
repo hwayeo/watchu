@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.watchu.movie.domain.MovieCommand;
 import kr.watchu.movie.service.MovieService;
+import kr.watchu.movie.service.RecommendService;
 import kr.watchu.user.domain.UserCommand;
 import kr.watchu.user.service.UserService;
 import kr.watchu.util.CipherTemplate;
@@ -35,6 +36,9 @@ public class MainController {
 
 	@Resource
 	private MovieService movieService;
+	
+	@Resource
+	private RecommendService recommendService;
 	
 	@Resource
 	private CipherTemplate cipherAES;
@@ -65,9 +69,14 @@ public class MainController {
 		}
 		
 		MovieCommand randomMovie = movieService.selectMovie(ranMovie);
+		//랜덤 영화 추천
 		
+		//전체 평가 갯수
+		int totalRated = recommendService.selectTotalRated();
+		//전체 평가 갯수
 		mav.setViewName("main");
 		mav.addObject("randomMovie",randomMovie);
+		mav.addObject("totalRated",totalRated);
 		return mav;
 	}
 
