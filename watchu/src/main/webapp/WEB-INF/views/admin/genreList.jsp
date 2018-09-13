@@ -4,10 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!-- 장르 등록 및 수정 -->
 <div class="admin_main">
-	<div id="genre_list">
+	<div id="genre_list" style="width:90%">
 		<h2>영화 장르 목록</h2>
-		<br>
-		<div class="content-header">
+		<div class="content-header" align="right">
 			<!-- 검색 -->
 			<form action="genreList.do" class="confirm_search" method="get">
 			<select name="keyfield">
@@ -21,17 +20,19 @@
 
 		<div class="content-body">
 			<!-- 장르 목록 -->
-			<table class="table table-hover table-condensed">
+			<table class="table table-hover table-condensed" >
+				<thead>
 				<tr>
 					<th class="col-md-2">장르 코드</th>
 					<th class="col-md-8">장르명</th>
 					<th class="col-md-2">선택</th>
 				</tr>
+				</thead>
 				<c:forEach var="genre" items="${genre_list}">
 				<tr>
-					<td>${genre.genre_num}</td>
-					<td class="modify_btn" style="cursor:pointer;" data-toggle="modal" data-target="#genreModify" data-whatever="${genre.genre_num}">${genre.genre}</td>
-					<td><input type="checkbox" name="genreChecked" value="${genre.genre_num}"/></td>
+					<td align="center">${genre.genre_num}</td>
+					<td align="center" class="modify_btn" style="cursor:pointer;" data-toggle="modal" data-target="#genreModify" data-whatever="${genre.genre_num}">${genre.genre}</td>
+					<td align="center"><input type="checkbox" name="genreChecked" value="${genre.genre_num}"/></td>
 				</tr>
 				</c:forEach>
 			</table>
@@ -42,17 +43,9 @@
 				<input type="button" value="장르 등록" id="register_genre" data-toggle="modal" data-target="#genreModal" class="btn btn-primary">
 				<input type="button" value="선택 삭제" id="check_genreDel" class="btn btn-danger">
 			</div>
-			<br>
 
 			<!-- 페이지버튼 -->
 			<div align="center">${pagingHtml}</div>
-			<!-- <nav align="center">
-				<ul class="pagination pagination-sm">
-					<li class="disabled"><a href="#" aria-label="Previous"><span
-							aria-hidden="true">&laquo;</span></a></li>
-					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-				</ul>
-			</nav> -->
 			<br>
 		</div>
 	</div>
@@ -72,7 +65,8 @@
         <div class="modal-body">
         
          	<div class="form-group">
-         		<label for="genre">장르명</label>
+         		<span style="display:inline-block; width:100px">
+         		<label for="genre">장르명</label></span>
          		<form:input path="genre"/>
          		<form:errors path="genre" cssClass="error-color"/>
          	</div>
@@ -104,11 +98,13 @@
         <div class="modal-body">
         	<input type="hidden" class="form-control" id="genre_num">
         	<div class="form-group">
-        	<label for="genre_num">장르 코드: </label>
+        	<span style="display:inline-block; width:100px">
+        	<label for="genre_num">장르 코드</label></span>
         	<span id="show-num"></span>
         	</div>
         	<div class="form-group">
-         		<label for="genre">장르명</label>
+        		<span style="display:inline-block; width:100px">
+         		<label for="genre">장르명</label></span>
          		<form:input path="genre" id="name"/>
          		<form:errors path="genre" cssClass="error-color"/>
          	</div>

@@ -21,10 +21,10 @@
 			 		<if test="keyword != '' and keyfield == 'filmograp'">
 			 			filmograp like '%' || #{keyword} || '%'
 			 		</if>
-			 		<!-- <if test="keyword != '' and keyfield.equals('all')">
-			 			filmograp like '%' || #{keyword} || '%' or
-			 			name '%' || #{keyword} || '%'
-			 		</if> -->
+			 		<!-- 라디오 버튼 처리
+			 		<if test="jobs !='' and jobs !='ALL'">
+			 			jobs LIKE '%' ||  #{jobs} || '%'
+					</if>-->
 		 		</where>
 				
 				ORDER BY off_num)a)
@@ -48,6 +48,9 @@
 			 	name like '%' || #{keyword} || '%' or
 			 	filmograp like '%' || #{keyword} || '%' or
 			 </if> -->
+			 <!-- <if test="jobs !='' and jobs !='ALL'">
+	 			jobs LIKE '%' ||  #{jobs} || '%'
+			</if> -->
 		 </where>
 	</select>
 	

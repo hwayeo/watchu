@@ -20,7 +20,13 @@ $('.confirm_search').submit(function(){
 	}
 });
 
-	
+//영화 관계자 구분
+/*$("input[name='jobs']:radio").change(function () {
+	var checked = $(this).val(); //선택된 값 가져옴
+	location.href='officialList.do?jobs='+checked;
+});
+*/
+
 //genreModify 모달에 데이터 넘기기
 	$('.modify_btn').on('click', function () {
 		var num = $(this).attr('data-whatever');
@@ -33,7 +39,7 @@ $('.confirm_search').submit(function(){
 		var modifyUrl = modify+num+"'";
 		$('#modifyBtn').attr("onclick", modifyUrl);
 	});
-
+	
 //======감독_자동완성=====//
 var directorList = new Array();
 $('.auto_director').keyup(function (event) {
@@ -55,21 +61,13 @@ $('.auto_director').keydown(function (event) {
 	
 	//감독 목록
 	if (event.keyCode === 13) {
-		event.preventDefault();
+		event.preventDefault(); //기본 이벤트 제거
 		if(director_count > 0) director_value += ',';
-		director_value += $(this).val();
+		director_value += $(this).val(); //입력값을 director_value에 담음
 		console.log(director_value);
-		$('.input_director').val(director_value);
-		director_count++;
+		$('.input_director').val(director_value); //director_value에 담은 값을 실제 폼으로 전달
+		director_count++; //기존입력값 플러스
     }
-	/*if (event.keyCode === 13) {
-		event.preventDefault();
-		if(director_count > 0) director_value += ',';
-		director_value += $(this).val();
-		console.log(director_value);
-		$('.input_director').val(director_value);
-		director_count++;
-    }*/
 });
 
 $('.auto_director').keypress(function (event) {

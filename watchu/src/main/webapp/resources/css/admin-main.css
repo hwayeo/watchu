@@ -79,6 +79,24 @@ z-index: 2150000000;
 }
 div .off_photo{margin-top: 0px;}
 
+/* admin_main 여백 */
+.content-header{
+	margin-top:10px;
+}
+
+li{margin:10px 0px;}
+
+ul.list{list-style:none;}
+
+th{text-align:center;}
+
+div .detail_content{
+	margin-top:30px;
+}
+
+div .edit_btn{
+	margin-bottom:30px;
+}
 
 /* 영화목록: 상세 정보 테이블 - 추후 수정 예정 */
 .movieView table tr td {

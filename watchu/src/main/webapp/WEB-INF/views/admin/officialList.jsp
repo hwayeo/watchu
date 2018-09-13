@@ -4,17 +4,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!-- 영화 관계자 등록 및 수정 -->
 <div class="admin_main">
-	<div id="official_list">
+	<div id="official_list" style="width:90%">
 		<h2>영화 관계자 목록</h2>
-		<br>
-		<div class="content-header">
+		<div class="content-header" align="right">
 			<!-- 구분 -->
-			<span class="division">
-				<input type="radio" name="jobs" value="all" checked> 전체
-				<input type="radio" name="jobs" value="director"> 감독
-				<input type="radio" name="jobs" value="actor"> 배우
-			</span>
-			
+			<%-- <div class="division" style="padding-bottom:5px">
+				<input type="radio" name="jobs" value="ALL" <c:if test="${param.jobs=='ALL'}">checked</c:if>> 전체
+				<input type="radio" name="jobs" value="DIRECTOR" <c:if test="${param.jobs=='DIRECTOR'}">checked</c:if>> 감독
+				<input type="radio" name="jobs" value="ACTOR" <c:if test="${param.jobs=='ACTOR'}">checked</c:if>> 배우
+			</div> --%>
 			<!-- 검색 -->
 			<form action="officialList.do" class="confirm_search" method="get" class="search">
 			<select name="keyfield">
@@ -25,22 +23,25 @@
 			<input type="submit" value="검색">
 			</form>
 		</div>
+		
 
 		<div class="content-body">
 			<!-- 영화 목록 -->
 			<table class="table table-hover table-condensed">
+				<thead>
 				<tr>
-					<th class="col-md-2">관계자코드</th>
+					<th class="col-md-1">관계자코드</th>
 					<th class="col-md-5">이름</th>
-					<th class="col-md-2">구분</th>
+					<th class="col-md-3">구분</th>
 					<th class="col-md-1">선택</th>
 				</tr>
+				</thead>
 				<c:forEach var="official" items="${official_list}">
 				<tr>
-					<td>${official.off_num}</td>
-					<td onclick="location.href='offcialDetail.do?off_num=${official.off_num}'" style="cursor:pointer;">${official.name}</td>
-					<td>${official.jobs}</td>
-					<td><input type="checkbox" name="offChecked" value="${official.off_num}"/></td>
+					<td align="center">${official.off_num}</td>
+					<td align="center" onclick="location.href='offcialDetail.do?off_num=${official.off_num}'" style="cursor:pointer;">${official.name}</td>
+					<td align="center">${official.jobs}</td>
+					<td align="center"><input type="checkbox" name="offChecked" value="${official.off_num}"/></td>
 				</tr>
 				</c:forEach>
 			</table>
@@ -50,20 +51,10 @@
 			<div class="edit_btn" align="right">
 				<input type="button" value="영화관계자등록" id="officials_movie"
 					data-toggle="modal" data-target="#officialsModal" class="btn btn-primary">
-				<!-- <input type="button" value="영화 등록" id="register_movie" data-toggle="modal" data-target="#registerModal"> -->
 				<input type="button" value="선택 삭제" id="check_offDel" class="btn btn-danger">
 			</div>
-			<br>
-
 			<!-- 페이지버튼 -->
 			<div align="center">${pagingHtml}</div>
-			<!-- <nav align="center">
-				<ul class="pagination pagination-sm">
-					<li class="disabled"><a href="#" aria-label="Previous"><span
-							aria-hidden="true">&laquo;</span></a></li>
-					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-				</ul>
-			</nav> -->
 			<br>
 		</div>
 	</div>
@@ -82,31 +73,36 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="name">이름</label>
+					<span style="display:inline-block; width:100px">
+					<label for="name">이름</label></span>
 	         		<form:input path="name"/>
 	         		<form:errors path="name" cssClass="error-color"/>
 				</div>
 				<div class="form-group">
-					<label for="jobs">구분</label>
-					<form:radiobutton path="jobs" value="ACTOR" label="ACTOR"/>
-					<form:radiobutton path="jobs" value="DIRECTOR" label="DIRECTOR"/>
+					<span style="display:inline-block; width:100px">
+					<label for="jobs">구분</label></span>
+					<form:radiobutton path="jobs" value="ACTOR" label="　ACTOR"/>　
+					<form:radiobutton path="jobs" value="DIRECTOR" label="　DIRECTOR"/>
 	         		<form:errors path="jobs" cssClass="error-color"/>
 				</div>
 				<div class="form-group">
-					<label for="filmograp">필모그래피</label>
+					<span style="display:inline-block; width:100px">
+					<label for="filmograp">필모그래피</label></span>
 	         		<form:input path="filmograp"/>
 	         		<form:errors path="filmograp" cssClass="error-color"/>
 				</div>
 				<div class="form-group">
-					<label for="upload">사진</label>
+					<span style="display:inline-block; width:100px">
+					<label for="upload">사진</label></span>
 	         		<input type="file" name="upload" id="upload"/>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-				<button type="submit" class="btn btn-primary">등록</button>
+				<button type="submit" class="btn btn-primary">등록</button> 
 			</div>
 			</form:form>
 		</div>
+	</div>
 	</div>
 </div>

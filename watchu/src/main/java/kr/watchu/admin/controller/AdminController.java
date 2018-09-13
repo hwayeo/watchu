@@ -291,13 +291,17 @@ public class AdminController {
 	//02_1_목록, 등록 폼
 	@RequestMapping("/admin/officialList.do")
 	public ModelAndView official_list(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
-			@RequestParam(value="keyfield", defaultValue="") String keyfield,
-			@RequestParam(value="keyword", defaultValue="") String keyword) {
-
+									  @RequestParam(value="keyfield", defaultValue="") String keyfield,
+									  @RequestParam(value="keyword", defaultValue="") String keyword){
+									  //@RequestParam(value="jobs", defaultValue="") String jobs) {
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
-
+		//map.put("jobs", jobs);
+		
+		System.out.println("map: " + map);
+		
 		//총 글의 갯수 또는 검색된 글의 갯수
 		int official_count = officialsService.selectOffCnt(map);
 
@@ -305,7 +309,7 @@ public class AdminController {
 		if(log.isDebugEnabled()) {
 			log.debug("<offical_count>>: " + official_count);
 		}
-
+		
 		//페이징 처리
 		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, official_count, rowCount, pageCount, "officialList.do");
 
@@ -331,7 +335,7 @@ public class AdminController {
 
 		return mav;
 	}
-
+	
 	//02_2_전송된 데이터 처리
 	@RequestMapping(value="/admin/officialList.do", method=RequestMethod.POST)
 	public String official_submit(@ModelAttribute("official_command") @Valid OfficialsCommand officialsCommand, BindingResult result, HttpServletRequest request) {
@@ -587,9 +591,9 @@ public class AdminController {
 			log.debug("<<userCommand>>: " + userCommand);
 		}
 			
-		//관계자 수정
-		userService.adminUpdate(userCommand);
-		userService.adminUpdate2(userCommand);
+		//회원 정보 수정
+		userService.adminUpdate(userCommand); //회원 기본 정보 수정
+		userService.adminUpdate2(userCommand);//회원 등급 수정
 			
 		return "redirect:/admin/userList.do";
 	}
@@ -641,14 +645,15 @@ public class AdminController {
 			return mav;
 			
 		}
+		
 		//삭제
 		@RequestMapping("/admin/reportDelete.do")
 		public String process555(@RequestParam(value="num") String num) {
-			
+					
 			int report_num = Integer.parseInt(num);
-			
+					
 			reportService.deleteReport(report_num);
-			
+					
 			return "redirect:reportedUser.do";
 		}
 
