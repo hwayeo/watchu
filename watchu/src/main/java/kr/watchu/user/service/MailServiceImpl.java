@@ -14,7 +14,7 @@ public class MailServiceImpl implements MailService{
     public void setJavaMailSender(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
-    
+     
 	@Override
     public boolean send(String subject, String text, String from, String to, String filePath) {
         MimeMessage message = javaMailSender.createMimeMessage();
