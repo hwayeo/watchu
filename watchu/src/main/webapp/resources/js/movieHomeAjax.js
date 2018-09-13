@@ -44,16 +44,19 @@ $(document).ready(function(){
  				if(count < 0 || list == null){
 				}else{
 					$(list).each(function(index,item){
-						mlist = '<div class="col-sm-6 col-md-3 col-xs-6" id="main-category">';
+						var released = item.released;
+						var rate = item.rate;
+						
+						mlist = '<div class="col-sm-3 col-md-3 col-xs-6" id="main-category">';
 						if(item.poster_img == null){
-							mlist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img src="../resources/images/img4.jpg"></div>';
+							mlist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img src="../resources/images/default-poster.jpg"></div>';
 						}else{
 							mlist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img src="imageView.do?movie_num='+item.movie_num+'&type=poster"></div>';
 						}
 						mlist += '<div class="sub-category caption">';
 						mlist += '<p class="ptitle">'+item.title+'</p>';
-						mlist += '<p class="ptitle">'+item.released+'</p>';
-						mlist += '<p class="ptitle">평점 : '+item.rate+'</p>';
+						mlist += '<p class="pcountry">'+item.country+' · '+released.substring(0,4)+'</p>';
+						mlist += '<p class="prate"><span class="glyphicon glyphicon-star"></span> '+rate.toFixed(1)+'</p>';
 						mlist += '</div>';
 						mlist += '</div>';
  						$('.mlist').append(mlist);
@@ -85,16 +88,19 @@ $(document).ready(function(){
  				if(count < 0 || list == null){
 				}else{
 					$(list).each(function(index,item){
-						mlist = '<div class="col-sm-6 col-md-3 col-xs-6" id="main-category">';
+						var released = item.released;
+						var rate = item.rate;
+						
+						mlist = '<div class="col-sm-3 col-md-3 col-xs-6" id="main-category">';
 						if(item.poster_img == null){
-							mlist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img src="../resources/images/img4.jpg"></div>';
+							mlist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img src="../resources/images/default-poster.jpg"></div>';
 						}else{
 							mlist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img src="imageView.do?movie_num='+item.movie_num+'&type=poster"></div>';
 						}
 						mlist += '<div class="sub-category caption">';
 						mlist += '<p class="ptitle">'+item.title+'</p>';
-						mlist += '<p class="ptitle">'+item.released+'</p>';
-						mlist += '<p class="ptitle">평점 : '+item.rate+'</p>';
+						mlist += '<p class="pcountry">'+item.country+' · '+released.substring(0,4)+'</p>';
+						mlist += '<p class="prate"><span class="glyphicon glyphicon-star"></span> '+rate.toFixed(1)+'</p>';
 						mlist += '</div>';
 						mlist += '</div>';
  						$('.mlist2').append(mlist);
@@ -125,16 +131,19 @@ $(document).ready(function(){
  				if(count < 0 || list == null){
 				}else{
 					$(list).each(function(index,item){
-						mlist = '<div class="col-sm-6 col-md-3 col-xs-6" id="main-category">';
+						var released = item.released;
+						var rate = item.rate;
+						
+						mlist = '<div class="col-sm-3 col-md-3 col-xs-6" id="main-category">';
 						if(item.poster_img == null){
-							mlist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img src="../resources/images/img4.jpg"></div>';
+							mlist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img src="../resources/images/default-poster.jpg"></div>';
 						}else{
 							mlist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img src="imageView.do?movie_num='+item.movie_num+'&type=poster"></div>';
 						}
 						mlist += '<div class="sub-category caption">';
 						mlist += '<p class="ptitle">'+item.title+'</p>';
-						mlist += '<p class="ptitle">'+item.released+'</p>';
-						mlist += '<p class="ptitle">평점 : '+item.rate+'</p>';
+						mlist += '<p class="pcountry">'+item.country+' · '+released.substring(0,4)+'</p>';
+						mlist += '<p class="prate"><span class="glyphicon glyphicon-star"></span> '+rate.toFixed(1)+'</p>';
 						mlist += '</div>';
 						mlist += '</div>';
  						$('.mlist3').append(mlist);

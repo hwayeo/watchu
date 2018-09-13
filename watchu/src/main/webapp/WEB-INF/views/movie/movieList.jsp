@@ -20,44 +20,41 @@
       </div>
    </nav>
 
-<!-- 검색하면 값 남기기 -->
 <input type="hidden" class="page-type" value="movieList">
-<!-- for:each문으로 데이터를 가져와 리스트를 생성할것 -->
-<!-- 모바일 환경 -->
+<!---------------------------- 모바일 환경 ------------------------->
 <form action="movieList.do" method="get" id="listForm" name="listForm">
 <div id="categoryHr">
-<!-- <input type="hidden" id="ajx_genre" value="list" name="genre"> -->
-<select class="visible-xs visible-sm form-control genre-category all-category" name="keyword">
+<select class="visible-xs col-xs-4 form-control genre-category all-category" name="keyword">
       <option value="">모든 장르</option>
    <c:forEach var="cl" items="${movieGenre}">
       <option value="${cl.genre}">${cl.genre}</option>
    </c:forEach>
 </select>
-<select class="visible-xs visible-sm form-control country-category all-category" name="keyword2">
+<select class="visible-xs col-xs-4  form-control country-category all-category" name="keyword2">
         <option value="">모든 국가</option>
     <c:forEach var="gl" items="${movieInfo}">
       <option value="${gl.country}">${gl.country}</option>
    </c:forEach>
 </select>
-<select class="visible-xs visible-sm form-control order-category all-category" name="keyword"> 
+<select class="visible-xs col-xs-4  form-control order-category all-category" name="keyword"> 
   <option value="" selected>최신 순</option>
   <option value="">추천 순</option>
   <option value="rate">별점 순</option>
 </select>
-<!-- 웹환경 -->
-<select id="category-menu" class="hidden-xs hidden-sm genre-category2 all-category2" name="keyword">
+<!---------------------- 웹환경 ----------------------------->
+<select id="category-menu" class="hidden-xs genre-category2 all-category2" name="keyword">
       <option value="">모든 장르</option>
    <c:forEach var="cl" items="${movieGenre}">
       <option value="${cl.genre}">${cl.genre}</option>
    </c:forEach>
 </select>
-<select id="category-menu" class="hidden-xs hidden-sm country-category2 all-category2" name="keyword2">
+<select id="category-menu" class="hidden-xs country-category2 all-category2" name="keyword2">
         <option value="">모든 국가</option>
     <c:forEach var="gl" items="${movieInfo}">
       <option value="${gl.country}">${gl.country}</option>
    </c:forEach>
 </select>
-<select id="category-menu" class="hidden-xs hidden-sm category-right order-category2 all-category2" name="keyword"> 
+<select id="category-menu" class="hidden-xs category-right order-category2 all-category2" name="keyword"> 
   <option value="" selected>최신 순</option>
   <option value="">추천 순</option>
   <option value="rate">별점 순</option>
@@ -67,7 +64,7 @@
 
 <div class="row">
    <div id="slist"></div>
-   <div class="movieListButton">
-   	<input type="button" class="form-control" value="목록 더보기">
-   </div>
+   <div class="movieListButton" style="display:none;">
+		<input class="form-control" type="button" value="영화 더보기">
+	</div>
 </div>

@@ -16,7 +16,7 @@ public interface MovieMapper {
 		+ "#{country}, #{released}, #{director}, #{actors}, #{summary}, #{poster_img}, #{banner_img}, #{main_genre}, #{sub_genre}, #{trailer}, SYSDATE)")
 	public void insertMovie(MovieCommand movie);
 	//영화 상세정보
-	@Select("SELECT * FROM movie_info WHERE movie_num=#{movie_num}")
+	@Select("SELECT * FROM movie_info i JOIN (SELECT movie_num, ROUND(AVG(rate),1) rate FROM movie_rated GROUP BY movie_num)r ON i.movie_num=r.movie_num WHERE i.movie_num=#{movie_num}")
 	public MovieCommand selectMovie(Integer movie_num);
 	//영화 수정
 	@Update("UPDATE movie_info SET title=#{title}, country=#{country}, released=#{released}, director=#{director}, actors=#{actors}, summary=#{summary}, poster_img=#{poster_img}, banner_img=#{banner_img}, main_genre=#{main_genre}, sub_genre=#{sub_genre}, trailer=#{trailer} WHERE movie_num=#{movie_num}")
