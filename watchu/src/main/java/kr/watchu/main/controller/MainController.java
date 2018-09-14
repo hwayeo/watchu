@@ -12,7 +12,6 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,6 +62,7 @@ public class MainController {
 		int ranBanner = recommendService.selectRandomBanner();
 		//전체 평가 갯수
 		int totalRated = recommendService.selectTotalRated();
+		session.setAttribute("totalRated", totalRated);
 		//전체 평가 갯수
 		
 		String id = (String)session.getAttribute("user_id");
