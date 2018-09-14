@@ -4,7 +4,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/movie-detail.css">	
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/watchu-view.css">	
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.bxslider.min.css">	
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/starRated.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/modal-comment.js"></script>
@@ -42,31 +41,35 @@
 					<p style="font-size:18px;">평점★  ${movie.rate }</p>
 				<hr width="65%" align="left">
 			<div class="starRating" data-num="${movie.movie_num}">
-			<input type="hidden" id="user_id" value="${user_id}">
-				<fieldset class="rating">
-					<input type="radio" id="star5" name="rating" value="5">
-					<label class="full" for="star5"></label>
-					<input type="radio" id="star4half" name="rating" value="4.5">
-					<label class="half" for="star4half"></label>
-					<input type="radio" id="star4" name="rating" value="4">
-					<label class="full" for="star4"></label>
-					<input type="radio" id="star3half" name="rating" value="3.5">
-					<label class="half" for="star3half"></label>
-					<input type="radio" id="star3" name="rating" value="3">
-					<label class="full" for="star3"></label>
-					<input type="radio" id="star2half" name="rating" value="2.5">
-					<label class="half" for="star2half"></label>
-					<input type="radio" id="star2" name="rating" value="2">
-					<label class="full" for="star2"></label>
-					<input type="radio" id="star1half" name="rating" value="1.5">
-					<label class="half"for="star1half"></label>
-					<input type="radio" id="star1" name="rating" value="1">
-					<label class="full" for="star1"></label>
-					<input type="radio" id="half" name="rating" value="0.5">
-					<label class="half"for="half"></label>
-				</fieldset>
+				<input type="hidden" id="user_id" value="${user_id}">	
+					<fieldset class="rating">
+						<input type="radio" id="star5" name="rating" value="5">
+						<label class="full" for="star5"></label>
+						<input type="radio" id="star4half" name="rating" value="4.5">
+						<label class="half" for="star4half"></label>
+						<input type="radio" id="star4" name="rating" value="4">
+						<label class="full" for="star4"></label>
+						<input type="radio" id="star3half" name="rating" value="3.5">
+						<label class="half" for="star3half"></label>
+						<input type="radio" id="star3" name="rating" value="3">
+						<label class="full" for="star3"></label>
+						<input type="radio" id="star2half" name="rating" value="2.5">
+						<label class="half" for="star2half"></label>
+						<input type="radio" id="star2" name="rating" value="2">
+						<label class="full" for="star2"></label>
+						<input type="radio" id="star1half" name="rating" value="1.5">
+						<label class="half"for="star1half"></label>
+						<input type="radio" id="star1" name="rating" value="1">
+						<label class="full" for="star1"></label>
+						<input type="radio" id="half" name="rating" value="0.5">
+						<label class="half"for="half"></label>
+					</fieldset>
 			</div>
-
+			
+			<!-- modal 이동 -->
+			<a href="#" class="moving" data-toggle="modal" data-target="#myModal2">
+				<span class="glyphicon glyphicon-share-alt"></span>
+			</a>
 		</div>
 	</div>
 		<!-- 영화 기본정보 pc화면 끝 -->
@@ -326,6 +329,44 @@
 		</div>
 	</div>
 </div>
+
+	<!-- 톱니바퀴 누르면 나오는 모달 -->
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content" style="margin-top:300px;">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">SNS에 공유하기</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row text-center" id="contRow">
+								<!-- 시작 -->
+									<div style="margin:20px;">
+										<h3>친구들에게도 추천하기!</h3>
+									</div>
+									
+									<div>
+										<a href="#" onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" alt="Share on Facebook" >
+											<img src="${pageContext.request.contextPath}/resources/images/facebook.png" id="facebook">
+										</a>
+										
+					                	<a href="#" onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" alt="Share on Twitter" >
+					                		<img src="${pageContext.request.contextPath}/resources/images/twitter.png" id="twitter">
+					                	</a>
+					                	<a href="#" onclick="javascript:window.open('http://share.naver.com/web/shareView.nhn?url=' +encodeURIComponent(document.URL)+'&title='+encodeURIComponent(document.title), 'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" alt="Share on Naver" >
+					                		<img src="${pageContext.request.contextPath}/resources/images/naver.png" id="naver">
+					                	</a>
+					                </div>
+					            <!-- 끝 -->
+	    				</div>
+					</div>
+					<div class="modal-footer text-center"></div>
+				</div>
+			</div>
+	</div>
+
 				<!-- pc상세정보 끝 -->
 				
 				<!-- 모바일 상세정보 시작-->
@@ -334,6 +375,15 @@
 				<div class="col-sm-12 col-md-12 col-xs-12 hidden-md hidden-lg hidden-sm" id="box2">
 				
 				<c:if test="${!empty user_id}">
+				
+				<!-- modal 이동 -->
+				<div class="mobileSns">
+					<span class="modalText">공유하기</span>
+					<a href="#" class="moving" data-toggle="modal" data-target="#mymobileModal2">
+						<span class="glyphicon glyphicon-share-alt"></span>	
+					</a>
+				</div>
+				
 				<div>
 					<h4><b>내 예상 별점</b></h4>
 				<br>
@@ -594,6 +644,43 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	
+	<!-- 모바일 sns 공유 모달 -->
+	<div class="modal fade" id="mymobileModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content" style="margin-top:300px;">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">SNS에 공유하기</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row text-center" id="contRow">
+								<!-- 시작 -->
+									<div style="margin:20px;">
+										<h3>친구들에게도 추천하기!</h3>
+									</div>
+									
+									<div>
+										<a href="#" onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" alt="Share on Facebook" >
+											<img src="${pageContext.request.contextPath}/resources/images/facebook.png" id="facebook">
+										</a>
+										
+					                	<a href="#" onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" alt="Share on Twitter" >
+					                		<img src="${pageContext.request.contextPath}/resources/images/twitter.png" id="twitter">
+					                	</a>
+					                	<a href="#" onclick="javascript:window.open('http://share.naver.com/web/shareView.nhn?url=' +encodeURIComponent(document.URL)+'&title='+encodeURIComponent(document.title), 'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" alt="Share on Naver" >
+					                		<img src="${pageContext.request.contextPath}/resources/images/naver.png" id="naver">
+					                	</a>
+					                </div>
+					            <!-- 끝 -->
+	    				</div>
+					</div>
+					<div class="modal-footer text-center"></div>
+				</div>
+			</div>
 	</div>
 
 

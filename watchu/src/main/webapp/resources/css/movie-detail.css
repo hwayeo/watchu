@@ -1,369 +1,446 @@
-#poster{
-	width:100%;
-	height:38%;
-	background:black;
-}
-
-#poster2{
-	text-align:left;
-}
- 
-#poster3{
-	text-align:right;
-	margin-left:-200px;
-}
- 
-#image{
-	width:45%;
-	height:100%;
-}
-
-#image2{
-	width: 160px;
-    height: 235px;
-    margin-top: 15px;
-}
-
-#image3{
-	width:150px;
-	height:200px;
-	margin-top:13px;
-	margin-bottom:20px;
-	margin-left:10px;
-}
-
-#image4{
-	width:90%;
-	height:35%;
-	margin-top:13px;
-	margin-bottom:20px;
-	margin-left:4px;
-}
-
-
-
-#middle{
-	background:#F8F8F8;
-	width:100%;
-	text-align:center;
-	margin-top:20px;
-}
+@media screen and (min-width:768px) and (max-width:1920px){
+	.preview{
+		font-size: 8.0em; /*em쓰면 화면비율에 맞춰서 폰트크기 조절*/
+	    text-align: center;
+	    padding-top: 130px
+	}
 	
-.comment{
-	background: white;
-    border: 1px #ccc solid;
-    border-radius: 10px;
-    width: 700px;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding-top: 18px;
-    padding-left: 5px;
-    overflow:auto;
-    font-size: 15px;
-    text-align:center;
-    padding-bottom: 10px;
-}
-
-.comment2{
-	width:290px;
-	height:300px;
-}
-
-#box{
-	background: white;
-    border: 1px #ccc solid;
-    border-radius: 10px;
-    width: 700px;
-    min-height: 1000px;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding-top: 20px;
-    padding-left: 20px;
-    text-align:left;
-}
-#box2{
-	background:white;
-	width:100%;
-	height:100%;
-	text-align:left;
-	margin-top:20px;
-	min-height:1000px;
-	padding-bottom: 70px;
-}
-
-.division1 {
-	background: #f8f8f8;
-    width: 600px;
-    float: left;
-    margin-left: 6px;
-    margin-top: 10px;
-    border-radius: 14px;
-    
+	#poster{
+		width:100%;
+		height:38%;
+		background:black;
+	}
+	
+	#poster2{
+		text-align:left;
+	}
+	 
+	#poster3{
+		text-align:right;
+		margin-left:-200px;
+	}
+	 
+	#image{
+		width:45%;
+		height:100%;
+	}
+	
+	#image2{
+		width: 160px;
+	    height: 235px;
+	    margin-top: 15px;
+	}
+	
+	#image3{
+		width:150px;
+		height:200px;
+		margin-top:13px;
+		margin-bottom:20px;
+		margin-left:10px;
+	}
+	
+	#image4{
+		width:90%;
+		height:35%;
+		margin-top:13px;
+		margin-bottom:20px;
+		margin-left:4px;
+	}
+	
+	
+	
+	#middle{
+		background:#F8F8F8;
+		width:100%;
+		text-align:center;
+		margin-top:20px;
+	}
 		
-}
-
-.division2 {
-		background: #f2f2f2;
-		height: 260px;
-		width: 300px;
+	.comment{
+		background: white;
+	    border: 1px #ccc solid;
+	    border-radius: 10px;
+	    width: 700px;
+	    margin: 0 auto;
+	    margin-top: 20px;
+	    padding-top: 18px;
+	    padding-left: 5px;
+	    overflow:auto;
+	    font-size: 15px;
+	    text-align:center;
+	    padding-bottom: 10px;
+	}
+	
+	.comment2{
+		width:290px;
+		height:300px;
+	}
+	
+	#box{
+		background: white;
+	    border: 1px #ccc solid;
+	    border-radius: 10px;
+	    width: 700px;
+	    min-height: 1000px;
+	    margin: 0 auto;
+	    margin-top: 20px;
+	    padding-top: 20px;
+	    padding-left: 20px;
+	    text-align:left;
+	}
+	#box2{
+		background:white;
+		width:100%;
+		height:100%;
+		text-align:left;
+		margin-top:20px;
+		min-height:1000px;
+		padding-bottom: 70px;
+	}
+	
+	.division1 {
+		background: #f8f8f8;
+	    width: 600px;
+	    float: left;
+	    margin-left: 6px;
+	    margin-top: 10px;
+	    border-radius: 14px;
+	    
+			
+	}
+	
+	.division2 {
+			background: #f2f2f2;
+			height: 260px;
+			width: 300px;
+			float: right;
+			margin-right:30px;
+			margin-top:10px;
+			border-radius: 10px;
+	}
+	
+	.division3{
+		height: 240px;
+		margin-top : 20px;
+		padding:10px;
+	}
+	
+	#comment-box{
+		overflow: hidden;
+	    height: 100%;
+	    margin-left: -18.5px;
+	    width: 101.9%;
+	    margin-top: 20px;
+	    margin-bottom: -40px;
+	}
+	#modal-commentbox{
+		overflow: hidden;
+	}
+	
+	.comment-division{
+		background: #f8f8f8;
+	    width: 100%;
+	    float: left;
+	    margin-top: 20px;
+	}
+	
+	.thumbnail{
+		width:150px; 
+		height:180px;
+		margin:auto;
+	}
+	
+	.othermovie{
+		margin-left: -26px;
+	    padding: 25px;
+	    width: 100%;
+	    margin-top: -20px;
+	}
+	
+	#text{
+		width: 100%;
+	    border: 0;
+	    outline: none;
+	    margin: 1px 0;
+	    resize: none;
+	    overflow: auto;
+	}
+	
+	.commentContent{
+		float:left;
+	}
+	
+	.commentBtn0{
+		float:right;
+		margin-right:10px;
+	}
+	
+	hr.one{
+		color:red;
+	}
+	
+	.inner-box1{
+		margin-left:10px;
+		padding-top: 10px;
+	}
+	
+	.inner-box2{
+		display: inline-block;
+		padding-left: 10px;
+	    font-size: 18px;
+	    font-weight: 400;
+	    line-height: 24px;
+	    margin-left:10px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    word-break: break-all;
+	    white-space: pre-line;
+	    display: -webkit-box;
+	    -webkit-line-clamp: 3;
+	    -webkit-box-orient: vertical; 
+	}
+	
+	.inner-box3{
+		margin-left: 50px;
+		font-weight: bold;
+	    font-size: 20px;
+	}
+	
+	.inner-box4{
+		margin-left:10px;
+		padding-bottom: 20px;
+	}	
+	
+	.poster-name{
+		color: #000;
+	    font-size: 14px;
+	    font-weight: 400;
+	    letter-spacing: -0.2px;
+	    line-height: 20px;
+	    white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    text-align:center;
+	    margin-top: -15px;
+	    margin-left: 10px;
+	}
+	
+	.more{
+		background: white;
+	    border: 1px #ccc solid;
+	    border-radius: 10px;
+	    width: 600px;
+	    height: 50px;
+	    margin-top: 20px;
+	    margin-bottom: 20px;
+	    margin-left: 30px;
+	    padding-left: 5px; 
+	    text-align: center;
+	    padding-top: 15px;
+	    font-size: 15px;
+	}
+	
+	.summary{
+	  	margin-right: 15px;
+	    text-align: left;
+	    font-size: 15px;
+	    margin-top: -10px;
+	    line-height: 28px;
+	    width: 650px;
+	    height: 140px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    word-break: break-all;
+	    white-space: pre-line;
+	    display: -webkit-box;
+	    -webkit-line-clamp: 5;
+	    -webkit-box-orient: vertical;
+	}
+	
+	.mobile-summary{
+		margin-right: 15px;
+	    text-align: left;
+	    font-size: 15px;
+	    margin-top: -10px;
+	    line-height: 28px;
+	    width: 100%;
+	    height: 140px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    word-break: break-all;
+	    white-space: pre-line;
+	    display: -webkit-box;
+	    -webkit-line-clamp: 5;
+	    -webkit-box-orient: vertical; 
+	}
+	
+	.basic-information{
+		float: left;
+	    margin-bottom: 10px;
+	}
+	
+	.more-view{
 		float: right;
-		margin-right:30px;
-		margin-top:10px;
-		border-radius: 10px;
-}
-
-.division3{
-	height: 240px;
-	margin-top : 20px;
-	padding:10px;
-}
-
-#comment-box{
-	overflow: hidden;
-    height: 100%;
-    margin-left: -18.5px;
-    width: 101.9%;
-    margin-top: 20px;
-    margin-bottom: -40px;
-}
-#modal-commentbox{
-	overflow: hidden;
-}
-
-.comment-division{
-	background: #f8f8f8;
-    width: 100%;
-    float: left;
-    margin-top: 20px;
-}
-
-.thumbnail{
-	width:150px; 
-	height:180px;
-	margin:auto;
-}
-
-.othermovie{
-	margin-left: -26px;
-    padding: 25px;
-    width: 100%;
-    margin-top: -20px;
-}
-
-#text{
-	width: 100%;
-    border: 0;
-    outline: none;
-    margin: 1px 0;
-    resize: none;
-    overflow: auto;
-}
-
-.commentContent{
-	float:left;
-}
-
-.commentBtn0{
-	float:right;
-	margin-right:10px;
-}
-
-hr.one{
-	color:red;
-}
-
-.inner-box1{
-	margin-left:10px;
-	padding-top: 10px;
-}
-
-.inner-box2{
-	display: inline-block;
-	padding-left: 10px;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24px;
-    margin-left:10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-break: break-all;
-    white-space: pre-line;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical; 
-}
-
-.inner-box3{
-	margin-left: 50px;
-	font-weight: bold;
-    font-size: 20px;
-}
-
-.inner-box4{
-	margin-left:10px;
-	padding-bottom: 20px;
-}	
-
-.poster-name{
-	color: #000;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: -0.2px;
-    line-height: 20px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align:center;
-    margin-top: -15px;
-    margin-left: 10px;
-}
-
-.more{
-	background: white;
-    border: 1px #ccc solid;
-    border-radius: 10px;
-    width: 600px;
-    height: 50px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 30px;
-    padding-left: 5px; 
-    text-align: center;
-    padding-top: 15px;
-    font-size: 15px;
-}
-
-.summary{
-  	margin-right: 15px;
-    text-align: left;
-    font-size: 15px;
-    margin-top: -10px;
-    line-height: 28px;
-    width: 650px;
-    height: 140px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-break: break-all;
-    white-space: pre-line;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-}
-
-.mobile-summary{
-	margin-right: 15px;
-    text-align: left;
-    font-size: 15px;
-    margin-top: -10px;
-    line-height: 28px;
-    width: 100%;
-    height: 140px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-break: break-all;
-    white-space: pre-line;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical; 
-}
-
-.basic-information{
-	float: left;
-    margin-bottom: 10px;
-}
-
-.more-view{
-	float: right;
-    margin-right: 40px;
-    font-size: 15px;
-    margin-top: 10px;
-}
-
-.more-t{
-	float: left;
-    font-size: 20px;
-    color: #aaaaaa;
-    margin-right: 20px;
-}
-
-.more-t2{
-    font-size: 20px;
-    font-weight: bold;
-    width: 100%;
-   
-}
-
-.more-summary1{
-	font-size: 20px;
-    color: #aaaaaa;
-    margin-bottom: 10px;
-}
-
-.more-summary2{
-	font-size: 15px;
-	font-weight: bold;
-	white-space: pre-line;
-	line-height: 2
-}
-.comment-title{
-	float: left;
-    margin-right: 10px
-}
-
-.mobile-division1{
-	background: #f8f8f8;
-    width: 600px;
-    float: left;
-    margin-left: 20px;
-    margin-top: px;
-    padding-right: 30px;
-    border-radius: 14px;
-}
-
-/*배우 정보*/
-.actor_name{
-	font-size: 17px;
-    font-weight: bolder;
-}
-.actor_box{
-	width:0.7% !important;
-	margin-left:40px;
-} 
-#slide_acotrs{
-	width:100%;
-	height:100%;
-}
-.bx-wrapper{
-	max-width:100%;
-	margin-bottom:10px;
-}
-.glyphicon-play-circle:before {
-    content: "\e029";
-   
-}
-
-@media screen and (min-width:768px){
-.preview{
-	font-size: 8.0em; /*em쓰면 화면비율에 맞춰서 폰트크기 조절*/
-    text-align: center;
-    padding-top: 130px
+	    margin-right: 40px;
+	    font-size: 15px;
+	    margin-top: 10px;
+	}
+	
+	.more-t{
+		float: left;
+	    font-size: 20px;
+	    color: #aaaaaa;
+	    margin-right: 20px;
+	}
+	
+	.more-t2{
+	    font-size: 20px;
+	    font-weight: bold;
+	    width: 100%;
+	   
+	}
+	
+	.more-summary1{
+		font-size: 20px;
+	    color: #aaaaaa;
+	    margin-bottom: 10px;
+	}
+	
+	.more-summary2{
+		font-size: 15px;
+		font-weight: bold;
+		white-space: pre-line;
+		line-height: 2
+	}
+	.comment-title{
+		float: left;
+	    margin-right: 10px
+	}
+	
+	.mobile-division1{
+		background: #f8f8f8;
+	    width: 600px;
+	    float: left;
+	    margin-left: 20px;
+	    margin-top: px;
+	    padding-right: 30px;
+	    border-radius: 14px;
+	}
+	
+	/*배우 정보*/
+	.actor_name{
+		font-size: 17px;
+	    font-weight: bolder;
+	}
+	.actor_box{
+		width:0.7% !important;
+		margin-left:40px;
+	} 
+	#slide_acotrs{
+		width:100%;
+		height:100%;
+	}
+	.bx-wrapper{
+		max-width:100%;
+		margin-bottom:10px;
+	}
+	.glyphicon-play-circle:before {
+	    content: "\e029";
+	   
+	}
+	
+	.moving{
+		font-size:28px;
+		color:#999;
+		margin-left:265px;
+	}
+	.glyphicon{
+		margin-top:20px;
 	}
 }
+
 @media screen and (min-width:425px) and (max-width:767px){
-.preview{
-	font-size: 7.0em;
-    text-align: center;
-    padding-top: 90px;
-		}	
+	.modal-content{
+		margin-top: 300px;
+		margin-left:22px;
+    	width: 400px;
+	}
+	
+	.mobileSns{
+		margin:0 auto;
+		text-align:center;
+	}
+	
+	.modalText{
+		font-size:16px;
+	}
+	
+	.moving{
+		display:inline-block;
+		font-size:20px;
+		color:#999;
+		margin-left:5px;
+	}
+	
+	.glyphicon{
+		margin-top: 0px;
 	}	
-@media screen and (min-width:0px) and (max-width:424px){
-.preview{
-	font-size: 5em;
-    text-align: center;
-    padding-top: 75px;
-    }		
-}	
+	
+	.preview{
+		font-size: 7.0em;
+	    text-align: center;
+	    padding-top: 90px;
+	}
+	
+	#middle{
+		margin-top:10px;
+	}
+	
+	#box2{
+		margin-top:0;
+	}	
 }
+
+@media screen and (min-width:0px) and (max-width:424px){
+	.preview{
+		font-size: 5em;
+	    text-align: center;
+	    padding-top: 75px;
+	}		
+	
+	.modal-content{
+		margin-left:10px;
+    	width: 350px;
+	}
+	
+	.mobileSns{
+		margin:0 auto;
+		text-align:center;
+	}
+	
+	.modalText{
+		font-size:16px;
+	}
+	
+	.moving{
+		display:inline-block;
+		font-size:20px;
+		color:#999;
+		margin-left:5px;
+	}
+	
+	.glyphicon{
+		margin-top: 0px;
+	}	
+	
+	#middle{
+		margin-top:10px;
+	}
+	
+	#box2{
+		margin-top:10px;
+	}	
+}	
