@@ -24,14 +24,14 @@
 	</c:if>
 	<div class="row custom-row">
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-			<h4>일일 박스 오피스</h4>		
+			<h4><b>일일 박스 오피스</b></h4>		
 			<div class="items-box">
 				<div id="boxOffice-output">
 				</div>
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-			<h4>오늘은 이거다!</h4>
+			<h4><b>오늘은 이거다!</b></h4>
 			<div class="items-box" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${randomMovie.movie_num}'" style="cursor:pointer;">
 				<div class="img-box" id="rec-random-banner">
 					<input type="hidden" value="${randomMovie.movie_num}" id="ranMovie">
@@ -43,7 +43,7 @@
 					</c:if>
 				</div>
 				<div class="text-box">	
-					<p class="movie-title" ><a href="#" class="movie-link">${randomMovie.title}</a>&nbsp;<p>
+					<p class="movie-title" >${randomMovie.title}<p>
 					<p class="sub-title" style="float:left;">${randomMovie.main_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${randomMovie.released}" pattern="YYYY"/></p>
 					<div class="text-right" style="margin-bottom:10px;">
 						<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${randomMovie.rate}</span></span></span>
@@ -54,13 +54,84 @@
 	</div>
 	<div class="row custom-row">
 		<c:if test="${empty user_id}">
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-					<h4>이런 작품은 어때요?</h4>		
-					<div class="items-box-col3">
-						<img src="${pageContext.request.contextPath}/resources/images/main-banner-test.jpg" class="img-responsive main-img-col3">
+		<c:if test="${!empty ranGenreMovie}">
+			<c:forEach var="list" items="${ranGenreMovie}" varStatus="status">
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+					<c:if test="${status.first}">
+						<h4><b>${ranGenre} 영화는 어떠세요?</b></h4>		
+					</c:if>
+					<c:if test="${!status.first}">
+						<h4 class="hidden-xs"><b>&nbsp;</b></h4>		
+					</c:if>
+					<div class="items-box-col3" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${list.movie_num}'" style="cursor:pointer;">
+					<c:if test="${empty list.banner_img}">
+						<img src="${pageContext.request.contextPath}/resources/images/default-banner.jpg" class="img-responsive main-img-col3">
+					</c:if>
+					<c:if test="${!empty list.banner_img}">
+						<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${list.movie_num}&type=banner" class="img-responsive main-img-col3">
+					</c:if>
 						<div class="text-box-col3">	
-							<p class="movie-title"><a href="#" class="movie-link">영화제목</a><p>
-							<p class="sub-title">슈퍼히어로 2018</p>
+							<p class="movie-title" style="font-size:1.1em;">${list.title}<p>
+							<p class="sub-title">${list.main_genre}&nbsp;&middot;&nbsp;${list.sub_genre}&nbsp;&middot;&nbsp;2018&nbsp;&nbsp;
+								<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${list.rate}</span></span></span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</c:if>
+		</c:if>
+	</div>
+	<div class="row custom-row">
+		<c:if test="${empty user_id}">
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+					<h4><b>${ranActor1}의 영화는 어때요?</b></h4>		
+					<div class="items-box-col3" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${ranActorMovie.movie_num}'" style="cursor:pointer;">
+					<c:if test="${empty ranActorMovie.banner_img}">
+						<img src="${pageContext.request.contextPath}/resources/images/default-banner.jpg" class="img-responsive main-img-col3">
+					</c:if>
+					<c:if test="${!empty ranActorMovie.banner_img}">
+						<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${ranActorMovie.movie_num}&type=banner" class="img-responsive main-img-col3">
+					</c:if>
+						<div class="text-box-col3">	
+							<p class="movie-title" style="font-size:1.1em;">${ranActorMovie.title}<p>
+							<p class="sub-title">${ranActorMovie.main_genre}&nbsp;&middot;&nbsp;${ranActorMovie.sub_genre}&nbsp;&middot;&nbsp;2018&nbsp;&nbsp;
+								<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${ranActorMovie.rate}</span></span></span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+					<h4><b>${ranActor2}도 괜찮나요?</b></h4>		
+					<div class="items-box-col3" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${ranActorMovie2.movie_num}'" style="cursor:pointer;">
+					<c:if test="${empty ranActorMovie2.banner_img}">
+						<img src="${pageContext.request.contextPath}/resources/images/default-banner.jpg" class="img-responsive main-img-col3">
+					</c:if>
+					<c:if test="${!empty ranActorMovie2.banner_img}">
+						<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${ranActorMovie2.movie_num}&type=banner" class="img-responsive main-img-col3">
+					</c:if>
+						<div class="text-box-col3">	
+							<p class="movie-title" style="font-size:1.1em;">${ranActorMovie2.title}<p>
+							<p class="sub-title">${ranActorMovie2.main_genre}&nbsp;&middot;&nbsp;${ranActorMovie2.sub_genre}&nbsp;&middot;&nbsp;2018&nbsp;&nbsp;
+								<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${ranActorMovie2.rate}</span></span></span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+					<h4><b>${ranActor3}도 놓칠 수 없죠!</b></h4>		
+					<div class="items-box-col3" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${ranActorMovie3.movie_num}'" style="cursor:pointer;">
+					<c:if test="${empty ranActorMovie3.banner_img}">
+						<img src="${pageContext.request.contextPath}/resources/images/default-banner.jpg" class="img-responsive main-img-col3">
+					</c:if>
+					<c:if test="${!empty ranActorMovie3.banner_img}">
+						<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${ranActorMovie3.movie_num}&type=banner" class="img-responsive main-img-col3">
+					</c:if>
+						<div class="text-box-col3">	
+							<p class="movie-title" style="font-size:1.1em;">${ranActorMovie3.title}<p>
+							<p class="sub-title">${ranActorMovie3.main_genre}&nbsp;&middot;&nbsp;${ranActorMovie3.sub_genre}&nbsp;&middot;&nbsp;2018&nbsp;&nbsp;
+								<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${ranActorMovie3.rate}</span></span></span>
+							</p>
 						</div>
 					</div>
 				</div>

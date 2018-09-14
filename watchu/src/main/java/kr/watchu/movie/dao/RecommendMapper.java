@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Select;
 
 import kr.watchu.movie.domain.MovieCommand;
+import kr.watchu.movie.domain.OfficialsCommand;
 
 public interface RecommendMapper {
 	//메인페이지에 총 평가 갯수
@@ -36,4 +37,22 @@ public interface RecommendMapper {
 	public String selectFavoriteGenre(Map<String,Object> map);
 	//사용자의 특정 장르에 대한 예상 별점
 	public float selectPredictionByGenre(Map<String,Object> map);
+	
+	//전체 장르 무작위 반환
+	@Select("SELECT genre FROM (SELECT a.*, rownum FROM (SELECT * FROM movie_genre ORDER BY DBMS_RANDOM.VALUE)a WHERE rownum=1)")
+	public String selectRanGenre();
+	
+	//무작위로 선택된 장르에서 무작위로 영화 선택
+	public List<MovieCommand> selectRanGenreMovieList(Map<String,Object> map);
+	
+	//전체 영화인(배우,감독)중 어느정도 평가가 진행된 사람 1명의 데이터를 반환
+	@Select("SELECT * FROM (SELECT o.name FROM officials o JOIN (SELECT name, ROUND(AVG(rate),1) rate,COUNT(rate) cnt FROM analysis_officials GROUP BY name)a ON o.name=a.name WHERE o.jobs=#{jobs} AND a.rate>=#{rate} ORDER BY DBMS_RANDOM.VALUE) WHERE rownum <=1")
+	public String selectRanOff(Map<String,Object> map);
+	//
+	public MovieCommand selectRanOffMovie(String name);
+	public List<MovieCommand> selectRanOffMovieList(Map<String,Object> map);
+	
+	
+	
+	
 }	

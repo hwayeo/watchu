@@ -55,7 +55,7 @@ public class MainController {
 	@RequestMapping("/main/main.do")
 	public ModelAndView process(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
+		mav.setViewName("main");
 		//랜덤 영화 추천
 		MovieCommand randomMovie = recommendService.selectRandomMovie();
 		//무작위 배너
@@ -66,10 +66,14 @@ public class MainController {
 		//전체 평가 갯수
 		
 		String id = (String)session.getAttribute("user_id");
+		
 		if(log.isDebugEnabled()) {
 			log.debug("<<User_id>> : " + id);
 		}
-		
+		List<MovieCommand> ranGenreMovie= null;
+		MovieCommand ranActorMovie= null;
+		MovieCommand ranActorMovie2= null;
+		MovieCommand ranActorMovie3= null;
 		//로그인 상태일때
 		if(id!=null) {
 			Map<String,Object> map = new HashMap<String,Object>();
@@ -82,13 +86,75 @@ public class MainController {
 			if(log.isDebugEnabled()) {
 				log.debug("[[-----prediction------]] : " + prediction);
 			}
-		}else {
+		}else  {
+			if(log.isDebugEnabled()) {
+				log.debug("[[-----비로그인------]] : ");
+			}
 			//로그인이 아닐떄
+			Map<String,Object> map = new HashMap<String,Object>();
+			String ranGenre = recommendService.selectRanGenre();
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<ranGenre>>>> : " + ranGenre);
+			}
+			map.put("genre", ranGenre);
+			map.put("count", 3);
+			ranGenreMovie = recommendService.selectRanGenreMovieList(map);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<ranGenreMovie>>>> : " + ranGenreMovie);
+			}
+			mav.addObject("ranGenre",ranGenre);
+			
+			Map<String,Object> map2 = new HashMap<String,Object>();
+			map2.put("jobs", "ACTOR");
+			map2.put("rate", 3.0);
+			String actor = recommendService.selectRanOff(map2);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<actor1>>>> : " + actor);
+			}
+			mav.addObject("ranActor1",actor);
+			
+			ranActorMovie = recommendService.selectRanOffMovie(actor);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<ranActorMovie1>>>> : " + ranActorMovie);
+			}
+			
+			Map<String,Object> map3 = new HashMap<String,Object>();
+			map3.put("jobs", "ACTOR");
+			map3.put("rate", 3.0);
+			String actor2 = recommendService.selectRanOff(map3);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<actor>>>> : " + actor2);
+			}
+			mav.addObject("ranActor2",actor2);
+			
+			ranActorMovie2 = recommendService.selectRanOffMovie(actor2);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<ranActorMovie2>>>> : " + ranActorMovie2);
+			}
+			
+			Map<String,Object> map4 = new HashMap<String,Object>();
+			map4.put("jobs", "ACTOR");
+			map4.put("rate", 2.0);
+			String actor3 = recommendService.selectRanOff(map4);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<actor3>>>> : " + actor3);
+			}
+			mav.addObject("ranActor3",actor3);
+			
+			ranActorMovie3 = recommendService.selectRanOffMovie(actor3);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<ranActorMovie3>>>> : " + ranActorMovie3);
+			}
+			
 		}
-		mav.setViewName("main");
+		mav.addObject("ranGenreMovie",ranGenreMovie);
+		mav.addObject("ranActorMovie",ranActorMovie);
+		mav.addObject("ranActorMovie2",ranActorMovie3);
+		mav.addObject("ranActorMovie2",ranActorMovie3);
 		mav.addObject("totalRated",totalRated);
 		mav.addObject("randomMovie",randomMovie);
 		mav.addObject("ranBanner",ranBanner);
+		
 		return mav;
 	}
 
