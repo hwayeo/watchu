@@ -14,8 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.watchu.movie.domain.GenreCommand;
 import kr.watchu.movie.domain.MovieCommand;
+import kr.watchu.movie.domain.OfficialsCommand;
 import kr.watchu.movie.service.GenreService;
 import kr.watchu.movie.service.MovieService;
+import kr.watchu.movie.service.OfficialsService;
 import kr.watchu.util.PagingUtil;
 import kr.watchu.util.StringUtil;
 
@@ -27,7 +29,10 @@ public class MovieController {
 
 	@Resource
 	private GenreService genreService;  
-
+	
+	@Resource
+	private OfficialsService officialsSevice;
+	
 	@RequestMapping("/movie/movieHome.do")
 	public String movieHome() {
 		return "movieHome";
@@ -136,6 +141,18 @@ public class MovieController {
 			mav.addObject("imageFile", movie.getPoster_img());
 		}
 
+		return mav;
+	}
+	@RequestMapping("/movie/actorView.do")
+	public ModelAndView viewImage3(@RequestParam("off_num") Integer off_num) {
+		OfficialsCommand officials = officialsSevice.detailOfficials(off_num);
+		if(log.isDebugEnabled()) {
+			log.debug("[[off_num]] : " + off_num);
+		}
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("imageView");
+			mav.addObject("filename","actor.jpg");
+			mav.addObject("imageFile",officials.getOff_photo());
 		return mav;
 	}
 }

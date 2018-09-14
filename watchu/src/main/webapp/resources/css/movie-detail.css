@@ -120,7 +120,7 @@
 
 #comment-box{
 	overflow: hidden;
-    height: 320px;
+    height: 100%;
     margin-left: -18.5px;
     width: 101.9%;
     margin-top: 20px;
@@ -195,9 +195,9 @@ hr.one{
 }
 
 .inner-box3{
-	margin-left: 10px;
+	margin-left: 50px;
 	font-weight: bold;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .inner-box4{
@@ -329,7 +329,20 @@ hr.one{
     font-weight: bolder;
 }
 .actor_box{
-	width:1.2% !important;
+	width:0.7% !important;
+	margin-left:40px;
+} 
+#slide_acotrs{
+	width:100%;
+	height:100%;
+}
+.bx-wrapper{
+	max-width:100%;
+	margin-bottom:10px;
+}
+.glyphicon-play-circle:before {
+    content: "\e029";
+   
 }
 
 @media screen and (min-width:768px){

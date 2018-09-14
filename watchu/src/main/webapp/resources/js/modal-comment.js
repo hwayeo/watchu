@@ -49,7 +49,11 @@ $(document).ready(function(){
 	$(function(){
 		$('.slide_actors').bxSlider({
 			controls:true,
-			pager:false
+			pager:false,
+			infiniteLoop:false,
+			hideControlOnEnd:true,
+			minSlides:2,
+			maxSlides:2
 		});
 	});
 	$(function(){
@@ -86,9 +90,55 @@ $(document).ready(function(){
 	$(function(){
 		$('.preview').find('span').hover(
 		function(){
-			$(this).css('color','#d24b7d')
+			$(this).css('color','#c73f71')
 		},function(){
-			$(this).css('color','#333333')
+			$(this).css('color','rgba(255,255,255,0.15)')
 		});
 	});
+	
+	$(document).on('click','input[name=rating]',function(event){
+		var movie_num = $(this).parents('.starRating').attr('data-num');
+		var rate = $(this).val();
+		var id = $('#user_id').val();
+		if(id==null || id == ""){
+			alert('로그인을 해야 서비스를 이용할 수 있습니다.');
+			
+			return false;
+		}
+		movieRate(movie_num,rate,id);
+	});
+	
+	function movieRate(movie_num,rate,id){
+		console.log(movie_num + " : " + rate+ " : " + id);
+		$.ajax({
+			url:'rating.do',
+			type:'post',
+			data:{movie_num:movie_num,id:id,rate:rate},
+			dataType:'json',
+			timeout:30000,
+			cache:false,
+			success:function(data){
+				if(data.result == 'insert'){
+					alert('입력하신 점수가 성공적으로 저장되었습니다.');
+				}else if(data.result == 'update'){
+					alert('입력하신 정보로 수정되었습니다.');
+				}else if(data.result == 'login'){
+					alert('로그인을 하시지 않으면 서비스를 이용할 수 없습니다.');
+				}else if(data.result == 'failure'){
+					alert('영화 평가가실패하였습니다. 관리자에게 문의하세요');
+				}
+				//radio 별 평가 후 초기화 
+				$('input[name=rating]').prop("checked", false);
+			},
+			error:function(){
+				alert('네트워크 오류');
+			}
+		});
+	}
+	function showBannerImage(){
+	      var movie_num = $('#movie_num2').val();
+	      var url ='url(imageView.do?movie_num='+movie_num+'&type=banner)';
+	      $('#img-banner').css('background-image',url);
+	   };
+    showBannerImage();
 });
