@@ -4,142 +4,177 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="kr.watchu.movie.dao.MovieMapper">
-   <select id="selectMovieList" parameterType="map" resultType="MovieCommand">
-   SELECT * FROM
-   (SELECT a.*,rownum rnum FROM
-   (SELECT * FROM movie_info   
-      ORDER BY released desc)a)
+	<select id="selectMovieList" parameterType="map"
+		resultType="MovieCommand">
+		SELECT * FROM
+		(SELECT a.*,rownum rnum FROM
+		(SELECT * FROM movie_info
+		ORDER BY released desc)a)
    <![CDATA[
       WHERE rnum >= #{start} AND rnum <= #{end}
-   ]]>   
-   </select>   
-   <select id="selectMovieCnt" parameterType="map" resultType="integer">
-      SELECT count(*) FROM movie_info
-   </select>
-   
-   
-   
-   
-      
-   <select id="selectMovieAjaxList" parameterType="Map" resultType="MovieCommand">
-    SELECT * FROM
-   (SELECT a.*,rownum rnum FROM
-   (SELECT * FROM movie_info i left outer join 
-   (SELECT movie_num, avg(rate) rate,count(movie_num) rated_cnt 
-   FROM movie_rated GROUP BY movie_num)r
-   ON i.movie_num = r.movie_num
-      <where>
-         <if test="keyword != '' and keyfield == 'title'">
-            i.title like '%' || #{keyword} || '%'
-         </if>
-         <if test="keyword != '' and keyfield == 'country'">
-            i.country like '%' || #{keyword} || '%'
-         </if>
-         <if test="keyword != '' and keyfield == 'genre'">
-           i.main_genre like '%' || #{keyword} || '%' or
-           i.sub_genre like '%' || #{keyword} || '%'
-         </if>
-         <if test="keyword != '' and keyfield== 'all'">
-            i.title like '%' || #{keyword} || '%' or
-            i.director like '%' || #{keyword} || '%' or
-            i.actors like '%' || #{keyword} || '%'   
-         </if>
-      </where>
-      ORDER BY released desc)a)
+   ]]>
+	</select>
+	<select id="selectMovieCnt" parameterType="map"
+		resultType="integer">
+		SELECT count(*) FROM movie_info
+	</select>
+
+	<select id="selectMovieAjaxList" parameterType="Map"
+		resultType="MovieCommand">
+		SELECT * FROM
+		(SELECT a.*,rownum rnum FROM
+		(SELECT * FROM movie_info i left outer join
+		(SELECT movie_num, avg(rate) rate,count(movie_num) rated_cnt
+		FROM movie_rated GROUP BY movie_num)r
+		ON i.movie_num = r.movie_num
+		<where>
+			<if test="keyword != '' and keyfield == 'title'">
+				i.title like '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 'country'">
+				i.country like '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 'genre'">
+				i.main_genre like '%' || #{keyword} || '%' or
+				i.sub_genre like '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield== 'search'">
+				i.title like '%' || #{keyword} || '%' or
+				i.director like '%' || #{keyword} || '%' or
+				i.actors like '%' || #{keyword} || '%'
+			</if>
+		</where>
+		ORDER BY released desc)a)
    <![CDATA[
       WHERE rnum >= #{start} AND rnum <= #{end}
-   ]]>   
-   </select>
-   <select id="selectMovieAjaxCnt" parameterType="map" resultType="Integer">
-      SELECT count(*) FROM movie_info
-      <where>
-         <if test="keyword != '' and keyfield == 'title'">
-            title like '%' || #{keyword} || '%'
-         </if>
-         <if test="keyword != '' and keyfield == 'country'">
-            country like '%' || #{keyword} || '%'
-         </if>
-         <if test="keyword != '' and keyfield == 'genre'">
-            main_genre like '%' || #{keyword} || '%' or
-            sub_genre like '%' || #{keyword} || '%'
-         </if>
-         <if test="keyword != '' and keyfield== 'all'">
-            title like '%' || #{keyword} || '%' or
-            director like '%' || #{keyword} || '%' or
-            actors like '%' || #{keyword} || '%'   
-         </if>
-      </where>
-   </select>
-   
-   
-   
-   
-   
-   <select id="selectMovieAjaxList2" parameterType="Map" resultType="MovieCommand">
-    SELECT * FROM
-   (SELECT a.*,rownum rnum FROM
-   (SELECT * FROM movie_info i left outer join 
-   (SELECT movie_num, avg(rate) rate,count(movie_num) rated_cnt 
-   FROM movie_rated GROUP BY movie_num)r
-   ON i.movie_num = r.movie_num
-      <where>
-      	 <if test="keyword != '' and keyword2 != '' and keyfield== 'category'" >
-            (i.main_genre like '%' || #{keyword} || '%' or
-            i.sub_genre like '%' || #{keyword} || '%') and
-            i.country like '%' || #{keyword2} || '%'   
-         </if>
-         <if test="keyword != '' and keyfield == 'title'">
-            i.title like '%' || #{keyword} || '%'
-         </if>
-         <if test="keyword != '' and keyfield == 'country'">
-            i.country like '%' || #{keyword} || '%'
-         </if>
-         <if test="keyword != '' and keyfield == 'genre'">
-           i.main_genre like '%' || #{keyword} || '%' or
-           i.sub_genre like '%' || #{keyword} || '%'
-         </if>
-         <if test="keyword != '' and keyfield== 'all'">
-            i.title like '%' || #{keyword} || '%' or
-            i.director like '%' || #{keyword} || '%' or
-            i.actors like '%' || #{keyword} || '%'   
-         </if>
-      </where>   
-      ORDER BY 
-      <choose>
-         <when test="keyword == 'rate' and keyfield == 'order'">
-            rate asc)a)
-         </when>
-         <otherwise>
-            released desc)a)
-         </otherwise>
-      </choose>
+   ]]>
+	</select>
+	<select id="selectMovieAjaxCnt" parameterType="map"
+		resultType="Integer">
+		SELECT count(*) FROM movie_info
+		<where>
+			<if test="keyword != '' and keyfield == 'title'">
+				title like '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 'country'">
+				country like '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 'genre'">
+				main_genre like '%' || #{keyword} || '%' or
+				sub_genre like '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield== 'search'">
+				title like '%' || #{keyword} || '%' or
+				director like '%' || #{keyword} || '%' or
+				actors like '%' || #{keyword} || '%'
+			</if>
+		</where>
+	</select>
+
+
+
+
+
+	<select id="selectMovieAjaxList2" parameterType="Map"
+		resultType="MovieCommand">
+		SELECT * FROM
+		(SELECT a.*,rownum rnum FROM
+		(SELECT * FROM movie_info i left outer join
+		(SELECT movie_num, avg(rate) rate,count(movie_num) rated_cnt
+		FROM movie_rated GROUP BY movie_num)r
+		ON i.movie_num = r.movie_num
+		<where>
+		<if test="keyword != '' and keyword2 != '' and keyword3 != '' and keyfield == 'allcategory'">
+			(i.main_genre like '%' || #{keyword} || '%' or
+			i.sub_genre like '%' || #{keyword} || '%') and 
+			i.country like '%' || #{keyword2} || '%'
+		</if>
+		<if test="keyword != '' and keyword2 != '' and keyword3 == '' and keyfield == 'genrecountry'">
+			(i.main_genre like '%' || #{keyword} || '%' or
+			i.sub_genre like '%' || #{keyword} || '%') and 
+			i.country like '%' || #{keyword2} || '%'
+		</if>
+		<if test="keyword != '' and keyword2 == '' and keyword3 != '' and keyfield == 'genreorder'">
+			i.main_genre like '%' || #{keyword} || '%' or
+			i.sub_genre like '%' || #{keyword} || '%' 
+		</if>
+		<if test="keyword == '' and keyword2 != '' and keyword3 != '' and keyfield == 'countryorder'">
+			i.country like '%' || #{keyword2} || '%' 
+		</if>
+		<if test="keyword != '' and keyword2 == '' and keyword3 == '' and keyfield == 'genre'">
+			i.main_genre like '%' || #{keyword} || '%' or
+			i.sub_genre like '%' || #{keyword} || '%' 
+		</if>
+		<if test="keyword == '' and keyword2 != '' and keyword3 == '' and keyfield == 'country'">
+			i.country like '%' || #{keyword2} || '%' 
+		</if>
+		<if test="keyword != '' and keyfield == 'title'">
+			i.title like '%' || #{keyword} || '%'
+		</if>
+		<if test="keyword != '' and keyfield== 'search'">
+			i.title like '%' || #{keyword} || '%' or
+			i.director like '%' || #{keyword} || '%' or
+			i.actors like '%' || #{keyword} || '%'
+		</if>
+		</where>
+		ORDER BY
+		<choose>
+			<when test="keyword != '' and keyword2 != '' and keyword3 != '' and keyfield == 'allcategory'">
+				rate desc)a)
+			</when>
+			<when test="keyword != '' and keyword2 == '' and keyword3 != '' and keyfield == 'genreorder'">
+				rate desc)a)
+			</when>
+			<when test="keyword == '' and keyword2 != '' and keyword3 != '' and keyfield == 'countryorder'">
+				rate desc)a)
+			</when>
+			<when test="keyword == '' and keyword2 == '' and keyword3 == 'rate' and keyfield == 'order'">
+				rate desc)a)
+			</when>
+			<otherwise>
+				released desc)a)
+			</otherwise>
+		</choose>
    <![CDATA[
       WHERE rnum >= #{start} AND rnum <= #{end}
-   ]]>   
-   </select>
-   <select id="selectMovieAjaxCnt2" parameterType="map" resultType="Integer">
-      SELECT count(*) FROM movie_info
-      <where>
-      	 <if test="keyword != '' and keyfield== 'category' and keyword2 != ''" >
-            (main_genre like '%' || #{keyword} || '%' or
-            sub_genre like '%' || #{keyword} || '%') and
-            country like '%' || #{keyword2} || '%'   
-         </if>
-         <if test="keyword != '' and keyfield == 'title'">
-            title like '%' || #{keyword} || '%'
-         </if>
-         <if test="keyword != '' and keyfield == 'country'">
-            country like '%' || #{keyword} || '%'
-         </if>
-         <if test="keyword != '' and keyfield == 'genre'">
-            main_genre like '%' || #{keyword} || '%' or
-            sub_genre like '%' || #{keyword} || '%'
-         </if>
-         <if test="keyword != '' and keyfield== 'all'">
-            title like '%' || #{keyword} || '%' or
-            director like '%' || #{keyword} || '%' or
-            actors like '%' || #{keyword} || '%'   
-         </if>
-      </where>
+   ]]>
+	</select>
+	<select id="selectMovieAjaxCnt2" parameterType="map"
+		resultType="Integer">
+		SELECT count(*) FROM movie_info
+	<where>
+	<if test="keyword != '' and keyword2 != '' and keyword3 != '' and keyfield == 'allcategory'">
+		(main_genre like '%' || #{keyword} || '%' or
+		sub_genre like '%' || #{keyword} || '%') and 
+		country like '%' || #{keyword2} || '%'
+	</if>
+	<if test="keyword != '' and keyword2 != '' and keyword3 == '' and keyfield == 'genrecountry'">
+		(main_genre like '%' || #{keyword} || '%' or
+		sub_genre like '%' || #{keyword} || '%') and 
+		country like '%' || #{keyword2} || '%'
+	</if>
+	<if test="keyword != '' and keyword2 == '' and keyword3 != '' and keyfield == 'genreorder'">
+		main_genre like '%' || #{keyword} || '%' or
+		sub_genre like '%' || #{keyword} || '%' 
+	</if>
+	<if test="keyword == '' and keyword2 != '' and keyword3 != '' and keyfield == 'countryorder'">
+		country like '%' || #{keyword2} || '%' 
+	</if>
+	<if test="keyword != '' and keyword2 == '' and keyword3 == '' and keyfield == 'genre'">
+		main_genre like '%' || #{keyword} || '%' or
+		sub_genre like '%' || #{keyword} || '%' 
+	</if>
+	<if test="keyword == '' and keyword2 != '' and keyword3 == '' and keyfield == 'country'">
+		country like '%' || #{keyword2} || '%' 
+	</if>
+	<if test="keyword != '' and keyfield == 'title'">
+		title like '%' || #{keyword} || '%'
+	</if>
+	<if test="keyword != '' and keyfield== 'search'">
+		title like '%' || #{keyword} || '%' or
+		director like '%' || #{keyword} || '%' or
+		actors like '%' || #{keyword} || '%'
+	</if>
+	</where>
    </select>
 </mapper> 

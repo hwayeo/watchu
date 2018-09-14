@@ -12,7 +12,7 @@
 		<form class="navbar-form" role="search" action="movieList.do" method="get" id="movieSearch">
 			<div class="input-group input-group-lg" id="md-search">
 				<!-- submit 이벤트에 keyfield값을 전달하기 위해 hidden값으로 추가했습니다. -->
-				<input type="hidden" name="keyfield" value="all">
+				<input type="hidden" name="keyfield" value="search">
 				<input type="text" name="keyword" id="movie-search-keyword" class="form-control" placeholder="작품 제목,배우,감독 검색">
 				<span class="input-group-btn">
         			<button class="btn btn-default gbutton" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>
@@ -31,7 +31,7 @@
       <form class="navbar-form" role="search" action="movieList.do" method="get" id="movieSearch2">
         <div id="search-field" class="input-group input-group-lg">
         	<!-- submit 이벤트에 keyfield값을 전달하기 위해 hidden값으로 추가했습니다. -->
-        	<input type="hidden" name="keyfield" value="all">
+        	<input type="hidden" name="keyfield" value="search">
       		<input type="text" name="keyword" id="movie-search-keyword2" class="form-control" placeholder="작품 제목,배우,감독 검색">
       		<span class="input-group-btn">
         		<button class="btn btn-default gbutton2" type="button"><span id="search-icon" class="glyphicon glyphicon-search"></span></button>

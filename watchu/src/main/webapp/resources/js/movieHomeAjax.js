@@ -8,14 +8,14 @@ $(document).ready(function(){
 	var type = $('.page-type').val();
 	
 	$('.gbutton').on('click',function(event){
-		keyfield = 'all';
+		keyfield = 'search';
 		keyword = $('#movie-search-keyword').val();		
 		if(type == 'movieHome'){
 			$('#movieSearch').submit(); 
 		}
 	});
 	$('.gbutton2').on('click',function(){
-		keyfield = 'all';
+		keyfield = 'search';
 		keyword = $('#movie-search-keyword2').val();		
 		if(type == 'movieHome'){
 			$('#movieSearch2').submit();

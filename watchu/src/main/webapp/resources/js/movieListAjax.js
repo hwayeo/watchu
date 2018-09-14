@@ -10,153 +10,204 @@ $(document).ready(function(){
 	var subkeyfield = $('#ajx_keyfield').val();
 	var subkeyword = $('#ajx_keyword').val();
 	var type = $('.page-type').val();
-	var width = $(document).width();
 	
 	//버튼 클릭시
 	$('.movieListButton input').click(function(){
 			if(currentPage>=Math.ceil(count/rowCount)){
-			}else if(keyfield == null && keyword == null && keyword2 == null && keyword3 == null){
+			}else if(keyfield == 'allcategory'){
+				console.log('카테고리 3개 전부');
 				pageNum = currentPage + 1;
-				console.log('초기&검색 출력');
-				selectList(pageNum,subkeyword,subkeyfield);
-			}else if(keyword != '' && keyword2 != '' && keyfield != ''){ 
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'genrecountry'){
+				console.log('genrecountry');
 				pageNum = currentPage + 1;
-				console.log('장르,나라 선택');
-				selectCategory(pageNum,keyword,keyword2,keyfield);
-			}else if(keyword != '' && keyfield == 'genre'){
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'genreorder'){
+				console.log('genreorder');
 				pageNum = currentPage + 1;
-				console.log('장르 선택');
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'countryorder'){
+				console.log('countryorder');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'genre'){
+				console.log('genre');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'country'){
+				console.log('country');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'order'){
+				console.log('order');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'title'){
+				console.log('title');
+				pageNum = currentPage + 1;
 				selectList(pageNum,keyword,keyfield);
-			}else if(keyword2 != '' && keyfield == 'country'){
+			}else if(keyfield == 'search'){
+				console.log('search');
 				pageNum = currentPage + 1;
-				console.log('나라 선택');
-				selectList(pageNum,keyword2,keyfield);
-			}else if(keyword3 != '' && keyfield == 'order'){
-				pageNum = currentPage + 1;
-				console.log('정렬 선택');
-				selectList(pageNum,keyword3,keyfield);
+				selectList(pageNum,keyword,keyfield);
 			}else{
+				console.log('Not all');
 				pageNum = currentPage + 1;
-				console.log('카테고리 선택X');
-				selectList(pageNum,keyword,keyfield);
+				selectList(pageNum,subkeyword,subkeyfield);
 			}
 	});
 
 	//스크롤 이벤트 발생시 pageNum값을 증가 시킨다.
-	$(window).scroll(function(){
+	/*$(window).scroll(function(){
 		if($(window).scrollTop() == $(document).height() - $(window).height()){ 
 			if(currentPage>=Math.ceil(count/rowCount)){
-			}else if(keyfield == null && keyword == null && keyword2 == null && keyword3 == null){
+			}else if(keyfield == 'allcategory'){
+				console.log('카테고리 3개 전부');
 				pageNum = currentPage + 1;
-				console.log('초기&검색 출력');
-				selectList(pageNum,subkeyword,subkeyfield);
-			}else if(keyword != '' && keyword2 != '' && keyfield != ''){ 
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'genrecountry'){
+				console.log('genrecountry');
 				pageNum = currentPage + 1;
-				console.log('장르,나라 선택');
-				selectCategory(pageNum,keyword,keyword2,keyfield);
-			}else if(keyword != '' && keyfield == 'genre'){
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'genreorder'){
+				console.log('genreorder');
 				pageNum = currentPage + 1;
-				console.log('장르 선택');
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'countryorder'){
+				console.log('countryorder');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'genre'){
+				console.log('genre');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'country'){
+				console.log('country');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'order'){
+				console.log('order');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'title'){
+				console.log('title');
+				pageNum = currentPage + 1;
 				selectList(pageNum,keyword,keyfield);
-			}else if(keyword2 != '' && keyfield == 'country'){
+			}else if(keyfield == 'search'){
+				console.log('search');
 				pageNum = currentPage + 1;
-				console.log('나라 선택');
-				selectList(pageNum,keyword2,keyfield);
-			}else if(keyword3 != '' && keyfield == 'order'){
-				pageNum = currentPage + 1;
-				console.log('정렬 선택');
-				selectList(pageNum,keyword3,keyfield);
+				selectList(pageNum,keyword,keyfield);
 			}else{
+				console.log('Not all');
 				pageNum = currentPage + 1;
-				console.log('카테고리 선택X');
-				selectList(pageNum,keyword,keyfield);
+				selectList(pageNum,subkeyword,subkeyfield);
 			}
 		}
-	});
+	});*/
 
-	/*---------------movieList 호출---------------------*/
+	/*---------------검색창에서 이벤트 발생시 호출---------------------*/
 	$('.gbutton').on('click',function(event){
-		keyfield = 'all';
+		keyfield = 'search';
 		keyword = $('#movie-search-keyword').val();
 		if(type == 'movieList'){
 			selectList(1,keyword,keyfield);
 		}
 	});
 	$('.gbutton2').on('click',function(){
-		keyfield = 'all';
+		keyfield = 'search';
 		keyword = $('#movie-search-keyword2').val();
 		if(type == 'movieList'){
 			selectList(1,keyword,keyfield);
 		}
 	});
 	$('#movieSearch').on('submit',function(e){
-		keyfield = 'all';
+		keyfield = 'search';
 		keyword = $('#movie-search-keyword').val();
 		selectList(1,keyword,keyfield);
 		e.preventDefault();
 	});
 	$('#movieSearch2').on('submit',function(e){
-		keyfield = 'all';
+		keyfield = 'search';
 		keyword = $('#movie-search-keyword2').val();
 		selectList(1,keyword,keyfield);
 		e.preventDefault();
 	});
+	/*---------------검색창에서 이벤트 발생시 호출---------------------*/
 
-	/*---------------movieList 호출---------------------*/
-
-	/*---------------카테고리 변경 호출---------------------*/
-	/*두개 장르 선택*/
+	/*---------------카테고리 변경시 호출---------------------*/
 	$('.all-category').on('change',function(){
 		keyword = $('.genre-category').find('option:selected').val();
 		keyword2 = $('.country-category').find('option:selected').val();
 		keyword3 = $('.order-category').find('option:selected').val();
+		
+		console.log('--mobilecategory--');
 		console.log('--keyword-- : ' + keyword);
 		console.log('--keyword2-- : ' + keyword2);
 		console.log('--keyword3-- : ' + keyword3);
-
-		if(keyword != '' && keyword2 != ''){
-			keyfield = 'category';
-			selectCategory(1,keyword,keyword2,keyfield);
-		}else if(keyword != ''){
+		
+		if(keyword != '' && keyword2 != '' && keyword3 != ''){
+			keyfield = 'allcategory';
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
+		}else if(keyword != '' && keyword2 != '' && keyword3 == ''){
+			keyfield = 'genrecountry';
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
+		}else if(keyword != '' && keyword2 == '' && keyword3 != ''){
+			keyfield = 'genreorder';
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
+		}else if(keyword == '' && keyword2 != '' && keyword3 != ''){
+			keyfield = 'countryorder';
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
+		}else if(keyword != '' && keyword2 == '' && keyword3 == ''){
 			keyfield = 'genre';
-			selectList(1,keyword,keyfield);
-		}else if(keyword2 != ''){
-			keyfield = 'country';
-			selectList(1,keyword2,keyfield);
-		}else if(keyword3 != ''){
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
+		}else if(keyword == '' && keyword2 == '' && keyword3 != ''){
 			keyfield = 'order';
-			selectList(1,keyword3,keyfield);
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
+		}else if(keyword == '' && keyword2 != '' && keyword3 == ''){
+			keyfield = 'country';
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
 		}else{
-			selectList(1,subkeyword,subkeyfield);
+			selectCategory(1,keyword,keyword2,keyword3,subkeyfield);
 		}
 	});
+	
 	$('.all-category2').on('change',function(){
 		keyword = $('.genre-category2').find('option:selected').val();
 		keyword2 = $('.country-category2').find('option:selected').val();
 		keyword3 = $('.order-category2').find('option:selected').val();
+		
+		console.log('--webcategory--');
 		console.log('--keyword-- : ' + keyword);
 		console.log('--keyword2-- : ' + keyword2);
 		console.log('--keyword3-- : ' + keyword3);
-
-		if(keyword != '' && keyword2 != ''){
-			keyfield = 'category';
-			selectCategory(1,keyword,keyword2,keyfield);
-		}else if(keyword != ''){
+		
+		if(keyword != '' && keyword2 != '' && keyword3 != ''){
+			keyfield = 'allcategory';
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
+		}else if(keyword != '' && keyword2 != '' && keyword3 == ''){
+			keyfield = 'genrecountry';
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
+		}else if(keyword != '' && keyword2 == '' && keyword3 != ''){
+			keyfield = 'genreorder';
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
+		}else if(keyword == '' && keyword2 != '' && keyword3 != ''){
+			keyfield = 'countryorder';
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
+		}else if(keyword != '' && keyword2 == '' && keyword3 == ''){
 			keyfield = 'genre';
-			selectList(1,keyword,keyfield);
-		}else if(keyword2 != ''){
-			keyfield = 'country';
-			selectList(1,keyword2,keyfield);
-		}else if(keyword3 != ''){
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
+		}else if(keyword == '' && keyword2 == '' && keyword3 != ''){
 			keyfield = 'order';
-			selectList(1,keyword3,keyfield);
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
+		}else if(keyword == '' && keyword2 != '' && keyword3 == ''){
+			keyfield = 'country';
+			selectCategory(1,keyword,keyword2,keyword3,keyfield);
 		}else{
-			selectList(1,subkeyword,subkeyfield);
+			selectCategory(1,keyword,keyword2,keyword3,subkeyfield);
 		}
 	});
-	/*---------------카테고리 변경 호출---------------------*/
-
-	//영화 목록 화면
+	/*---------------카테고리 변경시 호출---------------------*/
+	//영화 목록 & 검색 출력
 	function selectList(pageNum,keyword,keyfield){
 		var slist = '';
 		currentPage = pageNum;
@@ -204,8 +255,10 @@ $(document).ready(function(){
 			}
 		});
 	}
-	//영화 카테고리
-	function selectCategory(pageNum,keyword,keyword2,keyfield){
+	
+	
+	//영화 카레고리 출력
+	function selectCategory(pageNum,keyword,keyword2,keyword3,keyfield){
 		var slist = '';
 		currentPage = pageNum;
 		if(pageNum == 1){
@@ -213,7 +266,7 @@ $(document).ready(function(){
 		}
 		$.ajax({ 
 			type:'post',
-			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword,keyword2:keyword2},
+			data:{pageNum:pageNum,keyfield:keyfield,keyword:keyword,keyword2:keyword2,keyword3:keyword3},
 			url:'movieMlist2.do',
 			dataType:'json',
 			cache:false,
@@ -229,10 +282,10 @@ $(document).ready(function(){
 						var rate = item.rate;
 						slist = '<div class="col-sm-3 col-md-3 col-xs-6" id="main-category">';
 						if(item.poster_img == null){
-						slist += '<div class="thumbnail tform" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><span class="movieImg><img src="../resources/images/default-poster.jpg"></span></div>';
+							slist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img class="movieImg" src="../resources/images/default-poster.jpg"></div>';
 						}else{
-	                     slist += '<div class="thumbnail tform" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img src="imageView.do?movie_num='+item.movie_num+'&type=poster"></div>';
-	                    }
+							slist += '<div class="thumbnail" onclick="location.href=\'movieDetail.do?movie_num='+item.movie_num+'\'"><img class="movieImg" src="imageView.do?movie_num='+item.movie_num+'&type=poster"></div>';
+						}
 						slist += '<div class="sub-category caption">';
 						slist += '<p class="ptitle">'+item.title+'</p>';
 						slist += '<p class="pcountry">'+item.country+' · '+released.substring(0,4)+'</p>';
@@ -252,6 +305,7 @@ $(document).ready(function(){
 			}
 		});
 	}
+	
 	/*기본 검색 및 호출시 상태*/
 	selectList(1,subkeyword,subkeyfield);
 });

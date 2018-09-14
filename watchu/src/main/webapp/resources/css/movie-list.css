@@ -239,14 +239,14 @@
 	padding-right:30px;
 }
 .home-text1{
-	padding:15px;
-	font-size:30px;
+	padding:10px 15px 0;
+	font-size:20px;
 	font-weight:bold;
 }
 .home-text2{
-	padding:10px;
+	padding:0 10px;
 	text-align:right;
-	font-size:20px;
+	font-size:10px;
 	float:right;
 	text-decoration:none; 
 	color:#999;
@@ -321,14 +321,14 @@ select.all-category{
 	padding-right:30px;
 }
 .home-text1{
-	padding:15px;
-	font-size:30px;
+	padding:10px 15px 0;
+	font-size:20px;
 	font-weight:bold;
 }
 .home-text2{
-	padding:10px;
+	padding:0 10px;
 	text-align:right;
-	font-size:20px;
+	font-size:10px;
 	float:right;
 	text-decoration:none; 
 	color:#999;
@@ -403,14 +403,14 @@ select.all-category{
 	padding-right:30px;
 }
 .home-text1{
-	padding:15px;
-	font-size:30px;
+	padding:10px 15px 0;
+	font-size:15px;
 	font-weight:bold;
 }
 .home-text2{
-	padding:10px;
+	padding:0 10px;
 	text-align:right;
-	font-size:20px;
+	font-size:10px;
 	float:right;
 	text-decoration:none; 
 	color:#999;
@@ -475,5 +475,4 @@ select.all-category{
 	width:33%;
 	font-size:8px;
 }
-
 }
