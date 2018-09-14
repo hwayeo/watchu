@@ -35,7 +35,7 @@ public interface CommentMapper {
 	public void deleteCommentByMovie(Integer movie_num);
 	
 	//목록
-	@Select("SELECT * FROM movie_comment WHERE movie_num=#{movie_num} ORDER BY movie_num DESC")
+	@Select("SELECT c.*,u.profile_img FROM movie_comment c JOIN user_info u ON c.id=u.id WHERE movie_num=#{movie_num} ORDER BY c.reg_date DESC ")
 	public List<CommentCommand> selectCommentList(Integer movie_num);
 	//카운트
 	@Select("SELECT COUNT(*) FROM movie_comment WHERE movie_num=#{movie_num}")

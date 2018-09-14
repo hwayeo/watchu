@@ -31,7 +31,12 @@
 		<!-- 영화 기본정보 pc 화면 -->
 	<div class="col-sm-12 col-md-12 col-xs-12 hidden-xs">
 		 <div class="col-sm-6 col-md-6 col-xs-6" id="poster3">
-			<div class="hidden-xs"><img src="imageView.do?movie_num=${movie.movie_num}&type=poster" id="image2"></div> 
+				<c:if test="${!empty movie.poster_img}">
+			<div class="hidden-xs"><img src="imageView.do?movie_num=${movie.movie_num}&type=poster" id="image2"></div>
+				</c:if> 
+				<c:if test="${empty movie.poster_img}">
+			<div class="hidden-xs"><img src="../resources/images/default-poster.jpg" id="image2"></div>
+				</c:if> 
 		</div>
 	
 	<div class="col-sm-6 col-md-6 col-xs-6" id="poster2">
@@ -270,8 +275,16 @@
 				<c:forEach var="list" items="${commentList}">
 					<div class="division1">
 					<div class=inner-box1>
-					<div class="comment-title"><img src="../main/imageView.do?id=${list.id}" 
-					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;"></div>
+					<div class="comment-title">
+					<c:if test="${!empty list.profile_img}">
+					<img src="../main/imageView.do?id=${list.id}" 
+					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;">
+					</c:if>
+					<c:if test="${empty list.profile_img}">
+					<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" 
+					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;">
+					</c:if>
+					</div>
 					<div><h4 class="comment-id">${list.id}</h4></div>
 					<div class="more-view2"><a style="cursor:pointer; color: #ffc0d3;" data-toggle="modal" data-target="#morecomment" class="modal-comment">
 					<b style="float: right; margin-top: -30px; margin-right: 20px; font-size: 15px;">더보기</b></a></div>	
@@ -279,7 +292,7 @@
 					<hr>
 					<div class="inner-box2">${list.content}</div>
 					<hr>
-					<div class="inner-box3">좋아요 : ${list.likes}</div>  
+					<div class="inner-box3 glyphicon glyphicon-thumbs-up">${list.likes}</div>  
 					<hr>
 					<div class="inner-box4">작성날짜 : ${list.reg_date}</div>                
 					</div>
@@ -287,8 +300,6 @@
 					</ul>
 					</div>
 				</div>
-			
-
 				
 				<hr>
 				<div>
@@ -296,31 +307,18 @@
 				</div>
 				
 				<div class="row">
-				<div class="othermovie">
-					<div class="col-sm-3 col-md-3 col-xs-6">
-					<a href="#"><img src="${pageContext.request.contextPath}/resources/images/img1.jpg" id="image3"></a>
-					<div class="poster-name">어벤져어어어어어어어어스 이ㅇ이이인피니이이이티</div>
-					</div>
-					<div class="col-sm-3 col-md-3 col-xs-6">
-					<a href="#"><img src="${pageContext.request.contextPath}/resources/images/img1.jpg" id="image3"></a>
-					<div class="poster-name">어벤져스</div>
-					</div>
-					<div class="col-sm-3 col-md-3 col-xs-6">
-					<a href="#"><img src="${pageContext.request.contextPath}/resources/images/img1.jpg" id="image3"></a>
-					<div class="poster-name">어벤져스</div>
-					</div>
-					<div class="col-sm-3 col-md-3 col-xs-6">
-					<a href="#"><img src="${pageContext.request.contextPath}/resources/images/img1.jpg" id="image3"></a>
-					<div class="poster-name">어벤져스</div>
-					</div>
-					<div class="col-sm-3 col-md-3 col-xs-6">
-					<a href="#"><img src="${pageContext.request.contextPath}/resources/images/img1.jpg" id="image3"></a>
-					<div class="poster-name">어벤져스</div>
-					</div>
-					<div class="col-sm-3 col-md-3 col-xs-6">
-					<a href="#"><img src="${pageContext.request.contextPath}/resources/images/img1.jpg" id="image3"></a>
-					<div class="poster-name">어벤져스</div>
-					</div>
+					<div class="othermovie">
+						<c:forEach var="list" items="${movieList}">
+							<div class="col-sm-3 col-md-3 col-xs-6">
+								<c:if test="${!empty list.poster_img}">
+									<div class="hidden-xs"><img src="imageView.do?movie_num=${list.movie_num}&type=poster" id="image3"></div>
+				 				</c:if> 
+								<c:if test="${empty list.poster_img}">
+									<div class="hidden-xs"><img src="../resources/images/default-poster.jpg" id="image3"></div>
+								</c:if> 
+									<div class="poster-name">${list.title}</div>    
+							</div>
+						</c:forEach>
 					</div>
 				</div>	
 				<div class="more">더보기</div>
@@ -468,6 +466,7 @@
 				<div>
 					<h4><b>코멘트</b></h4>
 				</div>
+				
 				<div class="row">
 					<div id="comment-box">
 				<div id = slidercomment>
@@ -475,8 +474,16 @@
 				<c:forEach var="list" items="${commentList}">
 					<div class="mobile-division1">
 					<div class=inner-box1>
-					<div class="comment-title"><img src="../main/imageView.do?id=${list.id}" 
-					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;"></div>
+					<div class="comment-title">
+					<c:if test="${!empty list.profile_img}">
+					<img src="../main/imageView.do?id=${list.id}" 
+					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;">
+					</c:if>
+					<c:if test="${empty list.profile_img}">
+					<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" 
+					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;">
+					</c:if>
+					</div>
 					<div><h4 class="comment-id">${list.id}</h4></div>
 					<div class="more-view2"><a style="cursor:pointer; color: #ffc0d3;" data-toggle="modal" data-target="#morecomment" class="modal-comment">
 					<b style="float: right; margin-top: -30px; margin-right: 20px; font-size: 15px;">더보기</b></a></div>	
@@ -484,7 +491,7 @@
 					<hr>
 					<div class="inner-box2">${list.content}</div>
 					<hr>
-					<div class="inner-box3">좋아요 : ${list.likes}</div>  
+					<div class="inner-box3 glyphicon glyphicon-thumbs-up">${list.likes}</div>  
 					<hr>
 					<div class="inner-box4">작성날짜 : ${list.reg_date}</div>                
 					</div>
@@ -500,19 +507,20 @@
 				
 				<h4><b>비슷한 작품</b></h4>
 				<div class="row">
+					<div class="othermovie">
 					<div class="col-xs-4">
-					<a href="#"><img src="${pageContext.request.contextPath}/resources/images/img1.jpg" id="image4"></a>
-					<div class="poster-name">어벤져어어어어어어어어스 이ㅇ이이인피니이이이티</div>
-					</div>
-					<div class="col-xs-4">
-					<a href="#"><img src="${pageContext.request.contextPath}/resources/images/img1.jpg" id="image4"></a>
-					<div class="poster-name">어벤져어어어어어어어어스 이ㅇ이이인피니이이이티</div>
-					</div>
-					<div class="col-xs-4">
-					<a href="#"><img src="${pageContext.request.contextPath}/resources/images/img1.jpg" id="image4"></a>
-					<div class="poster-name">어벤져어어어어어어어어스 이ㅇ이이인피니이이이티</div>
+						<c:forEach var="list" items="${movieList}">
+					<c:if test="${!empty list.poster_img}">
+					<div><img src="imageView.do?movie_num=${list.movie_num}&type=poster" id="image4"></div>
+					</c:if>
+					<c:if test="${empty list.poster_img}">
+					<div><img src="../resources/images/default-poster.jpg" id="image4"></div>
+					</c:if>
+					<div class="poster-name">${list.title}</div>
+						</c:forEach>
 					</div>
 				</div>
+				<div class="othermovie">
 				<!-- 모바일 상세정보 끝-->
 			</div>
 		</div>

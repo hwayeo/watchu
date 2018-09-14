@@ -15,7 +15,14 @@ public class CommentCommand {
 	private String title;
 	private Date released;
 	private byte[] poster_img;
+	private byte[] profile_img;
 	
+	public byte[] getProfile_img() {
+		return profile_img;
+	}
+	public void setProfile_img(byte[] profile_img) {
+		this.profile_img = profile_img;
+	}
 	public String getTitle() {
 		return title;
 	}
