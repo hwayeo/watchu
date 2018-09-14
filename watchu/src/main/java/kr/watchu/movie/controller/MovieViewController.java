@@ -99,8 +99,14 @@ public class MovieViewController {
 		mav.addObject("commentCnt",commentCnt);
 		mav.addObject("actorList",actorList);
 	
+		//비슷한 장르 영화 추천
+		Map<String,Object> map2 = new HashMap<String,Object>();
+		map2.put("keyfield","genre");
+		map2.put("keyword", movie.getMain_genre());
+		map2.put("start" , 1);
+		map2.put("end", 4);
+		
 		return mav;
-
 	}
 	//코멘트 등록 폼 
 	@RequestMapping(value="/movie/commentWrite.do",method=RequestMethod.GET)
