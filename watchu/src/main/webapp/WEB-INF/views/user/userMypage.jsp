@@ -69,7 +69,7 @@
 			</div>
 			<div class="col-xs-1 col-md-2"></div>
 			<div class="col-xs-2 col-md-2"><br><br>
-				<button class="btn btn-md btn-primary active" type="button" style="background-color:#f74788;border-color:#f74788;">취향 분석</button> 
+				<button class="btn btn-md btn-primary active" type="button" style="background-color:#f74788;border-color:#f74788;" onclick="location.href='analysis.do'">취향 분석</button> 
 			</div>
 		</div>
 			

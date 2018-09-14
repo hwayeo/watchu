@@ -158,6 +158,22 @@ public class MyPageController {
 		return mav;
 	}
 	
+	//취향분석
+	@RequestMapping("/user/analysis.do")
+	public ModelAndView analysis(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("analysis");
+		
+		//유저정보 가져오기
+		String id = (String) session.getAttribute("user_id");
+		
+		if(log.isDebugEnabled()) {
+			log.debug("<<확인 id>> : " + id);
+		}
+		
+		return mav;
+	}
+	
 	// 코멘트
 	@RequestMapping("/user/userComment.do")
 	public ModelAndView comment(HttpSession session) {

@@ -349,7 +349,6 @@
 	}
 	.glyphicon-play-circle:before {
 	    content: "\e029";
-	   
 	}
 	
 	.moving{
@@ -357,8 +356,9 @@
 		color:#999;
 		margin-left:265px;
 	}
-	.glyphicon{
-		margin-top:20px;
+	
+	.glyphicon-share-alt{
+		margin-top:15px;
 	}
 }
 
@@ -385,8 +385,8 @@
 		margin-left:5px;
 	}
 	
-	.glyphicon{
-		margin-top: 0px;
+	.glyphicon-share-alt{
+		margin-top:10px;
 	}	
 	
 	.preview{
@@ -432,8 +432,8 @@
 		margin-left:5px;
 	}
 	
-	.glyphicon{
-		margin-top: 0px;
+	.glyphicon-share-alt{
+		margin-top:0px;
 	}	
 	
 	#middle{

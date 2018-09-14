@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.bg{
+	text-align:center;
+	background-color:#efefef;
+	opacity:0.6;
+	width:100%;
+	height:200px;
+	border-bottom:1px solid #ccc;
+}
+
+.userName{
+	font-size:16px;
+	color:16px;
+}
+.movieCount{
+	font-size:12px;
+	color:#999;
+}
+
