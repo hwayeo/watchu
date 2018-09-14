@@ -6,7 +6,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/mypage.js"></script>
 <div id="main-content">
 <div class="container-fluid">
-	<div class="row">
 		<div class="col-xs-12 col-md-12"><br><br>
 			<div class="col-xs-12 col-md-12"> 
 				<div class="col-xs-8 col-md-10">
@@ -72,37 +71,29 @@
 				<button class="btn btn-md btn-primary active" type="button" style="background-color:#f74788;border-color:#f74788;" onclick="location.href='analysis.do'">취향 분석</button> 
 			</div>
 		</div>
-			
-		<div class="col-xs-12 col-md-12 text-center"> 
-			<c:if test="${movie.rate == 5.0}">
-				<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}"><br>
-				<p>${movie.title}</p>
-			</c:if>
-			 <div class="col-md-2"></div>
-			<div class="col-xs-4 col-md-2">
-				<img class="image" src="${pageContext.request.contextPath}/resources/images/gad.jpg"><br>
-				<p>가디언즈 오브 갤럭시</p>
+		
+		<div class="text-center"> 
+			<div class="row container">
+				<div class="col-md-12 bestmovie">
+					 <c:forEach var="recommendList" items="${recommendList}"> 	
+						<c:if test="${recommendList.rate == 5.0}">
+								<div class="col-xs-6 col-md-2">
+									<c:if test="${!empty recommendList.poster_img}">
+										<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${recommendList.movie_num}&type=poster" width="100%" height="100%">
+									</c:if>	
+									<c:if test="${empty recommendList.poster_img}">
+										<img src="${pageContext.request.contextPath}/resources/images/default-poster.jpg" width="100%" height="100%">
+									</c:if>
+									<p class="movie_title">${recommendList.title}</p>
+								</div>
+						</c:if>
+					</c:forEach> 
+				</div>
 			</div>
-			<div class="col-xs-4 col-md-2">
-				<img class="image" src="${pageContext.request.contextPath}/resources/images/gad2.jpg"><br>
-				<p>수어사이드 스쿼드</p>
-			</div>
-			<div class="col-xs-4 col-md-2">
-				<img class="image" src="${pageContext.request.contextPath}/resources/images/gad3.jpg"><br>
-				<p>앤트맨</p>
-			</div>
-			<div class="col-xs-4 col-md-2">
-				<img class="image" src="${pageContext.request.contextPath}/resources/images/gad3.jpg"><br>
-				<p>앤트맨</p>
-			</div>
-			<div class="col-md-2"></div>
-			
 		</div>
-		
-		
-		
 	</div>
 </div>
+
 
 
 <!-- 톱니바퀴 누르면 나오는 모달 -->

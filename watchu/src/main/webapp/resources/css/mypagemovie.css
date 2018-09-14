@@ -6,10 +6,29 @@
 		font-weight: 600;
 		font-size: 12px;
 	}
-	img {
-		max-width: 75%; /* 이미지의 최대사이즈 */
-		width: auto;
-		height: auto;
+	p.movie_title {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 200px;
+		height: 20px;
+	}
+	img.movie_poster {
+    width: 202px;
+    height: 290px;
+	}
+	p.movie_title {
+    font-size: 14px;
+    text-align: center;
+    padding-bottom: 23px;
+	}
+	p.movie_rate {
+    font-size: 14px;
+    color: #ffcd05;
+    margin-top: -10px;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-left: -50px;
 	}
 	
 }
@@ -20,9 +39,29 @@
 		font-weight: 500;
 		font-size: 8px; 
 	}
-	img {
-		max-width: 80%; /* 이미지의 최대사이즈 */
-		width: auto;
-		height: auto;
+	p.movie_title {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 110px;
+		height: 20px;
+	}
+	img.movie_poster {
+    height: 200px;
+    width: 180px;
+    padding-right: 50px;
+    margin-left: -10px;
+	}
+	p.movie_title {
+    font-size: 12px;
+    text-align: center;
+    padding-bottom: 23px;
+	}
+	p.movie_rate {
+    font-size: 11px;
+    color: #ffcd05;
+    margin-top: -10px;
+    text-align: center;
+    margin-bottom: 16px;
 	}
 }
