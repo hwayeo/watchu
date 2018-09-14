@@ -5,7 +5,7 @@ $('.edit_btn .confirm_del').on('click', function(){
 		return false;
 	}
 });
-	
+	 
 //수정 경고창
 $('.edit_btn .confirm_mod').on('click', function(){
 	if(confirm('수정하시겠습니까?') == false) return false;

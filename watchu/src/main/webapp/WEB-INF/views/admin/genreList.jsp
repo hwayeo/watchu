@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!-- 장르 등록 및 수정 -->
-<div class="admin_main">
+<div class="admin_main"> 
 	<div id="genre_list" style="width:90%">
 		<h2>영화 장르 목록</h2>
 		<div class="content-header form-inline" align="right">

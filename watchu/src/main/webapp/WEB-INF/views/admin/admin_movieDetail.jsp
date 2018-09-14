@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="detail" style="width:90%">
-	<h2>영화 상세 정보/수정</h2>   
+	<h2>영화 상세 정보/수정</h2>    
 	<div class="detail_content form-inline">
 	<form:form commandName="movie_command" action="admin_movieDetail.do" id="modify_form" enctype="multipart/form-data" class="form-horizontal">
 	    <form:hidden path="movie_num"/>

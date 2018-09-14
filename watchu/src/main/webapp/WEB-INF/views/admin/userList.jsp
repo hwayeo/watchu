@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <div class="admin_main">
 	<div id="user_list" style="width:90%">
-		<h2>회원 목록</h2>
+		<h2>회원 목록</h2> 
 		<div class="content-header form-inline" align="right">
 			<!-- 검색 -->
 			<form action="userList.do" id="user_search" method="get" class="search form-group">

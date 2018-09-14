@@ -34,7 +34,7 @@
          <thead>
             <tr class="sup_title">
                <th class="col-md-1 text-center">번호</th>
-               <th class="col-md-2 text-center">구분</th>
+               <th class="col-md-2 text-center">구분</th> 
                <th class="col-md-4 text-center">제목</th>
                <th class="col-md-1 text-center">상태</th>
                <th class="col-md-2 text-center">작성자</th>

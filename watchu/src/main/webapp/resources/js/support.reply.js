@@ -66,7 +66,7 @@ $(document).ready(function(){
 		var pageNum = currentPage + 1;
 		selectData(pageNum, $('#contact_num').val());
 	});
-	
+	 
 	//-----답변 등록-----//
 	$('#reply_div').submit(function(event){
 		if($('#recontent').val() == ''){
@@ -77,7 +77,7 @@ $(document).ready(function(){
 		var data = {
 				contact_num: $('#contact_num').val(),
 			    recontent: $('#recontent').val()
-		};
+		}; 
 		
 		console.log(data);
 		

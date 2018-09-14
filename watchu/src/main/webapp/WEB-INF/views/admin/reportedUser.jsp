@@ -4,7 +4,7 @@
 <div class="admin-main" style="width:90%">
 	<div class="tab-pane" id="reported_user">
 		<h2>회원 신고 내역</h2>
-		<br>
+		<br> 
 		<div class="content-header">
 			<!-- 처리여부
 			<input type="radio" name="status" value="all" checked> 전체 <input

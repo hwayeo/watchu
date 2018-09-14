@@ -12,7 +12,7 @@ import kr.watchu.user.domain.AdminRecontactCommand;
 import kr.watchu.user.domain.ContactCommand;
 
 public interface ContactMapper {
-	//문의글 등록
+	//문의글 등록 
 	@Insert("INSERT INTO user_contact (contact_num,id,content,filename,upload_file,reg_date,title,category) VALUES (contact_seq.nextval,#{id},#{content},#{filename},#{upload_file},SYSDATE,#{title},#{category})")
 	public void insertContact(ContactCommand contact);
 	//상세정보

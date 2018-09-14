@@ -3,7 +3,7 @@
 <!-- 고객지원 -->
 <div class="admin_main">
 	<div id="support">
-		<h2>고객 문의 관리</h2>
+		<h2>고객 문의 관리</h2> 
 		<br>
 		<div class="content-header">
 			<!-- 처리여부 -->

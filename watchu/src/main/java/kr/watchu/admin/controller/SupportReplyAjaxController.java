@@ -49,7 +49,7 @@ public class SupportReplyAjaxController {
 		}
 		return map;
 	}
-	
+	 
 	//=============== 답변 목록 ===============//
 	@RequestMapping("/admin/listReply.do")
 	@ResponseBody
@@ -58,7 +58,7 @@ public class SupportReplyAjaxController {
 		//로그 출력
 		if(log.isDebugEnabled()) {
 			log.debug("<<currentPage>>: " + currentPage);
-			log.debug("<<contact_num>>: " + contact_num);
+			log.debug("<<contact_num>>: " + contact_num); 
 		}
 		
 		//Map객체 생성

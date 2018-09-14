@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="detail" style="width:90%">
-	<h2>회원 상세 정보/수정</h2>
+	<h2>회원 상세 정보/수정</h2> 
 	<div class="detail_content form-inline">
 	<form:form commandName="user_command" action="userDetail.do" id="modify_form">
 	    <form:hidden path="id"/>

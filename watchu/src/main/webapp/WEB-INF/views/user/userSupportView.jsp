@@ -96,7 +96,7 @@
 			<input type="button" class="btn btn-default" value="목록" onclick="location.href='userSupportList.do'"/>
 		</c:if> 
 	</div>
-	
+	 
 	<!-- 답변 영역 -->
 	<div id="reply_div" style="background-color:#f8f8f8;">
 	<c:if test="${!empty user_id && user_id == 'admin'}">

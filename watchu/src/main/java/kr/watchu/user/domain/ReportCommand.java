@@ -10,7 +10,7 @@ public class ReportCommand {
 	private String report_category;
 	private Date reg_date;
 	private String report_title;
-	
+	 
 	public Integer getReport_num() {
 		return report_num;
 	}

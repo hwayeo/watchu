@@ -12,7 +12,7 @@
 			FROM (SELECT
 					*
 				FROM movie_genre
-				
+				 
 				<where> 
 			 		<if test="keyword != '' and keyfield == 'genre'">
 			 			genre like '%' || #{keyword} || '%'

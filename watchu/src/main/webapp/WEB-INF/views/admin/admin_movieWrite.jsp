@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 영화등록 -->
 <div class="register_movie" style="width:90%">
-	<h2>영화 등록</h2>
+	<h2>영화 등록</h2> 
 	<div class="detail_content">
 	<form:form commandName="movie_command" action="admin_movieWrite.do" id="movie_form" enctype="multipart/form-data">
 	<form:errors element="div" cssClass="error-color"/>

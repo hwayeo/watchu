@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ContactCommand {
 	private Integer contact_num; //글번호
-	private String id;
+	private String id; 
 	private String content; //글내용
 	private MultipartFile upload; //업로드파일
 	private String filename; //파일명

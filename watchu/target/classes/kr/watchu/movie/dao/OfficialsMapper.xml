@@ -10,7 +10,7 @@
 		FROM (SELECT
 				a.*, rownum rnum
 			FROM (SELECT
-					*
+					* 
 				FROM officials
 				
 				<where> 

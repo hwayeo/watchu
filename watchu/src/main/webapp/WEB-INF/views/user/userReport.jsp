@@ -6,7 +6,7 @@
 		<div class="text-center">
 			<h3><b>신고페이지</b></h3>			
 		</div>				
-	</div>
+	</div> 
 
 <div class="container">
          <div class="row"> 

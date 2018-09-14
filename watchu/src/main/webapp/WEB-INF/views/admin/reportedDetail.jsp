@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="detail" style="width:90%">
-	<h2>신고 상세 정보</h2><br>
+	<h2>신고 상세 정보</h2><br> 
 	<div class="detail-content form-inline">
 	<table style="width:100%">
 	<tr>

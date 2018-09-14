@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- 영화 목록(관리자 메인) -->
+<!-- 영화 목록(관리자 메인) --> 
 <div class="admin_main">
 	<div id="movie_list" style="width:90%">
 		<h2>영화 목록</h2>

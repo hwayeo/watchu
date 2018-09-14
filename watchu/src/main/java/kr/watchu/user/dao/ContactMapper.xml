@@ -10,7 +10,7 @@
 		FROM
 		(SELECT a.*,
 			ROWNUM rnum 
-				FROM 
+				FROM  
 					(SELECT 
 						* 
 						FROM user_contact c 
