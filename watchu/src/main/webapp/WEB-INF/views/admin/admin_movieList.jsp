@@ -6,16 +6,16 @@
 <div class="admin_main">
 	<div id="movie_list" style="width:90%">
 		<h2>영화 목록</h2>
-		<div class="content-header" align="right">
+		<div class="content-header form-inline" align="right">
 			<!-- 검색 -->
-			<form action="admin_movieList.do" class="confirm_search" method="get">
-			<select name="keyfield">
+			<form action="admin_movieList.do" class="confirm_search form-group" method="get">
+			<select name="keyfield" class="form-control">
 				<option value="title">영화명</option>
 				<option value="director">감독명</option>
 				<option value="actors">배우명</option>
 			</select>
-			<input type="text" name="keyword" id="keyword"> 
-			<input type="submit" value="검색">
+			<input type="text" name="keyword" id="keyword" class="form-control" size="15"> 
+			<input type="submit" value="검색" class="btn btn-default">
 			</form>
 		</div>
 

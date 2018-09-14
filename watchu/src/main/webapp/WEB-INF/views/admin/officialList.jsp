@@ -6,7 +6,7 @@
 <div class="admin_main">
 	<div id="official_list" style="width:90%">
 		<h2>영화 관계자 목록</h2>
-		<div class="content-header" align="right">
+		<div class="content-header form-inline" align="right">
 			<!-- 구분 -->
 			<%-- <div class="division" style="padding-bottom:5px">
 				<input type="radio" name="jobs" value="ALL" <c:if test="${param.jobs=='ALL'}">checked</c:if>> 전체
@@ -14,13 +14,13 @@
 				<input type="radio" name="jobs" value="ACTOR" <c:if test="${param.jobs=='ACTOR'}">checked</c:if>> 배우
 			</div> --%>
 			<!-- 검색 -->
-			<form action="officialList.do" class="confirm_search" method="get" class="search">
-			<select name="keyfield">
+			<form action="officialList.do" class="confirm_search form-group" method="get" class="search">
+			<select name="keyfield" class="form-control">
 				<option value="name">이름</option>
 				<option value="filmograp">작품명</option>
 			</select>
-			<input type="text" name="keyword" id="keyword"> 
-			<input type="submit" value="검색">
+			<input type="text" name="keyword" id="keyword" class="form-control" size="15"> 
+			<input type="submit" value="검색" class="btn btn-default">
 			</form>
 		</div>
 		
@@ -71,27 +71,28 @@
 				</button>
 				<h4 class="modal-title" id="officialsModalLabel">영화 관계자 등록</h4>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body form-inline">
 				<div class="form-group">
 					<span style="display:inline-block; width:100px">
 					<label for="name">이름</label></span>
-	         		<form:input path="name"/>
+	         		<form:input path="name" class="form-control"/>
 	         		<form:errors path="name" cssClass="error-color"/>
-				</div>
+				</div><br><hr size="1" noshade>
 				<div class="form-group">
 					<span style="display:inline-block; width:100px">
 					<label for="jobs">구분</label></span>
 					<form:radiobutton path="jobs" value="ACTOR" label="　ACTOR"/>　
 					<form:radiobutton path="jobs" value="DIRECTOR" label="　DIRECTOR"/>
 	         		<form:errors path="jobs" cssClass="error-color"/>
-				</div>
+				</div><br>
 				<div class="form-group">
 					<span style="display:inline-block; width:100px">
 					<label for="filmograp">필모그래피</label></span>
-	         		<form:input path="filmograp"/>
+	         		<form:textarea path="filmograp" cols="50" rows="3" class="form-control"/>
 	         		<form:errors path="filmograp" cssClass="error-color"/>
 				</div>
-				<div class="form-group">
+				<hr size="1" noshade>
+				<div class="form-group form-inline">
 					<span style="display:inline-block; width:100px">
 					<label for="upload">사진</label></span>
 	         		<input type="file" name="upload" id="upload"/>

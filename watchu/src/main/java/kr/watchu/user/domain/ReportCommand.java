@@ -7,7 +7,9 @@ public class ReportCommand {
 	private String id;
 	private String report_user;
 	private String report_content;
+	private String report_category;
 	private Date reg_date;
+	private String report_title;
 	
 	public Integer getReport_num() {
 		return report_num;
@@ -39,9 +41,22 @@ public class ReportCommand {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
+	public String getReport_category() {
+		return report_category;
+	}
+	public void setReport_category(String report_category) {
+		this.report_category = report_category;
+	}
+	public String getReport_title() {
+		return report_title;
+	}
+	public void setReport_title(String report_title) {
+		this.report_title = report_title;
+	}
 	@Override
 	public String toString() {
 		return "ReportCommand [report_num=" + report_num + ", id=" + id + ", report_user=" + report_user
-				+ ", report_content=" + report_content + ", reg_date=" + reg_date + "]";
+				+ ", report_content=" + report_content + ", report_category=" + report_category + ", reg_date="
+				+ reg_date + ", report_title=" + report_title + "]";
 	}
 }

@@ -20,15 +20,15 @@
 			<if test="keyword != '' and keyfield == 'title'">
 			 	c.title like '%' || #{keyword} || '%'
 			</if>
-			<if test="keyword != '' and keyfield == 'id'">
-				c.id like '%' || #{keyword} || '%'
+			<if test="keyword != '' and keyfield == 'category'">
+				c.category like '%' || #{keyword} || '%'
 			</if>
 			<if test="keyword != '' and keyfield == 'content'">
 				c.content like '%' || #{keyword} || '%'
 			</if>
 			<if test="keyword != '' and keyfield == 'all'">
 				c.title like '%' || #{keyword} || '%' or
-			 	c.id like '%' || #{keyword} || '%' or
+			 	c.category like '%' || #{keyword} || '%' or
 			 	c.content like '%' || #{keyword} || '%'
 			</if>
 		</where>
@@ -51,12 +51,12 @@
 			<if test="keyword != '' and keyfield == 'content'">
 				title like '%' || #{keyword} || '%'
 			</if>
-			<if test="keyword != '' and keyfield == 'id'">
-				id like '%' || #{keyword} || '%'
+			<if test="keyword != '' and keyfield == 'category'">
+				category like '%' || #{keyword} || '%'
 			</if>
 			<if test="keyword != '' and keyfield == 'all'">
 				title like '%' || #{keyword} || '%' or
-			 	id like '%' || #{keyword} || '%' or
+			 	category like '%' || #{keyword} || '%' or
 			 	content like '%' || #{keyword} || '%'
 			</if>
 		</where>

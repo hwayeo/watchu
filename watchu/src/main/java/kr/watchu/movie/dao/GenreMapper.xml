@@ -14,17 +14,9 @@
 				FROM movie_genre
 				
 				<where> 
-			 		<if test="keyword != '' and keyfield == 'genre_num'">
-			 			genre_num like '%' || #{keyword} || '%'
-			 		</if>
-			 		<!-- 완전 동일한 것만 찾을 지, 포함된 것도 찾을 지 결정할 것 -->
 			 		<if test="keyword != '' and keyfield == 'genre'">
 			 			genre like '%' || #{keyword} || '%'
 			 		</if>
-<!-- 			 		<if test="keyword != '' and keyfield.equals('all')">
-			 			genre_num like '%' || #{keyword} || '%' or
-			 			genre like '%' || #{keyword} || '%'
-			 		</if> -->
 		 		</where>
 				
 				ORDER BY genre_num)a)
@@ -37,14 +29,17 @@
 			count(*)
 		FROM movie_genre
 		<where>
-			 <if test="keyword != '' and keyfield == 'genre_num'">
+			 <if test="keyword != '' and keyfield == 'genre'">
+			 			genre like '%' || #{keyword} || '%'
+			 </if>
+			<!--  <if test="keyword != '' and keyfield == 'genre_num'">
 			 	genre_num like '%' || #{keyword} || '%'
 			 </if>
-			 <!-- 완전 동일한 것만 찾을 지, 포함된 것도 찾을 지 결정할 것 -->
+			 완전 동일한 것만 찾을 지, 포함된 것도 찾을 지 결정할 것
 			 <if test="keyword != '' and keyfield == 'genre'">
 			 	genre like '%' || #{keyword} || '%'
 			 </if>
-<!-- 			 <if test="keyword != '' and keyfield.equals('all')">
+			 <if test="keyword != '' and keyfield.equals('all')">
 			 	genre_num like '%' || #{keyword} || '%' or
 			 	genre like '%' || #{keyword} || '%' or
 			 </if> -->

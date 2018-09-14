@@ -11,8 +11,8 @@
 }
 
 .content-header{
-   border:2px solid #000;
-   padding:9px 0;
+	text-align:right;
+	padding-bottom:25px;
 }
 .search-title{
    color:#999;
@@ -58,11 +58,7 @@ img{
 	    width: auto;
 	    height: auto;
 	}
-.Viewtable{
-	width:500px;
-	font-size:14px;
-}
-}
+
 
 @media screen and (min-width:0px) and (max-width:767px) { /*모바일*/
 .title{
@@ -124,10 +120,22 @@ img{
 	    width: auto;
 	    height: auto;
 	}
-.Viewtable{
-	width:400px;
-	font-size:14px;
-	
-}
+
+.subTitle{
+	padding-bottom:20px;
 }
 
+th{text-align:center;}
+
+/* 답변 영역 CSS */
+div #reply_div{
+	background-color: #e8e8e8;
+}
+
+form#re_form {
+    background-color: #e8e8e8;
+    padding-top: 10px;
+}
+form#recontent{
+	width:80%;
+}

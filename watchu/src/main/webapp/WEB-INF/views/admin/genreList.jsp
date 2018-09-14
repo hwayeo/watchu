@@ -6,15 +6,14 @@
 <div class="admin_main">
 	<div id="genre_list" style="width:90%">
 		<h2>영화 장르 목록</h2>
-		<div class="content-header" align="right">
+		<div class="content-header form-inline" align="right">
 			<!-- 검색 -->
-			<form action="genreList.do" class="confirm_search" method="get">
-			<select name="keyfield">
-				<option value="genre_num">장르 코드</option>
+			<form action="genreList.do" class="confirm_search form-group" method="get">
+			<select name="keyfield" class="form-control" style="display:none">
 				<option value="genre">장르명</option>
 			</select>
-			<input type="text" name="keyword" id="keyword"> 
-			<input type="submit" value="검색">
+			<input type="text" name="keyword" id="keyword" class="form-control"> 
+			<input type="submit" value="검색" class="btn btn-default">
 			</form>
 		</div>
 
@@ -54,7 +53,7 @@
 <!-- 장르 등록 모달창 -->
 <div class="modal fade" id="genreModal" tabindex="-1" role="dialog" aria-labelledby="genreModalLabel" aria-hidden="true">
    <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content form-inline">
 		<form:form commandName="genre_command" action="genreList.do" id="genre_form">
         <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -67,7 +66,7 @@
          	<div class="form-group">
          		<span style="display:inline-block; width:100px">
          		<label for="genre">장르명</label></span>
-         		<form:input path="genre"/>
+         		<form:input path="genre" class="form-control"/>
          		<form:errors path="genre" cssClass="error-color"/>
          	</div>
         </div>
@@ -85,7 +84,7 @@
 <!-- 장르 수정 모달창 -->
 <div class="modal fade" id="genreModify" tabindex="-1" role="dialog" aria-labelledby="genreModalLabel" aria-hidden="true">
    <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content form-inline">
 		<form:form commandName="genre_command" action="genreDetail.do" id="modify_form">
 		<input type="hidden" name="genre_num" id="genre_num">
 		<form:errors element="div" cssClass="error-color"/>
@@ -101,11 +100,11 @@
         	<span style="display:inline-block; width:100px">
         	<label for="genre_num">장르 코드</label></span>
         	<span id="show-num"></span>
-        	</div>
+        	</div><br>
         	<div class="form-group">
         		<span style="display:inline-block; width:100px">
          		<label for="genre">장르명</label></span>
-         		<form:input path="genre" id="name"/>
+         		<form:input path="genre" id="name" class="form-control"/>
          		<form:errors path="genre" cssClass="error-color"/>
          	</div>
         </div>

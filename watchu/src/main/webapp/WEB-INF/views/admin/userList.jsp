@@ -5,15 +5,16 @@
 <div class="admin_main">
 	<div id="user_list" style="width:90%">
 		<h2>회원 목록</h2>
-		<div class="content-header" align="right">
+		<div class="content-header form-inline" align="right">
 			<!-- 검색 -->
-			<form action="userList.do" id="user_search" method="get" class="search">
-			<select name="keyfield">
+			<form action="userList.do" id="user_search" method="get" class="search form-group">
+			<select name="keyfield" class="form-control">
+				<option value="all">전체</option>
 				<option value="name">이름</option>
 				<option value="id">ID</option>
 			</select>
-			<input type="text" name="keyword" id="keyword"> 
-			<input type="submit" value="검색">
+			<input type="text" name="keyword" id="keyword" class="form-control"> 
+			<input type="submit" value="검색" class="btn btn-default">
 			</form>
 		</div>
  <br>

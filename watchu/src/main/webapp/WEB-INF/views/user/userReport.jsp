@@ -23,31 +23,36 @@
 							<div style="padding:50px; background:#eee;">
 							
 							<div>
-	            				<label>신고아이디</label>
-	            				<div>
+	            				<label>신고아이디　　</label>
 	            					<span>${user2.id}</span>
-	            				</div>
-	            			</div>
-	            			<hr>
-	            			<div class="form-group">
-								<label>신고내용</label> 
-								<select class="form-control">
-									<option>욕설사용</option>
-									<option>부적절한내용기재</option>
-									<option>ㅇㅇ</option>
-									<option>기타</option>
-								</select>
+	            			</div><br>
+	            			<div class="form-group" text-align="center">
+								<label>신고 구분</label>
+								<form:select path="report_category" class="form-control">
+									<form:option value="" disabled="true" selected="true">------ 구분을 선택하세요 ------</form:option>
+									<form:option value="욕설사용">욕설 사용</form:option>
+									<form:option value="부적절한 내용">부적절한 내용기재</form:option>
+									<form:option value="회원비방">회원 비방</form:option>
+									<form:option value="스포일러">스포일러</form:option>
+									<form:option value="기타">기타</form:option>
+								</form:select>
 							</div>
-	            			<div>
-		            			<label>신고내용</label>
+							<div>
+		            			<label>제목</label>
 		            			<div>
-		            				<form:textarea path="report_content" cols="50" rows="5"/>
+		            				<form:input path="report_title" class="form-control"/>
+		            			</div>
+	            			</div>
+	            			<div>
+		            			<label>내용</label>
+		            			<div>
+		            				<form:textarea path="report_content" cols="50" rows="5" class="form-control"/>
 		            			</div>
 	            			</div>
 	            			
 	            			<div class="text-center" style="margin-top:30px;">
-	                           <input type="submit" class="btn btn-primary" value="신고하기">
-	                           <input type="button" class="btn btn-primary" value="취소" onclick="location.href='userPage.do?id=${user2.id}'">
+	                           <input type="submit" class="btn btn-primary" value="신고하기" id="report_submit">
+	                           <input type="button" class="btn btn-default" value="취소" onclick="location.href='userPage.do?id=${user2.id}'">
 	                       </div>
 	            			
 	            			</div>

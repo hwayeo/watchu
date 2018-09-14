@@ -11,12 +11,25 @@
 <div class="container">
 <table class="table table-bordered">
     <thead>
-        <caption> 글쓰기 </caption>
+        <caption><h4>문의글 작성</h4></caption>
     </thead>
     <tbody>
         <form:form commandName="contactCommand" action="userSupportWrite.do" id="register_form" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${user_id}">
 		<form:errors element="div" cssClass="error-color"/>	
+			<tr>
+				<th>구분</th>
+				<td>
+				<form:select path="category" class="form-control">
+					<form:option value="" disabled="true" selected="true">-------- 구분을 선택하세요 --------</form:option>
+					<form:option value="app이용">app이용</form:option>
+					<form:option value="PC이용">PC이용</form:option>
+					<form:option value="개인정보">개인정보</form:option>
+					<form:option value="영화등록요청">영화등록요청</form:option>
+					<form:option value="기타">기타</form:option>
+				</form:select>
+				</td>
+			</tr>
             <tr>
                 <th>제목 </th>
                 <td><input type="text" placeholder="제목을 입력하세요. " name="title" class="form-control"/></td>
@@ -32,7 +45,7 @@
             </tr>
             <tr>
                 <td colspan="2" class="text-center">
-                    <input type="submit" class="btn btn-default" value="등록">
+                    <input type="submit" class="btn btn-primary" value="등록">
                     <input type="button" class="btn btn-default" value="목록" onclick="location.href='userSupportList.do'"/>
                 </td>
             </tr>

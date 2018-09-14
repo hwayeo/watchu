@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="detail" style="width:90%">
 	<h2>관계자 상세 정보/수정</h2>
-	<div class="detail_content">
+	<div class="detail_content form-inline">
 	<form:form commandName="official_command" action="offcialDetail.do" id="modify_form" enctype="multipart/form-data">
 	    <form:hidden path="off_num"/>
 		<form:errors element="div" cssClass="error-color"/>
@@ -26,19 +26,21 @@
 					<li><b>관계자 코드　</b> ${officials.off_num}</li>
 					<li>
 					<label for="jobs">구분　　</label>
-					<form:input path="jobs"/>
-					<form:errors path="jobs" cssClass="error-color"/>
+					<form:radiobutton path="jobs" value="ACTOR" label="　ACTOR"/>　
+					<form:radiobutton path="jobs" value="DIRECTOR" label="　DIRECTOR"/>
+					<%-- <form:input path="jobs" class="form-control"/>
+					<form:errors path="jobs" cssClass="error-color"/> --%>
 					</li>
 					<li>   
 					<label for="name">이름　　</label>
-					<form:input path="name"/>
+					<form:input path="name" class="form-control"/>
 					<form:errors path="name" cssClass="error-color"/>
 					</li>
 					<hr size="1" noshade>
 					<li>
 					<label for="filmograp">필모그래피</label>
 					<Br>
-					<form:input path="filmograp" size="30"/>
+					<form:textarea path="filmograp" cols="100" rows="3" class="form-control"/>
 					<form:errors path="filmograp" cssClass="error-color"/>
 					</li>
 					<li>

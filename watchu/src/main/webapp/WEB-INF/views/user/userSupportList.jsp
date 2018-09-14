@@ -11,25 +11,19 @@
 
    <div class="content-body">
       <div class="tab-pane active text-center" id="support_list">
-         <div class="col-md-12 col-xs-12 content-header">
+         <div class="col-md-12 col-xs-12 content-header form-inline">
             <!-- 검색 -->
-	        <form action="userSupportList.do" id="search_form" method="get">
-				<ul class="search">
-					<li style="none">
-						<p class="search-title">검색 구분 </p>
-	            <select name="keyfield">
-	               <option value="title">제목</option>
-					<option value="id">ID</option>
-					<option value="content">내용</option>
+	        <form action="userSupportList.do" id="search_form" method="get" class="form-group">
+				<select name="keyfield" class="form-control">
 					<option value="all">전체</option>
-	            </select>
-					<input type="text" name="keyword" id="keyword" style="width:110px">
-					<input type="submit" value="검색" class="btnSearch">
-				</ul>
+					<option value="category">구분</option>
+					<option value="content">제목</option>
+					<option value="title">내용</option>
+				</select>
+			<input type="text" name="keyword" id="keyword" class="form-control" size="15"> 
+			<input type="submit" value="검색" class="btn btn-default">
 			</form>
          </div>
-         
-         <p class="total">총 <span class="watchucolor">${contact.count}</span>건의 상담내역이 있습니다.</p>
 
          <!-- 상담 목록 -->
         <c:if test="${count == 0}">
@@ -37,22 +31,22 @@
 		</c:if>
 		<c:if test="${count > 0}">
          <table class="table table-hover table-condensed">
+         <thead>
             <tr class="sup_title">
-               <th class="col-md-1">번호</th>
-               <th class="col-md-2">아이디</th>
-               <th class="col-md-3">제목</th>
-               <th class="col-md-2">분류</th>
-               <th class="col-md-2">상태</th>
-               <th class="col-md-2">등록일</th>
+               <th class="col-md-1 text-center">번호</th>
+               <th class="col-md-2 text-center">구분</th>
+               <th class="col-md-4 text-center">제목</th>
+               <th class="col-md-1 text-center">상태</th>
+               <th class="col-md-2 text-center">작성자</th>
+               <th class="col-md-2 text-center">등록일</th>
             </tr>
-            
+           </thead>
             <c:forEach var="contact" items="${list}">
             <tr class="sup_content" a onclick="location.href='userSupportView.do?contact_num=${contact.contact_num}'" style="cursor:pointer">
                <td>${contact.contact_num}</td>
-               <td>${contact.id}</td>
+               <td>${contact.category}</td>
                <td>${contact.title}</td>
-               <td>App 오류</td>
-               <td>
+               <td class="recontentable">
                	<c:if test="${contact.recotentable == 0}">
                		<a style="color:red">답변대기</a>
                	</c:if>
@@ -60,14 +54,15 @@
                		<a style="color:blue">답변완료</a>
                	</c:if>
                </td>
+               <td>${contact.id}</td>
                <td>${contact.reg_date}</td>
             </tr>
             </c:forEach>
          </table>
          </c:if>
       </div>
-      <div class="etc text-center">
-		<input type="button" class="btn btn-default" value="글쓰기" onclick="location.href='userSupportWrite.do'">
+      <div class="etc text-right">
+		<input type="button" class="btn btn-primary" value="글쓰기" onclick="location.href='userSupportWrite.do'">
       </div>
    </div>
 </div>

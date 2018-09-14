@@ -7,7 +7,7 @@ $(document).ready(function(){
 	//-----답변 목록-----//
 	function selectData(pageNum, contact_num){
 		currentPage = pageNum;
-		
+		console.log(pageNum);
 		if(pageNum == 1){
 			$('#output').empty();
 		}
@@ -32,14 +32,13 @@ $(document).ready(function(){
 				}else{
 					$(list).each(function(index, item){
 						var output = '<div class="item">';
-							output += 	'<h5><b>관리자 답변</b></h5>';
-							output += 	'<div class="sub-item">';
+							output += 	'<h5><b>관리자 답변</b>　　' + item.reg_date + '</h5>';
+							output += 	'<div class="sub-item" style="margin-top:20px;">';
 							output += 		'<p>' + item.recontent + '</p>';
-							output +=		item.reg_date;
 							
 							//댓글 수정&삭제 버튼
-							output += '<input type="button" data-num="'+item.recontact_num+'" value="수정" class="reply_mod">';
-							output += '<input type="button" data-num="'+item.recontact_num+'" value="삭제" class="reply_del">';
+							output += '<input type="button" data-num="'+item.recontact_num+'" value="수정" class="reply_mod btn btn-sm btn-default"> ';
+							output += '<input type="button" data-num="'+item.recontact_num+'" value="삭제" class="reply_del btn btn-sm btn-danger">';
 							
 							output +=	'<hr size="1" noshade>';
 							output +=	'</div>';
@@ -58,7 +57,7 @@ $(document).ready(function(){
 			},
 			error:function(){
 				$('#loading').hide();
-				alert('네트워크 오류');
+				alert('답변 목록 네트워크 오류');
 			}
 		});
 	}
@@ -75,7 +74,6 @@ $(document).ready(function(){
 			$('#recontent').focus();
 			return false();
 		}
-		
 		var data = {
 				contact_num: $('#contact_num').val(),
 			    recontent: $('#recontent').val()
@@ -97,7 +95,7 @@ $(document).ready(function(){
 				}else if(data.result == 'success'){
 					initForm();
 					selectData(1, $('#contact_num').val());
-					alert('데이터 등록');
+					alert('답변이 등록 되었습니다.');
 				}else{
 					alert('등록 시 오류 발생');
 				}
@@ -124,14 +122,16 @@ $(document).ready(function(){
 		console.log(recontent);
 		
 		//댓글 수정 폼
-		var modifyUI = '<form id="mre_form">';
+		var modifyUI = '<form id="mre_form" class="form-group">';
+			modifyUI += '<div align="center" style="margin:20px auto">';
 			modifyUI +=		'<input type="hidden" name="recontact_num" id="mrecontact_num" value="'+recontact_num+'">';
-			modifyUI +=		'<textarea rows="3" cols="50" name="recontent" id="mrecontent" class="rep-content">'+recontent+'</textarea>';
-			modifyUI +=		'<div id="mre_btn">';
-			modifyUI +=			'<input type="submit" value="수정">';
-			modifyUI +=			'<input type="button" value="취소" class="re-reset">';
+			modifyUI +=		'<textarea rows="3" cols="50" name="recontent" id="mrecontent" class="rep-content form-control" style="width:80%">'+recontent+'</textarea>';
+			modifyUI +=		'<div id="mre_btn" align="right" style="margin-top:10px;">';
+			modifyUI +=			'<input type="submit" value="수정" class="btn btn-sm btn-default"> ';
+			modifyUI +=			'<input type="button" value="취소" class="re-reset btn btn-sm btn-default">';
 			modifyUI +=		'</div>';
 			modifyUI +=		'<hr size="1" noshade>';
+			modifyUI +=	'</div>';
 			modifyUI +=	'</form>';
 			
 		initModifyForm(); //수정폼 초기화

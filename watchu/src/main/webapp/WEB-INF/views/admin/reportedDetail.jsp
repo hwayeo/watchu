@@ -4,26 +4,69 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="detail" style="width:90%">
-	<h2>신고 상세 정보/수정</h2>
-	<div class="detail-content">
-		<ul>
-			<li>
-				<label>작성자</label>${report.id}
-			</li>
-			<li>
-				<label>작성일</label>${report.reg_date}
-			</li>
-			<hr size="1" noshade>
-			<li>
-				<label>신고아이디</label>${report.report_user }
-			</li>
-			<li>
-				<label>신고내용</label>
-				<div class="report_content">
-					<p>${report.report_content}</p>
-				</div>
-			</li>
-		</ul>
+	<h2>신고 상세 정보</h2><br>
+	<div class="detail-content form-inline">
+	<table style="width:100%">
+	<tr>
+		<td width="10%">
+		<label>작성자</label>
+		</td>
+		<td width="90%">
+		${report.id}
+		</td>
+	</tr>
+	<tr>
+		<td width="10%">
+		<label>작성일</label>
+		</td>
+		<td width="90%">
+		${report.reg_date}
+		</td>
+	</tr>
+	<tr>
+	</table>
+	<hr size="1" noshade>
+	<table style="width:100%">
+	<tr>
+		<td width="10%">
+		<label>신고 아이디</label>
+		</td>
+		<td width="90%">
+		${report.report_user}
+		</td>
+	</tr>
+	<tr>
+		<td width="10%">
+		<label>신고 구분</label>
+		</td>
+		<td width="90%">
+		${report.report_category}
+		</td>
+	</tr>
+	<tr>
+		<td width="10%">
+		<label>제목</label>
+		</td>
+		<td width="90%">
+		${report.report_title}
+		</td>
+	</tr>
+	</table>
+	<hr size="1" noshade>
+	<table style="width:100%">
+		<tr>
+		<td width="10%">
+		<label>내용</label>
+		</td>
+		<td width="90%">
+		<p>
+		${report.report_content}
+		</p>
+		</td>
+	</tr>
+	</table>
+</div>
+<br>
 		<div class="edit_btn" align="right">
 			<input type="button" id="processing" class="btn btn-md btn-primary" value="처리완료(삭제)" onclick="location.href='reportDelete.do?num=${report.report_num}'">
 			<input type="button" class="btn btn-default" value="목록" onclick="location.href='reportedUser.do'">
@@ -80,4 +123,3 @@
 		</div><!-- 끝 -->
 		</div>
 	</div> --%>
-</div>

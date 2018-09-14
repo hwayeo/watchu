@@ -15,6 +15,7 @@ public class ContactCommand {
 	private Date reg_date;
 	private Integer recotentable;
 	private String title;
+	private String category;
 	
 	public Integer getContact_num() {
 		return contact_num;
@@ -72,10 +73,16 @@ public class ContactCommand {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	@Override
 	public String toString() {
 		return "ContactCommand [contact_num=" + contact_num + ", id=" + id + ", content=" + content + ", upload="
 				+ upload + ", filename=" + filename + ", reg_date=" + reg_date + ", recotentable=" + recotentable
-				+ ", title=" + title + "]";
+				+ ", title=" + title + ", category=" + category + "]";
 	}
 }
