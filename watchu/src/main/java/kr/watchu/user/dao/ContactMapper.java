@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Update;
 import kr.watchu.user.domain.AdminRecontactCommand;
 import kr.watchu.user.domain.ContactCommand;
 
-public interface ContactMapper {
+public interface ContactMapper { 
 	//문의글 등록 
 	@Insert("INSERT INTO user_contact (contact_num,id,content,filename,upload_file,reg_date,title,category) VALUES (contact_seq.nextval,#{id},#{content},#{filename},#{upload_file},SYSDATE,#{title},#{category})")
 	public void insertContact(ContactCommand contact);

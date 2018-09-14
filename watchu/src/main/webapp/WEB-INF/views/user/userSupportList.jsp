@@ -4,9 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/support.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/support.js"></script>
-<div id="main-content">
+<div id="main-content"> 
 <div class="container">
-   <h2 class="title">고객센터</h2>
+   <h2 class="title">고객센터</h2> 
    <p class="subTitle">Watchu의 고객센터입니다.</p>
 
    <div class="content-body">

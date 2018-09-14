@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 영화등록 -->
+<!-- 영화등록 --> 
 <div class="register_movie" style="width:90%">
 	<h2>영화 등록</h2> 
 	<div class="detail_content">

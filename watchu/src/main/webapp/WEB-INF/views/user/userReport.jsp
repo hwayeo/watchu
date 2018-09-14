@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>     
 <div id="page-register">
 	<div id="form-register">
 		<div class="text-center">
 			<h3><b>신고페이지</b></h3>			
 		</div>				
 	</div> 
-
+ 
 <div class="container">
          <div class="row"> 
 

@@ -1,7 +1,7 @@
 package kr.watchu.user.domain;
 
 import java.sql.Date;
-
+ 
 public class ReportCommand {
 	private Integer report_num;
 	private String id;

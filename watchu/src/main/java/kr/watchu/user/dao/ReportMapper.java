@@ -11,7 +11,7 @@ import kr.watchu.user.domain.ReportCommand;
 
 public interface ReportMapper {
 	
-	//신고 
+	//신고  
 	@Insert("INSERT INTO user_report (report_num,id,report_user,report_content,reg_date,report_category,report_title) VALUES (report_seq.nextval,#{id},#{report_user},#{report_content},SYSDATE,#{report_category},#{report_title})")
 	public void insertReport(ReportCommand report);
 	//상세정보
