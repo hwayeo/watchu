@@ -19,11 +19,10 @@
 			<div class="col-xs-7 col-md-6 text-center">
 				<a href="#" class="following_profile_img"> 
 					<c:if test="${empty user.profile_img}">
-							<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg"
-											class="img-circle2" id="following_profile_img" style="width: 60px; height: 60px;">
+							<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" class="img-circle2" id="following_profile_img" style="width: 60px; height: 60px;">
 					</c:if> 
 					<c:if test="${!empty user.profile_img}">
-							<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}"class="img-circle2" style="width: 60px; height: 60px;">
+							<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}" class="img-circle2" style="width: 60px; height: 60px;">
 					</c:if>
 				</a> 
 				<p style="font-size:22px"> ${user.name}</p>
@@ -94,8 +93,6 @@
 	</div>
 </div>
 
-
-
 <!-- 톱니바퀴 누르면 나오는 모달 -->
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -152,9 +149,6 @@
 							</div>
 
 						</li>
-
-
-
 					</ul>
 
 					<!--     여기까지다 -->
