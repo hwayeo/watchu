@@ -244,6 +244,7 @@
 		    <artifactId>spring-security-core</artifactId>
 		    <version>5.0.7.RELEASE</version>
 		</dependency>
+		
 		<!-- mail -->
 		<dependency>
 			<groupId>javax.mail</groupId>

@@ -3,10 +3,13 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.watchu.movie.dao.RecommendMapper">
-	<select id="selectFavoriteGenre" parameterType="map" resultType="String">
+	<select id="selectFavoriteGenre" parameterType="map"
+		resultType="String">
 		SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT
-		id, genre, ROUND(AVG(rate),1) rate FROM analysis_genre GROUP BY
-		genre,id HAVING id=#{id} ORDER BY rate DESC)a) 
+		id, genre,
+		ROUND(AVG(rate),1) rate FROM analysis_genre GROUP BY
+		genre,id HAVING
+		id=#{id} ORDER BY rate DESC)a) 
 		<![CDATA[
 			WHERE rnum >=#{start} AND rnum <=#{end}
 		]]>
@@ -30,5 +33,41 @@
 		ps.id=pp.id WHERE ps.id=#{id})pps ON
 		tt.genre=pps.genre WHERE
 		tt.genre=#{genre}
+	</select>
+	<select id="selectRanGenreMovieList" parameterType="map"
+		resultType="MovieCommand">
+		SELECT a.*, rownum FROM (SELECT * FROM movie_info i JOIN
+		(SELECT movie_num, ROUND(AVG(rate),1) rate FROM movie_rated GROUP BY
+		movie_num)r ON i.movie_num=r.movie_num WHERE i.main_genre=#{genre} OR
+		i.sub_genre=#{genre} ORDER BY DBMS_RANDOM.VALUE)a 
+		<![CDATA[
+			WHERE rownum <=#{count}
+		]]>
+	</select>
+	<select id="selectRanOffMovie" parameterType="String"
+		resultType="MovieCommand">
+		SELECT a.*, rownum FROM (SELECT * FROM movie_info i JOIN
+		(SELECT movie_num, ROUND(AVG(rate),1) rate FROM movie_rated GROUP BY
+		movie_num)r ON i.movie_num=r.movie_num
+		WHERE 
+		 i.director like '%' || #{name} || '%' or
+         i.actors like '%' || #{name} || '%' 
+		 ORDER BY DBMS_RANDOM.VALUE)a 
+		<![CDATA[
+			WHERE rownum <=1
+		]]>
+	</select>
+	<select id="selectRanOffMovieList" parameterType="map"
+		resultType="MovieCommand">
+		SELECT a.*, rownum FROM (SELECT * FROM movie_info i JOIN
+		(SELECT movie_num, ROUND(AVG(rate),1) rate FROM movie_rated GROUP BY
+		movie_num)r ON i.movie_num=r.movie_num
+		WHERE 
+		 i.director like '%' || #{name} || '%' or
+         i.actors like '%' || #{name} || '%' 
+		 ORDER BY DBMS_RANDOM.VALUE)a 
+		<![CDATA[
+			WHERE rownum <=#{count}
+		]]>
 	</select>
 </mapper>

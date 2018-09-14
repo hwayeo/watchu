@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.watchu.movie.domain.CommentCommand;
+import kr.watchu.movie.domain.MovieCommand;
 import kr.watchu.movie.service.CommentService;
 import kr.watchu.movie.service.MovieService;
+import kr.watchu.movie.service.RecommendService;
 import kr.watchu.user.domain.UserCommand;
 import kr.watchu.user.service.UserService;
 import kr.watchu.util.PagingUtil;
@@ -42,6 +44,8 @@ public class MyPageController {
 	private CommentService commentService;
 	@Resource
 	private MovieService movieService;
+	@Resource
+	private RecommendService recommendService;
 	
 	//자바빈 초기화
 	@ModelAttribute("userCommand")
@@ -50,110 +54,152 @@ public class MyPageController {
 	}
 	
 	//마이페이지 메인
-	@RequestMapping("/user/userMypage.do")
-	public String mypage(HttpSession session,Model model) {
-		String id = (String)session.getAttribute("user_id");
-		UserCommand user = userService.selectUser(id);
-		Map<String,Object> map = new HashMap<String,Object>();
-		
-		if(log.isDebugEnabled()) {
-			log.debug("<<userCommand>> : " + user);
-		}
-		
-		//팔로잉 숫자 표시하기위해 친구 arraylist만듬
-		List<String> follow3 = new ArrayList<String>();
-		
-		if(user.getFollow() != null) {
-			String follow = user.getFollow();
-			String[] follow2 = SplitUtil.splitByComma(follow);//쉼표제거
-		
-			//for문 돌려서 String배열요소 Array리스트에 넣기
-			for(int i=0;i<follow2.length; i++) {
-				follow3.add(follow2[i]);
+		@RequestMapping("/user/userMypage.do")
+		public ModelAndView mypage(HttpSession session,Model model) {
+			String id = (String)session.getAttribute("user_id");
+			UserCommand user = userService.selectUser(id);
+			
+			if(log.isDebugEnabled()) {
+				log.debug("<<userCommand>> : " + user);
 			}
 			
-		}else {
-			follow3.clear();//null값도 없애버림
-		}
-		
-		//팔로워 숫자
-		List<String> follower3 = new ArrayList<String>();
-		if(user.getFollower() != null) {
-			String follower = user.getFollower();
-			String[] follower2 = SplitUtil.splitByComma(follower);//쉼표제거
+			//팔로잉 숫자 표시하기위해 친구 arraylist만듬
+			List<String> follow3 = new ArrayList<String>();
 			
-			//for문 돌려서 String배열요소 Array리스트에 넣기
-			for(int i=0;i<follower2.length; i++) {
-				follower3.add(follower2[i]);
-			}
-		}else {
-			follower3.clear();
-		}
-		
-		//블락숫자
-		List<String> blockList = new ArrayList<String>();
-		if(user.getBlock() != null) {
-			String block = user.getBlock();
-			String[] block2 = SplitUtil.splitByComma(block);//쉼표제거
-
-			//for문 돌려서 String배열요소 Array리스트에 넣기
-			for(int i=0;i<block2.length; i++) {
-				blockList.add(block2[i]);
-			}
-		}else {
-			blockList.clear();
-		}
-		
-		
-		//코맨트 숫자
-		Integer comment_count = commentService.selectMyCommentCnt(id);
-		Integer likecomment_count = commentService.selectMyCommentCnt(id);
-		Integer mypage_movielist_count = movieService.selectMovieCnt(map);
-		
-		model.addAttribute("user", user);
-		model.addAttribute("list",follow3);
-		model.addAttribute("list2",follower3);
-		model.addAttribute("blockList",blockList);
-		model.addAttribute("comment_count",comment_count);	
-		model.addAttribute("likecomment_count",likecomment_count);	
-		model.addAttribute("mypage_movielist_count",mypage_movielist_count);	
+			if(user.getFollow() != null) {
+				String follow = user.getFollow();
+				String[] follow2 = SplitUtil.splitByComma(follow);//쉼표제거
+			
+				//for문 돌려서 String배열요소 Array리스트에 넣기
+				for(int i=0;i<follow2.length; i++) {
+					follow3.add(follow2[i]);
+				}
 				
-		
-		return "userMypage";
-	}
-	
-	/*//평가한 영화 목록
-	@RequestMapping("/user/userMypage_movie.do")
-	public String mypage_movie(@RequestParam(value="id") String id) {
-		return "userMypage_movie";
-	}*/
-	
-	//평가한 영화 목록 더보기
-	@RequestMapping("/user/userMypage_movielist.do")
-	public ModelAndView mypage_movielist(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
-										 HttpSession session) {
+			}else {
+				follow3.clear();//null값도 없애버림
+			}
+			
+			//팔로워 숫자
+			List<String> follower3 = new ArrayList<String>();
+			if(user.getFollower() != null) {
+				String follower = user.getFollower();
+				String[] follower2 = SplitUtil.splitByComma(follower);//쉼표제거
+				
+				//for문 돌려서 String배열요소 Array리스트에 넣기
+				for(int i=0;i<follower2.length; i++) {
+					follower3.add(follower2[i]);
+				}
+			}else {
+				follower3.clear();
+			}
+			
+			//블락숫자
+			List<String> blockList = new ArrayList<String>();
+			if(user.getBlock() != null) {
+				String block = user.getBlock();
+				String[] block2 = SplitUtil.splitByComma(block);//쉼표제거
 
-		String id = (String)session.getAttribute("user_id");
-		
-		Map<String,Object> map = new HashMap<String,Object>();
-		int count = movieService.selectMovieCnt(map);  
-		
-		//영화 갯수로 나올거임~! 위에 카운트,리소스,서비스 수정해서 평가한걸로 바꿔야대~!!!!!!!!!!!!!!!!
-		
-		
-		if(log.isDebugEnabled()) {
-			log.debug("<<리스트 총값>> : " + count);
+				//for문 돌려서 String배열요소 Array리스트에 넣기
+				for(int i=0;i<block2.length; i++) {
+					blockList.add(block2[i]);
+				}
+			}else {
+				blockList.clear();
+			}
+			
+			
+			//코맨트 숫자
+			Integer comment_count = commentService.selectMyCommentCnt(id);
+			Integer likecomment_count = commentService.selectMyCommentCnt(id); //바꺼야댕
+			Integer mypage_movielist_count = recommendService.selectRatedCntById(id);
+			
+			model.addAttribute("user", user);
+			model.addAttribute("list",follow3);
+			model.addAttribute("list2",follower3);
+			model.addAttribute("blockList",blockList);
+			model.addAttribute("comment_count",comment_count);	
+			model.addAttribute("likecomment_count",likecomment_count);	
+			model.addAttribute("mypage_movielist_count",mypage_movielist_count);	
+			
+			
+			//최고의 작품
+			int rowCount = 0;
+			int pageCount = 4;
+			
+			Map<String,Object> map = new HashMap<String,Object>();
+			int count = recommendService.selectRatedCntById(id);  
+			PagingUtil page = new PagingUtil(count,rowCount,pageCount,count, "userMypage.do");
+			map.put("start", page.getStartCount());
+			map.put("end", page.getEndCount());
+			map.put("id", id);
+			
+			List<MovieCommand> recommendList = recommendService.selectRatedMovieList(map);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<recoomendList>>>> : " + recommendList);
+			}
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("userMypage");
+			mav.addObject("count",count);
+			mav.addObject("recommendList",recommendList);
+			mav.addObject("pagingHtml",page.getPagingHtml());
+			
+			return mav;
 		}
 		
+		/*//평가한 영화 목록
+		@RequestMapping("/user/userMypage_movie.do")
+		public String mypage_movie(@RequestParam(value="id") String id) {
+			return "userMypage_movie";
+		}*/
 		
-		PagingUtil page = new PagingUtil(currentPage,count,rowCount,pageCount,"userMypage_movielist.do");
-		map.put("start", page.getStartCount());
-		map.put("end", page.getEndCount());
-		
+		//평가한 영화 목록 더보기
+		@RequestMapping("/user/userMypage_movielist.do")
+		public ModelAndView mypage_movielist(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+											 HttpSession session) {
+
+			int rowCount = 999;
+			int pageCount = 999;
+			
+			String id = (String)session.getAttribute("user_id");
+			
+			Map<String,Object> map = new HashMap<String,Object>();
+			int count = recommendService.selectRatedCntById(id);  
+			
+			if(log.isDebugEnabled()) {
+				log.debug("<<리스트 총값>> : " + count);
+			}
+			
+			
+			PagingUtil page = new PagingUtil(currentPage,count,rowCount,pageCount,"userMypage_movielist.do");
+			map.put("start", page.getStartCount());
+			map.put("end", page.getEndCount());
+			map.put("id", id);
+			
+			List<MovieCommand> recommendList = recommendService.selectRatedMovieList(map);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<recoomendList>>>> : " + recommendList);
+			}
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("userMypage_movielist");
+			mav.addObject("count",count);
+			mav.addObject("recommendList",recommendList);
+			mav.addObject("pagingHtml",page.getPagingHtml());
+			
+			return mav;
+		}
+	
+	//취향분석
+	@RequestMapping("/user/analysis.do")
+	public ModelAndView analysis(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("userMypage_movielist");
-		mav.addObject("count",count);
-		mav.addObject("pagingHtml",page.getPagingHtml());
+		mav.setViewName("analysis");
+		
+		//유저정보 가져오기
+		String id = (String) session.getAttribute("user_id");
+		
+		if(log.isDebugEnabled()) {
+			log.debug("<<확인 id>> : " + id);
+		}
 		
 		return mav;
 	}

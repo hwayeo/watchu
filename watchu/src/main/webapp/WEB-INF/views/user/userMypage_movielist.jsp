@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/mypagemovie.css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 	<div class="container-fluid">
 		<div class="container text-center">
 			<div class="col-xs-12 col-md-12">
@@ -9,7 +11,7 @@
 		</div>
 
 		<div class="container">
-			<ul class="nav nav-tabs" style="padding-left:400px;">
+			<ul class="nav nav-tabs">
 				<li class="active"><a data-toggle="tab" href="#home" class="fa fa-clock-o">전체</a></li>
 				<li><a data-toggle="tab" href="#menu1" class="fa fa-gavel">별점순</a></li>
 			</ul>
@@ -30,7 +32,7 @@
 					</div>
 					
 					
-					<c:if test="${empty movieList}">
+					<c:if test="${empty recommendList}">
 						<div class="text-center">
 							<img src="../resources/images/ap.jpg"><br>
 							<span style="font-size: 23px;color: #f74788;">평가된 영화가 없어요!</span><br>
@@ -38,30 +40,21 @@
 							<a onclick="location.href='/watchu/movie/movieEva.do'" style="color:#f74788;" class="glyphicon glyphicon-hand-right"></a>
 				    	</div>
 					</c:if>
-					<c:if test="${!empty movieList}">
+					<c:if test="${!empty recommendList}">
 						<div class="row container">
 							<div class="col-xs-12 col-md-12">
-								<%-- <div class="col-xs-4 col-md-3">
-									<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-									<br><span>가디언즈 오브 갤럭시</span>
-									<br><span style="color: #ffbf00">★4.5</span><br><br>
-								</div>
-								<div class="col-xs-4 col-md-3">
-									<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
-									<br><span>수어사이드 스쿼드</span>
-									<br><span style="color: #ffbf00">★1.5</span><br><br>
-	
-								</div>
-								<div class="col-xs-4 col-md-3">
-									<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
-									<br><span>앤트맨</span>
-									<br><span style="color: #ffbf00">★5.0</span><br><br>
-								</div> 
-								<div class="col-xs-4 col-md-3">
-									<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-									<br><span>가디언즈 오브 갤럭시</span>
-									<br><span style="color: #ffbf00">★4.5</span><br><br>
-								</div> --%>
+								<c:forEach var="recommendList" items="${recommendList}">	
+									 <div class="col-xs-6 col-md-3">
+									 	<c:if test="${!empty recommendList.poster_img}">
+											<img class="movie_poster" src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${recommendList.movie_num}&type=poster" width="100%" height="100%">
+										</c:if>	
+										<c:if test="${empty recommendList.poster_img}">
+											<img class="movie_poster" src="${pageContext.request.contextPath}/resources/images/default-poster.jpg" width="100%" height="100%">
+										</c:if>
+											<br><p class="movie_title">${recommendList.title}</p>
+											<p class="movie_rate">★${recommendList.rate}</p>
+									</div>
+								</c:forEach>
 							</div> 
 						</div>
 					</c:if>

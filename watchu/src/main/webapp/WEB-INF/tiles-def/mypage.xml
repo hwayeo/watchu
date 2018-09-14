@@ -20,6 +20,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/userMypage_movielist.jsp"/>
 	</definition>
 	
+	<definition name="analysis" extends="userWrite">
+		<put-attribute name="title" value="왓츄 - 취향분석" />
+		<put-attribute name="body" value="/WEB-INF/views/user/analysis.jsp" />
+	</definition>
+	
 	<definition name="userComment" extends="userWrite">
 		<put-attribute name="title" value="왓츄 - 코멘트"/>
 		<put-attribute name="body" value="/WEB-INF/views/user/userComment.jsp"/>
