@@ -3,7 +3,7 @@ package kr.watchu.movie.domain;
 import java.sql.Date;
 import java.util.Arrays;
 
-public class TimelineCommand {
+public class TimelineCommand { 
 	private Integer movie_num;
 	private String title;
 	private String country;

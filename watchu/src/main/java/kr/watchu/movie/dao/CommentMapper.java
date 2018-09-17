@@ -66,6 +66,6 @@ public interface CommentMapper {
 	public List<RecommentCommand> selectRecommentList(Map<String, Object> map);
 	//Ä«¿îÆ®
 	public int selectRecommentCnt(Map<String, Object> map);
-	
+	 
 	public List<TimelineCommand> selectTimeline(Map<String,Object> map);
 }

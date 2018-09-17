@@ -108,7 +108,7 @@ public class CommentServiceImpl implements CommentService{
 
 	@Override
 	public List<TimelineCommand> selectTimeline(Map<String, Object> map) {
-		return commentMapper.selectTimeline(map);
+		return commentMapper.selectTimeline(map); 
 	}
 
 }
