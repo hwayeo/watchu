@@ -30,17 +30,17 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/userComment.jsp"/>
 	</definition>
 	
-	<definition name="userComment_detail" extends="userWrite">
+	<!-- <definition name="userComment_detail" extends="userWrite">
 		<put-attribute name="title" value="왓츄 - 코멘트 상세페이지"/>
 		<put-attribute name="body" value="/WEB-INF/views/user/userComment_detail.jsp"/>
-	</definition>	
+	</definition>	 -->
 	
 	<definition name="userLikeComment" extends="userWrite">
 		<put-attribute name="title" value="왓츄 - 좋아요한 코멘트"/>
 		<put-attribute name="body" value="/WEB-INF/views/user/userLikeComment.jsp"/>
 	</definition>	
 	
-	<definition name="userWish" extends="userWrite">
+	<!-- <definition name="userWish" extends="userWrite">
 		<put-attribute name="title" value="왓츄 - 보고싶어요"/>
 		<put-attribute name="body" value="/WEB-INF/views/user/userWish.jsp"/>
 	</definition>
@@ -48,7 +48,7 @@
 	<definition name="userWatching" extends="userWrite">
 		<put-attribute name="title" value="왓츄 - 보는중"/>
 		<put-attribute name="body" value="/WEB-INF/views/user/userWatching.jsp"/>
-	</definition>
+	</definition> -->
 	
 	<definition name="userfollow" extends="userWrite">
 		<put-attribute name="title" value="추천친구페이지"/>

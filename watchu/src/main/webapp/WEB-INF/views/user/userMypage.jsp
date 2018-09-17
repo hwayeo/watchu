@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/setup.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/mypagemovie.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/mypage.js"></script>
 <div id="main-content">
 <div class="container-fluid">
@@ -63,7 +64,7 @@
 	
 		<div class="col-xs-12 col-md-12 text-center"> 
 			<div class="col-xs-7 col-md-6"><br>
-				<p style="font-size:22px">최고의 작품</p><br>
+				<p class="best">최고의 작품</p><br>
 			</div>
 			<div class="col-xs-1 col-md-2"></div>
 			<div class="col-xs-2 col-md-2"><br><br>
@@ -78,12 +79,12 @@
 						<c:if test="${recommendList.rate == 5.0}">
 								<div class="col-xs-6 col-md-2">
 									<c:if test="${!empty recommendList.poster_img}">
-										<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${recommendList.movie_num}&type=poster" width="100%" height="100%">
+										<a href="${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${recommendList.movie_num}&type=poster"><img class="movie_poster2" src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${recommendList.movie_num}&type=poster" width="100%" height="100%"></a>
 									</c:if>	
 									<c:if test="${empty recommendList.poster_img}">
-										<img src="${pageContext.request.contextPath}/resources/images/default-poster.jpg" width="100%" height="100%">
+										<a href="${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${recommendList.movie_num}&type=poster"><img class="movie_poster2" src="${pageContext.request.contextPath}/resources/images/default-poster.jpg" width="100%" height="100%"></a>
 									</c:if>
-									<p class="movie_title">${recommendList.title}</p>
+									<p class="movie_title2">${recommendList.title}</p>
 								</div>
 						</c:if>
 					</c:forEach> 

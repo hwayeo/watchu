@@ -30,7 +30,51 @@
     margin-bottom: 50px;
     margin-left: -50px;
 	}
+	img.movie_poster2 {
+    height: 240px;
+    width: 220px;
+    padding-right: 50px;
+    margin-left: -10px;
+	}
+	p.movie_title2 {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 150px;
+		height: 20px;
+		font-size: 14px;
+    	text-align: center;
+    	padding-bottom: 23px;
+	}
+	ul.nav.nav-tabs {
+    padding-left: 550px;
+	}
 	
+	img.movie_poster3 {
+    width: 200px;
+    max-height: 100%;
+    margin-left: 30px;
+    padding-right: 30px;
+	}
+	p.movie_title3 {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 150px;
+		height: 20px;
+		font-size: 14px;
+    	text-align: center;
+    	padding-bottom: 23px;
+    	margin-left: 30px;
+	}
+	span.rate_pont {
+    font-size: 29px;
+    margin-left: 20px;
+	}
+	button.btn.btn-md.btn-primary.active {
+    background: #f74788;
+    border-color: #f74788;
+	}
 }
 
 @media screen and (min-width:0px) and (max-width:767px) { /*모바일*/
@@ -45,6 +89,9 @@
 		white-space: nowrap;
 		width: 110px;
 		height: 20px;
+		 font-size: 12px;
+    	text-align: center;
+    	padding-bottom: 23px;
 	}
 	img.movie_poster {
     height: 200px;
@@ -52,16 +99,53 @@
     padding-right: 50px;
     margin-left: -10px;
 	}
-	p.movie_title {
-    font-size: 12px;
-    text-align: center;
-    padding-bottom: 23px;
-	}
 	p.movie_rate {
     font-size: 11px;
     color: #ffcd05;
     margin-top: -10px;
     text-align: center;
     margin-bottom: 16px;
+	}
+	img.movie_poster2 {
+    height: 200px;
+    width: 180px;
+    padding-right: 50px;
+    margin-left: -10px;
+	}
+	p.movie_title2 {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 110px;
+		height: 20px;
+		 font-size: 12px;
+    	text-align: center;
+    	padding-bottom: 23px;
+	}
+	
+	img.movie_poster3 {
+  	height: 200px;
+    width: 180px;
+    padding-right: 50px;
+    margin-left: -10px;
+	}
+	span.rate_pont {
+    font-size: 23px;
+    margin-left: 10px;
+	}
+	
+	button.btn.btn-md.btn-primary.active {
+    background: #f74788;
+    border-color: #f74788;
+	}
+	p.movie_title3 {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 110px;
+		height: 20px;
+		 font-size: 12px;
+    	text-align: center;
+    	padding-bottom: 23px;
 	}
 }

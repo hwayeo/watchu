@@ -93,6 +93,11 @@
       font-size:12px;
    }
    
+   p.best {
+    font-size: 28px;
+    margin-left: 30px;
+	}
+   
    .image{
 		max-width: 65%; /* 이미지의 최대사이즈 */
 	    width: auto;
@@ -227,9 +232,11 @@ a.num {
     padding-left: 0px;
 }
 .col-md-12.bestmovie {
-    margin-left: 500px;
+    margin-left: 600px;
     margin-right: 400px;
 }
+
+
 
 }
 
@@ -334,7 +341,11 @@ a.num {
 	}
 	
 	
-	
+	p.best {
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: -30px;
+	}
 	
 	.rolling_panel {
 	position: relative;
@@ -369,8 +380,6 @@ a.num {
     max-width: 14%;
 }
 .media-heading {
-    margin-top: 0;
-    margin-left: 18px;
     font-size: 17px;
     font-weight: 600;
 }
@@ -386,18 +395,18 @@ ptag{
    }
 .list-inline {
     padding-left: 0;
-    margin-left: -23px;
+    margin-left: 20px;
     list-style: none;
     font-size: 10px;
 }
 p.ptag { /*개봉일자*/
-    margin-left: 10px;
+    margin-left: -25px;
     margin-top: 1px;
     margin-bottom: 10px;
 }
 span.commentspan { /*리뷰쓰는곳*/
     font-size: 13px;
-    margin-left: 8px;
+    margin-left: -25px;
 }
 
 /*코멘트 디테일*/
@@ -450,8 +459,9 @@ a.num {
 a.like2 {
     color: #F74788;
     padding-right: 1px;
-    margin-left: 20px;
-    font-size: 12px;
+    margin-left: 100px;
+    font-size: 13px;
+    font-weight: 700;
 }
 span.com_title {
     font-size: 12px;
