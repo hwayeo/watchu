@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.watchu.movie.dao.CommentMapper;
 import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.movie.domain.RecommentCommand;
+import kr.watchu.movie.domain.TimelineCommand;
 
 @Service("commentService")
 public class CommentServiceImpl implements CommentService{
@@ -103,6 +104,11 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public CommentCommand commentDetail(Map<String, Object> map) {
 		return commentMapper.commentDetail(map);
+	}
+
+	@Override
+	public List<TimelineCommand> selectTimeline(Map<String, Object> map) {
+		return commentMapper.selectTimeline(map);
 	}
 
 }

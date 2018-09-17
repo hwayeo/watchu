@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.movie.domain.RecommentCommand;
+import kr.watchu.movie.domain.TimelineCommand;
 
 public interface CommentMapper {
 	/*
@@ -65,4 +66,6 @@ public interface CommentMapper {
 	public List<RecommentCommand> selectRecommentList(Map<String, Object> map);
 	//Ä«¿îÆ®
 	public int selectRecommentCnt(Map<String, Object> map);
+	
+	public List<TimelineCommand> selectTimeline(Map<String,Object> map);
 }
