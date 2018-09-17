@@ -37,7 +37,7 @@ public interface ContactMapper {
 	public List<AdminRecontactCommand> selectListReply(Map<String, Object> map);
 	@Select("SELECT COUNT(*) FROM admin_recontact WHERE contact_num=#{contact_num}")
 	public int selectRowCountReply(Map<String, Object> map);
-	@Insert("INSERT INTO admin_recontact (recontact_num, contact_num, recontent, reg_date) VALUES (recontact_seq.nextval, #{contact_num}, #{recontent}, SYSDATE)")
+	@Insert("INSERT INTO admin_recontact (recontact_num, contact_num, recontent, reg_date, id) VALUES (recontact_seq.nextval, #{contact_num}, #{recontent}, SYSDATE, #{id})")
 	public void insertReply(AdminRecontactCommand adminRecontactCommand);
 	@Update("UPDATE admin_recontact SET recontent=#{recontent} WHERE recontact_num=#{recontact_num}")
 	public void updateReply(AdminRecontactCommand adminRecontactCommand);

@@ -13,7 +13,7 @@
       <div class="tab-pane active text-center" id="support_list">
          <div class="col-md-12 col-xs-12 content-header form-inline">
             <!-- 검색 -->
-	        <form action="userSupportList.do" id="search_form" method="get" class="form-group">
+	        <form action="userSupportList.do" id="support_search" method="get" class="form-group">
 				<select name="keyfield" class="form-control">
 					<option value="all">전체</option>
 					<option value="category">구분</option>
@@ -36,24 +36,24 @@
                <th class="col-md-1 text-center">번호</th>
                <th class="col-md-2 text-center">구분</th> 
                <th class="col-md-4 text-center">제목</th>
-               <th class="col-md-1 text-center">상태</th>
-               <th class="col-md-2 text-center">작성자</th>
+               <!-- <th class="col-md-1 text-center">상태</th> -->
+               <th class="col-md-3 text-center">작성자</th>
                <th class="col-md-2 text-center">등록일</th>
             </tr>
            </thead>
             <c:forEach var="contact" items="${list}">
-            <tr class="sup_content" a onclick="location.href='userSupportView.do?contact_num=${contact.contact_num}'" style="cursor:pointer">
+            <tr class="sup_content">
                <td>${contact.contact_num}</td>
                <td>${contact.category}</td>
-               <td>${contact.title}</td>
-               <td class="recontentable">
+               <td onclick="location.href='userSupportView.do?contact_num=${contact.contact_num}'" style="cursor:pointer">${contact.title}</td>
+               <%-- <td class="recontentable">
                	<c:if test="${contact.recotentable == 0}">
                		<a style="color:red">답변대기</a>
                	</c:if>
                	<c:if test="${contact.recotentable == 1}">
                		<a style="color:blue">답변완료</a>
                	</c:if>
-               </td>
+               </td> --%>
                <td>${contact.id}</td>
                <td>${contact.reg_date}</td>
             </tr>

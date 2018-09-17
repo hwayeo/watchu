@@ -24,9 +24,9 @@
 			<table class="table table-hover table-condensed">
 				<thead>
 				<tr>
-					<th class="col-md-2">영화 코드</th>
-					<th class="col-md-8">영화명</th>
-					<th class="col-md-2">선택</th>
+					<th class="col-md-3">영화 코드</th>
+					<th class="col-md-5">영화명</th>
+					<th class="col-md-3">선택</th>
 				</tr>
 				</thead>
 				<tbody>

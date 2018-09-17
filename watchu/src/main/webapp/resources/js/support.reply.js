@@ -7,7 +7,8 @@ $(document).ready(function(){
 	//-----답변 목록-----//
 	function selectData(pageNum, contact_num){
 		currentPage = pageNum;
-		console.log(pageNum);
+		console.log("contact_num: " + contact_num);
+		
 		if(pageNum == 1){
 			$('#output').empty();
 		}
@@ -32,14 +33,19 @@ $(document).ready(function(){
 				}else{
 					$(list).each(function(index, item){
 						var output = '<div class="item">';
-							output += 	'<h5><b>관리자 답변</b>　　' + item.reg_date + '</h5>';
+							output += 	'<h5><b>' + item.id + '</b>　|　' + item.reg_date + '</h5>';
 							output += 	'<div class="sub-item" style="margin-top:20px;">';
 							output += 		'<p>' + item.recontent + '</p>';
-							
+						
 							//댓글 수정&삭제 버튼
-							output += '<input type="button" data-num="'+item.recontact_num+'" value="수정" class="reply_mod btn btn-sm btn-default"> ';
-							output += '<input type="button" data-num="'+item.recontact_num+'" value="삭제" class="reply_del btn btn-sm btn-danger">';
+							var item_id = item.id;
+							console.log("item.id: " + item_id);
+							console.log($('#user_id').val());
 							
+							if($('#user_id').val() == item.id){ //로그인한 id가 답변 작성자 id와 같음
+								output += '<input type="button" data-num="'+item.recontact_num+'" data-id="'+item.id+'" value="수정" class="reply_mod btn btn-sm btn-default"> ';
+								output += '<input type="button" data-num="'+item.recontact_num+'" data-id="'+item.id+'" value="삭제" class="reply_del btn btn-sm btn-danger">';
+							}
 							output +=	'<hr size="1" noshade>';
 							output +=	'</div>';
 							output += '</div>';
@@ -76,7 +82,8 @@ $(document).ready(function(){
 		}
 		var data = {
 				contact_num: $('#contact_num').val(),
-			    recontent: $('#recontent').val()
+			    recontent: $('#recontent').val(),
+			    id: $('#user_id').val()
 		}; 
 		
 		console.log(data);
@@ -90,9 +97,9 @@ $(document).ready(function(){
 			cache:false,
 			timeout: 30000,
 			success: function(data){
-				if(data.result == 'logout'){
+				if(data.result == 'logout'){ //로그인 상태 아님
 					alert('로그인 해야 작성할 수 있습니다.');
-				}else if(data.result == 'success'){
+				}else if(data.result == 'success'){ //로그인 상태
 					initForm();
 					selectData(1, $('#contact_num').val());
 					alert('답변이 등록 되었습니다.');
@@ -179,6 +186,8 @@ $(document).ready(function(){
 					$('#mre_form').parent().find('p').text($('#mrecontent').val());
 					//수정폼 초기화
 					initModifyForm();
+				}else if(data.result == 'wrongAccess'){
+					alert('타인의 답변은 수정할 수 없습니다.');
 				}
 			},
 			error: function(){
@@ -206,6 +215,8 @@ $(document).ready(function(){
 					alert('삭제 완료!');
 					//전체 댓글 목록 새로 읽어 옴
 					selectData(1, $('#contact_num').val());
+				}else if(data.result == 'wrongAccess'){
+					alert('타인의 답변은 삭제할 수 없습니다.');
 				}else{
 					alert('댓글 삭제 오류!');
 				}
