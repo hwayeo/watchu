@@ -18,12 +18,58 @@ $(document).ready(function(){
 		}
 	});
 	
+	//버튼 클릭시
+	$('.movieListButton input').click(function(){
+			if(currentPage>=Math.ceil(count/rowCount)){
+			}else if(keyfield == 'allcategory'){
+				console.log('allcategory');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'genrecountry'){
+				console.log('genrecountry');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'genreorder'){
+				console.log('genreorder');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'countryorder'){
+				console.log('countryorder');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'genre'){
+				console.log('genre');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'country'){
+				console.log('country');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'order'){
+				console.log('order');
+				pageNum = currentPage + 1;
+				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
+			}else if(keyfield == 'title'){
+				console.log('title');
+				pageNum = currentPage + 1;
+				selectList(pageNum,keyword,keyfield);
+			}else if(keyfield == 'search'){
+				console.log('search');
+				pageNum = currentPage + 1;
+				selectList(pageNum,keyword,keyfield);
+			}else{
+				console.log('Not all');
+				pageNum = currentPage + 1;
+				selectList(pageNum,subkeyword,subkeyfield);
+			}
+	});
+	
 	//스크롤 이벤트 발생시 pageNum값을 증가 시킨다.
 	$(window).scroll(function(){
 		if($(window).scrollTop() == $(document).height() - $(window).height()){ 
 			if(currentPage>=Math.ceil(count/rowCount)){
 			}else if(keyfield == 'allcategory'){
-				console.log('카테고리 3개 전부');
+				console.log('allcategory');
 				pageNum = currentPage + 1;
 				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
 			}else if(keyfield == 'genrecountry'){
@@ -181,7 +227,7 @@ $(document).ready(function(){
 					$(list).each(function(index,item){
 						var released = item.released;
 						if(width > 425){
-							elist += '<div class="col-sm-6 col-md-3 col-xs-6" id="main-category">';
+							elist += '<div class="col-sm-3 col-md-3 col-xs-6" id="eva-category">';
 							elist += '<div class="thumbnail">';
 							if(item.poster_img == null){
 							elist += '<img src="../resources/images/default-poster.jpg" class="mimg">';
@@ -276,6 +322,12 @@ $(document).ready(function(){
 						}
 					});
 					$('#elist').append(elist);
+					
+					if(currentPage>=Math.ceil(count/rowCount)){
+						$('.movieListButton').hide();
+					}else{
+						$('.movieListButton').show();
+					}
 				}
 			},
 			error:function(){				
@@ -305,7 +357,7 @@ $(document).ready(function(){
 					$(list).each(function(index,item){
 						var released = item.released;
 						if(width > 425){
-							elist += '<div class="col-sm-6 col-md-3 col-xs-6" id="main-category">';
+							elist += '<div class="col-sm-3 col-md-3 col-xs-6" id="eva-category">';
 							elist += '<div class="thumbnail">';
 							if(item.poster_img == null){
 							elist += '<img src="../resources/images/default-poster.jpg" class="mimg">';
@@ -400,6 +452,12 @@ $(document).ready(function(){
 						}
 					});
 					$('#elist').append(elist);
+					
+					if(currentPage>=Math.ceil(count/rowCount)){
+						$('.movieListButton').hide();
+					}else{
+						$('.movieListButton').show();
+					}
 				}
 			},
 			error:function(){				

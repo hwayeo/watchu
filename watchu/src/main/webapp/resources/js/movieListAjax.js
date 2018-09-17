@@ -15,7 +15,7 @@ $(document).ready(function(){
 	$('.movieListButton input').click(function(){
 			if(currentPage>=Math.ceil(count/rowCount)){
 			}else if(keyfield == 'allcategory'){
-				console.log('카테고리 3개 전부');
+				console.log('allcategory');
 				pageNum = currentPage + 1;
 				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
 			}else if(keyfield == 'genrecountry'){
@@ -58,11 +58,11 @@ $(document).ready(function(){
 	});
 
 	//스크롤 이벤트 발생시 pageNum값을 증가 시킨다.
-	/*$(window).scroll(function(){
+	$(window).scroll(function(){
 		if($(window).scrollTop() == $(document).height() - $(window).height()){ 
 			if(currentPage>=Math.ceil(count/rowCount)){
 			}else if(keyfield == 'allcategory'){
-				console.log('카테고리 3개 전부');
+				console.log('allcategory');
 				pageNum = currentPage + 1;
 				selectCategory(pageNum,keyword,keyword2,keyword3,keyfield);
 			}else if(keyfield == 'genrecountry'){
@@ -103,7 +103,7 @@ $(document).ready(function(){
 				selectList(pageNum,subkeyword,subkeyfield);
 			}
 		}
-	});*/
+	});
 
 	/*---------------검색창에서 이벤트 발생시 호출---------------------*/
 	$('.gbutton').on('click',function(event){

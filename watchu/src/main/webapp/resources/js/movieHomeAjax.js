@@ -110,7 +110,8 @@ $(document).ready(function(){
 			}
 		});
 	}
-	selectHome2(1,'title','쿵푸');
+	selectHome2(1,'country','미국');
+	
 	function selectHome3(pageNum,keyfield,keyword){
 		var mlist = '';
 		currentPage = pageNum;
@@ -153,5 +154,6 @@ $(document).ready(function(){
 			}
 		});
 	}
-	selectHome3(1,'country','프랑스');
+	selectHome3(1,'search','리암 니슨');
+	
 });

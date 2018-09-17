@@ -26,13 +26,13 @@
 <form action="movieList.do" method="get" id="listForm" name="listForm">
 <div id="categoryHr">
 	<select class="visible-xs col-xs-4 form-control genre-category all-category" name="keyword">
-    	  <option value="">모든 장르</option>
+    	  <option value="" selected>모든 장르</option>
 	   <c:forEach var="cl" items="${movieGenre}">
 	      <option value="${cl.genre}">${cl.genre}</option>
 	   </c:forEach>
 	</select>
 	<select class="visible-xs col-xs-4  form-control country-category all-category" name="keyword2">
-    	  <option value="">모든 국가</option>
+    	  <option value="" selected>모든 국가</option>
 	   <c:forEach var="gl" items="${movieInfo}">
 	      <option value="${gl.country}">${gl.country}</option>
 	   </c:forEach>
@@ -43,13 +43,13 @@
 	</select>
 <!---------------------- 웹환경 ----------------------------->
 	<select id="category-menu" class="hidden-xs genre-category2 all-category2" name="keyword">
-    	  <option value="">모든 장르</option>
+    	  <option value="" selected>모든 장르</option>
 	   <c:forEach var="cl" items="${movieGenre}">
     	  <option value="${cl.genre}">${cl.genre}</option>
 	   </c:forEach>
 	</select>
 	<select id="category-menu" class="hidden-xs country-category2 all-category2" name="keyword2">
-    	  <option value="">모든 국가</option>
+    	  <option value="" selected>모든 국가</option>
 	   <c:forEach var="gl" items="${movieInfo}">
     	  <option value="${gl.country}">${gl.country}</option>
 	   </c:forEach>
@@ -58,7 +58,7 @@
     	  <option value="" selected>최신 순</option>
     	  <option value="rate">별점 순</option>
 	</select>
-	</div>
+</div>
 </form>
 
 <div class="row">

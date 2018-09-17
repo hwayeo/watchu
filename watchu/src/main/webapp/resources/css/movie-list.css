@@ -9,7 +9,7 @@
 	font-weight:bold;
 } 
 .home-text2{
-	padding:0;
+	padding:0 15px;
 	text-align:right;
 	font-size:20px;
 	float:right;
@@ -163,13 +163,13 @@
 }
 .home-text1{
 	padding:15px;
-	font-size:30px;
+	font-size:24px;
 	font-weight:bold;
 } 
 .home-text2{
 	padding:10px;
 	text-align:right;
-	font-size:20px;
+	font-size:18px;
 	float:right;
 	text-decoration:none; 
 	color:#999;
@@ -246,9 +246,10 @@
 .home-text2{
 	padding:0 10px;
 	text-align:right;
-	font-size:10px;
+	font-size:16px;
 	float:right;
 	text-decoration:none; 
+	font-weight:bold;
 	color:#999;
 }
 #category-menu{
@@ -328,7 +329,7 @@ select.all-category{
 .home-text2{
 	padding:0 10px;
 	text-align:right;
-	font-size:10px;
+	font-size:15px;
 	float:right;
 	text-decoration:none; 
 	color:#999;
@@ -410,9 +411,10 @@ select.all-category{
 .home-text2{
 	padding:0 10px;
 	text-align:right;
-	font-size:10px;
+	font-size:13px;
 	float:right;
 	text-decoration:none; 
+	font-weight:bold;
 	color:#999;
 }
 #category-menu{
