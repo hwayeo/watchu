@@ -8,7 +8,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import kr.watchu.movie.dao.RecommendMapper;
+import kr.watchu.movie.domain.GenreCommand;
 import kr.watchu.movie.domain.MovieCommand;
+import kr.watchu.movie.domain.OfficialsCommand;
 
 @Service("recommendService")
 public class RecommendServiceImpl implements RecommendService{
@@ -78,6 +80,14 @@ public class RecommendServiceImpl implements RecommendService{
 	@Override
 	public String selectRecommendOff(Map<String, Object> map) {
 		return mapper.selectRecommendOff(map);
+	}
+	@Override
+	public List<GenreCommand> selectRatedGenre(Map<String, Object> map) {
+		return mapper.selectRatedGenre(map);
+	}
+	@Override
+	public List<OfficialsCommand> selectRatedOff(Map<String, Object> map) {
+		return mapper.selectRatedOff(map);
 	}
 	
 	

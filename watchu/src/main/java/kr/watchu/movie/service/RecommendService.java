@@ -3,8 +3,9 @@ package kr.watchu.movie.service;
 import java.util.List;
 import java.util.Map;
 
-
+import kr.watchu.movie.domain.GenreCommand;
 import kr.watchu.movie.domain.MovieCommand;
+import kr.watchu.movie.domain.OfficialsCommand;
 
 public interface RecommendService {
 	public Integer selectTotalRated();
@@ -39,4 +40,6 @@ public interface RecommendService {
 	public List<MovieCommand> selectRecommendList(Map<String,Object> map);
 	//사용자 취향 기반 영화인(감독,배우) 1명 추출
 	public String selectRecommendOff(Map<String,Object> map);
+	public List<GenreCommand> selectRatedGenre(Map<String,Object> map);
+	public List<OfficialsCommand> selectRatedOff(Map<String,Object> map);
 }
