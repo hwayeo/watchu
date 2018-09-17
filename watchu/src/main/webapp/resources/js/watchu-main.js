@@ -37,17 +37,6 @@ $(document).ready(function(){
 		var url ='url(bannerView.do?movie_num='+movie_num+')';
 		$('#img-test').css('background-image',url);
 	};
-/*
-	function showRandomMovieImg(){
-		var movie_num = $('#ranMovie').val();
-		var url = 'url(bannerView.do?movie_num='+movie_num+')';
-		$('#rec-random-banner').css('background-image',url).
-		css('height','400px').css('background-repeat','no-repeat').
-		css('background-position','center center').css('background-size','100%')
-		.css('border-top-left-radius','8px').css('border-top-right-radius','8px');
-		
-	}
-	showRandomMovieImg();*/
 	function headerClassControl(){
 		if(windowWidth < 768){
 			if(windowHeight < 20){
@@ -68,23 +57,6 @@ $(document).ready(function(){
 	}
 
 	showBannerImage();
-
-	
-	/* //검색
-	$('#search-btn').on('click',function(){
-		var keyword = $('#xs-search').val();
-		if(keyword == ''){
-			alert('검색어를 입력하세요');
-		}
-		
-		$.ajax({
-			url:'search.do',
-			method:'get',
-			data:{keyword:keyword},
-			cache:false,
-			timeout:30000
-		});
-	}); */
 
 	
 	//검색어 자동완성
@@ -118,6 +90,7 @@ $(document).ready(function(){
 						movieNames.push(value.title);
 					});
 				});
+				console.log(movieNames);
 			}
 		});
 		$('.search-input').autocomplete({source:movieNames});

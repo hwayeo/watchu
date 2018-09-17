@@ -27,16 +27,18 @@
 				<thead>
 				<tr>
 					<th class="col-md-1">번호</th>
-					<th class="col-md-2">구분</th>
-					<th class="col-md-5">제목</th>
+					<th class="col-md-1">구분</th>
+					<th class="col-md-2">신고ID</th>
+					<th class="col-md-4">제목</th>
 					<th class="col-md-2">작성자</th>
-					<th class="col-md-2">작성일</th>
+					<th class="col-md-1">작성일</th>
 				</tr>
 				</thead>
 				<c:forEach var="report" items="${list}">
 				<tr>
 					<td align="center">${report.report_num}</td>
 					<td align="center">${report.report_category}</td>
+					<td align="center" onclick="location.href='reportDetail.do?num=${report.report_num}'" style="cursor:pointer;">${report.report_user}</td>
 					<td align="center" onclick="location.href='reportDetail.do?num=${report.report_num}'" style="cursor:pointer;">${report.report_title}</td>
 					<td align="center" >${report.id}</td>
 					<td align="center" >${report.reg_date}</td>

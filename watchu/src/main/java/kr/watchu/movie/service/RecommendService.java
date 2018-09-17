@@ -5,7 +5,6 @@ import java.util.Map;
 
 
 import kr.watchu.movie.domain.MovieCommand;
-import kr.watchu.movie.domain.OfficialsCommand;
 
 public interface RecommendService {
 	public Integer selectTotalRated();
@@ -36,4 +35,6 @@ public interface RecommendService {
 	public String selectRanOff(Map<String,Object> map);
 	public MovieCommand selectRanOffMovie(String name);
 	public List<MovieCommand> selectRanOffMovieList(Map<String,Object> map);
+	
+	public List<MovieCommand> selectReccomendList(Map<String,Object> map);
 }

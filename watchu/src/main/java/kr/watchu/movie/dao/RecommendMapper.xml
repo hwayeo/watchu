@@ -37,7 +37,8 @@
 	<select id="selectRanGenreMovieList" parameterType="map"
 		resultType="MovieCommand">
 		SELECT a.*, rownum FROM (SELECT * FROM movie_info i JOIN
-		(SELECT movie_num, ROUND(AVG(rate),1) rate FROM movie_rated GROUP BY
+		(SELECT
+		movie_num, ROUND(AVG(rate),1) rate FROM movie_rated GROUP BY
 		movie_num)r ON i.movie_num=r.movie_num WHERE i.main_genre=#{genre} OR
 		i.sub_genre=#{genre} ORDER BY DBMS_RANDOM.VALUE)a 
 		<![CDATA[
@@ -47,12 +48,15 @@
 	<select id="selectRanOffMovie" parameterType="String"
 		resultType="MovieCommand">
 		SELECT a.*, rownum FROM (SELECT * FROM movie_info i JOIN
-		(SELECT movie_num, ROUND(AVG(rate),1) rate FROM movie_rated GROUP BY
+		(SELECT
+		movie_num, ROUND(AVG(rate),1) rate FROM movie_rated GROUP BY
 		movie_num)r ON i.movie_num=r.movie_num
-		WHERE 
-		 i.director like '%' || #{name} || '%' or
-         i.actors like '%' || #{name} || '%' 
-		 ORDER BY DBMS_RANDOM.VALUE)a 
+		WHERE
+		i.director like '%' ||
+		#{name} || '%' or
+		i.actors like '%' || #{name} || '%'
+		ORDER BY
+		DBMS_RANDOM.VALUE)a 
 		<![CDATA[
 			WHERE rownum <=1
 		]]>
@@ -60,14 +64,80 @@
 	<select id="selectRanOffMovieList" parameterType="map"
 		resultType="MovieCommand">
 		SELECT a.*, rownum FROM (SELECT * FROM movie_info i JOIN
-		(SELECT movie_num, ROUND(AVG(rate),1) rate FROM movie_rated GROUP BY
+		(SELECT
+		movie_num, ROUND(AVG(rate),1) rate FROM movie_rated GROUP BY
 		movie_num)r ON i.movie_num=r.movie_num
-		WHERE 
-		 i.director like '%' || #{name} || '%' or
-         i.actors like '%' || #{name} || '%' 
-		 ORDER BY DBMS_RANDOM.VALUE)a 
+		WHERE
+		i.director like '%' ||
+		#{name} || '%' or
+		i.actors like '%' || #{name} || '%'
+		ORDER BY
+		DBMS_RANDOM.VALUE)a 
 		<![CDATA[
 			WHERE rownum <=#{count}
+		]]>
+	</select>
+
+	<select id="selectReccomendList" parameterType="map"
+		resultType="MovieCommand">
+		SELECT tt.*, rownum FROM
+		(SELECT a.*, b.rate prediction FROM
+		(SELECT
+		i.movie_num,i.title,i.country,i.released,i.director,i.actors,i.poster_img,i.banner_img,i.main_genre,i.sub_genre,r.id
+		FROM movie_info i FULL OUTER JOIN (SELECT id,movie_num,rate FROM
+		movie_rated WHERE id=#{id})r ON i.movie_num=r.movie_num WHERE rate is
+		null)a RIGHT OUTER JOIN
+		(SELECT genre, ROUND(AVG(rate),1) rate FROM
+		analysis_genre GROUP BY genre)b
+		ON a.main_genre=b.genre
+		<where>
+			<if test="keyfield == 'genre'">
+				a.main_genre=#{keyword} OR a.sub_genre=#{keyword}
+			</if>
+			<if test="keyfield == 'director'">
+				a.director like '%' || #{keyword} || '%'
+			</if>
+			<if test="keyfield == 'actors'">
+				a.actors like '%' || #{keyword} || '%'
+			</if>
+		</where>
+		ORDER BY DBMS_RANDOM.VALUE)tt 
+		<![CDATA[
+			WHERE rownum <=#{count};
+		]]>
+	</select>
+	
+	<select id="selectRatedMovieList" parameterType="map" resultType="MovieCommand">
+		SELECT * FROM 
+		(SELECT a.*, rownum rnum FROM 
+		(SELECT * FROM movie_info i JOIN 
+		(SELECT * FROM movie_rated WHERE id=#{id}
+		<choose>
+			<when test="rate != null">
+				AND rate = #{rate}
+			</when>
+			<otherwise></otherwise>
+		</choose>
+		)r 
+		ON i.movie_num=r.movie_num
+		ORDER BY 
+		<choose>
+			<when test="sort == 'rate'">
+				r.rate DESC
+			</when>
+			<when test="sort == 'reg_date'">
+				r.reg_date DESC
+			</when>
+			<when test="sort == 'title'">
+				i.title ASC
+			</when>
+			<otherwise>
+				r.rate DESC
+			</otherwise>
+		</choose>
+		 )a) 
+		<![CDATA[
+			WHERE rnum >=#{start} AND rnum <=#{end}
 		]]>
 	</select>
 </mapper>

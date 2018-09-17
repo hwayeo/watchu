@@ -68,7 +68,8 @@
 			recontact_num,
 			recontent,
 			reg_date,
-			contact_num
+			contact_num,
+			id
 		FROM (SELECT
 				a.*,
 				rownum rnum
@@ -76,7 +77,7 @@
 			  			*
 			  	    FROM admin_recontact
 			  	    WHERE contact_num = #{contact_num}
-			  	    ORDER BY recontact_num DESC)a)
+			  	    ORDER BY contact_num DESC)a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>

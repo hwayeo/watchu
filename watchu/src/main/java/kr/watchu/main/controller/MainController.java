@@ -76,16 +76,7 @@ public class MainController {
 		MovieCommand ranActorMovie3= null;
 		//로그인 상태일때
 		if(id!=null) {
-			Map<String,Object> map = new HashMap<String,Object>();
-			map.put("id", id);
-			map.put("genre", "액션");
-			if(log.isDebugEnabled()) {
-				log.debug("[[-----진입------]] : ");
-			}
-			float prediction = recommendService.selectPredictionByGenre(map);
-			if(log.isDebugEnabled()) {
-				log.debug("[[-----prediction------]] : " + prediction);
-			}
+			
 		}else  {
 			if(log.isDebugEnabled()) {
 				log.debug("[[-----비로그인------]] : ");
@@ -107,6 +98,7 @@ public class MainController {
 			Map<String,Object> map2 = new HashMap<String,Object>();
 			map2.put("jobs", "ACTOR");
 			map2.put("rate", 3.0);
+			
 			String actor = recommendService.selectRanOff(map2);
 			if(log.isDebugEnabled()) {
 				log.debug("<<<<actor1>>>> : " + actor);
@@ -121,6 +113,7 @@ public class MainController {
 			Map<String,Object> map3 = new HashMap<String,Object>();
 			map3.put("jobs", "ACTOR");
 			map3.put("rate", 3.0);
+			
 			String actor2 = recommendService.selectRanOff(map3);
 			if(log.isDebugEnabled()) {
 				log.debug("<<<<actor>>>> : " + actor2);
@@ -128,13 +121,14 @@ public class MainController {
 			mav.addObject("ranActor2",actor2);
 			
 			ranActorMovie2 = recommendService.selectRanOffMovie(actor2);
+			
 			if(log.isDebugEnabled()) {
 				log.debug("<<<<ranActorMovie2>>>> : " + ranActorMovie2);
 			}
 			
 			Map<String,Object> map4 = new HashMap<String,Object>();
 			map4.put("jobs", "ACTOR");
-			map4.put("rate", 2.0);
+			map4.put("rate", 1.5);
 			String actor3 = recommendService.selectRanOff(map4);
 			if(log.isDebugEnabled()) {
 				log.debug("<<<<actor3>>>> : " + actor3);
@@ -146,11 +140,56 @@ public class MainController {
 				log.debug("<<<<ranActorMovie3>>>> : " + ranActorMovie3);
 			}
 			
+			Map<String,Object> direc = new HashMap<String,Object>();
+			direc.put("jobs", "DIRECTOR");
+			direc.put("rate", 2.5);
+			String director1 = recommendService.selectRanOff(direc);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<director1>>>> : " + director1);
+			}
+			mav.addObject("ranDirector1",director1);
+			
+			MovieCommand ranDirectorMovie1 = recommendService.selectRanOffMovie(director1);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<ranDirectorMovie1>>>> : " + ranDirectorMovie1);
+			}
+			mav.addObject("ranDirectorMovie1",ranDirectorMovie1);
+			
+			Map<String,Object> direc2 = new HashMap<String,Object>();
+			direc2.put("jobs", "DIRECTOR");
+			direc2.put("rate", 2.0);
+			String director2 = recommendService.selectRanOff(direc2);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<director2>>>> : " + director2);
+			}
+			mav.addObject("ranDirector2",director2);
+			
+			MovieCommand ranDirectorMovie2 = recommendService.selectRanOffMovie(director2);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<ranDirectorMovie2>>>> : " + ranDirectorMovie2);
+			}
+			mav.addObject("ranDirectorMovie2",ranDirectorMovie2);
+			
+			Map<String,Object> direc3 = new HashMap<String,Object>();
+			direc3.put("jobs", "DIRECTOR");
+			direc3.put("rate", 1.5);
+			String director3 = recommendService.selectRanOff(direc3);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<director3>>>> : " + director3);
+			}
+			mav.addObject("ranDirector3",director3);
+			
+			MovieCommand ranDirectorMovie3 = recommendService.selectRanOffMovie(director3);
+			if(log.isDebugEnabled()) {
+				log.debug("<<<<ranDirectorMovie3>>>> : " + ranDirectorMovie3);
+			}
+			mav.addObject("ranDirectorMovie3",ranDirectorMovie3);
+			
 		}
 		mav.addObject("ranGenreMovie",ranGenreMovie);
 		mav.addObject("ranActorMovie",ranActorMovie);
-		mav.addObject("ranActorMovie2",ranActorMovie3);
-		mav.addObject("ranActorMovie2",ranActorMovie3);
+		mav.addObject("ranActorMovie2",ranActorMovie2);
+		mav.addObject("ranActorMovie3",ranActorMovie3);
 		mav.addObject("totalRated",totalRated);
 		mav.addObject("randomMovie",randomMovie);
 		mav.addObject("ranBanner",ranBanner);
@@ -270,7 +309,7 @@ public class MainController {
 		
 		//검색된 영화
 		
-		List<MovieCommand> movieList = movieService.selectMovieList(map);
+		List<MovieCommand> movieList = movieService.selectMovieAjaxList(map);
 		mav.setViewName("result");
 		mav.addObject("movieList", movieList);
 		return mav;
@@ -289,7 +328,7 @@ public class MainController {
 		data.put("end", 20);
 		
 		if(!keyword.equals("")) {
-			List<MovieCommand> list = movieService.selectMovieList(data);
+			List<MovieCommand> list = movieService.selectMovieAjaxList(data);
 			jsonMap.put("list", list);
 		}
 		

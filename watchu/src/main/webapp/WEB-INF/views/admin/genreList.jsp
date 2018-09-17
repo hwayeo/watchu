@@ -22,16 +22,14 @@
 			<table class="table table-hover table-condensed" >
 				<thead>
 				<tr>
-					<th class="col-md-2">장르 코드</th>
-					<th class="col-md-8">장르명</th>
-					<th class="col-md-2">선택</th>
+					<th class="col-md-3">장르 코드</th>
+					<th class="col-md-9">장르명</th>
 				</tr>
 				</thead>
 				<c:forEach var="genre" items="${genre_list}">
 				<tr>
 					<td align="center">${genre.genre_num}</td>
 					<td align="center" class="modify_btn" style="cursor:pointer;" data-toggle="modal" data-target="#genreModify" data-whatever="${genre.genre_num}">${genre.genre}</td>
-					<td align="center"><input type="checkbox" name="genreChecked" value="${genre.genre_num}"/></td>
 				</tr>
 				</c:forEach>
 			</table>

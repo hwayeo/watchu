@@ -10,7 +10,7 @@
 		<form:errors element="div" cssClass="error-color"/>
 	<table style="width:100%">
 		<tr>
-			<td style="width:200px" align="center"> 
+			<td style="width:250px" align="center"> 
 			<div class="poster_img">
         	<c:if test="${!empty movie.poster_img}">
         		<img src="image_View.do?movie_num=${movie.movie_num}&type=poster" width="200px">

@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 
 import kr.watchu.movie.dao.RecommendMapper;
 import kr.watchu.movie.domain.MovieCommand;
-import kr.watchu.movie.domain.OfficialsCommand;
 
 @Service("recommendService")
 public class RecommendServiceImpl implements RecommendService{
 
 	@Resource
 	private RecommendMapper mapper;
+	
 	@Override
 	public Integer selectTotalRated() {
 		return mapper.selectTotalRated();
@@ -70,6 +70,10 @@ public class RecommendServiceImpl implements RecommendService{
 	@Override
 	public List<MovieCommand> selectRanOffMovieList(Map<String, Object> map) {
 		return mapper.selectRanOffMovieList(map);
+	}
+	@Override
+	public List<MovieCommand> selectReccomendList(Map<String, Object> map) {
+		return mapper.selectReccomendList(map);
 	}
 	
 	

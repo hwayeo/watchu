@@ -99,14 +99,15 @@
 	 
 	<!-- 답변 영역 -->
 	<div id="reply_div" style="background-color:#f8f8f8;">
-	<c:if test="${!empty user_id && user_id == 'admin'}">
+	<c:if test="${!empty user_id && (user_id == 'admin' || user_id == contact.id)}">
 	<hr size="1" width="100%">
 		<div class="reply_content" style="margin:20px auto;width:80%;">
-		<span class="reply-title""><b>답변 등록</b></span>
-		<form id="re_form" class="form-group">        
-			
+		<span class="reply-title"><b>답변 등록</b></span>
+		<form id="re_form" class="form-group">
+		<input type="hidden" name="cotact_num" value="${contact.contact_num}" id="contact_num">        
+		<input type="hidden" name="id"  value="${user_id}" id="user_id">
 			<textarea rows="5" cols="50" style="margin-bottom:10px;margin-top:10px" name="recontent" id="recontent" placeholder="답변내용을 입력하세요." class="rep-content form-control"<c:if test="${empty user_id}">disabled="disabled"</c:if>><c:if
-					test="${empty user_id}">로그인해야 작성할 수 있습니다.</c:if></textarea> 
+					test="${empty user_id}">로그인해야 작성할 수 있습니다.</c:if><c:if test="${user_id != contact.id}">작성자만 등록할 수 있습니다.</c:if></textarea> 
 			<c:if test="${!empty user_id}">
 			<div id="re_btn" align="right" style="padding-bottom:20px;">
 			<input type="submit" value="답변 등록" class="btn btn-primary btn-sm" class="btnReply" >

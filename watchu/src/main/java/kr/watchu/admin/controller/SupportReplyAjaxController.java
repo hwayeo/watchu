@@ -95,21 +95,29 @@ public class SupportReplyAjaxController {
 	//=============== 답변 삭제 ===============//
 	@RequestMapping("/admin/deleteReply.do")
 	@ResponseBody
-	public Map<String, String> deleteReply(@RequestParam("recontact_num") int recontact_num, HttpSession session){
+	public Map<String, String> deleteReply(@RequestParam("recontact_num") int recontact_num,
+									       @RequestParam("id") String id,
+									       HttpSession session){
 		if(log.isDebugEnabled()) {
 			log.debug("<<recontact_num>>: " + recontact_num);
+			log.debug("<<id>>: " + id);
 		}
 		
 		Map<String, String> map = new HashMap<String, String>();
 		
+		//세션에 로그인한 아이디 정보 가져옴
 		String user_id = (String)session.getAttribute("user_id");
-		if(user_id == null) {
-			map.put("result", "logout");
-		}else if(user_id != null) {
-			contactService.deleteReply(recontact_num);
-			map.put("result", "success");
-		}
 		
+		if(user_id == null) { //로그인 x
+			map.put("result", "logout");
+		}else if(user_id != null && user_id.equals(id)) {
+			//로그인 + 로그인 아이디 == 작성자 아이디
+			contactService.deleteReply(recontact_num); //댓글 삭제
+			map.put("result", "success");
+		}else {
+			//로그인 아이디 != 작성자 아이디
+			map.put("result", "wrongAccess");
+		}
 		return map;
 	}
 	
@@ -127,9 +135,13 @@ public class SupportReplyAjaxController {
 		if(user_id == null) {
 			//로그인이 안되어 있는 경우
 			map.put("result", "logout");
-		}else if(user_id != null){
-			contactService.updateReply(adminRecontactCommand);
+		}else if(user_id != null && user_id.equals(adminRecontactCommand.getId())){
+			//로그인 아이디 == 작성자 아이디
+			contactService.updateReply(adminRecontactCommand); //댓글 수정
 			map.put("result", "success");
+		}else {
+			//로그인 아이디 != 작성자 아이디
+			map.put("result", "wrongAccess");
 		}
 		
 		return map;

@@ -1,192 +1,293 @@
 @charset "UTF-8";
+@media screen and (min-width:1200px) and (max-width:2550px){
+	.bg{
+		text-align:center;
+		background-color:#f4f4f4;
+		width:100%;
+		height:250px;
+		border-bottom:1px solid #ccc;
+	}
+	.bg img{
+		margin-top:40px;
+	}
+	
+	.userName{
+		margin-top:20px;
+		font-size:32px;
+		font-weight:bold;
+		color:black;
+	}
+	
+	.movieCount{
+		font-size:14px;
+		color:#999;
+	}
+	
+	.selectTag{
+		width:100%;
+		height:250px;
+		border-bottom:1px solid #ccc;
+	}
+	
+	.subTitle1{
+		font-size:18px;
+		font-weight:700;
+		margin-top:20px;
+		margin-left:20px;
+	}
+	
+	.center{
+		text-align:center;
+	}
+	
+	.txtEffect{
+		position:absolute;
+	}
+	.container{
+		width:1200px;
+		margin:0 auto;
+	}
+	
+	.select1{
+		font-size:36px;
+		font-weight:900;
+		position:relative;
+		top:40px;
+		left:480px;
+	}
+	.select2{
+		font-size:28px;
+		font-weight:600;
+		opacity:0.8;
+		position:relative;
+		top:-60x;
+		left:210px;
+	}
+	.select3{
+		font-size:24px;
+		font-weight:500;
+		opacity:0.6;
+		position:relative;
+		top:80px;
+		left:318px;
+	}
+	.select4{
+		font-size:18px;
+		font-weight:400;
+		position:relative;
+		top:33px;
+		left:320px;
+	}
+	.select5{
+		font-size:14px;
+		font-weight:300;
+		position:relative;
+		top:90px;
+		left:48px;
+	}
+	
+	.starGraph{
+		width:100%;
+		height:500px;
+		border-bottom:1px solid #ccc;
+	}
+	
+	.subTitle2{
+		font-size:18px;
+		font-weight:700;
+		margin-top:20px;
+		margin-left:20px;
+	}
+	.subText1{
+		font-size:14px;
+		margin-left:20px;
+		color:#666;
+	}
+	
+	.subTitle3{
+		font-size:18px;
+		font-weight:700;
+		margin-top:20px;
+		margin-left:20px;
+	}
+	
+	.preference{
+		width:100%;
+		height:auto;
+		border-bottom:3px solid #ccc;
+	}
+	
+	.actor1{
+		margin-left:20px;
+		margin-bottom:5px;
+	}
+	
+	.w_img{
+		display:inline-block;
+		width:90%;
+	}
+	.w_img img{
+		margin-left:50px;
+	}
+	div.txt{
+		margin-left:40px;
+		display:inline-block;
+		width:100px;
+	}
+	.score{
+		display:inline-block;
+		width:9.5%;
+	}
+	.im{
+		font-weight:bold;
+	}
+	
+	.button{
+		width:100%;
+		height:50px;
+		font-size:16px;
+		text-align:center;
+		border-top:2px solid black;
+	}
+	
+	.clickChange{
+		margin-top:12px;
+	}
+	
+	.subTitle4{
+		font-size:18px;
+		font-weight:700;
+		margin-top:20px;
+		margin-left:20px;
+	}
+	
+	.director1{
+		margin-left:20px;
+		margin-bottom:5px;
+	}
+	
+	.genreContext{
+		width:100%;
+		height:622px;
+		border-bottom:1px solid #ccc;
+	}
+	
+	.subTitle5{
+		font-size:18px;
+		font-weight:700;
+		margin-top:20px;
+		margin-left:20px;
+	}
+	.subText2{
+		font-size:14px;
+		margin-left:20px;
+		color:#666;
+	}
+	
+	/* 차트 */
+	.content h1 {
+	  font-weight: 500;
+	  text-align: center;
+	}
+	
+	svg#donut-chart {
+	  display: block;
+	  margin: 0 auto;
+	}
+	
+	text.inner-circle {
+	  font-weight: 400;
+	  font-size: 20px;
+	  text-transform: uppercase;
+	}
+	
+	.arc {
+	  cursor: pointer;
+	  
+	  &:hover {
+	    opacity: .85;
+	  }
+	  
+	  text {
+	    font-weight: 300;
+	    font-size: 18px;
+	    color: #fff;
+	  }
+	}
+	
+	.row{
+		font-size:14px;
+		padding:10px 35px;
+		border-top:1px solid #f2f2f2;	
+	}
+	
+	.col-2{
+		width:33.33%;
+	}
+	
+	.box{
+		width:100%;
+		height:100px;
+		clear:both;
+		margin-bottom:30px;
+	}
+	
+	.genre{
+		text-align:center;
+		width:10%;
+		height:60px;
+		float:left;
+	}
+	
+	.genre:nth-child(1){
+		margin-left:35%;
+	}
+	
+	.red{
+		font-size:18px;
+		color:red;
+	}
+	.blue{
+		font-size:18px;
+		color:blue;
+	}
+	.green{
+		font-size:18px;
+		color:green;
+	}
+	
+	.rowBox{
+		clear:both;
+	}
+	
+	.left{
+		float:left;
+		text-align:left;
+		color:#303042;
+		pointer-events:none;
+	}
+	.middle{
+		float:left;
+		text-align:center;
+		color:#707070;
+		pointer-events:none;
+	}
+	.right{
+		float:left;
+		text-align:right;
+		color:#707070;
+		pointer-events:none;
+	}
+}
 
-.bg{
-	text-align:center;
-	background-color:#f4f4f4;
-	width:100%;
-	height:250px;
-	border-bottom:1px solid #ccc;
-}
-.bg img{
-	margin-top:40px;
+@media screen and (min-width:768px) and (max-width:1199px){
+	
 }
 
-.userName{
-	margin-top:20px;
-	font-size:32px;
-	font-weight:bold;
-	color:black;
+@media screen and (min-width:415px) and (max-width:767px){
+	
 }
 
-.movieCount{
-	font-size:14px;
-	color:#999;
-}
-
-.selectTag{
-	width:100%;
-	height:250px;
-	border-bottom:1px solid #ccc;
-}
-
-.subTitle1{
-	font-size:18px;
-	font-weight:700;
-	margin-top:20px;
-	margin-left:20px;
-}
-
-.center{
-	text-align:center;
-}
-
-.txtEffect{
-	position:absolute;
-}
-.container{
-	width:1200px;
-	margin:0 auto;
-}
-
-.select1{
-	font-size:36px;
-	font-weight:900;
-	position:relative;
-	top:40px;
-	left:480px;
-}
-.select2{
-	font-size:28px;
-	font-weight:600;
-	opacity:0.8;
-	position:relative;
-	top:-60x;
-	left:210px;
-}
-.select3{
-	font-size:24px;
-	font-weight:500;
-	opacity:0.6;
-	position:relative;
-	top:80px;
-	left:318px;
-}
-.select4{
-	font-size:18px;
-	font-weight:400;
-	position:relative;
-	top:33px;
-	left:320px;
-}
-.select5{
-	font-size:14px;
-	font-weight:300;
-	position:relative;
-	top:90px;
-	left:48px;
-}
-
-.starGraph{
-	width:100%;
-	height:500px;
-	border-bottom:1px solid #ccc;
-}
-
-.subTitle2{
-	font-size:18px;
-	font-weight:700;
-	margin-top:20px;
-	margin-left:20px;
-}
-.subText1{
-	font-size:14px;
-	margin-left:20px;
-	color:#666;
-}
-
-.subTitle3{
-	font-size:18px;
-	font-weight:700;
-	margin-top:20px;
-	margin-left:20px;
-}
-
-.preference{
-	width:100%;
-	height:auto;
-	border-bottom:3px solid #ccc;
-}
-
-.actor1{
-	margin-left:20px;
-	margin-bottom:5px;
-}
-
-.w_img{
-	display:inline-block;
-	width:90%;
-}
-.w_img img{
-	margin-left:50px;
-}
-div.txt{
-	margin-left:40px;
-	display:inline-block;
-	width:100px;
-}
-.score{
-	display:inline-block;
-	width:9.5%;
-}
-.im{
-	font-weight:bold;
-}
-
-.button{
-	width:100%;
-	height:50px;
-	font-size:16px;
-	text-align:center;
-	border-top:2px solid black;
-}
-
-.clickChange{
-	margin-top:12px;
-}
-
-.subTitle4{
-	font-size:18px;
-	font-weight:700;
-	margin-top:20px;
-	margin-left:20px;
-}
-
-.director1{
-	margin-left:20px;
-	margin-bottom:5px;
-}
-
-
-
-
-
-
-
-
-.genre{
-	width:100%;
-	height:300px;
-	border-bottom:1px solid #ccc;
-}
-
-.subTitle5{
-	font-size:18px;
-	font-weight:700;
-	margin-top:20px;
-	margin-left:20px;
-}
-.subText2{
-	font-size:14px;
-	margin-left:20px;
-	color:#666;
+@media screen and (min-width:0px) and (max-width:414px){
+	
 }

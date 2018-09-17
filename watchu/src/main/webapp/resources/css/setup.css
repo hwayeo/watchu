@@ -226,7 +226,10 @@ a.num {
     color: black;
     padding-left: 0px;
 }
-
+.col-md-12.bestmovie {
+    margin-left: 500px;
+    margin-right: 400px;
+}
 
 }
 

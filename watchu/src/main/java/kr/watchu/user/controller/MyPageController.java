@@ -155,6 +155,7 @@ public class MyPageController {
 		//평가한 영화 목록 더보기
 		@RequestMapping("/user/userMypage_movielist.do")
 		public ModelAndView mypage_movielist(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+				@RequestParam(value="sort",defaultValue="rate") String sort,
 											 HttpSession session) {
 
 			int rowCount = 999;
@@ -174,6 +175,7 @@ public class MyPageController {
 			map.put("start", page.getStartCount());
 			map.put("end", page.getEndCount());
 			map.put("id", id);
+			map.put("sort", sort);
 			
 			List<MovieCommand> recommendList = recommendService.selectRatedMovieList(map);
 			if(log.isDebugEnabled()) {

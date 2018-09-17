@@ -72,7 +72,7 @@
 					</c:if>
 						<div class="text-box-col3">	
 							<p class="movie-title" style="font-size:1.1em;">${list.title}<p>
-							<p class="sub-title">${list.main_genre}&nbsp;&middot;&nbsp;${list.sub_genre}&nbsp;&middot;&nbsp;2018&nbsp;&nbsp;
+							<p class="sub-title">${list.main_genre}&nbsp;&middot;&nbsp;${list.sub_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${list.released}" pattern="YYYY"/>&nbsp;&nbsp;
 								<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${list.rate}</span></span></span>
 							</p>
 						</div>
@@ -95,7 +95,7 @@
 					</c:if>
 						<div class="text-box-col3">	
 							<p class="movie-title" style="font-size:1.1em;">${ranActorMovie.title}<p>
-							<p class="sub-title">${ranActorMovie.main_genre}&nbsp;&middot;&nbsp;${ranActorMovie.sub_genre}&nbsp;&middot;&nbsp;2018&nbsp;&nbsp;
+							<p class="sub-title">${ranActorMovie.main_genre}&nbsp;&middot;&nbsp;${ranActorMovie.sub_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${ranActorMovie.released}" pattern="YYYY"/>&nbsp;&nbsp;
 								<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${ranActorMovie.rate}</span></span></span>
 							</p>
 						</div>
@@ -112,7 +112,7 @@
 					</c:if>
 						<div class="text-box-col3">	
 							<p class="movie-title" style="font-size:1.1em;">${ranActorMovie2.title}<p>
-							<p class="sub-title">${ranActorMovie2.main_genre}&nbsp;&middot;&nbsp;${ranActorMovie2.sub_genre}&nbsp;&middot;&nbsp;2018&nbsp;&nbsp;
+							<p class="sub-title">${ranActorMovie2.main_genre}&nbsp;&middot;&nbsp;${ranActorMovie2.sub_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${ranActorMovie2.released}" pattern="YYYY"/>&nbsp;&nbsp;
 								<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${ranActorMovie2.rate}</span></span></span>
 							</p>
 						</div>
@@ -129,8 +129,63 @@
 					</c:if>
 						<div class="text-box-col3">	
 							<p class="movie-title" style="font-size:1.1em;">${ranActorMovie3.title}<p>
-							<p class="sub-title">${ranActorMovie3.main_genre}&nbsp;&middot;&nbsp;${ranActorMovie3.sub_genre}&nbsp;&middot;&nbsp;2018&nbsp;&nbsp;
+							<p class="sub-title">${ranActorMovie3.main_genre}&nbsp;&middot;&nbsp;${ranActorMovie3.sub_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${ranActorMovie3.released}" pattern="YYYY"/>&nbsp;&nbsp;
 								<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${ranActorMovie3.rate}</span></span></span>
+							</p>
+						</div>
+					</div>
+				</div>
+		</c:if>
+	</div>
+	<div class="row custom-row">
+		<c:if test="${empty user_id}">
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+					<h4><b>${ranDirector1} 감독의 영화는 어때요?</b></h4>		
+					<div class="items-box-col3" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${ranDirectorMovie1.movie_num}'" style="cursor:pointer;">
+					<c:if test="${empty ranDirectorMovie1.banner_img}">
+						<img src="${pageContext.request.contextPath}/resources/images/default-banner.jpg" class="img-responsive main-img-col3">
+					</c:if>
+					<c:if test="${!empty ranDirectorMovie1.banner_img}">
+						<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${ranDirectorMovie1.movie_num}&type=banner" class="img-responsive main-img-col3">
+					</c:if>
+						<div class="text-box-col3">	
+							<p class="movie-title" style="font-size:1.1em;">${ranDirectorMovie1.title}<p>
+							<p class="sub-title">${ranDirectorMovie1.main_genre}&nbsp;&middot;&nbsp;${ranDirectorMovie1.sub_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${ranDirectorMovie1.released}" pattern="YYYY"/>&nbsp;&nbsp;
+								<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${ranDirectorMovie1.rate}</span></span></span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+					<h4><b>${ranDirector2} 감독의 영화는 어때요?</b></h4>		
+					<div class="items-box-col3" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${ranDirectorMovie2.movie_num}'" style="cursor:pointer;">
+					<c:if test="${empty ranDirectorMovie2.banner_img}">
+						<img src="${pageContext.request.contextPath}/resources/images/default-banner.jpg" class="img-responsive main-img-col3">
+					</c:if>
+					<c:if test="${!empty ranDirectorMovie2.banner_img}">
+						<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${ranDirectorMovie2.movie_num}&type=banner" class="img-responsive main-img-col3">
+					</c:if>
+						<div class="text-box-col3">	
+							<p class="movie-title" style="font-size:1.1em;">${ranDirectorMovie2.title}<p>
+							<p class="sub-title">${ranDirectorMovie2.main_genre}&nbsp;&middot;&nbsp;${ranDirectorMovie2.sub_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${ranDirectorMovie2.released}" pattern="YYYY"/>&nbsp;&nbsp;
+								<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${ranDirectorMovie2.rate}</span></span></span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+					<h4><b>${ranDirector3} 감독의 영화는 어때요?</b></h4>		
+					<div class="items-box-col3" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${ranDirectorMovie3.movie_num}'" style="cursor:pointer;">
+					<c:if test="${empty ranDirectorMovie3.banner_img}">
+						<img src="${pageContext.request.contextPath}/resources/images/default-banner.jpg" class="img-responsive main-img-col3">
+					</c:if>
+					<c:if test="${!empty ranDirectorMovie3.banner_img}">
+						<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${ranDirectorMovie3.movie_num}&type=banner" class="img-responsive main-img-col3">
+					</c:if>
+						<div class="text-box-col3">	
+							<p class="movie-title" style="font-size:1.1em;">${ranDirectorMovie3.title}<p>
+							<p class="sub-title">${ranDirectorMovie3.main_genre}&nbsp;&middot;&nbsp;${ranDirectorMovie3.sub_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${ranDirectorMovie3.released}" pattern="YYYY"/>&nbsp;&nbsp;
+								<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${ranDirectorMovie3.rate}</span></span></span>
 							</p>
 						</div>
 					</div>
