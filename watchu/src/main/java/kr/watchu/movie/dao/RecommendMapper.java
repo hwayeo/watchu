@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
 
+import kr.watchu.movie.domain.GenreCommand;
 import kr.watchu.movie.domain.MovieCommand;
+import kr.watchu.movie.domain.OfficialsCommand;
 
 public interface RecommendMapper {
 	//메인페이지에 총 평가 갯수
@@ -47,6 +49,12 @@ public interface RecommendMapper {
 	
 	/*===로그인한 사용자 맞춤형===*/
 	
+	//사용자가 평가한 장르 순위 반환
+	@Select("SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT id, genre, ROUND(AVG(rate),1) rate, count(genre) cnt FROM analysis_genre GROUP BY genre,id HAVING id=#{id} ORDER BY rate DESC)a) WHERE rnum >={start} AND rnum <=#{end}")
+	public List<GenreCommand> selectRatedGenre(Map<String,Object> map);
+	
+	@Select("SELECT r.* FROM (SELECT o.off_num, o.name, o.jobs, a.rate,a.cnt FROM officials o JOIN (SELECT name,avg(rate) rate,count(name) cnt FROM analysis_officials GROUP BY name, id HAVING id=#{id})a ON o.name=a.name WHERE jobs=#{jobs} ORDER BY a.rate DESC)r WHERE rownum >=#{start} AND rownum <=#{end}")
+	public List<OfficialsCommand> selectRatedOff(Map<String,Object> map);
 	//추천 영화 목록
 	public List<MovieCommand> selectRecommendList(Map<String,Object> map);
 	//사용자 취향 기반 영화인(감독,배우) 1명 추출
