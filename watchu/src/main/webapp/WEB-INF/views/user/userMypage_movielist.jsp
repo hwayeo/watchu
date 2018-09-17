@@ -2,14 +2,8 @@
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/mypagemovie.css">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<div id="main-content">
 	<div class="container-fluid">
-		<div class="container text-center">
-			<div class="col-xs-12 col-md-12">
-				<h2>평가한 작품</h2><br>
-			</div>
-		</div>
-
 		<div class="container">
 			<ul class="nav nav-tabs">
 				<li class="active"><a data-toggle="tab" href="#home" class="fa fa-clock-o">전체</a></li>
@@ -22,10 +16,10 @@
 						<ul class="nav">
 							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b>&nbsp;담은순</a>
 								<ul class="dropdown-menu">
-									<li class="dropdown-header">담은순</li>
-									<li><a href="#">평점순</a></li>
-									<li><a href="#">가나다순</a></li>
-									<li><a href="#">신작순</a></li>
+									<li class="dropdown-header">정렬</li>
+									<li><a href="${pageContext.request.contextPath}/user/userMypage_movielist.do?sort=rate">평점순</a></li>
+									<li><a href="${pageContext.request.contextPath}/user/userMypage_movielist.do?sort=title">가나다순</a></li>
+									<li><a href="${pageContext.request.contextPath}/user/userMypage_movielist.do?sort=reg_date">신작순</a></li>
 								</ul></li>
 						</ul>
 						<hr>
@@ -61,7 +55,7 @@
 				</div>
 				
 				<div id="menu1" class="tab-pane fade">
-					<c:if test="${empty movieList}">
+					<c:if test="${empty recommendList}">
 						<div class="text-center">
 							<img src="../resources/images/ap.jpg"><br>
 							<span style="font-size: 23px;color: #f74788;">평가한 영화가 없어요!</span><br>
@@ -70,7 +64,7 @@
 				    	</div>
 					</c:if>
 					
-					<c:if test="${!empty movieList}">
+					<c:if test="${!empty recommendList}">
 						<div class="container">
 							<div class="col-xs-12 col-md-12">
 								<div class="container row">
@@ -87,25 +81,19 @@
 							<div class="row container">
 								<div class="col-xs-12 col-md-12">
 									<div class="col-xs-4 col-md-3">
-										<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-										<br><span>가디언즈 오브 갤럭시</span>
-										<br><span style="color: #ffbf00">★4.5</span><br><br>
-									</div>
-									<div class="col-xs-4 col-md-3">
-										<img src="${pageContext.request.contextPath}/resources/images/gad2.jpg" width="100%" height="100%">
-										<br><span>수어사이드 스쿼드</span>
-										<br><span style="color: #ffbf00">★1.5</span><br><br>
-		
-									</div>
-									<div class="col-xs-4 col-md-3">
-										<img src="${pageContext.request.contextPath}/resources/images/gad3.jpg" width="100%" height="100%">
-										<br><span>앤트맨</span>
-										<br><span style="color: #ffbf00">★5.0</span><br><br>
-									</div> 
-									<div class="col-xs-4 col-md-3">
-										<img src="${pageContext.request.contextPath}/resources/images/gad.jpg" width="100%" height="100%">
-										<br><span>가디언즈 오브 갤럭시</span>
-										<br><span style="color: #ffbf00">★4.5</span><br><br>
+										<c:forEach var="recommendList" items="${recommendList}"> 	
+											<c:if test="${recommendList.rate == 5.0}">
+													<div class="col-xs-6 col-md-4">
+														<c:if test="${!empty recommendList.poster_img}">
+															<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${recommendList.movie_num}&type=poster" width="100%" height="100%">
+														</c:if>	
+														<c:if test="${empty recommendList.poster_img}">
+															<img src="${pageContext.request.contextPath}/resources/images/default-poster.jpg" width="100%" height="100%">
+														</c:if>
+														<p class="movie_title">${recommendList.title}</p>
+													</div>
+											</c:if>
+										</c:forEach> 
 									</div>
 								</div> 
 							</div> <hr/>
@@ -268,3 +256,4 @@
 			</div>
 		</div>
 	</div>
+</div>

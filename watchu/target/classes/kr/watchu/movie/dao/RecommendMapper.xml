@@ -116,14 +116,19 @@
 		ORDER BY 
 		<choose>
 			<when test="sort == 'rate'">
-				r.rate
+				r.rate DESC
 			</when>
 			<when test="sort == 'reg_date'">
-				r.reg_date
+				r.reg_date DESC
 			</when>
-			<otherwise></otherwise>
+			<when test="sort == 'title'">
+				i.title ASC
+			</when>
+			<otherwise>
+				r.rate DESC
+			</otherwise>
 		</choose>
-		 DESC)a) 
+		 )a) 
 		<![CDATA[
 			WHERE rnum >=#{start} AND rnum <=#{end}
 		]]>
