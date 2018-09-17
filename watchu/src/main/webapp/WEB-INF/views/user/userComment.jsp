@@ -48,11 +48,15 @@
 								</a>	
 							</div><br>
 							
-							<div class="container" onclick="location.href='userComment_detail.do?movie_num=${list.movie_num}&id=${list.id}'" style="cursor:pointer;">  
+							<%-- <div class="container" onclick="location.href='userComment_detail.do?movie_num=${list.movie_num}&id=${list.id}'" style="cursor:pointer;"> --%>  
+							<div class="container">  
 								<div class="col-md-2">
-									<a href="#"> 
-										<img class="media-object" src="${pageContext.request.contextPath}/main/imageView.do?id=${list.poster_img}">
-									</a>
+									<c:if test="${!empty list.poster_img}">
+										<a href="${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${list.movie_num}&type=poster"><img class="movie_poster" src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${list.movie_num}&type=poster" width="100%" height="100%"></a>
+									</c:if>	
+									<c:if test="${empty list.poster_img}"> 
+										<a href="${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${list.movie_num}&type=poster"><img class="movie_poster" src="${pageContext.request.contextPath}/resources/images/default-poster.jpg" width="100%" height="100%"></a>
+									</c:if>
 								</div>
 								<div class="col-md-9">
 								
@@ -65,8 +69,8 @@
 										<li>|</li>
 										<span><i class="glyphicon glyphicon-thumbs-up"></i> ${list.likes}</span>
 										<li>|</li>
-										<span><i class="glyphicon glyphicon-comment"></i> 2</span>
-										<li>|</li>
+										<!-- <span><i class="glyphicon glyphicon-comment"></i> 2</span>
+										<li>|</li> -->
 										<span><i class="glyphicon glyphicon-star"></i> 4.5</span>
 										<li>|</li>
 									</ul>
@@ -74,8 +78,8 @@
 							</div>
 						</div><br>
 						<a class="like2" href="#" style="padding-left:30px">좋아요</a>&emsp;
-						<a class="like2" href="userCommentWrite.do" data-toggle="modal" data-target="#CommentWrite">댓글</a>&emsp;
-						<a class="like2" href="#">공유</a>
+						<!-- <a class="like2" href="userCommentWrite.do" data-toggle="modal" data-target="#CommentWrite">댓글</a>&emsp;
+						<a class="like2" href="#">공유</a> -->
 					</div>
 				</div>
 				</c:forEach>

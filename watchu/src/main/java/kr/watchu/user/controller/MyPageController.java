@@ -219,22 +219,24 @@ public class MyPageController {
 
 		int count = commentService.selectMyCommentCnt(id);
 
+		Map<String, Object> map = new HashMap<String, Object>();
+
 		List<CommentCommand> list = null;
 
 		if (count > 0) {
 			list = commentService.selectMyCommentList(id);
 		}
 		UserCommand user = userService.selectUser(id);
-		
+
 		mav.setViewName("userComment");
 		mav.addObject("commentList", list);
 		mav.addObject("count", count);
-		mav.addObject("user",user);
+		mav.addObject("user", user);
 
 		return mav;
 	}
 	
-	//코멘트 상세페이지
+	/*//코멘트 상세페이지
 	@RequestMapping("/user/userComment_detail.do") 
 	public ModelAndView comment_detail(@RequestParam("movie_num") Integer movie_num,
 									   @RequestParam("id") String id) {
@@ -256,7 +258,7 @@ public class MyPageController {
 		mav.addObject("comment",comment);
 		mav.addObject("user",user);
 		return mav;
-	}
+	}*/
 	
 	//좋아요한 코멘트
 	@RequestMapping("/user/userLikeComment.do")
