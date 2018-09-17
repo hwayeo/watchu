@@ -5,13 +5,12 @@
 <mapper namespace="kr.watchu.movie.dao.RecommendMapper">
 	<select id="selectFavoriteGenre" parameterType="map"
 		resultType="String">
-		SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT
-		id, genre,
-		ROUND(AVG(rate),1) rate FROM analysis_genre GROUP BY
-		genre,id HAVING
-		id=#{id} ORDER BY rate DESC)a) 
+		SELECT a.genre FROM
+		(SELECT genre,ROUND(AVG(rate),1) rate 
+		FROM analysis_genre GROUP BY genre,id HAVING id=#{id}
+		ORDER BY DBMS_RANDOM.VALUE)a 
 		<![CDATA[
-			WHERE rnum >=#{start} AND rnum <=#{end}
+			WHERE a.rate >= #{tendency} AND rownum <=1
 		]]>
 	</select>
 	<select id="selectPredictionByGenre" parameterType="map"
@@ -78,10 +77,10 @@
 		]]>
 	</select>
 
-	<select id="selectReccomendList" parameterType="map"
+	<select id="selectRecommendList" parameterType="map"
 		resultType="MovieCommand">
 		SELECT tt.*, rownum FROM
-		(SELECT a.*, b.rate prediction FROM
+		(SELECT a.*, b.rate rate FROM
 		(SELECT
 		i.movie_num,i.title,i.country,i.released,i.director,i.actors,i.poster_img,i.banner_img,i.main_genre,i.sub_genre,r.id
 		FROM movie_info i FULL OUTER JOIN (SELECT id,movie_num,rate FROM
@@ -98,12 +97,13 @@
 				a.director like '%' || #{keyword} || '%'
 			</if>
 			<if test="keyfield == 'actors'">
-				a.actors like '%' || #{keyword} || '%'
+				a.actors like '%' || #{keyword} || '%' or
+				a.director like '%' || #{keyword} || '%'
 			</if>
 		</where>
 		ORDER BY DBMS_RANDOM.VALUE)tt 
 		<![CDATA[
-			WHERE rownum <=#{count};
+			WHERE rownum <=#{count}
 		]]>
 	</select>
 	
@@ -139,5 +139,17 @@
 		<![CDATA[
 			WHERE rnum >=#{start} AND rnum <=#{end}
 		]]>
+	</select>
+	<select id="selectRecommendOff" parameterType="map" resultType="String">
+		 SELECT * FROM
+		 (SELECT o.name FROM officials o JOIN 
+		 (SELECT name, ROUND(AVG(rate),1) rate,COUNT(rate) cnt 
+		 FROM analysis_officials GROUP BY name, id HAVING id=#{id})a 
+		 ON o.name=a.name 
+		 WHERE o.jobs=#{jobs}
+		 ORDER BY DBMS_RANDOM.VALUE) 
+		 <![CDATA[
+			 WHERE rownum <=#{count}
+		 ]]>
 	</select>
 </mapper>

@@ -76,7 +76,55 @@ public class MainController {
 		MovieCommand ranActorMovie3= null;
 		//로그인 상태일때
 		if(id!=null) {
+			Map<String,Object> f_genre = new HashMap<String, Object>();
+			float tendency = recommendService.selectAvgTotalMovie(id);
+			f_genre.put("tendency", tendency);
+			f_genre.put("id",id);
+			String favorite_genre = recommendService.selectFavoriteGenre(f_genre);
 			
+			if(favorite_genre !=null) {
+				f_genre.put("count", 3);
+				f_genre.put("keyfield", "genre");
+				f_genre.put("keyword", favorite_genre);
+				List<MovieCommand> recGenreMovie = recommendService.selectRecommendList(f_genre);
+				mav.addObject("recGenre",favorite_genre);
+				mav.addObject("recGenreMovie",recGenreMovie);
+			}
+			/*선호하는 장르 추천*/
+			/*선호하는 배우 추천*/
+			Map<String,Object> f_actor = new HashMap<String,Object>();
+			f_actor.put("jobs", "ACTOR");
+			f_actor.put("id", id);
+			f_actor.put("count", 1);
+			String favorite_actor = recommendService.selectRecommendOff(f_actor);
+			Map<String,Object> data = new HashMap<String,Object>();
+			data.put("id", id);
+			data.put("keyfield", "actors");
+			data.put("keyword", favorite_actor);
+			data.put("count", 3);
+			List<MovieCommand> f_actor_list = recommendService.selectRecommendList(data);
+			
+			if(log.isDebugEnabled()) {
+				log.debug("<<<추천된 영화 수 >>> : " + f_actor_list.size()); 
+			}
+			if(f_actor_list.size() < 3) {
+				Map<String,Object> reData = new HashMap<String,Object>();
+				reData.put("id",id);
+				reData.put("count", 3);
+				List<MovieCommand> reDataList = recommendService.selectRecommendList(reData);
+				mav.addObject("recActor","reData");
+				mav.addObject("recActorMovie",reDataList);
+				if(log.isDebugEnabled()) {
+					log.debug("[[----reDataMovie----]] : " + reDataList);
+				}
+			}else {
+				mav.addObject("recActor",favorite_actor);
+				mav.addObject("recActorMovie",f_actor_list);
+				if(log.isDebugEnabled()) {
+					log.debug("[[----선호배우영화----]] : " + favorite_actor);
+					log.debug("[[----recActorMovie----]] : " + f_actor_list);
+				}
+			}
 		}else  {
 			if(log.isDebugEnabled()) {
 				log.debug("[[-----비로그인------]] : ");

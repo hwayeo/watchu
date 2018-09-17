@@ -35,6 +35,8 @@ public interface RecommendService {
 	public String selectRanOff(Map<String,Object> map);
 	public MovieCommand selectRanOffMovie(String name);
 	public List<MovieCommand> selectRanOffMovieList(Map<String,Object> map);
-	
-	public List<MovieCommand> selectReccomendList(Map<String,Object> map);
+
+	public List<MovieCommand> selectRecommendList(Map<String,Object> map);
+	//사용자 취향 기반 영화인(감독,배우) 1명 추출
+	public String selectRecommendOff(Map<String,Object> map);
 }

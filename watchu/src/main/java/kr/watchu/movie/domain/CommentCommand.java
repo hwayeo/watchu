@@ -16,7 +16,14 @@ public class CommentCommand {
 	private Date released;
 	private byte[] poster_img;
 	private byte[] profile_img;
+	private float rate;
 	
+	public float getRate() {
+		return rate;
+	}
+	public void setRate(float rate) {
+		this.rate = rate;
+	}
 	public byte[] getProfile_img() {
 		return profile_img;
 	}

@@ -13,6 +13,8 @@ public class OfficialsCommand {
 	private String filmograp;
 	private MultipartFile upload;
 	private byte[] off_photo;
+	private float rate;
+	private Integer cnt;
 	public Integer getOff_num() {
 		return off_num;
 	}
@@ -51,9 +53,23 @@ public class OfficialsCommand {
 		this.off_photo = off_photo;
 	}
 	
+	public float getRate() {
+		return rate;
+	}
+	public void setRate(float rate) {
+		this.rate = rate;
+	}
+	
+	public Integer getCnt() {
+		return cnt;
+	}
+	public void setCnt(Integer cnt) {
+		this.cnt = cnt;
+	}
 	@Override
 	public String toString() {
 		return "OfficialsCommand [off_num=" + off_num + ", name=" + name + ", jobs=" + jobs + ", filmograp=" + filmograp
-				+ ", upload=" + upload + "]";
+				+ ", upload=" + upload + ", off_photo=" + Arrays.toString(off_photo) + ", rate=" + rate + "]";
 	}
+	
 }

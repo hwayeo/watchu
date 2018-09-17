@@ -72,8 +72,12 @@ public class RecommendServiceImpl implements RecommendService{
 		return mapper.selectRanOffMovieList(map);
 	}
 	@Override
-	public List<MovieCommand> selectReccomendList(Map<String, Object> map) {
-		return mapper.selectReccomendList(map);
+	public List<MovieCommand> selectRecommendList(Map<String, Object> map) {
+		return mapper.selectRecommendList(map);
+	}
+	@Override
+	public String selectRecommendOff(Map<String, Object> map) {
+		return mapper.selectRecommendOff(map);
 	}
 	
 	

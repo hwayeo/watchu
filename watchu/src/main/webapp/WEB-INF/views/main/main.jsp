@@ -81,6 +81,32 @@
 			</c:forEach>
 		</c:if>
 		</c:if>
+		<c:if test="${!empty user_id}">
+			<c:forEach var="list" items="${recGenreMovie}" varStatus="status">
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+					<c:if test="${status.first}">
+						<h4><b>${recGenre} 영화를 좋아 하시는군요!</b></h4>		
+					</c:if>
+					<c:if test="${!status.first}">
+						<h4 class="hidden-xs"><b>&nbsp;</b></h4>		
+					</c:if>
+					<div class="items-box-col3" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${list.movie_num}'" style="cursor:pointer;">
+					<c:if test="${empty list.banner_img}">
+						<img src="${pageContext.request.contextPath}/resources/images/default-banner.jpg" class="img-responsive main-img-col3">
+					</c:if>
+					<c:if test="${!empty list.banner_img}">
+						<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${list.movie_num}&type=banner" class="img-responsive main-img-col3">
+					</c:if>
+						<div class="text-box-col3">	
+							<p class="movie-title" style="font-size:1.1em;">${list.title}<p>
+							<p class="sub-title">${list.main_genre}&nbsp;&middot;&nbsp;${list.sub_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${list.released}" pattern="YYYY"/>&nbsp;&nbsp;
+								<span id="ratedCnt">예상 <span class="glyphicon glyphicon-star"><span id="rated">${list.rate}</span></span></span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</c:if>
 	</div>
 	<div class="row custom-row">
 		<c:if test="${empty user_id}">
@@ -135,6 +161,37 @@
 						</div>
 					</div>
 				</div>
+		</c:if>
+		<c:if test="${!empty user_id}">
+			<c:forEach var="list" items="${recActorMovie}" varStatus="status">
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+					<c:if test="${status.first}">
+						<c:if test="${recActor eq 'reData'}">
+							<h4><b>${user_id}님 이런 영화는 어때요?</b></h4>		
+						</c:if>
+						<c:if test="${recActor ne 'reData'}">
+							<h4><b>${recActor}의 다른 영화</b></h4>		
+						</c:if>
+					</c:if>
+					<c:if test="${!status.first}">
+						<h4 class="hidden-xs"><b>&nbsp;</b></h4>		
+					</c:if>
+					<div class="items-box-col3" onclick="location.href='${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${list.movie_num}'" style="cursor:pointer;">
+					<c:if test="${empty list.banner_img}">
+						<img src="${pageContext.request.contextPath}/resources/images/default-banner.jpg" class="img-responsive main-img-col3">
+					</c:if>
+					<c:if test="${!empty list.banner_img}">
+						<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${list.movie_num}&type=banner" class="img-responsive main-img-col3">
+					</c:if>
+						<div class="text-box-col3">	
+							<p class="movie-title" style="font-size:1.1em;">${list.title}<p>
+							<p class="sub-title">${list.main_genre}&nbsp;&middot;&nbsp;${list.sub_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${list.released}" pattern="YYYY"/>&nbsp;&nbsp;
+								<span id="ratedCnt">예상 <span class="glyphicon glyphicon-star"><span id="rated">${list.rate}</span></span></span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
 		</c:if>
 	</div>
 	<div class="row custom-row">

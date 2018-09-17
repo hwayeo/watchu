@@ -43,7 +43,7 @@ public interface CommentMapper {
 	
 	//마이페이지에서 내가 쓴 코멘트를 반환하는 메서드
 	/*@Select("SELECT * FROM movie_comment WHERE id=#{id} ORDER BY comment_num DESC")*/
-	@Select("SELECT a.*,b.title,b.poster_img,b.released FROM movie_comment a JOIN movie_info b ON a.movie_num=b.movie_num WHERE a.id=#{id} ORDER BY comment_num DESC")
+	@Select("SELECT mr.movie_num, mr.id, mr.rate, rr.* FROM movie_rated mr JOIN (SELECT a.*,b.title,b.poster_img,b.released FROM movie_comment a JOIN movie_info b ON a.movie_num=b.movie_num ORDER BY a.reg_date DESC)rr ON mr.movie_num=rr.movie_num WHERE mr.id=#{id}")
 	public List<CommentCommand> selectMyCommentList(String id);
 	@Select("SELECT COUNT(*) FROM movie_comment WHERE id=#{id}")
 	public int selectMyCommentCnt(String id);

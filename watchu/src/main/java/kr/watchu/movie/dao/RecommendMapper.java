@@ -17,7 +17,7 @@ public interface RecommendMapper {
 	public Integer selectRatedCntById(String id);
 	
 	//사용자가 평가한 모든 영화의 평균 점수
-	@Select("SELECT id, ROUND(AVG(rate),1) rate FROM movie_rated GROUP BY id HAVING id =#{id}")
+	@Select("SELECT ROUND(AVG(rate),1) rate FROM movie_rated GROUP BY id HAVING id =#{id}")
 	public float selectAvgTotalMovie(String id);
 	
 	//사용자가 평가한 영화 리스트 -> 마이페이지에서도 사용 가능 
@@ -26,15 +26,10 @@ public interface RecommendMapper {
 
 	//메인 배너이미지용 무작위 영화
 	@Select("SELECT a.movie_num, rownum FROM (SELECT * FROM movie_info WHERE banner_img is not null ORDER BY DBMS_RANDOM.VALUE)a WHERE rownum <=1")
-	public Integer selectRandomBanner();
+	public Integer selectRandomBanner();	
 	//무작위 추천영화
 	@Select("SELECT a.*, rownum FROM (SELECT * FROM movie_info i JOIN (SELECT movie_num, ROUND(AVG(rate),1) rate FROM movie_rated GROUP BY movie_num)r ON i.movie_num=r.movie_num ORDER BY DBMS_RANDOM.VALUE)a WHERE rownum <=1")
 	public MovieCommand selectRandomMovie();
-	
-	//사용자의 장르 선호도
-	public String selectFavoriteGenre(Map<String,Object> map);
-	//사용자의 특정 장르에 대한 예상 별점
-	public float selectPredictionByGenre(Map<String,Object> map);
 	
 	//전체 장르 무작위 반환
 	@Select("SELECT genre FROM (SELECT a.*, rownum FROM (SELECT * FROM movie_genre ORDER BY DBMS_RANDOM.VALUE)a WHERE rownum=1)")
@@ -52,7 +47,14 @@ public interface RecommendMapper {
 	
 	/*===로그인한 사용자 맞춤형===*/
 	
-	//
-	public List<MovieCommand> selectReccomendList(Map<String,Object> map);
+	//추천 영화 목록
+	public List<MovieCommand> selectRecommendList(Map<String,Object> map);
+	//사용자 취향 기반 영화인(감독,배우) 1명 추출
+	public String selectRecommendOff(Map<String,Object> map);
+
+	//사용자의 장르 선호도
+	public String selectFavoriteGenre(Map<String,Object> map);
+	//사용자의 특정 장르에 대한 예상 별점
+	public float selectPredictionByGenre(Map<String,Object> map);
 	
 }	
