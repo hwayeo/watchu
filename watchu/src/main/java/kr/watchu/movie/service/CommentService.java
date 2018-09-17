@@ -49,5 +49,6 @@ public interface CommentService {
 	//Ä«¿îÆ®
 	public int selectRecommentCnt(Map<String, Object> map);
 	
+	public String selectMyFollow(String id);
 	public List<TimelineCommand> selectTimeline(Map<String,Object> map);
 }

@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.movie.domain.MovieCommand;
+import kr.watchu.movie.domain.TimelineCommand;
 import kr.watchu.movie.service.CommentService;
 import kr.watchu.movie.service.MovieService;
 import kr.watchu.movie.service.RecommendService;
@@ -298,11 +299,11 @@ public class MyPageController {
 		return "userWatching";
 	}*/
 	
-	//´ñ±Û ¾²±â
+	/*//´ñ±Û ¾²±â
 	@RequestMapping("/user/userCommentWrite.do")
 	public String commentWrite() {
 		return "user/userCommentWrite";
-	}
+	}*/
 	
 	//Åé´Ï¹ÙÄû(¼³Á¤¸ð´ÞÃ¢)
 	@RequestMapping("/user/setup.do")
@@ -528,6 +529,5 @@ public class MyPageController {
 
 			return mav;
 		}
-
-	
+		
 }

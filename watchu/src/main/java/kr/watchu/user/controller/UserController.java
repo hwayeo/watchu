@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.watchu.movie.domain.TimelineCommand;
 import kr.watchu.movie.service.CommentService;
 import kr.watchu.user.domain.ContactCommand;
 import kr.watchu.user.domain.ReportCommand;
@@ -387,9 +388,29 @@ public class UserController {
 	
 	// ========================================타임라인================================================
 	@RequestMapping("/user/userTimeline.do")
-	public String timeline() {
+	public ModelAndView selectTimeline(@RequestParam(value="pageNum",defaultValue="1") int currentPage,HttpSession session) {
+		int rowCount = 1;
+		int pageCount = 10;
 		
-		return "userTimeline";
+		String id = (String) session.getAttribute("user_id");
+		Map<String,Object> map = new HashMap<String,Object>();
+				
+		/*PagingUtil page = new PagingUtil(currentPage, rowCount, pageCount, pageCount, "userTimeline.do");
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		map.put("id", id);*/
+					
+		List<TimelineCommand> recommendList = commentService.selectTimeline(map);
+		
+		if(log.isDebugEnabled()) {
+			log.debug("<<<<recommendList>>>> : " + recommendList);
+		}
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("userTimeline");
+		mav.addObject("recommendList", recommendList);
+		//mav.addObject("pagingHtml", page.getPagingHtml());
+
+		return mav;
 	}
 	
 	// ========================================고객센터================================================

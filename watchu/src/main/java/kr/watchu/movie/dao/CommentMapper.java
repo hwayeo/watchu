@@ -67,5 +67,8 @@ public interface CommentMapper {
 	//카운트
 	public int selectRecommentCnt(Map<String, Object> map);
 	 
+	//follow 구해오기
+	@Select("SELECT follow FROM user_relation WHERE id=#{id}")
+	public String selectMyFollow(String id);
 	public List<TimelineCommand> selectTimeline(Map<String,Object> map);
 }

@@ -105,10 +105,14 @@ public class CommentServiceImpl implements CommentService{
 	public CommentCommand commentDetail(Map<String, Object> map) {
 		return commentMapper.commentDetail(map);
 	}
+	
+	@Override
+	public String selectMyFollow(String id) {
+		return commentMapper.selectMyFollow(id);
+	}
 
 	@Override
 	public List<TimelineCommand> selectTimeline(Map<String, Object> map) {
 		return commentMapper.selectTimeline(map); 
 	}
-
 }
