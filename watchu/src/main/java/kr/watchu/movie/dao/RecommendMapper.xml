@@ -111,7 +111,14 @@
 		SELECT * FROM 
 		(SELECT a.*, rownum rnum FROM 
 		(SELECT * FROM movie_info i JOIN 
-		(SELECT * FROM movie_rated WHERE id=#{id})r 
+		(SELECT * FROM movie_rated WHERE id=#{id}
+		<choose>
+			<when test="rate != null">
+				AND rate = #{rate}
+			</when>
+			<otherwise></otherwise>
+		</choose>
+		)r 
 		ON i.movie_num=r.movie_num
 		ORDER BY 
 		<choose>
