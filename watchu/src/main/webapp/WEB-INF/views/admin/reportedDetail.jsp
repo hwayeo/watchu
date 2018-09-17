@@ -32,7 +32,9 @@
 		<label>신고 아이디</label>
 		</td>
 		<td width="90%">
-		${report.report_user}
+		<b>${report.report_user}</b> &nbsp; &nbsp;
+		<input type="button" value="회원등급변경" class="report_modify btn btn-sm btn-default" data-toggle="modal" data-target="#reportModify" data-whatever="${report.report_user}">
+		<%-- <a href="#" onClick="window.open('userDetail.do?id=${report.report_user}','회원 등급 변경','width=950, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;" class="btn btn-sm btn-default">회원등급변경</a> --%>   
 		</td>
 	</tr>
 	<tr>
@@ -72,54 +74,47 @@
 			<input type="button" class="btn btn-default" value="목록" onclick="location.href='reportedUser.do'">
 		</div>
 	</div>
-	<%-- <div class="tab-pane" id="reported_user">
-		<h2>신고 상세정보</h2>
-		<br>
-		<div class="content-header">
+
+<%-- <form:form commandName="report_command" action="reportModify.do" id="modify_form">
+	<form:input path="id" value="${report.report_user}"/>
+	<form:input path="auth" class="form-control"/>
+	<form:errors path="auth" cssClass="error-color"/>
+</form:form> --%>
+<!-- 회원 등급 수정 모달창 -->
+<%-- <div class="modal fade" id="reportModify" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content form-inline">
+		<form:form commandName="report_command" action="reportModify.do" id="modify_form">
+		<input type="hidden" name="id" id="id">
+		<form:errors element="div" cssClass="error-color"/>
+        <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="reportModalLabel">회원 등급 변경</h4>
+        </div>
+        <div class="modal-body">
+        	<input type="hidden" class="form-control" id="id">
+        	<div class="form-group">
+        	<span style="display:inline-block; width:100px">
+        	<label for="id">회원 ID</label></span>
+        	<span id="show-id"></span>
+        	</div><br>
+        	<div class="form-group">
+        		<span style="display:inline-block; width:100px">
+         		<label for="auth">회원 등급</label></span>
+         		<form:input path="auth" id="auth" class="form-control"/>
+         		<form:errors path="auth" cssClass="error-color"/>
+         	</div>
+        </div>
+         	
+        <div class="modal-footer">
+        <div class="edit_btn">
+       		<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+			<input type="submit" value="수정" class="confirm_mod btn btn-primary">
 		</div>
-	
-		<div class="content-body">
-			<div class="col-xs-12 col-md-12" ><!-- 시작 -->
-			
-			<div class="col-xs-6 col-md-2" >
-			</div>
-			
-			<div class="col-md-7" style="border:1px solid#e5e3e3;">
-				       
-						<div class="form group">
-							<div>
-								<label>작성자:</label>${report.id}
-							</div>
-							<div>
-								<label>신고아이디:</label>${report.report_user }
-							</div>
-							<div>
-								<label>신고내용</label> 
-								<div>
-									<p>${report.report_content}</p>				
-								</div>
-							</div>
-							<div>
-								<label>신고날짜</label> 
-								<div>
-									<p>${report.reg_date}</p>				
-								</div>
-							</div>
-							
-						</div>
-							
-						<div class="text-center">
-							<input type="button" id="processing" class="btn btn-md btn-primary" value="처리완료(삭제)" onclick="location.href='reportDelete.do?num=${report.report_num}'">
-							<input type="button" class="btn btn-primary" value="취소" onclick="location.href='reportedUser.do'">
-							
-							
-						</div>
-						
-			</div>
-			
-			<div class="col-xs-6 col-md-3" >
-			</div>
-			
-		</div><!-- 끝 -->
-		</div>
-	</div> --%>
+        </div>
+        </form:form>
+   </div>
+   </div>
+</div> --%>

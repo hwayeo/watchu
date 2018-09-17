@@ -509,14 +509,6 @@ public class AdminController {
 		return "redirect:/admin/genreList.do";
 	}
 	
-	//장르 선택 삭제
-/*	@ResponseBody
-	@RequestMapping("check_genreDel.do")
-	public c_genreDel(){
-		
-	}*/
-
-	
 	//====================04_영화 관리_영화 별점====================//
 	@RequestMapping("/admin/movieRating.do")
 	public String process3() {
@@ -570,7 +562,7 @@ public class AdminController {
 	}
 	
 	//05_2_회원 상세보기 & 수정 폼 호출
-	@RequestMapping(value="/admin/userDetail.do", method=RequestMethod.GET)
+	@RequestMapping(value= "/admin/userDetail.do", method=RequestMethod.GET)
 	public ModelAndView user_detail(@RequestParam("id") String id, Model model) {
 		//로그 출력
 		if(log.isDebugEnabled()) {
@@ -579,6 +571,7 @@ public class AdminController {
 
 		UserCommand user = userService.selectUser(id);
 		model.addAttribute("user_command", user);
+		model.addAttribute("report_command", new UserCommand());
 
 		return new ModelAndView("userDetail", "user", user);
 	}
@@ -599,64 +592,95 @@ public class AdminController {
 	}
 	
 	//====================06_회원 관리_신고 회원====================//
-		//목록
-		@RequestMapping("/admin/reportedUser.do")
-		public ModelAndView process5(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
-									 @RequestParam(value="keyfield",defaultValue="") String keyfield,
-									 @RequestParam(value="keyword",defaultValue="") String keyword) {
+	//목록
+	@RequestMapping("/admin/reportedUser.do")
+	public ModelAndView process5(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+								 @RequestParam(value="keyfield",defaultValue="") String keyfield,
+								 @RequestParam(value="keyword",defaultValue="") String keyword) {
 				
-			Map<String,Object> map = new HashMap<String,Object>();
-			map.put("keyfield", keyfield);
-			map.put("keyword", keyword);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
 			
-			//총글의 갯수 또는 검색된 글의 갯수
-			int count = reportService.selectReportCnt(map);
-			if(log.isDebugEnabled()) {
-				log.debug("<<count>>:" + count);
-			}
-			
-			PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"reportedUser.do");
-			
-			map.put("start", page.getStartCount());
-			map.put("end", page.getEndCount());
-			
-			List<ReportCommand> list = null;
-			list = reportService.selectReportList(map);
-			
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("reportedUser");
-			mav.addObject("list", list);
-			
-			return mav;
+		//총글의 갯수 또는 검색된 글의 갯수
+		int count = reportService.selectReportCnt(map);
+		if(log.isDebugEnabled()) {
+			log.debug("<<count>>:" + count);
 		}
-		//상세정보
-		@RequestMapping("/admin/reportDetail.do")
-		public ModelAndView process55(@RequestParam(value="num") String num) {
 			
-			int report_num = Integer.parseInt(num);
+		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"reportedUser.do");
 			
-			ReportCommand report = reportService.selectReport(report_num);
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+			
+		List<ReportCommand> list = null;
+		list = reportService.selectReportList(map);
+			
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("reportedUser");
+		mav.addObject("list", list);
+		
+		return mav;
+	}
+	//상세정보
+	@RequestMapping("/admin/reportDetail.do")
+	public ModelAndView process55(@RequestParam(value="num") String num) {
+			
+		int report_num = Integer.parseInt(num);
+			
+		ReportCommand report = reportService.selectReport(report_num);
 			
 			
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("reportedDetail");
-			mav.addObject("report", report);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("reportedDetail");
+		mav.addObject("report", report);
 			
-			return mav;
+		return mav;
 			
 		}
 		
-		//삭제
-		@RequestMapping("/admin/reportDelete.do")
-		public String process555(@RequestParam(value="num") String num) {
+	//삭제
+	@RequestMapping("/admin/reportDelete.do")
+	public String process555(@RequestParam(value="num") String num) {
 					
-			int report_num = Integer.parseInt(num);
+		int report_num = Integer.parseInt(num);
 					
-			reportService.deleteReport(report_num);
+		reportService.deleteReport(report_num);
 					
-			return "redirect:reportedUser.do";
+		return "redirect:reportedUser.do";
+	}
+	
+/*	//신고회원 등급 변경
+	//수정폼 호출
+	@RequestMapping(value="/admin/reportModify.do", method=RequestMethod.GET)
+	public ModelAndView report_modify(@RequestParam("id") String id, Model model) {
+		//로그 출력
+		if(log.isDebugEnabled()) {
+			log.debug("<<id>>: " + id);
 		}
+		
+		//자바빈 생성
+		UserCommand report = new UserCommand();
+		report = userService.selectUser(id); //객체에 id에 따른 정보 저장
 
+		model.addAttribute("report_command", report);
+		
+		return new ModelAndView("reportModify", "report", report);
+	}
+
+	//수정 폼에서 전송된 데이터 처리
+	@RequestMapping(value="/admin/reportModify.do", method=RequestMethod.POST)
+	public String report_submit(@ModelAttribute("user_command") @Valid UserCommand userCommand, BindingResult result, HttpSession session, HttpServletRequest request) {
+		//로그 출력
+		if(log.isDebugEnabled()) {
+			log.debug("<<userCommand>>: " + userCommand);
+		}
+			
+		//회원 정보 수정
+		userService.adminUpdate2(userCommand);//회원 등급 수정
+			
+		return "redirect:reportedUser.do";
+	}*/
 	//====================07_고객 지원_고객 문의====================//
 	@RequestMapping("/admin/support.do")
 	public String process6() {

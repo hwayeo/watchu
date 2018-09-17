@@ -40,6 +40,14 @@ $('.confirm_search').submit(function(){
 		$('#modifyBtn').attr("onclick", modifyUrl);
 	});
 	
+//reportModify 모달에 id 넘기기
+	$('.report_modify').on('click', function () {
+		var id = $(this).attr('data-whatever');
+		console.log("id: " + id);		
+		$('#id').val(id);
+		$('#show-num').text(id);
+	});
+	
 //======감독_자동완성=====//
 var directorList = new Array();
 $('.auto_director').keyup(function (event) {
