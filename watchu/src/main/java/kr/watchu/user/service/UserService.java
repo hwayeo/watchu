@@ -22,9 +22,13 @@ public interface UserService {
 	public void updateUser(UserCommand user);
 	//삭제
 	public void deleteUser(String id);
-	//목록
+	//추천친구목록
 	public int selectUserCnt(Map<String, Object> map);
 	public List<UserCommand> selectUserList(Map<String,Object> map);
+	
+	//팔로우,팔로워,블락 목록
+	public int selectfollowCnt(Map<String, Object> map);
+	public List<UserCommand> selectfollowList(Map<String,Object> map);
 	
 	//관리자 회원 정보 수정
 	public void adminUpdate(UserCommand user);

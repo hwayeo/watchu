@@ -17,15 +17,9 @@
 						JOIN user_info i 
 						ON c.id=i.id
 		<where>
-			<if test="keyword != '' and keyfield == 'all'">
+			<if test="keyword != ''">
 				i.name like '%' || #{keyword} || '%' or
 				i.id like '%' || #{keyword} || '%'
-			</if>
-			<if test="keyword != '' and keyfield == 'id'">
-				i.id like '%' || #{keyword} || '%'
-			</if>
-			<if test="keyword != '' and keyfield == 'name'">
-				i.name like '%' || #{keyword} || '%'
 			</if>
 		</where>
 		ORDER BY i.reg_date DESC)a)
@@ -41,16 +35,58 @@
 		count(*)
 		FROM user_info
 		<where>
-			<if test="keyword != '' and keyfield == 'all'">
+			<if test="keyword != ''">
 				name like '%' || #{keyword} || '%' or
 				id like '%' || #{keyword} || '%'
 			</if>
-			<if test="keyword != '' and keyfield == 'id'">
-				id like '%' || #{keyword} || '%'
-			</if>
-			<if test="keyword != '' and keyfield == 'name'">
-				name like '%' || #{keyword} || '%'
-			</if>
 		</where>
 	</select>
+	
+	<!-- 팔로잉,팔로워,블락 커맨드만 뽑음 -->
+	<select id="selectfollowList" parameterType="map" resultType="userCommand">
+			SELECT
+			*
+			FROM
+			(SELECT a.*,
+				ROWNUM rnum 
+					FROM 
+						(SELECT 
+							* 
+							FROM user_basic c 
+							JOIN user_info i 
+							ON c.id=i.id
+			where i.id in
+			<foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+				#{item} 
+			</foreach>
+			
+			<if test="keyword != ''">
+				and	i.name like '%' || #{keyword} || '%' or
+					i.id like '%' || #{keyword} || '%'
+			</if>
+			ORDER BY i.reg_date DESC)a)
+	 	<![CDATA[
+	 		WHERE rnum >= #{start} AND rnum <= #{end}
+	 	]]>
+	</select>
+	<!-- 팔로잉,팔로워,블락 리스트 카운트 -->
+	<select id="selectfollowCnt" parameterType="map"
+		resultType="integer">
+		SELECT
+		count(*)
+		FROM user_info
+		where id in
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+			#{item} 
+		</foreach>
+		
+		<if test="keyword != ''">
+			and	name like '%' || #{keyword} || '%' or
+				id like '%' || #{keyword} || '%'
+		</if>
+		
+		
+		
+	</select>
+	
 </mapper> 

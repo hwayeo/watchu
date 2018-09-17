@@ -52,11 +52,7 @@
 					
 					<c:if test="${count > 0}">
                     <c:forEach var="article" items="${list}">
-                    <!-- 본인,관리자제외 -->
-                    <c:if test="${article.auth==1 && article.id != user.id }">
                     
-                    <!-- 내가 팔로잉한 친구만 -->
-                    <c:if test="${follow.contains(article.id) == true}">
 						<li class="list-group-item">
 						<a href="userPage.do?id=${article.id}" class="following_profile_img"> 
 							<c:if test="${empty article.profile_img}">
@@ -79,8 +75,6 @@
 									</div>
 								</c:if>
 						</li>
-						</c:if>
-						</c:if>
 						
 						</c:forEach>
                     	</c:if>

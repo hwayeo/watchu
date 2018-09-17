@@ -51,23 +51,19 @@
 					
 					<c:if test="${count > 0}">
                     <c:forEach var="article" items="${list}">
-                    <!-- 본인,관리자제외 -->
-                    <c:if test="${article.auth==1 && article.id != user.id }">
-                    
-                    <!-- 내가 블락한 친구만 -->
-                    <c:if test="${blockList.contains(article.id) == true}">
+                   
 						<li class="list-group-item">
-						<a href="userPage.do?id=${article.id}" class="following_profile_img"> 
-							<c:if test="${empty article.profile_img}">
-								<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg"
-											class="img-circle" id="following_profile_img"
-											style="width: 50px; height: 50px;">
-							</c:if> 
-							<c:if test="${!empty article.profile_img}">
-								<img src="${pageContext.request.contextPath}/main/imageView.do?id=${article.id}" width="50" height="50" class="img-circle">
-							</c:if>
-						</a> 
-						<span class="name_span"><label class="name"><a href="userPage.do?id=${article.id}">${article.name}</a></label></span>
+							<a href="userPage.do?id=${article.id}" class="following_profile_img"> 
+								<c:if test="${empty article.profile_img}">
+									<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg"
+												class="img-circle" id="following_profile_img"
+												style="width: 50px; height: 50px;">
+								</c:if> 
+								<c:if test="${!empty article.profile_img}">
+									<img src="${pageContext.request.contextPath}/main/imageView.do?id=${article.id}" width="50" height="50" class="img-circle">
+								</c:if>
+							</a> 
+							<span class="name_span"><label class="name"><a href="userPage.do?id=${article.id}">${article.name}</a></label></span>
 							
 									<div class="pull-right">
 										<input type="button" class="btn btn-secondary active block" data-id="${article.id}" name="block" value="BLOCK" style="display: none;"> 
@@ -75,11 +71,11 @@
 									</div>
 								
 						</li>
-						</c:if>
-						</c:if>
 						
-						</c:forEach>
-                    	</c:if>
+						
+						
+					</c:forEach>
+                    </c:if>
                 </ul>
                 <div class="text-center">${pagingHtml}</div>
             </div>

@@ -317,21 +317,6 @@ public class MyPageController {
 			   					    @RequestParam(value="keyfield",defaultValue="") String keyfield,
 			   					    @RequestParam(value="keyword",defaultValue="") String keyword) {		
 		
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("keyfield", keyfield);
-		map.put("keyword", keyword);
-		
-		//총글의 갯수 또는 검색된 글의 갯수
-		int count = userService.selectUserCnt(map);
-		if(log.isDebugEnabled()) {
-			log.debug("<<count>>:" + count);
-		}
-		
-		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"myfollowing.do");
-		
-		map.put("start", page.getStartCount());
-		map.put("end", page.getEndCount());
-		//------------------------------------------------
 		String loginUserId = (String)session.getAttribute("user_id");
 		
 		UserCommand loginUser = userService.selectUser(loginUserId);//현재 로그인한 아이디의 커맨드
@@ -354,11 +339,27 @@ public class MyPageController {
 		}
 		
 		mav.addObject("follow",follow3);
+		//------------------------------------------------
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("list", follow3);
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		//총글의 갯수 또는 검색된 글의 갯수
+		int count = userService.selectfollowCnt(map);
+		if(log.isDebugEnabled()) {
+			log.debug("<<----------------------------------------------------count>>:" + count);
+		}
+		
+		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"myfollowing.do","&id="+id);
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
 		//끝
 		
-		//팔로우한 사람들의 command필요하므로 가입한 모든 사람 리스트목록 불러옴
+		//팔로우한 사람들의 command
 		List<UserCommand> list = null;
-		list = userService.selectUserList(map);
+		list = userService.selectfollowList(map);
 		//-------------------------------------------
 		
 		mav.setViewName("userFollowing");
@@ -381,21 +382,7 @@ public class MyPageController {
 			   				       @RequestParam(value="keyfield",defaultValue="") String keyfield,
 			   				       @RequestParam(value="keyword",defaultValue="") String keyword) {		
 
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("keyfield", keyfield);
-		map.put("keyword", keyword);
-
-		//총글의 갯수 또는 검색된 글의 갯수
-		int count = userService.selectUserCnt(map);
-		if(log.isDebugEnabled()) {
-			log.debug("<<count>>:" + count);
-		}
-
-		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"myfollowing.do");
-
-		map.put("start", page.getStartCount());
-		map.put("end", page.getEndCount());
-		//------------------------------------------------
+		
 		String loginUserId = (String)session.getAttribute("user_id");
 		
 		UserCommand loginUser = userService.selectUser(loginUserId);//현재 로그인한 아이디의 커맨드
@@ -419,6 +406,25 @@ public class MyPageController {
 		mav.addObject("follower",follower3);
 		//내 팔로워 arrayList끝
 		
+		//------------------------------------------------
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("list", follower3);
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+
+		//총글의 갯수 또는 검색된 글의 갯수
+		int count = userService.selectfollowCnt(map);
+		if(log.isDebugEnabled()) {
+			log.debug("<<count>>:" + count);
+		}
+
+		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"myfollowing.do","&id="+id);
+
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		//------------------------------------------------
+		
 		//내 팔로잉 arrayList 시작 (팔로잉,팔로워버튼 위치 때문에 필요함,c:if조건체크하려고)
 		List<String> follow3 = new ArrayList<String>();
 
@@ -440,9 +446,9 @@ public class MyPageController {
 		
 		
 
-		//팔로워 사람들의 command필요하므로 가입한 모든 사람 리스트목록 불러옴
+		//팔로워 사람들의 command
 		List<UserCommand> list = null;
-		list = userService.selectUserList(map);
+		list = userService.selectfollowList(map);
 		//-------------------------------------------
 
 		mav.setViewName("userFollower");
@@ -464,21 +470,6 @@ public class MyPageController {
 				   					    @RequestParam(value="keyfield",defaultValue="") String keyfield,
 				   					    @RequestParam(value="keyword",defaultValue="") String keyword) {		
 			
-			Map<String,Object> map = new HashMap<String,Object>();
-			map.put("keyfield", keyfield);
-			map.put("keyword", keyword);
-			
-			//총글의 갯수 또는 검색된 글의 갯수
-			int count = userService.selectUserCnt(map);
-			if(log.isDebugEnabled()) {
-				log.debug("<<count>>:" + count);
-			}
-			
-			PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"myfollowing.do");
-			
-			map.put("start", page.getStartCount());
-			map.put("end", page.getEndCount());
-			//------------------------------------------------
 			String user_id = (String)session.getAttribute("user_id");
 			UserCommand user = userService.selectUser(user_id);//현재 로그인한 아이디의 커맨드
 			
@@ -497,11 +488,33 @@ public class MyPageController {
 				blockList.clear();
 			}
 			
+			
+			//페이징,검색
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("list",blockList);
+			map.put("keyfield", keyfield);
+			map.put("keyword", keyword);
+			
+			//총글의 갯수 또는 검색된 글의 갯수
+			int count = userService.selectfollowCnt(map);
+			if(log.isDebugEnabled()) {
+				log.debug("<<---------------------------------------------------count>>:" + count);
+			}
+			
+			PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"myBlock.do","&id="+user_id);
+			
+			map.put("start", page.getStartCount());
+			map.put("end", page.getEndCount());
+			
 			//끝
 			
-			//블락한 사람들의 command필요하므로 가입한 모든 사람 리스트목록 불러옴
+			//내가 블락한 사람들의 커맨드
 			List<UserCommand> list = null;
-			list = userService.selectUserList(map);
+			list = userService.selectfollowList(map);
+			if(log.isDebugEnabled()) {
+				log.debug("<<---------------------------------------------------list>>:" + list);
+			}
+			
 			//-------------------------------------------
 			
 			mav.setViewName("userBlockList");
@@ -514,4 +527,5 @@ public class MyPageController {
 			return mav;
 		}
 
+	
 }

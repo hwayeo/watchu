@@ -49,9 +49,11 @@ public interface UserMapper {
 	@Delete("delete from user_relation where id=#{id}")
 	public void deleteUserRelation(String id);
 	
-	//친구목록
+	//추천친구목록
 	public int selectUserCnt(Map<String, Object> map);
-	
+	//팔로잉,팔로워,블락 목록
+	public int selectfollowCnt(Map<String, Object> map);
+	public List<UserCommand> selectfollowList(Map<String,Object> map);
 	//==============관리자==============//
 	//회원 목록
 	public List<UserCommand> selectUserList(Map<String,Object> map);

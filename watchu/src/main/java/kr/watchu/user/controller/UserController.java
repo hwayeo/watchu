@@ -204,7 +204,7 @@ public class UserController {
 			log.debug("<<count>>:" + count);
 		}
 		
-		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"follow.do");
+		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"follow.do","&id="+id);
 		
 		map.put("start", page.getStartCount());
 		map.put("end", page.getEndCount());

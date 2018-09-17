@@ -98,4 +98,14 @@ public class UserServiceImpl implements UserService {
 		userMapper.adminUpdate2(user);	//회원 등급 수정	
 	}
 
+	@Override
+	public List<UserCommand> selectfollowList(Map<String, Object> map) {
+		return userMapper.selectfollowList(map);
+	}
+
+	@Override
+	public int selectfollowCnt(Map<String, Object> map) {
+		return userMapper.selectfollowCnt(map);
+	}
+
 }
