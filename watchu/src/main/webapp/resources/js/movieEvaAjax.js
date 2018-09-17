@@ -313,7 +313,7 @@ $(document).ready(function(){
 							elist += '	</div>';
 							elist += '	<div class="row">';
 							elist += '	  <div class="col-xs-12 text-right">';
-							elist += '		<a href="${pageContext.request.contextPath}/movie/movieDetail.do?movie_num=${ml.movie_num}" class="movie-link">더보기</a>';
+							elist += '		<a href="../movie/movieDetail.do?movie_num='+item.movie_num+'" class="movie-link">더보기</a>';
 							elist += '    </div>';
 							elist += '	</div>';
 							elist += '	</div>';
