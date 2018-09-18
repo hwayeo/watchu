@@ -25,7 +25,7 @@
 	
 	.selectTag{
 		width:100%;
-		height:250px;
+		height:300px;
 		border-bottom:1px solid #ccc;
 	}
 	
@@ -34,6 +34,7 @@
 		font-weight:700;
 		margin-top:20px;
 		margin-left:20px;
+		margin-bottom:40px;
 	}
 	
 	.center{
@@ -51,6 +52,7 @@
 	.select1{
 		font-size:36px;
 		font-weight:900;
+		color:#ff4b7e;
 		position:relative;
 		top:40px;
 		left:480px;
@@ -58,6 +60,7 @@
 	.select2{
 		font-size:28px;
 		font-weight:600;
+		color:#F781F3;
 		opacity:0.8;
 		position:relative;
 		top:-60x;
@@ -66,6 +69,7 @@
 	.select3{
 		font-size:24px;
 		font-weight:500;
+		color:#F781F3;
 		opacity:0.6;
 		position:relative;
 		top:80px;
@@ -74,6 +78,8 @@
 	.select4{
 		font-size:18px;
 		font-weight:400;
+		color:#F5A9E1;
+		opacity:0.5;
 		position:relative;
 		top:33px;
 		left:320px;
@@ -81,6 +87,7 @@
 	.select5{
 		font-size:14px;
 		font-weight:300;
+		color:#F6CEF5;
 		position:relative;
 		top:90px;
 		left:48px;
@@ -97,6 +104,7 @@
 		font-weight:700;
 		margin-top:20px;
 		margin-left:20px;
+		margin-bottom:40px;
 	}
 	.subText1{
 		font-size:14px;
@@ -109,6 +117,7 @@
 		font-weight:700;
 		margin-top:20px;
 		margin-left:20px;
+		margin-bottom:40px;
 	}
 	
 	.preference{
@@ -118,25 +127,32 @@
 	}
 	
 	.actor1{
-		margin-left:20px;
 		margin-bottom:5px;
 	}
 	
 	.w_img{
-		display:inline-block;
-		width:90%;
+		display: inline-block;
+    	width: 100%;
+    	clear: both;
+    	margin-bottom:10px;
 	}
 	.w_img img{
 		margin-left:50px;
+		float:left;
 	}
 	div.txt{
-		margin-left:40px;
-		display:inline-block;
-		width:100px;
+		margin-left: 50px;
+	    float: left;
+	    display: inline-block;
+	    width: 75%;
+	    vertical-align: middle;
 	}
 	.score{
-		display:inline-block;
-		width:9.5%;
+		float: right;
+		text-align:right;
+		padding-right:40px;
+   		display: inline-block;
+    	width: 10%;
 	}
 	.im{
 		font-weight:bold;
@@ -159,10 +175,10 @@
 		font-weight:700;
 		margin-top:20px;
 		margin-left:20px;
+		margin-bottom:40px;
 	}
 	
 	.director1{
-		margin-left:20px;
 		margin-bottom:5px;
 	}
 	
@@ -173,13 +189,13 @@
 	}
 	
 	.subTitle5{
-		font-size:18px;
+		font-size:20px;
 		font-weight:700;
 		margin-top:20px;
 		margin-left:20px;
 	}
 	.subText2{
-		font-size:14px;
+		font-size:16px;
 		margin-left:20px;
 		color:#666;
 	}
@@ -217,7 +233,7 @@
 	
 	.row{
 		font-size:14px;
-		padding:10px 35px;
+		padding:10px 5px 10px 35px;
 		border-top:1px solid #f2f2f2;	
 	}
 	
@@ -243,40 +259,59 @@
 		margin-left:35%;
 	}
 	
-	.red{
+	.color1{
 		font-size:18px;
-		color:red;
+		color:#1F77B4;
 	}
-	.blue{
+	.color2{
 		font-size:18px;
-		color:blue;
+		color:#AEC7E8;
 	}
-	.green{
+	.color3{
 		font-size:18px;
-		color:green;
+		color:#FF7F0E;
 	}
 	
 	.rowBox{
 		clear:both;
 	}
 	
+	.row{
+		width:100%;
+		height:40px;
+	}
+	
 	.left{
 		float:left;
 		text-align:left;
-		color:#303042;
 		pointer-events:none;
 	}
+	.name{
+		color:#303042;
+		font-weight:600;
+	}
+	
 	.middle{
 		float:left;
 		text-align:center;
-		color:#707070;
 		pointer-events:none;
 	}
+	
+	.genre_score{
+		color:#707070;
+	}
+		
 	.right{
 		float:left;
 		text-align:right;
-		color:#707070;
 		pointer-events:none;
+	}
+	.genre_total{
+		color:#707070;
+	}
+	
+	tspan{
+		font-size:12.5px;
 	}
 }
 

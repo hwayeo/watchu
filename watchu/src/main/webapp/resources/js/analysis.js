@@ -1,14 +1,27 @@
 $(document).ready(function(){
+	//controller에서 지정해준 map값 가져오기
+	var label1 = $('#label1').text();
+	var label2 = $('#label2').text();
+	var label3 = $('#label3').text();
+	var value1 = $('#value1').text();
+	var value2 = $('#value2').text();
+	var value3 = $('#value3').text();
+	
+	var total = Number(value1)+Number(value2)+Number(value3);
+	var result1 = (value1/total)*100;
+	var result2 = (value2/total)*100;
+	var result3 = (value3/total)*100;
+	
 	//차트
 	var seedData = [{
-	  "label": "장르3",  //장르 이름
-	  "value": 30,     //장르 수치
+	  "label": label1,  //장르 이름
+	  "value": result1,     //장르 수치
 	}, {
-	  "label": "장르2",
-	  "value": 50,
+	  "label": label2,
+	  "value": result2,
 	}, {
-	  "label": "장르1",
-	  "value": 20,
+	  "label": label3,
+	  "value": result3,
 	}];
 	
 	// Define size & radius of donut pie chart

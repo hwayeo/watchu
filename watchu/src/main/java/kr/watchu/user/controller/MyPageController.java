@@ -206,7 +206,6 @@ public class MyPageController {
 		}
 
 		//선호 태그 5개를 가져와 index 값을 주어 index마다 적용되는 효과를 다르게 함
-		//장르숫자
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id",id);
 		map.put("start",1);
@@ -214,12 +213,7 @@ public class MyPageController {
 
 		List<GenreCommand> genreList = recommendService.selectRatedGenre(map);
 
-		if(log.isDebugEnabled()) {
-			log.debug("<<genreList>> : " + genreList);
-		}
-
 		//선호 배우 List 최초 화면에서 3개를 보여주며 더보기를 클릭 시 늘림(3개씩)
-		//id,job,start,end
 		Map<String,Object> map1 = new HashMap<String,Object>();
 		map1.put("id",id);
 		map1.put("jobs","ACTOR");
@@ -238,14 +232,21 @@ public class MyPageController {
 		List<OfficialsCommand> offList2 = recommendService.selectRatedOff(map2);
 
 		//영화 선호장르 3개(장르별 평균점수, 총 본 횟수)
+		Map<String,Object> map3 = new HashMap<String,Object>();
+		map3.put("id",id);
+		map3.put("start",1);
+		map3.put("end",6);
+		
+		List<GenreCommand> genreList2 = recommendService.selectRatedGenre(map3);
 
-
+		//mav 반환
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("analysis");
 
 		mav.addObject("user_id",id);
 		mav.addObject("count",count);
 		mav.addObject("genreList",genreList);
+		mav.addObject("genreList2",genreList2);
 		mav.addObject("offList1",offList1);
 		mav.addObject("offList2",offList2);
 

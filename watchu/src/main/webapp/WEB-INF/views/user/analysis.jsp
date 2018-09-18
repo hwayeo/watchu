@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <meta name="description" content="D3.js v4, d3.scaleOrdinal(d3.schemeCategory10) categorical ordinal colors" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/analysis.css">
 <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js'></script>
@@ -32,21 +33,22 @@
 	</div>
 	
 	<div class="preference">
-		<p class="subTitle3">선호 배우</p>
+		<p class="subTitle2">선호 배우</p>
 
 		<c:forEach var="offList1" items="${offList1}" varStatus="status">
 			<div class="actor${status.count}">
 				<div class="w_img">
-					<img src="${pageContext.request.contextPath}/resources/images/1.jpg" alt="배우${status.count}">
+					<img src="${pageContext.request.contextPath}/resources/images/${offList1.off_photo}.jpg" alt="배우${status.count}">
 
 					<div class="txt">
-						<p class="actor_Name">${offList1.name}</p>
-						<p class="actor_Moviename">${offList1.jobs}</p>
+						<p class="actor_Name">${offList1.name}/${offList1.jobs}</p>
 					</div>
+					
+					<p class="score">
+						<span class="im">${offList1.rate * 20}</span>점 / ${offList1.cnt}편
+					</p>
 				</div>
 			</div>
-
-			<p class="score"><span class="im">${offList1.rate}</span>점</p>
 		</c:forEach>
 	</div>
 		
@@ -55,21 +57,20 @@
 	</div>
 	
 	<div class="preference">
-		<p class="subTitle4">선호 감독</p>
+		<p class="subTitle3">선호 감독</p>
 
 		<c:forEach var="offList2" items="${offList2}" varStatus="status">
 			<div class="director${status.count}">
 				<div class="w_img">
-					<img src="${pageContext.request.contextPath}/resources/images/1.jpg" alt="감독${status.count}">
+					<img src="${pageContext.request.contextPath}/resources/images/${offList2.off_photo}.jpg" alt="감독${status.count}">
 
 					<div class="txt">
-						<p class="director_Name">${offList2.name}</p>
-						<p class="director_Moviename">${offList2.jobs}</p>
+						<p class="actor_Name">${offList2.name}/${offList2.jobs}</p>
 					</div>
+
+					<p class="score"><span class="im">${offList2.rate * 20}</span>점 / ${offList2.cnt}편</p>
 				</div>
 			</div>
-
-			<p class="score"><span class="im">${offList2.rate}</span>점</p>
 		</c:forEach>
 	</div>
 		
@@ -86,73 +87,34 @@
 		</div>
 		
 		<div class="box">
-			<div class="genre">
-				<span class="glyphicon glyphicon-heart-empty red"></span>
-				<p class="genre_name1">장르1</p>
-				<span class="stat1">
-					<strong>00</strong>
-					<span>/</span>
-					<span>00</span>
-				</span>
-			</div>
-			
-			<div class="genre">
-				<span class="glyphicon glyphicon-heart-empty blue"></span>
-				<p class="genre_name2">장르2</p>
-				<span class="stat2">
-					<strong>00</strong>
-					<span>/</span>
-					<span>00</span>
-				</span>
-			</div>
-			
-			<div class="genre">
-				<span class="glyphicon glyphicon-heart-empty green"></span>
-				<p class="genre_name3">장르3</p>
-				<span class="stat3">
-					<strong>00</strong>
-					<span>/</span>
-					<span>00</span>
-				</span>
-			</div>
+			<c:forEach var="genreList2" items="${genreList2}" begin="0" end="2" varStatus="status">
+				<div class="genre">
+					<span class="glyphicon glyphicon-heart-empty color${status.count}"></span>
+					<p class="genre_name1" id="label${status.count}">${genreList2.genre}</p>
+					<span class="stat1">
+						<strong id="value${status.count}">${genreList2.rate}</strong>
+						<span>/</span>
+						<span>${genreList2.cnt}</span>
+					</span>
+				</div>
+			</c:forEach>
 		</div>
 		
 		<div class="rowBox">
-			<div class="row">
-				<div class="col-2 left">
-					<span class="name">장르1</span>
+			<c:forEach var="genreList2" items="${genreList2}" begin="3" end="5" varStatus="status">	
+				<div class="row">
+					<div class="col-2 left">
+						<span class="name">${genreList2.genre}</span>
+					</div>
+					<div class="col-2 middle">
+						<span class="genre_score">${genreList2.rate}</span>
+					</div>
+					<div class="col-2 right">
+						<span class="genre_total">${genreList2.cnt}</span>
+					</div>
 				</div>
-				<div class="col-2 middle">
-					<span class="genre_score">점수1</span>
-				</div>
-				<div class="col-2 right">
-					<span class="genre_total">총편1</span>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col-2 left">
-					<span class="name">장르2</span>
-				</div>
-				<div class="col-2 middle">
-					<span class="genre_score">점수2</span>
-				</div>
-				<div class="col-2 right">
-					<span class="genre_total">총편2</span>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col-2 left">
-					<span class="name">장르3</span>
-				</div>
-				<div class="col-2 middle">
-					<span class="genre_score">점수3</span>
-				</div>
-				<div class="col-2 right">
-					<span class="genre_total">총편3</span>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
+		
 	</div>
 </div>
