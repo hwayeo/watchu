@@ -78,7 +78,7 @@
 		<p class="clickChange"><span class="glyphicon glyphicon-chevron-down"></span> 더 보기</p>
 	</div>
 	
-	<div class="genreContext">
+	<div class="genreContext"> 
 		<p class="subTitle5">영화 선호장르</p>
 		<p class="subText2">영화장르영화장르영화장르</p>
 		

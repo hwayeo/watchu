@@ -26,7 +26,7 @@ $(document).ready(function(){
 	
 	// Define size & radius of donut pie chart
 	var width = 300,
-	    height = 300,
+	    height = 300, 
 	    radius = Math.min(width, height) / 2;
 	
 	// Define arc colours
