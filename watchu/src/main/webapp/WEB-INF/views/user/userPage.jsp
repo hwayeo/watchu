@@ -97,7 +97,7 @@
 				</div>	
 				<span>영화</span>
 				<div>
-					<a onclick="location.href='userMypage_movie.do?id=${anotheruser.id}'">0</a>
+					<a onclick="location.href='userMypage_movielist.do?id=${anotheruser.id}'">${mypage_movielist_count}</a>
 				</div>
 			</div>
 		</div>

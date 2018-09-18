@@ -41,10 +41,10 @@
 							<div class="container">
 								<a onclick="location.href='userMypage.do'" class="profile_img"> 
 									<c:if test="${empty user.profile_img}">
-										<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" class="img-circle" id="profile_img">&emsp;${user_id}
+										<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" class="img-circle" id="profile_img">&emsp;${user.id}
 									</c:if> 
 									<c:if test="${!empty user.profile_img}">
-										<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}" class="img-circle review" style="width: 50px; height: 50px;">&emsp;${user_id}
+										<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}" class="img-circle review" style="width: 50px; height: 50px;">&emsp;${user.id}
 									</c:if>
 								</a>	
 							</div><br>
@@ -72,7 +72,7 @@
 										<li>|</li>
 										<!-- <span><i class="glyphicon glyphicon-comment"></i> 2</span>
 										<li>|</li> -->
-										<span><i class="glyphicon glyphicon-star"></i> 4.5</span>
+										<span><i class="glyphicon glyphicon-star"></i> ${list.rate }</span>
 										<li>|</li>
 									</ul>
 							</div>
@@ -84,7 +84,9 @@
 					</div>
 				</div>
 				</c:forEach>
+				<div class="text-center">${pagingHtml}</div>
 			</div><br>
+			   
 			
 			<%-- <!-- 댓글 쓰기 모달창 -->
 			<div class="modal fade" id="CommentWrite" tabindex="-1" role="dialog"

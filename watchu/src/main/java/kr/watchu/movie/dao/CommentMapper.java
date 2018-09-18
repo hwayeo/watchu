@@ -43,8 +43,9 @@ public interface CommentMapper {
 	public int selectCommentCnt(Integer movie_num);
 	
 	//마이페이지에서 내가 쓴 코멘트를 반환하는 메서드
+	@Select("SELECT count(*) FROM movie_comment where id=#{id}")
 	public Integer selectMyCommentCnt(String id);
-	public List<CommentCommand> selectMyCommentList(String id);
+	public List<CommentCommand> selectMyCommentList(Map<String, Object> map);
 	// 상세 코멘트
 	@Select("SELECT i.title,i.poster_img,i.released FROM movie_info i RIGHT OUTER JOIN (SELECT * FROM movie_comment WHERE id=#{id})c ON i.movie_num=c.movie_num WHERE i.movie_num=#{movie_num}")
 	public CommentCommand commentDetail(Map<String, Object> map);

@@ -26,9 +26,8 @@ public interface CommentService {
 	public int selectCommentCnt(Integer movie_num);
 
 	//마이페이지에서 내가 쓴 코멘트를 반환하는 메서드
-	public List<CommentCommand> selectMyCommentList(String id);
-
-	public int selectMyCommentCnt(String id);
+	public List<CommentCommand> selectMyCommentList(Map<String, Object> map);
+	public Integer selectMyCommentCnt(String id);
 	//상세 코멘트
 	public CommentCommand commentDetail(Map<String, Object> map);
 	public Integer selectLikes(Integer comment_num);

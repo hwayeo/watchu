@@ -27,7 +27,31 @@
 			WHERE rnum >=#{start} AND rnum <=#{end}
 		]]>
 	</select>
-	<select id="selectMyCommentCnt" parameterType="map" resultType="Integer">
+	
+	
+	<select id="selectMyCommentList" parameterType="map" resultType="CommentCommand">
+		select * from 
+		(select z.*,rownum rnum from 
+			(select * from 
+				(select c.movie_num,c.id,c.content,i.title,i.released,i.poster_img from movie_comment c join movie_info i on c.movie_num = i.movie_num where id=#{id})a 
+				join movie_rated r 
+				on a.id=r.id and a.movie_num=r.movie_num)z) 
+		<![CDATA[ 
+			WHERE rnum >=#{start} AND rnum <=#{end}
+		]]>
+	</select>
+	<!-- <select id="selectMyCommentList" parameterType="map" resultType="CommentCommand">
+		SELECT b.movie_num, a.comment_num, a.id,a.content,a.likes,b.rate,a.reg_date, rownum rnum FROM 
+		(SELECT * FROM movie_comment WHERE id=#{id})a JOIN
+		(SELECT movie_num, id, avg(rate) rate 
+		FROM movie_rated GROUP BY movie_num,id HAVING id=#{id})b 
+		ON a.movie_num=b.movie_num 
+		<![CDATA[
+			WHERE rownum >=#{start} AND rownum <=#{end}
+		]]>
+	</select> -->
+	
+	<!-- <select id="selectMyCommentCnt" parameterType="map" resultType="Integer">
 		SELECT count(*) FROM 
 (SELECT * FROM movie_comment WHERE id=#{id})a JOIN
 (SELECT movie_num, id, avg(rate) rate FROM movie_rated GROUP BY movie_num,id HAVING id=#{id})b ON a.movie_num=b.movie_num
@@ -41,5 +65,5 @@
 		<![CDATA[
 			WHERE rownum >=#{start} AND rownum <=#{end}
 		]]>
-	</select>
+	</select> -->
 </mapper>

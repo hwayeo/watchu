@@ -155,43 +155,44 @@ public class MyPageController {
 			return "userMypage_movie";
 		}*/
 		
-		//평가한 영화 목록 더보기
-		@RequestMapping("/user/userMypage_movielist.do")
-		public ModelAndView mypage_movielist(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
-				@RequestParam(value="sort",defaultValue="rate") String sort,
-											 HttpSession session) {
+		//평가한 영화 목록 더보기-다른유저페이지 코멘트기능도 같이 쓰려고 수정함(세션에서 아이디 받지말고 겟으로 받음)
+				@RequestMapping("/user/userMypage_movielist.do")
+				public ModelAndView mypage_movielist(@RequestParam(value="id") String id,
+													 @RequestParam(value="pageNum",defaultValue="1") int currentPage,
+													 @RequestParam(value="sort",defaultValue="rate") String sort,
+													 HttpSession session) {
 
-			int rowCount = 999;
-			int pageCount = 999;
-			
-			String id = (String)session.getAttribute("user_id");
-			
-			Map<String,Object> map = new HashMap<String,Object>();
-			int count = recommendService.selectRatedCntById(id);  
-			
-			if(log.isDebugEnabled()) {
-				log.debug("<<리스트 총값>> : " + count);
-			}
-			
-			
-			PagingUtil page = new PagingUtil(currentPage,count,rowCount,pageCount,"userMypage_movielist.do");
-			map.put("start", page.getStartCount());
-			map.put("end", page.getEndCount());
-			map.put("id", id);
-			map.put("sort", sort);
-			
-			List<MovieCommand> recommendList = recommendService.selectRatedMovieList(map);
-			if(log.isDebugEnabled()) {
-				log.debug("<<<<recoomendList>>>> : " + recommendList);
-			}
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("userMypage_movielist");
-			mav.addObject("count",count);
-			mav.addObject("recommendList",recommendList);
-			mav.addObject("pagingHtml",page.getPagingHtml());
-			
-			return mav;
-		}
+					int rowCount = 999;
+					int pageCount = 999;
+					
+					//String id = (String)session.getAttribute("user_id");
+					
+					Map<String,Object> map = new HashMap<String,Object>();
+					int count = recommendService.selectRatedCntById(id);  
+					
+					if(log.isDebugEnabled()) {
+						log.debug("<<리스트 총값>> : " + count);
+					}
+					
+					
+					PagingUtil page = new PagingUtil(currentPage,count,rowCount,pageCount,"userMypage_movielist.do");
+					map.put("start", page.getStartCount());
+					map.put("end", page.getEndCount());
+					map.put("id", id);
+					map.put("sort", sort);
+					
+					List<MovieCommand> recommendList = recommendService.selectRatedMovieList(map);
+					if(log.isDebugEnabled()) {
+						log.debug("<<<<recoomendList>>>> : " + recommendList);
+					}
+					ModelAndView mav = new ModelAndView();
+					mav.setViewName("userMypage_movielist");
+					mav.addObject("count",count);
+					mav.addObject("recommendList",recommendList);
+					mav.addObject("pagingHtml",page.getPagingHtml());
+					
+					return mav;
+				}
 	
 	//취향분석
 	@RequestMapping("/user/analysis.do")
@@ -253,36 +254,46 @@ public class MyPageController {
 		return mav;
 	}
 	
-	// 코멘트
-	@RequestMapping("/user/userComment.do")
-	public ModelAndView comment(HttpSession session) {
+	// 코멘트-다른유저페이지 코멘트기능도 같이 쓰려고 수정함(세션에서 아이디 받지말고 겟으로 받음)
+			@RequestMapping("/user/userComment.do")
+			public ModelAndView comment(HttpSession session,
+										@RequestParam(value="id") String user_id,
+										 @RequestParam(value="pageNum",defaultValue="1") int currentPage) {
 
-		ModelAndView mav = new ModelAndView();
-		String id = (String) session.getAttribute("user_id");
+				
+				String id = (String) session.getAttribute("user_id");
+				
+				UserCommand user = userService.selectUser(user_id);//겟방식으로 아이디를 넘긴 사람의 커맨드
+				UserCommand loginUser = userService.selectUser(id);//로그인한 사람의 커맨드
+				
+				//페이징처리
+				int count = commentService.selectMyCommentCnt(user_id);
+				
+				Map<String,Object> map = new HashMap<String,Object>();
+				PagingUtil page = new PagingUtil(currentPage,count,rowCount,pageCount,"userComment.do","&id="+user_id);
+				map.put("start", page.getStartCount());
+				map.put("end", page.getEndCount());
+				map.put("id", user_id);
+				
+				
+				//목록 리스트에 담기
+				List<CommentCommand> list = null;
 
-		if (log.isDebugEnabled()) {
-			log.debug("<<user_id>> : " + id);
-		}
+				if (count > 0) {
+					list = commentService.selectMyCommentList(map);
+				}
+				
+				ModelAndView mav = new ModelAndView();
+				mav.setViewName("userComment");
+				mav.addObject("commentList", list);
+				mav.addObject("count", count);
+				mav.addObject("user",user);
+				mav.addObject("loginUser",loginUser);
+				mav.addObject("pagingHtml",page.getPagingHtml());
 
-		int count = commentService.selectMyCommentCnt(id);
-
-		Map<String, Object> map = new HashMap<String, Object>();
-
-		List<CommentCommand> list = null;
-
-		if (count > 0) {
-			list = commentService.selectMyCommentList(id);
-		}
-		UserCommand user = userService.selectUser(id);
-
-		mav.setViewName("userComment");
-		mav.addObject("commentList", list);
-		mav.addObject("count", count);
-		mav.addObject("user", user);
-
-		return mav;
-	}
-	
+				return mav;
+			}
+			
 	/*//코멘트 상세페이지
 	@RequestMapping("/user/userComment_detail.do") 
 	public ModelAndView comment_detail(@RequestParam("movie_num") Integer movie_num,
@@ -322,7 +333,7 @@ public class MyPageController {
 		List<CommentCommand> list = null;
 
 		if (count > 0) {
-			list = commentService.selectMyCommentList(id);
+			//list = commentService.selectMyCommentList(id); -> map넣어야함 
 		}
 		UserCommand user = userService.selectUser(id);
 		

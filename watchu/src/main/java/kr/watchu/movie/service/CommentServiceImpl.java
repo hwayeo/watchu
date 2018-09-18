@@ -45,12 +45,12 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public List<CommentCommand> selectMyCommentList(String id) {
-		return commentMapper.selectMyCommentList(id);
+	public List<CommentCommand> selectMyCommentList(Map<String, Object> map) {
+		return commentMapper.selectMyCommentList(map);
 	}
 
 	@Override
-	public int selectMyCommentCnt(String id) {
+	public Integer selectMyCommentCnt(String id) {
 		return commentMapper.selectMyCommentCnt(id);
 	}
 

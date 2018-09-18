@@ -9,10 +9,10 @@
 <div class="container-fluid">
 		<div class="col-xs-12 col-md-12"><br><br>
 			<div class="col-xs-12 col-md-12"> 
-				<div class="col-xs-8 col-md-8">
+				<div class="col-xs-8 col-md-10">
 				</div>
 				<div class="col-xs-4 col-md-2">
-					<a href="follow.do?id=${user_id}" class="glyphicon glyphicon-user" style="font-size:20px; color:gray;"></a>
+					<a href="follow.do?id=${user_id}" class="glyphicon glyphicon-user" style="font-size:20px; color:gray;"></a>&emsp;
 					<a href="setup.do?id=${user_id}" class="glyphicon glyphicon-cog" style="font-size:20px; color:gray;" data-toggle="modal" data-target="#myModal2"></a>
 				</div><hr/>
 			</div>
@@ -50,10 +50,10 @@
 		<div class="col-xs-12 col-md-12"> 
 		<div class="container" style="border:1px solid #c1c1c1"><br>
 				<div class="col-xs-4 col-md-4 text-center">
-					<span class="wc-StatLabel2 wcPc-block"><a class="mylike" onclick="location.href='userMypage_movielist.do'">영화</a></span> ${mypage_movielist_count}<br>
+					<span class="wc-StatLabel2 wcPc-block"><a class="mylike" onclick="location.href='userMypage_movielist.do?id=${user_id}'">영화</a></span> ${mypage_movielist_count}<br>
 				</div>
 				<div class="col-xs-4 col-md-4 text-center">
-					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userComment.do'">코멘트</a></span> ${comment_count}<br>
+					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userComment.do?id=${user_id}'">코멘트</a></span> ${comment_count}<br>
 				</div>
 				<div class="col-xs-4 col-md-4">
 					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userLikeComment.do'">좋아요</a></span> ${likecomment_count}<br><br>
@@ -116,6 +116,17 @@
 								<a href="updateUser.do"><label>프로필 수정</label></a>
 							</div>
 						</li>
+
+						<li class="list-group-item"></li>
+
+
+						<li class="list-group-item">
+
+							<div class="">
+								<a href="#"><label>공지사항</label></a>
+							</div>
+						</li>
+
 
 						<li class="list-group-item">
 							<div class="">
