@@ -17,13 +17,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.movie.domain.MovieCommand;
+import kr.watchu.movie.domain.MovieratedCommand;
 import kr.watchu.movie.domain.OfficialsCommand;
 import kr.watchu.movie.service.CommentService;
 import kr.watchu.movie.service.MovieService;
+import kr.watchu.movie.service.MovieratedService;
 import kr.watchu.movie.service.OfficialsService;
 import kr.watchu.user.controller.userConfirmIdAjaxController;
 import kr.watchu.user.service.UserService;
@@ -40,10 +43,16 @@ public class MovieViewController {
 	private CommentService commentService;
 	@Resource
 	private OfficialsService officialsService;
+	@Resource
+	private MovieratedService movieratedService;
 	//자바빈 초기화
 	@ModelAttribute("commentCommand")
 	public CommentCommand initCommentCommand() {
 		return new CommentCommand();
+	}
+	@ModelAttribute("commentRated")
+	public MovieratedCommand initCommandRate() {
+		return new MovieratedCommand();
 	}
 
 	//글 상세 보기용
@@ -94,19 +103,25 @@ public class MovieViewController {
 				mav.addObject("comment",null);
 			}
 		}
-		mav.addObject("movie",movie);
-		mav.addObject("commentList",commentList);
-		mav.addObject("commentCnt",commentCnt);
-		mav.addObject("actorList",actorList);
-	
 		//비슷한 장르 영화 추천
+		List<MovieCommand> movieList = new ArrayList<MovieCommand>();
+		
 		Map<String,Object> map2 = new HashMap<String,Object>();
 		map2.put("keyfield","genre");
 		map2.put("keyword", movie.getMain_genre());
 		map2.put("start" , 1);
-		map2.put("end", 4);
+		map2.put("end", 16);
+		
+		movieList = movieService.selectMovieAjaxList2(map2);
+	
+		mav.addObject("movie",movie);
+		mav.addObject("commentList",commentList);
+		mav.addObject("commentCnt",commentCnt);
+		mav.addObject("actorList",actorList);
+		mav.addObject("movieList",movieList);
 		
 		return mav;
+		
 	}
 	//코멘트 등록 폼 
 	@RequestMapping(value="/movie/commentWrite.do",method=RequestMethod.GET)
@@ -167,4 +182,29 @@ public class MovieViewController {
 		return "redirect:/movie/movieDetail.do?movie_num="+movie_num;
 	}
 	
+	//코멘트 별점 확인 
+	@RequestMapping("/movie/commentRated.do")
+	@ResponseBody
+	public Map<String,Object> commentRated(@RequestParam("movie_num") Integer movie_num,
+										   @RequestParam("id") String id) {
+		
+		if(log.isDebugEnabled()) {
+			log.debug("<<======movie_num======> : " + movie_num);
+			log.debug("<<======id======> : " + id);
+		}
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("movie_num", movie_num);
+		map.put("id", id);
+		
+		MovieratedCommand ratedcomment = movieratedService.selectMovierated(map);
+		
+		Map<String,Object> jsonMap = new HashMap<String,Object>();
+		if(ratedcomment!=null) {
+			jsonMap.put("result","submit");
+		}else {
+			jsonMap.put("result","failure");
+		}
+		return jsonMap;
+	}
 }
