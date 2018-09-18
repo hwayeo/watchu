@@ -36,7 +36,7 @@ public interface CommentService {
 	public void insertCommentLike(Map<String,Object> map);
 	public void deleteCommentLike(Map<String,Object> map);
 	
-	public String selectMyFollow(String id);
+	//public String selectMyFollow(String id);
 	public Integer selectTimelineCnt(Map<String,Object> map);
 	public List<TimelineCommand> selectTimeline(Map<String,Object> map);
 }

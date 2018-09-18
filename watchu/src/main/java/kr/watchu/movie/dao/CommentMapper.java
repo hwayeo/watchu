@@ -60,9 +60,9 @@ public interface CommentMapper {
 	@Delete("DELETE FROM movie_comment_like WHERE comment_num=#{comment_num} ANE id=#{id}")
 	public void deleteCommentLike(Map<String,Object> map);
 	
-	//follow 구해오기
+	/*//follow 구해오기
 	@Select("SELECT follow FROM user_relation WHERE id=#{id}")
-	public String selectMyFollow(String id);
+	public String selectMyFollow(String id);*/
 	public Integer selectTimelineCnt(Map<String,Object> map);
 	public List<TimelineCommand> selectTimeline(Map<String,Object> map);
 }
