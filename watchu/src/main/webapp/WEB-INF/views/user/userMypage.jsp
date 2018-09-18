@@ -9,10 +9,10 @@
 <div class="container-fluid">
 		<div class="col-xs-12 col-md-12"><br><br>
 			<div class="col-xs-12 col-md-12"> 
-				<div class="col-xs-8 col-md-10">
+				<div class="col-xs-8 col-md-8">
 				</div>
 				<div class="col-xs-4 col-md-2">
-					<a href="follow.do?id=${user_id}" class="glyphicon glyphicon-user" style="font-size:20px; color:gray;"></a>&emsp;
+					<a href="follow.do?id=${user_id}" class="glyphicon glyphicon-user" style="font-size:20px; color:gray;"></a>
 					<a href="setup.do?id=${user_id}" class="glyphicon glyphicon-cog" style="font-size:20px; color:gray;" data-toggle="modal" data-target="#myModal2"></a>
 				</div><hr/>
 			</div>
@@ -116,17 +116,6 @@
 								<a href="updateUser.do"><label>프로필 수정</label></a>
 							</div>
 						</li>
-
-						<li class="list-group-item"></li>
-
-
-						<li class="list-group-item">
-
-							<div class="">
-								<a href="#"><label>공지사항</label></a>
-							</div>
-						</li>
-
 
 						<li class="list-group-item">
 							<div class="">
