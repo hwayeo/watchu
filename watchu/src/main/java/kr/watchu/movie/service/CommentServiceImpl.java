@@ -64,6 +64,11 @@ public class CommentServiceImpl implements CommentService{
 		return commentMapper.selectCommentCnt(movie_num);
 	}
 
+	
+	@Override
+	public Integer selectLikes(Integer comment_num) {
+		return commentMapper.selectLikes(comment_num);
+	}
 
 	@Override
 	public void updateCommentWithLike(Map<String, Object> map) {
@@ -85,10 +90,10 @@ public class CommentServiceImpl implements CommentService{
 		return commentMapper.commentDetail(map);
 	}
 	
-	@Override
+	/*@Override
 	public String selectMyFollow(String id) {
 		return commentMapper.selectMyFollow(id);
-	}
+	}*/
 
 	@Override
 	public Integer selectTimelineCnt(Map<String, Object> map) {

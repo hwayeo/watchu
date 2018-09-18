@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/starRated.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/modal-comment.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.movieListAjax.js"></script>
  
 <div id="main-page"> 
 	<div id="main_banner">
@@ -72,9 +73,9 @@
 			</div>
 			
 			<!-- modal 이동 -->
-			<a href="#" class="moving" data-toggle="modal" data-target="#myModal2">
+			 <a href="#" class="moving" data-toggle="modal" data-target="#myModal3">
 				<span class="glyphicon glyphicon-share-alt"></span>
-			</a>
+			</a> 
 		</div>
 	</div>
 		<!-- 영화 기본정보 pc화면 끝 -->
@@ -124,7 +125,7 @@
 		</c:if>
 		
 		<c:if test="${!empty user_id && empty comment}">
-		<div class="visible-xs"><b>대단한 작품이군요 회원님의 코멘트를 남겨주세요</b>
+		<div class="visible-xs">
 			<button type="button" style="width: 200px;" 
 			 class="btn btn-info" data-toggle="modal" data-target="#myModal">코멘트 남기기</button>
 		</div>
@@ -132,6 +133,14 @@
 		
 		<c:if test="${!empty user_id && !empty comment}">
 		<div class="visible-xs">
+			<c:if test="${!empty list.profile_img}">
+					<a href="${pageContext.request.contextPath}/user/userPage.do?id=${user_id}"><img src="../main/imageView.do?id=${user_id}" 
+					width="50" height="50" class="img-circle" style="float: left; margin-right: 10px; margin-left: 30px"></a>
+			</c:if>
+			<c:if test="${empty list.profile_img}">
+					<a href="${pageContext.request.contextPath}/user/userPage.do?id=${user_id}"><img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" 
+					width="50" height="50" class="img-circle" style="float: left; margin-right: 10px; margin-left: 30px"></a>
+			</c:if>
 			<div class="commentContent">${comment.content}</div>
 			<div class="commentBtn0">
 					<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal2">수정</button>
@@ -166,6 +175,14 @@
 				</c:if>
 				<c:if test="${!empty user_id && !empty comment}">
 					<div class="comment hidden-xs">
+					<c:if test="${!empty list.profile_img}">
+					<a href="${pageContext.request.contextPath}/user/userPage.do?id=${user_id}"><img src="../main/imageView.do?id=${user_id}" 
+					width="50" height="50" class="img-circle" style="float: left; margin-right: 10px; margin-left: 30px"></a>
+					</c:if>
+					<c:if test="${empty list.profile_img}">
+					<a href="${pageContext.request.contextPath}/user/userPage.do?id=${user_id}"><img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" 
+					width="50" height="50" class="img-circle" style="float: left; margin-right: 10px; margin-left: 30px"></a>
+					</c:if>
 					<div class="commentContent">${comment.content}</div>
 					<div class="commentBtn0">
 					<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal2">수정</button>
@@ -178,39 +195,6 @@
 				
 				<!-- pc상세정보 -->
 				<div class="hidden-xs" id="box">
-				<c:if test="${!empty user_id}">
-				<div>
-					<h4><b>내 예상 별점</b></h4>
-				<br>
-				</div>
-
-				<div>
-					<h5>본 친구</h5>
-					
-				</div>
-				<hr>
-
-				<div>
-					<h5>선호하는 감독</h5>
-				</div>
-				<hr>
-
-				<div>
-					<h5>선호하는 배우</h5>
-				</div>
-				<hr>
-
-				<div>
-					<h5>재밌게 본 비슷한 작품</h5>
-				</div>
-				<hr>
-
-				<div>
-					<h5>선호하는 태그</h5>
-				</div>
-				<hr>
-				</c:if>
-				
 				<div class="basic-information"><h4><b>기본정보</b></h4></div>
 				<div class="more-view"><a style="cursor:pointer; color: #ffc0d3;" data-toggle="modal" data-target="#moreinfo"><b>더보기</b></a></div>	
 				<br>
@@ -222,7 +206,6 @@
 				<div>
 					<h4 style="margin-bottom:20px"><b>출연제작</b></h4>
 				</div>
-				
 				
 				<div id = slide_actors>
 					<ul class="slide_actors">
@@ -255,16 +238,6 @@
 				<hr>
 
 				<div>
-					<h4><b>별점 그래프</b></h4>
-				</div>
-				<hr>
-
-				<div>
-					<h4><b>본 친구</b></h4>
-				</div>
-				<hr>    
-
-				<div>
 					<h4><b>코멘트</b></h4>
 				</div>
 				
@@ -277,12 +250,12 @@
 					<div class=inner-box1>
 					<div class="comment-title">
 					<c:if test="${!empty list.profile_img}">
-					<img src="../main/imageView.do?id=${list.id}" 
-					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;">
+					<a href="${pageContext.request.contextPath}/user/userPage.do?id=${list.id}"><img src="../main/imageView.do?id=${list.id}" 
+					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;"></a>
 					</c:if>
 					<c:if test="${empty list.profile_img}">
-					<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" 
-					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;">
+					<a href="${pageContext.request.contextPath}/user/userPage.do?id=${list.id}"><img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" 
+					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;"></a>
 					</c:if>
 					</div>
 					<div><h4 class="comment-id">${list.id}</h4></div>
@@ -309,27 +282,30 @@
 				<div class="row">
 					<div class="othermovie">
 						<c:forEach var="list" items="${movieList}">
-							<div class="col-sm-3 col-md-3 col-xs-6">
+							<div class="col-sm-3 col-md-3">
 								<c:if test="${!empty list.poster_img}">
-									<div class="hidden-xs"><img src="imageView.do?movie_num=${list.movie_num}&type=poster" id="image3"></div>
+									<div class="hidden-xs"><a href="movieDetail.do?movie_num=${list.movie_num}"><img src="imageView.do?movie_num=${list.movie_num}&type=poster" id="image3"></a></div>
 				 				</c:if> 
 								<c:if test="${empty list.poster_img}">
-									<div class="hidden-xs"><img src="../resources/images/default-poster.jpg" id="image3"></div>
+									<div class="hidden-xs"><a href="movieDetail.do?movie_num=${list.movie_num}"><img src="../resources/images/default-poster.jpg" id="image3"></a></div>
 								</c:if> 
 									<div class="poster-name">${list.title}</div>    
 							</div>
 						</c:forEach>
-					</div>
-				</div>	
-				<div class="more">더보기</div>
+				</div>
 			</div>	
-			
+			<div class="row">
+				 	<div class="more">
+				 	<a style="cursor:pointer; color: #ffc0d3;" data-toggle="modal" data-target="#moreList">더보기</a>
+				 	</div>
+				</div>
 		</div>
 	</div>
 </div>
+</div>
 
 	<!-- 톱니바퀴 누르면 나오는 모달 -->
-	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm" role="document">
 				<div class="modal-content" style="margin-top:300px;">
 					<div class="modal-header">
@@ -372,8 +348,6 @@
 				<div class="row">
 				<div class="col-sm-12 col-md-12 col-xs-12 hidden-md hidden-lg hidden-sm" id="box2">
 				
-				<c:if test="${!empty user_id}">
-				
 				<!-- modal 이동 -->
 				<div class="mobileSns">
 					<span class="modalText">공유하기</span>
@@ -381,37 +355,6 @@
 						<span class="glyphicon glyphicon-share-alt"></span>	
 					</a>
 				</div>
-				
-				<div>
-					<h4><b>내 예상 별점</b></h4>
-				<br>
-				</div>
-
-				<div>
-					<h5>본 친구</h5>
-				</div>
-				<hr>
-
-				<div>
-					<h5>선호하는 감독</h5>
-				</div>
-				<hr>
-
-				<div>
-					<h5>선호하는 배우</h5>
-				</div>
-				<hr>
-
-				<div>
-					<h5>재밌게 본 비슷한 작품</h5>
-				</div>
-				<hr>
-
-				<div>
-					<h5>선호하는 태그</h5>
-				</div>
-				<hr>
-				</c:if>
 
 				<div>
 					<div class="basic-information"><h4><b>기본정보</b></h4></div>
@@ -454,16 +397,6 @@
 			<hr>
 
 				<div>
-					<h4><b>별점 그래프</b></h4>
-				</div>
-				<hr>
-
-				<div>
-					<h4><b>본 친구</b></h4>
-				</div>
-				<hr>
-
-				<div>
 					<h4><b>코멘트</b></h4>
 				</div>
 				
@@ -476,12 +409,12 @@
 					<div class=inner-box1>
 					<div class="comment-title">
 					<c:if test="${!empty list.profile_img}">
-					<img src="../main/imageView.do?id=${list.id}" 
-					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;">
+					<a href="${pageContext.request.contextPath}/user/userPage.do?id=${list.id}"><img src="../main/imageView.do?id=${list.id}" 
+					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;"></a>
 					</c:if>
 					<c:if test="${empty list.profile_img}">
-					<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" 
-					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;">
+					<a href="${pageContext.request.contextPath}/user/userPage.do?id=${list.id}"><img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" 
+					width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;"></a>
 					</c:if>
 					</div>
 					<div><h4 class="comment-id">${list.id}</h4></div>
@@ -504,25 +437,23 @@
 				
 				<br>
 				
-				
 				<h4><b>비슷한 작품</b></h4>
 				<div class="row">
 					<div class="othermovie">
-					<div class="col-xs-4">
 						<c:forEach var="list" items="${movieList}">
-					<c:if test="${!empty list.poster_img}">
-					<div><img src="imageView.do?movie_num=${list.movie_num}&type=poster" id="image4"></div>
-					</c:if>
-					<c:if test="${empty list.poster_img}">
-					<div><img src="../resources/images/default-poster.jpg" id="image4"></div>
-					</c:if>
-					<div class="poster-name">${list.title}</div>
-						</c:forEach>
+							<div>
+								<c:if test="${!empty list.poster_img}">
+									<div><a href="movieDetail.do?movie_num=${list.movie_num}" class="thumbnail"><img src="imageView.do?movie_num=${list.movie_num}&type=poster" id="image4"></a></div>
+				 				</c:if> 
+								<c:if test="${empty list.poster_img}">
+									<div><a href="movieDetail.do?movie_num=${list.movie_num}" class="thumbnail"><img src="../resources/images/default-poster.jpg" id="image4"></a></div>
+								</c:if> 
+									<div class="poster-name">${list.title}</div>
+								</div>
+							</c:forEach>
 					</div>
-				</div>
-				<div class="othermovie">
-				<!-- 모바일 상세정보 끝-->
-			</div>
+				</div>	
+		</div>
 		</div>
 		</div>
 <!-- 상세정보 끝 -->
@@ -540,13 +471,13 @@
 					<form:form commandName="commentCommand" action="commentWrite.do" id="commentRegisterForm"> 
 					<input type="hidden" name="movie_num" value="${movie.movie_num}">
 					<input type="hidden" name="id" value="${user_id}">
-					<textarea name="content" id="text" placeholder="이 작품에 대한 생각을 자유롭게 표현해 주세요" class="form-control" rows="5"></textarea><br>
+					<textarea name="content" id="text1" placeholder="이 작품에 대한 생각을 자유롭게 표현해 주세요" class="form-control" rows="5"></textarea><br>
 					<div id = "re_first">
 						<div class="letter-count" style="text-align:center;">1000/1000</div>
 					</div>
 					<div class="text-right">
 						<button class="btn" data-dismiss="modal">닫기</button>
-						<button class="btn btn-primary" value="submit">코멘트 작성</button>
+						<button class="btn btn-primary" id="onlinesubmit" type="button">코멘트 작성</button>
 					</div>
 					</form:form>
 				</div>
@@ -566,7 +497,7 @@
 					<form:form commandName="commentCommand" action="updateCommentWrite.do" id="commentRegisterForm"> 
 					<input type="hidden" name="movie_num" value="${movie.movie_num}">
 					<input type="hidden" name="id" value="${user_id}">
-					<textarea name="content" id="text" class="form-control" rows="5">${comment.content}</textarea><br>
+					<textarea name="content" id="text2" class="form-control" rows="5">${comment.content}</textarea><br>
 					<div id = "mre_first">
 						<div class="letter-count" style="text-align:center">1000/1000</div>
 					</div>
@@ -690,6 +621,38 @@
 				</div>
 			</div>
 	</div>
+	
+	<!-- 비슷한 작품 더보기 모달 -->	
+<div class="modal fade" id="moreList">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content" id="modal">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">x</button>
+					<h2 style="text-align:center"><b>비슷한 작품</b></h2>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+					<div class="othermovie">
+						<c:forEach var="list" items="${movieList}">
+							<div class="col-xs-3">
+								<c:if test="${!empty list.poster_img}">
+									<a href="movieDetail.do?movie_num=${list.movie_num}"><img src="imageView.do?movie_num=${list.movie_num}&type=poster" id="image4"></a>
+				 				</c:if> 
+								<c:if test="${empty list.poster_img}">
+									<a href="movieDetail.do?movie_num=${list.movie_num}"><img src="../resources/images/default-poster.jpg" id="image4"></a>
+								</c:if> 
+									<div class="poster-name">${list.title}</div>    
+							</div>
+						</c:forEach>
+					</div>
+				</div>	
+			<div class="text-right">
+						<button class="btn" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
 
 
 <input type="hidden" value="${movie.movie_num}">

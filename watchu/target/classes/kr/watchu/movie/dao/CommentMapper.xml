@@ -14,16 +14,32 @@
 		WHERE r.id IN (#{id},#{follow}) ORDER BY r.reg_date DESC)ru ON i.movie_num=ru.movie_num)tt
 	</select>
 	<select id="selectTimeline" parameterType="map" resultType="TimelineCommand">
-	 	SELECT tt.*, rownum rnum FROM 
+	 	SELECT * FROM
+        (SELECT tt.*, rownum rnum FROM 
 		(SELECT i.movie_num,i.title,i.country,i.main_genre,
 		i.sub_genre,i.poster_img, ru.id,ru.name,
 		ru.rate,ru.reg_date FROM movie_info i JOIN 
 		(SELECT r.movie_num, r.id ,r.rate, 
 		u.name, r.reg_date reg_date 
 		FROM user_info u JOIN movie_rated r ON u.id=r.id 
-		WHERE r.id IN (#{id},#{follow}) ORDER BY r.reg_date DESC)ru ON i.movie_num=ru.movie_num)tt 
+		WHERE r.id=#{id} ORDER BY r.reg_date DESC)ru ON i.movie_num=ru.movie_num)tt) 
 		<![CDATA[ 
-			WHERE rownum >=#{start} AND rownum <=#{end};
+			WHERE rnum >=#{start} AND rnum <=#{end}
+		]]>
+	</select>
+	<select id="selectMyCommentCnt" parameterType="map" resultType="Integer">
+		SELECT count(*) FROM 
+(SELECT * FROM movie_comment WHERE id=#{id})a JOIN
+(SELECT movie_num, id, avg(rate) rate FROM movie_rated GROUP BY movie_num,id HAVING id=#{id})b ON a.movie_num=b.movie_num
+	</select>
+	<select id="selectMyCommentList" parameterType="map" resultType="CommentCommand">
+		SELECT b.movie_num, a.comment_num, a.id,a.content,a.likes,b.rate,a.reg_date, rownum rnum FROM 
+		(SELECT * FROM movie_comment WHERE id=#{id})a JOIN
+		(SELECT movie_num, id, avg(rate) rate 
+		FROM movie_rated GROUP BY movie_num,id HAVING id=#{id})b 
+		ON a.movie_num=b.movie_num 
+		<![CDATA[
+			WHERE rownum >=#{start} AND rownum <=#{end}
 		]]>
 	</select>
 </mapper>

@@ -5,11 +5,11 @@
 <div id="main-content">
 	<div class="container-fluid">
 		<div class="container">
-			<ul class="nav nav-tabs">
+		<!-- 	<ul class="nav nav-tabs">
 				<li class="active"><a data-toggle="tab" href="#home" class="fa fa-clock-o">전체</a></li>
 				<li><a data-toggle="tab" href="#menu1" class="fa fa-gavel">별점순</a></li>
 			</ul>
-		
+		 -->
 			<div class="tab-content">
 				<div id="home" class="tab-pane fade in active">
 					<div class="nav-collapse">
@@ -53,7 +53,7 @@
 					</c:if>
 				</div>
 				
-				<div id="menu1" class="tab-pane fade">
+				<%-- <div id="menu1" class="tab-pane fade">
 					<c:if test="${empty recommendList}">
 						<div class="text-center">
 							<img src="../resources/images/ap.jpg"><br>
@@ -117,218 +117,9 @@
 									</div>
 								</c:forEach><hr/>
 							<!-- 5.0 -->
-							<!-- 4.0 -->
-							<div class="container row">
-									<div class="col-xs-7 col-md-7">
-										<span class="rate_pont">4.0 평가함</span>&emsp;58<br><br>
-									</div>
-									<div class="col-xs-1 col-md-3"></div>
-									<div class="col-xs-4 col-md-2">
-										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-									</div>
-								</div>
-								<c:forEach var="recommendList" items="${recommendList}" varStatus="status">
-									<div class="col-xs-6 col-md-2">
-										<c:if test="${recommendList.rate == 4.0}">
-											<c:if test="${status.index < 4}">
-												<c:if test="${!empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${recommendList.movie_num}&type=poster">
-												</c:if>	
-												<c:if test="${empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/resources/images/default-poster.jpg">
-												</c:if>
-												<br><p class="movie_title3">${recommendList.title}</p>
-											</c:if>
-										</c:if>
-									</div>
-								</c:forEach><hr/>
-							<!-- 5.0 -->
-							<!-- 3.5 -->
-							<div class="container row">
-									<div class="col-xs-7 col-md-7">
-										<span class="rate_pont">3.5 평가함</span>&emsp;58<br><br>
-									</div>
-									<div class="col-xs-1 col-md-3"></div>
-									<div class="col-xs-4 col-md-2">
-										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-									</div>
-								</div>
-								<c:forEach var="recommendList" items="${recommendList}" varStatus="status">
-									<div class="col-xs-6 col-md-2">
-										<c:if test="${recommendList.rate == 3.5}">
-											<c:if test="${status.index < 4}">
-												<c:if test="${!empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${recommendList.movie_num}&type=poster">
-												</c:if>	
-												<c:if test="${empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/resources/images/default-poster.jpg">
-												</c:if>
-												<br><p class="movie_title3">${recommendList.title}</p>
-											</c:if>
-										</c:if>
-									</div>
-								</c:forEach><hr/>
-							<!-- 5.0 -->
-							<!-- 3.0 -->
-							<div class="container row">
-									<div class="col-xs-7 col-md-7">
-										<span class="rate_pont">3.0 평가함</span>&emsp;58<br><br>
-									</div>
-									<div class="col-xs-1 col-md-3"></div>
-									<div class="col-xs-4 col-md-2">
-										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-									</div>
-								</div>
-								<c:forEach var="recommendList" items="${recommendList}" varStatus="status">
-									<div class="col-xs-6 col-md-2">
-										<c:if test="${recommendList.rate == 3.0}">
-											<c:if test="${status.index < 4}">
-												<c:if test="${!empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${recommendList.movie_num}&type=poster">
-												</c:if>	
-												<c:if test="${empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/resources/images/default-poster.jpg">
-												</c:if>
-												<br><p class="movie_title3">${recommendList.title}</p>
-											</c:if>
-										</c:if>
-									</div>
-								</c:forEach><hr/>
-							<!-- 5.0 -->
-							<!-- 2.5 -->
-							<div class="container row">
-									<div class="col-xs-7 col-md-7">
-										<span class="rate_pont">2.5 평가함</span>&emsp;58<br><br>
-									</div>
-									<div class="col-xs-1 col-md-3"></div>
-									<div class="col-xs-4 col-md-2">
-										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-									</div>
-								</div>
-								<c:forEach var="recommendList" items="${recommendList}" varStatus="status">
-									<div class="col-xs-6 col-md-2">
-										<c:if test="${recommendList.rate == 2.5}">
-											<c:if test="${status.index < 4}">
-												<c:if test="${!empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${recommendList.movie_num}&type=poster">
-												</c:if>	
-												<c:if test="${empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/resources/images/default-poster.jpg">
-												</c:if>
-												<br><p class="movie_title3">${recommendList.title}</p>
-											</c:if>
-										</c:if>
-									</div>
-								</c:forEach><hr/>
-							<!-- 5.0 -->
-							<!-- 2.0 -->
-							<div class="container row">
-									<div class="col-xs-7 col-md-7">
-										<span class="rate_pont">2.0 평가함</span>&emsp;58<br><br>
-									</div>
-									<div class="col-xs-1 col-md-3"></div>
-									<div class="col-xs-4 col-md-2">
-										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-									</div>
-								</div>
-								<c:forEach var="recommendList" items="${recommendList}" varStatus="status">
-									<div class="col-xs-6 col-md-2">
-										<c:if test="${recommendList.rate == 2.0}">
-											<c:if test="${status.index < 4}">
-												<c:if test="${!empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${recommendList.movie_num}&type=poster">
-												</c:if>	
-												<c:if test="${empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/resources/images/default-poster.jpg">
-												</c:if>
-												<br><p class="movie_title3">${recommendList.title}</p>
-											</c:if>
-										</c:if>
-									</div>
-								</c:forEach><hr/>
-							<!-- 5.0 -->
-							<!-- 1.5 -->
-							<div class="container row">
-									<div class="col-xs-7 col-md-7">
-										<span class="rate_pont">1.5 평가함</span>&emsp;58<br><br>
-									</div>
-									<div class="col-xs-1 col-md-3"></div>
-									<div class="col-xs-4 col-md-2">
-										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-									</div>
-								</div>
-								<c:forEach var="recommendList" items="${recommendList}" varStatus="status">
-									<div class="col-xs-6 col-md-2">
-										<c:if test="${recommendList.rate == 1.5}">
-											<c:if test="${status.index < 4}">
-												<c:if test="${!empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${recommendList.movie_num}&type=poster">
-												</c:if>	
-												<c:if test="${empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/resources/images/default-poster.jpg">
-												</c:if>
-												<br><p class="movie_title3">${recommendList.title}</p>
-											</c:if>
-										</c:if>
-									</div>
-								</c:forEach><hr/>
-							<!-- 5.0 -->
-							<!-- 1.0 -->
-							<div class="container row">
-									<div class="col-xs-7 col-md-7">
-										<span class="rate_pont">1.0 평가함</span>&emsp;58<br><br>
-									</div>
-									<div class="col-xs-1 col-md-3"></div>
-									<div class="col-xs-4 col-md-2">
-										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-									</div>
-								</div>
-								<c:forEach var="recommendList" items="${recommendList}" varStatus="status">
-									<div class="col-xs-6 col-md-2">
-										<c:if test="${recommendList.rate == 1.0}">
-											<c:if test="${status.index < 4}">
-												<c:if test="${!empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${recommendList.movie_num}&type=poster">
-												</c:if>	
-												<c:if test="${empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/resources/images/default-poster.jpg">
-												</c:if>
-												<br><p class="movie_title3">${recommendList.title}</p>
-											</c:if>
-										</c:if>
-									</div>
-								</c:forEach><hr/>
-							<!-- 1.0 -->	
-							<!-- 0.5 -->
-							<div class="container row">
-									<div class="col-xs-7 col-md-7">
-										<span class="rate_pont">0.5 평가함</span>&emsp;58<br><br>
-									</div>
-									<div class="col-xs-1 col-md-3"></div>
-									<div class="col-xs-4 col-md-2">
-										<button class="btn btn-md btn-primary active" type="button">더보기</button><br><br>
-									</div>
-								</div>
-								<c:forEach var="recommendList" items="${recommendList}" varStatus="status">
-									<div class="col-xs-6 col-md-2">
-										<c:if test="${recommendList.rate == 0.5}">
-											<c:if test="${status.index < 4}">
-												<c:if test="${!empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${recommendList.movie_num}&type=poster">
-												</c:if>	
-												<c:if test="${empty recommendList.poster_img}">
-													<img class="movie_poster3" src="${pageContext.request.contextPath}/resources/images/default-poster.jpg">
-												</c:if>
-												<br><p class="movie_title3">${recommendList.title}</p>
-											</c:if>
-										</c:if>
-									</div>
-								</c:forEach><hr/>
-							<!-- 0.5 -->	
-							
 							</div> <hr/>
 					</c:if>
-				</div>
+				</div> --%>
 			</div>
 		</div>
 	</div>

@@ -141,4 +141,41 @@ $(document).ready(function(){
 	      $('#img-banner').css('background-image',url);
 	   };
     showBannerImage();
+    
+    $('#onlinesubmit').click(function(){
+    	
+    	var content = $('#text1').val();
+    	var movie_num = $('input[name=movie_num]').val();
+    	var id = $('input[name=id]').val();
+    	
+    	if(content==''){
+    		return;
+    	}
+    	//ajax로 movie_rated 테이블에 movie_num, 로그인한 id값을
+    	$.ajax({
+    		url:'commentRated.do',
+    		type:'post',
+    		data:{movie_num:movie_num,id:id},
+    		dataType:'json',
+    		timeout:30000,
+    		cache:false,
+    		success:function(data){
+    			if(data.result == 'submit'){
+    				alert('코멘트가 정상적으로 입력되었습니다.');
+    				$('#commentRegisterForm').submit();
+    			}else if(data.result = 'failure'){
+    				alert('영화평가 후 코멘트를 입력 해주세요');
+    				
+    			}
+    		},
+    		error:function(){
+    			alert('네트워크 오류');
+    		}
+    	});
+    });
 });
+	
+
+
+	
+	

@@ -31,11 +31,12 @@ public interface CommentService {
 	public int selectMyCommentCnt(String id);
 	//»ó¼¼ ÄÚ¸àÆ®
 	public CommentCommand commentDetail(Map<String, Object> map);
+	public Integer selectLikes(Integer comment_num);
 	public void updateCommentWithLike(Map<String,Object> map);
 	public void insertCommentLike(Map<String,Object> map);
 	public void deleteCommentLike(Map<String,Object> map);
 	
-	public String selectMyFollow(String id);
+	//public String selectMyFollow(String id);
 	public Integer selectTimelineCnt(Map<String,Object> map);
 	public List<TimelineCommand> selectTimeline(Map<String,Object> map);
 }
