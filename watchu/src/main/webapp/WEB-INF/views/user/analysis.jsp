@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta name="description" content="D3.js v4, d3.scaleOrdinal(d3.schemeCategory10) categorical ordinal colors" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/analysis.css">
 <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js'></script>
@@ -6,9 +7,16 @@
 
 <div id="main-content">
 	<div class="bg">
-		<img src="${pageContext.request.contextPath}/resources/images/abcd.jpg" alt="유저가지정한사진">
-		<p class="userName">유저네임</p>
-		<p class="movieCount">평가한 영화 수</p>
+		<!-- 프로필 이미지 등록 여부 확인 -->
+		<c:if test="${empty profile}">
+			<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" width="70" height="70" class="img-circle">
+		</c:if>
+		<c:if test="${!empty profile}">
+			<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user_id}" width="70" height="70" class="img-circle">
+		</c:if>
+		
+		<p class="userName">${user_id}</p>
+		<p class="movieCount">${count}편</p>
 	</div>
 	
 	<div class="selectTag">
@@ -16,55 +24,57 @@
 		
 		<div class="center">
 			<div class="txtEffect container">
-				<span class="select1">블록버스터</span>
-				<span class="select2">스릴있는</span>
-				<span class="select3">강렬한</span>
-				<span class="select4">마블</span>
-				<span class="select5">영웅</span>
+				<c:forEach var="genreList" items="${genreList}" varStatus="status">
+					<span class="select${status.count}">${genreList.genre}</span>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
 	
 	<div class="preference">
 		<p class="subTitle3">선호 배우</p>
-		
-		<div class="actor1">
-			<div class="w_img">
-				<img src="${pageContext.request.contextPath}/resources/images/1.jpg" alt="배우1">
-			
-				<div class="txt">
-					<p class="actor_Name">배우명</p>
-					<p class="actor_Moviename">출연작</p>
+
+		<c:forEach var="offList1" items="${offList1}" varStatus="status">
+			<div class="actor${status.count}">
+				<div class="w_img">
+					<img src="${pageContext.request.contextPath}/resources/images/1.jpg" alt="배우${status.count}">
+
+					<div class="txt">
+						<p class="actor_Name">${offList1.name}</p>
+						<p class="actor_Moviename">${offList1.jobs}</p>
+					</div>
 				</div>
 			</div>
-			
-			<p class="score"><span class="im">00</span>점/00편</p>
-		</div>
+
+			<p class="score"><span class="im">${offList1.rate}</span>점</p>
+		</c:forEach>
+	</div>
 		
-		<div class="button">
-			<p class="clickChange"><span class="glyphicon glyphicon-chevron-down"></span> 더 보기</p>
-		</div>
+	<div class="button">
+		<p class="clickChange"><span class="glyphicon glyphicon-chevron-down"></span> 더 보기</p>
 	</div>
 	
 	<div class="preference">
 		<p class="subTitle4">선호 감독</p>
-		
-		<div class="director1">
-			<div class="w_img">
-				<img src="${pageContext.request.contextPath}/resources/images/1.jpg" alt="감독1">
-				
-				<div class="txt">
-					<p class="director_Name">감독명</p>
-					<p class="director_Moviename">출연작</p>
+
+		<c:forEach var="offList2" items="${offList2}" varStatus="status">
+			<div class="director${status.count}">
+				<div class="w_img">
+					<img src="${pageContext.request.contextPath}/resources/images/1.jpg" alt="감독${status.count}">
+
+					<div class="txt">
+						<p class="director_Name">${offList2.name}</p>
+						<p class="director_Moviename">${offList2.jobs}</p>
+					</div>
 				</div>
 			</div>
-			
-			<p class="score"><span class="im">00</span>점/00편</p>
-		</div>
+
+			<p class="score"><span class="im">${offList2.rate}</span>점</p>
+		</c:forEach>
+	</div>
 		
-		<div class="button">
-			<p class="clickChange"><span class="glyphicon glyphicon-chevron-down"></span> 더 보기</p>
-		</div>
+	<div class="button">
+		<p class="clickChange"><span class="glyphicon glyphicon-chevron-down"></span> 더 보기</p>
 	</div>
 	
 	<div class="genreContext">

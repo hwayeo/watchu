@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.watchu.movie.domain.CommentCommand;
+import kr.watchu.movie.domain.GenreCommand;
 import kr.watchu.movie.domain.MovieCommand;
+import kr.watchu.movie.domain.OfficialsCommand;
 import kr.watchu.movie.domain.TimelineCommand;
 import kr.watchu.movie.service.CommentService;
 import kr.watchu.movie.service.MovieService;
@@ -33,12 +35,12 @@ import kr.watchu.util.SplitUtil;
 
 @Controller
 public class MyPageController {
-	
 	//로그
 	private Logger log = Logger.getLogger(this.getClass());
 	
 	private int rowCount = 10;
 	private int pageCount = 10;
+	
 	@Resource
 	private UserService userService;
 	@Resource
@@ -194,16 +196,59 @@ public class MyPageController {
 	//취향분석
 	@RequestMapping("/user/analysis.do")
 	public ModelAndView analysis(HttpSession session) {
+		//유저의 투표수 session에서 가져오기
+		String id = (String) session.getAttribute("user_id");
+		Integer count = recommendService.selectRatedCntById(id);
+
+		if(log.isDebugEnabled()) {
+			log.debug("<<id값>> : " + id);
+			log.debug("<<리스트 총값>> : " + count);
+		}
+
+		//선호 태그 5개를 가져와 index 값을 주어 index마다 적용되는 효과를 다르게 함
+		//장르숫자
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("id",id);
+		map.put("start",1);
+		map.put("end",5);
+
+		List<GenreCommand> genreList = recommendService.selectRatedGenre(map);
+
+		if(log.isDebugEnabled()) {
+			log.debug("<<genreList>> : " + genreList);
+		}
+
+		//선호 배우 List 최초 화면에서 3개를 보여주며 더보기를 클릭 시 늘림(3개씩)
+		//id,job,start,end
+		Map<String,Object> map1 = new HashMap<String,Object>();
+		map1.put("id",id);
+		map1.put("jobs","ACTOR");
+		map1.put("start",1);
+		map1.put("end",3);
+
+		List<OfficialsCommand> offList1 = recommendService.selectRatedOff(map1);
+
+		//선호 배우 List 최초 화면에서 3개를 보여주며 더보기를 클릭 시 늘림(3개씩)
+		Map<String,Object> map2 = new HashMap<String,Object>();
+		map2.put("id",id);
+		map2.put("jobs","DIRECTOR");
+		map2.put("start",1);
+		map2.put("end",3);
+
+		List<OfficialsCommand> offList2 = recommendService.selectRatedOff(map2);
+
+		//영화 선호장르 3개(장르별 평균점수, 총 본 횟수)
+
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("analysis");
-		
-		//유저정보 가져오기
-		String id = (String) session.getAttribute("user_id");
-		
-		if(log.isDebugEnabled()) {
-			log.debug("<<확인 id>> : " + id);
-		}
-		
+
+		mav.addObject("user_id",id);
+		mav.addObject("count",count);
+		mav.addObject("genreList",genreList);
+		mav.addObject("offList1",offList1);
+		mav.addObject("offList2",offList2);
+
 		return mav;
 	}
 	
