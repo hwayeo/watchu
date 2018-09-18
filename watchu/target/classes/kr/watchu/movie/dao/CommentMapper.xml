@@ -3,6 +3,16 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="kr.watchu.movie.dao.CommentMapper">	
+	<select id="selectTimelineCnt" parameterType="map" resultType="Integer">
+	 	SELECT count(*) FROM 
+		(SELECT i.movie_num,i.title,i.country,i.main_genre,
+		i.sub_genre,i.poster_img, ru.id,ru.name,
+		ru.rate,ru.reg_date FROM movie_info i JOIN 
+		(SELECT r.movie_num, r.id ,r.rate, 
+		u.name, r.reg_date reg_date 
+		FROM user_info u JOIN movie_rated r ON u.id=r.id 
+		WHERE r.id IN (#{id},#{follow}) ORDER BY r.reg_date DESC)ru ON i.movie_num=ru.movie_num)tt
+	</select>
 	<select id="selectTimeline" parameterType="map" resultType="TimelineCommand">
 	 	SELECT tt.*, rownum rnum FROM 
 		(SELECT i.movie_num,i.title,i.country,i.main_genre,

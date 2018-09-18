@@ -51,24 +51,19 @@ public interface CommentMapper {
 	// 상세 코멘트
 	@Select("SELECT i.title,i.poster_img,i.released FROM movie_info i RIGHT OUTER JOIN (SELECT * FROM movie_comment WHERE id=#{id})c ON i.movie_num=c.movie_num WHERE i.movie_num=#{movie_num}")
 	public CommentCommand commentDetail(Map<String, Object> map);
-	 
-	//======= 코멘트 댓글
-	//코멘트 쓰기
-	public void insertRecomment(RecommentCommand recomment);
-	//상세정보
-	public RecommentCommand selectRecomment(Integer recomment_num);
-	//수정
-	public void updateRecomment(RecommentCommand recomment);
-	//삭제
-	public void deleteRecomment(Integer recomment_num);
 	
-	//목록
-	public List<RecommentCommand> selectRecommentList(Map<String, Object> map);
-	//카운트
-	public int selectRecommentCnt(Map<String, Object> map);
-	 
+	@Update("UPDATE movie_comment SET likes=#{likes} WHERE comment_num=#{comment_num}")
+	public void updateCommentWithLike(Map<String,Object> map);
+	//좋아요 기록
+	@Insert("INSERT INTO movie_comment_like (comment_num,id,reg_date) VALUES (#{comment_num},#{id},sysdate)")
+	public void insertCommentLike(Map<String,Object> map);
+	//좋아요 삭제
+	@Delete("DELETE FROM movie_comment_like WHERE comment_num=#{comment_num} ANE id=#{id}")
+	public void deleteCommentLike(Map<String,Object> map);
+	
 	//follow 구해오기
 	@Select("SELECT follow FROM user_relation WHERE id=#{id}")
 	public String selectMyFollow(String id);
+	public Integer selectTimelineCnt(Map<String,Object> map);
 	public List<TimelineCommand> selectTimeline(Map<String,Object> map);
 }

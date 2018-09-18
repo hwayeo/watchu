@@ -3,10 +3,8 @@ package kr.watchu.movie.service;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Select;
 
 import kr.watchu.movie.domain.CommentCommand;
-import kr.watchu.movie.domain.RecommentCommand;
 import kr.watchu.movie.domain.TimelineCommand;
 
 public interface CommentService {
@@ -33,22 +31,11 @@ public interface CommentService {
 	public int selectMyCommentCnt(String id);
 	//상세 코멘트
 	public CommentCommand commentDetail(Map<String, Object> map);
-	
-	//======= 코멘트 댓글
-	//코멘트 쓰기
-	public void insertRecomment(RecommentCommand recomment);
-	//상세정보
-	public RecommentCommand selectRecomment(Integer recomment_num);
-	//수정
-	public void updateRecomment(RecommentCommand recomment);
-	//삭제
-	public void deleteRecomment(Integer recomment_num);
-
-	//목록
-	public List<RecommentCommand> selectRecommentList(Map<String, Object> map);
-	//카운트
-	public int selectRecommentCnt(Map<String, Object> map);
+	public void updateCommentWithLike(Map<String,Object> map);
+	public void insertCommentLike(Map<String,Object> map);
+	public void deleteCommentLike(Map<String,Object> map);
 	
 	public String selectMyFollow(String id);
+	public Integer selectTimelineCnt(Map<String,Object> map);
 	public List<TimelineCommand> selectTimeline(Map<String,Object> map);
 }

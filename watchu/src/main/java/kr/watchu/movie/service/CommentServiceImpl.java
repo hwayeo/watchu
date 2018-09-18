@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import kr.watchu.movie.dao.CommentMapper;
 import kr.watchu.movie.domain.CommentCommand;
-import kr.watchu.movie.domain.RecommentCommand;
 import kr.watchu.movie.domain.TimelineCommand;
 
 @Service("commentService")
@@ -65,40 +64,20 @@ public class CommentServiceImpl implements CommentService{
 		return commentMapper.selectCommentCnt(movie_num);
 	}
 
+
 	@Override
-	public void insertRecomment(RecommentCommand recomment) {
-		// TODO Auto-generated method stub
-		
+	public void updateCommentWithLike(Map<String, Object> map) {
+		commentMapper.updateCommentWithLike(map);
 	}
 
 	@Override
-	public RecommentCommand selectRecomment(Integer recomment_num) {
-		// TODO Auto-generated method stub
-		return null;
+	public void insertCommentLike(Map<String, Object> map) {
+		commentMapper.insertCommentLike(map);
 	}
 
 	@Override
-	public void updateRecomment(RecommentCommand recomment) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteRecomment(Integer recomment_num) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<RecommentCommand> selectRecommentList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int selectRecommentCnt(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void deleteCommentLike(Map<String, Object> map) {
+		commentMapper.deleteCommentLike(map);
 	}
 
 	@Override
@@ -109,6 +88,11 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public String selectMyFollow(String id) {
 		return commentMapper.selectMyFollow(id);
+	}
+
+	@Override
+	public Integer selectTimelineCnt(Map<String, Object> map) {
+		return commentMapper.selectTimelineCnt(map);
 	}
 
 	@Override
