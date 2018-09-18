@@ -30,6 +30,7 @@
 				<a onclick="location.href='/watchu/movie/movieEva.do'" style="color:#f74788;" class="glyphicon glyphicon-hand-right"></a>
 	    	</div>
 		</c:if>
+		
 		<c:if test="${!empty commentList}">	
 		<div>
 			<div class="container"> 
@@ -85,7 +86,7 @@
 				</c:forEach>
 			</div><br>
 			
-			<!-- 댓글 쓰기 모달창 -->
+			<%-- <!-- 댓글 쓰기 모달창 -->
 			<div class="modal fade" id="CommentWrite" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-sm" role="document">
@@ -106,7 +107,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 		</div>
 		</c:if>
 	</div>

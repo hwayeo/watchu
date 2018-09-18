@@ -32,7 +32,7 @@
 									<div class="col-xs-8 col-md-10">
 										<br>★ 5.0<br>
 										<span style="color: gray; font-size: 13px">가디언즈 오브 갤럭시</span><br>
-										<span style="color: #ff00c7; font-size: 14px">예상 ★3.8</span> <!-- 평가 안한 영화일 때 -->
+										<!-- <span style="color: #ff00c7; font-size: 14px">예상 ★3.8</span> 평가 안한 영화일 때 -->
 									</div>
 								</div>
 							</div>
@@ -83,7 +83,7 @@
             </div>
           </article>
           
-          <!-- Third Comment -->
+          <!-- <!-- Third Comment -->
           <article class="row"><br>
             <div class="col-xs-2 col-md-2">
               <figure class="thumbnail">
@@ -111,7 +111,7 @@
 									<div class="col-xs-8 col-md-10">
 										<br>★ 5.0<br>
 										<span style="color: gray; font-size: 13px">가디언즈 오브 갤럭시</span><br>
-										<span style="color: #ff00c7; font-size: 14px">예상 ★3.8</span> <!-- 평가 안한 영화일 때 -->
+										<span style="color: #ff00c7; font-size: 14px">예상 ★3.8</span> 평가 안한 영화일 때
 									</div>
 								</div><hr/>
 									zl존 짱잼~! 다른 냥이들도 꼭 보셈~! <br><br>
@@ -125,7 +125,7 @@
                 </div>
               </div>
             </div>
-          </article>
+          </article> -->
     </div>
   </div>
 </div>
