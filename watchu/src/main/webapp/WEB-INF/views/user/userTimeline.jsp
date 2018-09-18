@@ -38,7 +38,7 @@
 	                <div class="panel-body">
 	                  <header class="text-left">
 	                    <div class="comment-user"><i class="fa fa-user"></i> 
-	                    	<span class="userid">${user_id}</span>님이 '${recommendList.title}'에 ${recommendList.rate}점을 줬어요!</div>  
+	                    	<span class="userid">${user_id}</span><span class="userrate">님이 '${recommendList.title}'에 ${recommendList.rate}점을 줬어요!</span></div>  
 	                    <span class="date">${recommendList.reg_date}</span><br><br>
 	                  </header>
 	                  <div class="comment-post">
@@ -56,9 +56,9 @@
 										</div>
 										<div class="col-xs-8 col-md-10">
 											<br>
-											<span><i class="glyphicon glyphicon-star"></i> ${recommendList.rate}</span>
+											<span class="star"><i class="glyphicon glyphicon-star"></i> ${recommendList.rate}</span>
 											<br>
-											<span style="color: gray; font-size: 13px">${recommendList.title}</span><br>
+											<span class="title">${recommendList.title}</span><br>
 											<!-- <span style="color: #ff00c7; font-size: 14px">예상 ★3.8</span> 평가 안한 영화일 때 -->
 										</div>
 									</div>
