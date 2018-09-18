@@ -395,7 +395,7 @@ public class MyPageController {
 			}
 
 		}else {
-			follow3.add(null);
+			follow3.clear();
 		}
 		
 		mav.addObject("follow",follow3);
@@ -461,7 +461,7 @@ public class MyPageController {
 			}
 
 		}else {
-			follower3.add(null);
+			follower3.clear();
 		}
 		mav.addObject("follower",follower3);
 		//³» ÆÈ·Î¿ö arrayList³¡
@@ -498,7 +498,7 @@ public class MyPageController {
 			}
 
 		}else {
-			follow3.add(null);
+			follow3.clear();
 		}
 
 		mav.addObject("follow",follow3);

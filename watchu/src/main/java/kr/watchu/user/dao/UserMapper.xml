@@ -16,14 +16,21 @@
 						FROM user_basic c 
 						JOIN user_info i 
 						ON c.id=i.id
-		where i.id in
-			<foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
-				#{item} 
-			</foreach>
-			<if test="keyword != ''">
-				and i.name like '%' || #{keyword} || '%' or
-				i.id like '%' || #{keyword} || '%'
-			</if>
+		<choose>
+				<when test ="list.size() != 0">
+					where i.id in
+					<foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+						#{item} 
+					</foreach>
+					<if test="keyword != ''">
+						and	i.name like '%' || #{keyword} || '%' or
+							i.id like '%' || #{keyword} || '%'
+					</if>
+				</when>
+				<otherwise>
+					where i.id in ('')
+				</otherwise>
+		</choose>
 		ORDER BY i.reg_date DESC)a)
  	<![CDATA[
  		WHERE rnum >= #{start} AND rnum <= #{end}
@@ -36,14 +43,21 @@
 		SELECT
 		count(*)
 		FROM user_info
-		where id in
-			<foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
-				#{item} 
-			</foreach>
-			<if test="keyword != ''">
-				and name like '%' || #{keyword} || '%' or
-				id like '%' || #{keyword} || '%'
-			</if>		
+		<choose>
+			<when test ="list.size() != 0">
+				where id in
+				<foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+					#{item} 
+				</foreach>
+				<if test="keyword != ''">
+				and	name like '%' || #{keyword} || '%' or
+					id like '%' || #{keyword} || '%'
+				</if>
+			</when>
+			<otherwise>
+				where id in ('')
+		     </otherwise>
+	     </choose>	
 	</select>
 	
 	<!-- 팔로잉,팔로워,블락 커맨드만 뽑음 -->
@@ -59,15 +73,21 @@
 							FROM user_basic c 
 							JOIN user_info i 
 							ON c.id=i.id
-			where i.id in
-			<foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
-				#{item} 
-			</foreach>
-			
-			<if test="keyword != ''">
-				and	i.name like '%' || #{keyword} || '%' or
-					i.id like '%' || #{keyword} || '%'
-			</if>
+			<choose>
+				<when test ="list.size() != 0">
+					where i.id in
+					<foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+						#{item} 
+					</foreach>
+					<if test="keyword != ''">
+						and	i.name like '%' || #{keyword} || '%' or
+							i.id like '%' || #{keyword} || '%'
+					</if>
+				</when>
+				<otherwise>
+					where i.id in ('')
+				</otherwise>
+			</choose>
 			ORDER BY i.reg_date DESC)a)
 	 	<![CDATA[
 	 		WHERE rnum >= #{start} AND rnum <= #{end}
@@ -79,15 +99,24 @@
 		SELECT
 		count(*)
 		FROM user_info
-		where id in
-		<foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
-			#{item} 
-		</foreach>
+		<choose>
+			<when test ="list.size() != 0">
+				where id in
+				<foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+					#{item} 
+				</foreach>
+				<if test="keyword != ''">
+				and	name like '%' || #{keyword} || '%' or
+					id like '%' || #{keyword} || '%'
+				</if>
+			</when>
+			<otherwise>
+				where id in ('')
+		     </otherwise>
+	     </choose>
+
+
 		
-		<if test="keyword != ''">
-			and	name like '%' || #{keyword} || '%' or
-				id like '%' || #{keyword} || '%'
-		</if>
 		
 		
 		
