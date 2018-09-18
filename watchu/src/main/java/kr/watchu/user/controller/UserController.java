@@ -195,27 +195,9 @@ public class UserController {
 							   @RequestParam(value="keyfield",defaultValue="") String keyfield,
 			                   @RequestParam(value="keyword",defaultValue="") String keyword) {		
 		
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("keyfield", keyfield);
-		map.put("keyword", keyword);
-		
-		//총글의 갯수 또는 검색된 글의 갯수
-		int count = userService.selectUserCnt(map);
-		if(log.isDebugEnabled()) {
-			log.debug("<<count>>:" + count);
-		}
-		
-		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"follow.do","&id="+id);
-		
-		map.put("start", page.getStartCount());
-		map.put("end", page.getEndCount());
-		
-		//--------------------------------------------
-		
+		//내 팔로우 목록 시작(추천친구 목록에서 내가 팔로잉한사람은 제외시키기위해 필요함)
 		UserCommand user = userService.selectUser(id);
-		ModelAndView mav = new ModelAndView();
 		
-		//시작
 		List<String> follow_id3 = new ArrayList<String>();
 		
 		if(user.getFollow() != null) {
@@ -230,25 +212,53 @@ public class UserController {
 		}else {
 			follow_id3.clear();
 		}
-		//로그확인
-		if(log.isDebugEnabled()) {
-			log.debug("<<☆★follow_id3~~~>>:" + follow_id3);
+		//내 팔로우 목록 끝
+		//----------------------------------------------
+		//전체 회원 목록에서 자신,관리자,팔로잉한친구 삭제한 arrayList 만들어서 mapper에 던져줌
+		
+		List<String> allUser = new ArrayList<String>();
+		allUser = userService.selectUserId();
+		
+		//전체목록에서 관리자 삭제
+		
+		//전체목록에서 자신 삭제
+		allUser.remove(id);
+		//전체목록에서 팔로잉한 친구 삭제
+		for(int i=0; i<follow_id3.size(); i++) {
+			allUser.remove(follow_id3.get(i));
 		}
-		mav.addObject("follow",follow_id3);
+		if(log.isDebugEnabled()) {
+			log.debug("<<---------------------------------allUser>>:" + allUser);
+		}
 		
-		//끝
+		//페이징,검색 처리
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("list", allUser);
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
 		
+		//총글의 갯수 또는 검색된 글의 갯수
+		int count = userService.selectUserCnt(map);
+		if(log.isDebugEnabled()) {
+			log.debug("<<---------------------------------count>>:" + count);
+		}
+		
+		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"follow.do","&id="+id);
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		//----------------------------------------------
 		//추천친구 전부or검색한친구 리스트목록
 		List<UserCommand> list = null;
 		list = userService.selectUserList(map);
-		//----------------------------------------------
-	
 		
+		ModelAndView mav = new ModelAndView();
 		mav.setViewName("userfollow");
 		mav.addObject("list",list);
 		mav.addObject("count",count);
 		mav.addObject("pagingHtml",page.getPagingHtml());
 		mav.addObject("user",user);
+		mav.addObject("follow",follow_id3);
 		
 		
 		return mav;

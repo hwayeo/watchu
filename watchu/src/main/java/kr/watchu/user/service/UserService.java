@@ -3,6 +3,8 @@ package kr.watchu.user.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Select;
+
 import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.user.domain.NaverUserCommand;
 import kr.watchu.user.domain.UserCommand;
@@ -22,7 +24,8 @@ public interface UserService {
 	public void updateUser(UserCommand user);
 	//삭제
 	public void deleteUser(String id);
-	//추천친구목록
+	//추천친구목록	
+	public List<String> selectUserId();//단순회원전체목록(아이디,auth만)	
 	public int selectUserCnt(Map<String, Object> map);
 	public List<UserCommand> selectUserList(Map<String,Object> map);
 	

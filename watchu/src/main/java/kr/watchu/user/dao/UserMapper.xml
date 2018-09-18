@@ -16,12 +16,14 @@
 						FROM user_basic c 
 						JOIN user_info i 
 						ON c.id=i.id
-		<where>
+		where i.id in
+			<foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+				#{item} 
+			</foreach>
 			<if test="keyword != ''">
-				i.name like '%' || #{keyword} || '%' or
+				and i.name like '%' || #{keyword} || '%' or
 				i.id like '%' || #{keyword} || '%'
 			</if>
-		</where>
 		ORDER BY i.reg_date DESC)a)
  	<![CDATA[
  		WHERE rnum >= #{start} AND rnum <= #{end}
@@ -34,12 +36,14 @@
 		SELECT
 		count(*)
 		FROM user_info
-		<where>
+		where id in
+			<foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+				#{item} 
+			</foreach>
 			<if test="keyword != ''">
-				name like '%' || #{keyword} || '%' or
+				and name like '%' || #{keyword} || '%' or
 				id like '%' || #{keyword} || '%'
-			</if>
-		</where>
+			</if>		
 	</select>
 	
 	<!-- 팔로잉,팔로워,블락 커맨드만 뽑음 -->

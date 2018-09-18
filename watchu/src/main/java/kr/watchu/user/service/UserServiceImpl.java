@@ -108,4 +108,9 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectfollowCnt(map);
 	}
 
+	@Override
+	public List<String> selectUserId() {
+		return userMapper.selectUserId();
+	}
+
 }

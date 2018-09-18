@@ -87,10 +87,10 @@
 		<!-- 겟방식으로 id 넘기는걸로 고쳐야댐 시작-->
 		<div class="col-xs-12 col-md-12"> 
 		
-		<div class="col-md-2">
+		<div class="col-md-3">
 		</div>
 		
-		<div class="col-xs-3 col-md-2 text-center" style="border:1px solid #e5e3e3;">
+		<div class="col-xs-4 col-md-2 text-center" style="border:1px solid #e5e3e3;">
 			<div style="margin-top:20px;">	
 				<div>
 					<img src="${pageContext.request.contextPath}/resources/images/movie.png" id="movie_img" style="width: 50px; height: 50px;">
@@ -102,19 +102,7 @@
 			</div>
 		</div>
 		
-		<div class="col-xs-3 col-md-2 text-center" style="border:1px solid #e5e3e3;">
-			<div style="margin-top:20px;">	
-				<div>
-					<img src="${pageContext.request.contextPath}/resources/images/like2.png" id="like2_img" style="width: 50px; height: 50px;">
-				</div>
-				<span>보고싶어요</span>
-				<div>
-					<a onclick="location.href='userWish.do?id=${anotheruser.id}'">0</a>
-				</div>
-			</div>
-		</div>
-		
-		<div class="col-xs-3 col-md-2 text-center" style="border:1px solid #e5e3e3;">
+		<div class="col-xs-4 col-md-2 text-center" style="border:1px solid #e5e3e3;">
 			<div style="margin-top:20px;">
 				<div>
 					<img src="${pageContext.request.contextPath}/resources/images/comment.png" id="comment_img" style="width: 50px; height: 50px;">
@@ -126,7 +114,7 @@
 			</div>
 		</div>
 		
-		<div class="col-xs-3 col-md-2 text-center" style="border:1px solid #e5e3e3;">
+		<div class="col-xs-4 col-md-2 text-center" style="border:1px solid #e5e3e3;">
 			<div style="margin-top:20px;">	
 				<div>
 					<img src="${pageContext.request.contextPath}/resources/images/like.png" id="like_img" style="width: 50px; height: 50px;">
@@ -138,7 +126,7 @@
 			</div>	
 		</div>
 		
-		<div class="col-md-2">
+		<div class="col-md-3">
 		</div>
 		
 		</div>

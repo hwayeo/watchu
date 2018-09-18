@@ -51,6 +51,9 @@ public interface UserMapper {
 	
 	//추천친구목록
 	public int selectUserCnt(Map<String, Object> map);
+	//단순회원전체목록(아이디만)
+	@Select("select id from user_basic")
+	public List<String> selectUserId();
 	//팔로잉,팔로워,블락 목록
 	public int selectfollowCnt(Map<String, Object> map);
 	public List<UserCommand> selectfollowList(Map<String,Object> map);
@@ -87,4 +90,6 @@ public interface UserMapper {
 	// 목록
 	@Select("SELECT * FROM movie_comment b left outer join user_info i on b.id=i.id WHERE i.id=#{id}")
 	public List<CommentCommand> CommentList(String id);
+
+	
 }
