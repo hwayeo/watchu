@@ -227,7 +227,7 @@ public class MyPageController {
 		map2.put("id",id);
 		map2.put("jobs","DIRECTOR");
 		map2.put("start",1);
-		map2.put("end",3); 
+		map2.put("end",3);
 
 		List<OfficialsCommand> offList2 = recommendService.selectRatedOff(map2);
 

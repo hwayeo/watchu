@@ -13,16 +13,20 @@ $(document).ready(function(){
 	var result3 = (value3/total)*100;
 	
 	//차트
-	var seedData = [{
-	  "label": label1,  //장르 이름
-	  "value": result1,     //장르 수치
-	}, {
-	  "label": label2,
-	  "value": result2,
-	}, {
-	  "label": label3,
-	  "value": result3,
-	}];
+	var seedData = [
+		{
+		  "label": label1,  //장르 이름
+		  "value": result1 //장르 수치
+		},
+		{
+		  "label": label2,
+		  "value": result2
+		},
+		{
+		  "label": label3,
+		  "value": result3
+		}
+	];
 	
 	// Define size & radius of donut pie chart
 	var width = 300,
@@ -97,7 +101,7 @@ $(document).ready(function(){
 	        word,
 	        line = [],
 	        lineNumber = 0,
-	        lineHeight = 1.1, // ems
+	        lineHeight = 1.1, //ems
 	        y = text.attr("y"),
 	        dy = parseFloat(text.attr("dy")),
 	        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
@@ -116,4 +120,12 @@ $(document).ready(function(){
 	    }
 	  });
 	}
+	
+	//chart 클릭 막기
+	$('svg').on('click',function(e){
+		e.preventDefault();
+	});
+	
+	//더 보기 클릭 이벤트
+	
 });	
