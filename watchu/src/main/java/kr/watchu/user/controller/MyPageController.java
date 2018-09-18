@@ -218,7 +218,7 @@ public class MyPageController {
 		map1.put("id",id);
 		map1.put("jobs","ACTOR");
 		map1.put("start",1);
-		map1.put("end",3);
+		map1.put("end",5);
 
 		List<OfficialsCommand> offList1 = recommendService.selectRatedOff(map1);
 
@@ -227,7 +227,7 @@ public class MyPageController {
 		map2.put("id",id);
 		map2.put("jobs","DIRECTOR");
 		map2.put("start",1);
-		map2.put("end",3);
+		map2.put("end",5);
 
 		List<OfficialsCommand> offList2 = recommendService.selectRatedOff(map2);
 

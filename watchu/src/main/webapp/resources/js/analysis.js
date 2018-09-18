@@ -68,11 +68,6 @@ $(document).ready(function(){
 	  .data(pie(seedData))
 	  .enter().append("g")
 	  .attr("class", "arc")
-			
-	  // Make each arc clickable 
-	  .on("click", function(d, i) {
-	    window.location = seedData[i].link;
-	  });
 	
 		// Append the path to each g
 		g.append("path")
@@ -121,11 +116,8 @@ $(document).ready(function(){
 	  });
 	}
 	
-	//chart 클릭 막기
-	$('svg').on('click',function(e){
-		e.preventDefault();
+	//더보기 클릭 이벤트
+	$('.clickChange').click(function(){
+		
 	});
-	
-	//더 보기 클릭 이벤트
-	
-});	
+});

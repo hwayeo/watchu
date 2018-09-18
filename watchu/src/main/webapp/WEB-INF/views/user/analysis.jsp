@@ -35,47 +35,43 @@
 	<div class="preference">
 		<p class="subTitle2">선호 배우</p>
 
-		<c:forEach var="offList1" items="${offList1}" varStatus="status">
-			<div class="actor${status.count}">
-				<div class="w_img">
-					<img src="${pageContext.request.contextPath}/resources/images/${offList1.off_photo}.jpg" alt="배우${status.count}">
-
-					<div class="txt">
-						<p class="actor_Name">${offList1.name}/${offList1.jobs}</p>
+		<div class="actors">
+			<c:forEach var="offList1" items="${offList1}" varStatus="status">
+				<div class="actor${status.count}">
+					<div class="w_img">
+						<img src="${pageContext.request.contextPath}/resources/images/${offList1.off_photo}.jpg" alt="배우${status.count}">
+	
+						<div class="txt">
+							<p class="actor_Name">${offList1.name}/${offList1.jobs}</p>
+						</div>
+						
+						<p class="score">
+							<span class="im">${offList1.rate * 20}</span>점 / ${offList1.cnt}편
+						</p>
 					</div>
-					
-					<p class="score">
-						<span class="im">${offList1.rate * 20}</span>점 / ${offList1.cnt}편
-					</p>
 				</div>
-			</div>
-		</c:forEach>
-	</div>
-		
-	<div class="button">
-		<p class="clickChange"><span class="glyphicon glyphicon-chevron-down"></span> 더 보기</p>
+			</c:forEach>
+		</div>
 	</div>
 	
 	<div class="preference">
 		<p class="subTitle3">선호 감독</p>
-
-		<c:forEach var="offList2" items="${offList2}" varStatus="status">
-			<div class="director${status.count}">
-				<div class="w_img">
-					<img src="${pageContext.request.contextPath}/resources/images/${offList2.off_photo}.jpg" alt="감독${status.count}">
-
-					<div class="txt">
-						<p class="actor_Name">${offList2.name}/${offList2.jobs}</p>
-					</div>
-
-					<p class="score"><span class="im">${offList2.rate * 20}</span>점 / ${offList2.cnt}편</p>
-				</div>
-			</div>
-		</c:forEach>
-	</div>
 		
-	<div class="button">
-		<p class="clickChange"><span class="glyphicon glyphicon-chevron-down"></span> 더 보기</p>
+		<div class="directors">
+			<c:forEach var="offList2" items="${offList2}" varStatus="status">
+				<div class="director${status.count}">
+					<div class="w_img">
+						<img src="${pageContext.request.contextPath}/resources/images/${offList2.off_photo}.jpg" alt="감독${status.count}">
+	
+						<div class="txt">
+							<p class="actor_Name">${offList2.name}/${offList2.jobs}</p>
+						</div>
+	
+						<p class="score"><span class="im">${offList2.rate * 20}</span>점 / ${offList2.cnt}편</p>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 	
 	<div class="genreContext"> 
