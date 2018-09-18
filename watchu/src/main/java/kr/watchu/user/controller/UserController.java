@@ -73,6 +73,10 @@ public class UserController {
 	public ReportCommand initReportCommand() {
 		return new ReportCommand();
 	}
+	@ModelAttribute("timelineCommand")
+	public TimelineCommand initTimelineCommand() {
+		return new TimelineCommand();
+	}
 	//==========================================회원가입========================================
 	//회원가입 폼 호출
 	@RequestMapping(value="/user/write.do",method=RequestMethod.GET)
@@ -398,8 +402,7 @@ public class UserController {
 	
 	// ========================================타임라인================================================
 	@RequestMapping("/user/userTimeline.do")
-	public ModelAndView selectTimeline(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage,
-			HttpSession session) {
+	public ModelAndView selectTimeline(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage, HttpSession session) {
 		int rowCount = 10;
 		int pageCount = 10;
 
