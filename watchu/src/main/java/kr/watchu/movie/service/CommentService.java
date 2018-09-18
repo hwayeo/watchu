@@ -31,6 +31,7 @@ public interface CommentService {
 	public int selectMyCommentCnt(String id);
 	//상세 코멘트
 	public CommentCommand commentDetail(Map<String, Object> map);
+	public Integer selectLikes(Integer comment_num);
 	public void updateCommentWithLike(Map<String,Object> map);
 	public void insertCommentLike(Map<String,Object> map);
 	public void deleteCommentLike(Map<String,Object> map);

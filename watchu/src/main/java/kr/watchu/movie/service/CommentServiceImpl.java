@@ -64,6 +64,11 @@ public class CommentServiceImpl implements CommentService{
 		return commentMapper.selectCommentCnt(movie_num);
 	}
 
+	
+	@Override
+	public Integer selectLikes(Integer comment_num) {
+		return commentMapper.selectLikes(comment_num);
+	}
 
 	@Override
 	public void updateCommentWithLike(Map<String, Object> map) {
