@@ -33,7 +33,7 @@
 		</td>
 		<td width="90%">
 		<b>${report.report_user}</b> &nbsp; &nbsp;
-		<input type="button" value="회원등급변경" class="report_modify btn btn-sm btn-default" data-toggle="modal" data-target="#reportModify" data-whatever="${report.report_user}">
+		<a class="report_modify btn btn-sm btn-default" data-toggle="modal" data-target="#reportModify" data-whatever="${report.report_user}" href="reportModify.do?id=${report.report_user}">회원등급변경</a>
 		<%-- <a href="#" onClick="window.open('userDetail.do?id=${report.report_user}','회원 등급 변경','width=950, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;" class="btn btn-sm btn-default">회원등급변경</a> --%>   
 		</td>
 	</tr>
@@ -75,18 +75,13 @@
 		</div>
 	</div>
 
-<%-- <form:form commandName="report_command" action="reportModify.do" id="modify_form">
-	<form:input path="id" value="${report.report_user}"/>
-	<form:input path="auth" class="form-control"/>
-	<form:errors path="auth" cssClass="error-color"/>
-</form:form> --%>
 <!-- 회원 등급 수정 모달창 -->
-<%-- <div class="modal fade" id="reportModify" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
+<div class="modal fade" id="reportModify" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
    <div class="modal-dialog">
       <div class="modal-content form-inline">
-		<form:form commandName="report_command" action="reportModify.do" id="modify_form">
-		<input type="hidden" name="id" id="id">
-		<form:errors element="div" cssClass="error-color"/>
+      <form:form commandName="reportCommand" action="reportModify.do" id="modify_form">
+      <form:hidden path="id" id="report_user"/>
+      <form:errors element="div" cssClass="error-color"/>
         <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                <span aria-hidden="true">&times;</span>
@@ -94,27 +89,26 @@
             <h4 class="modal-title" id="reportModalLabel">회원 등급 변경</h4>
         </div>
         <div class="modal-body">
-        	<input type="hidden" class="form-control" id="id">
         	<div class="form-group">
-        	<span style="display:inline-block; width:100px">
-        	<label for="id">회원 ID</label></span>
-        	<span id="show-id"></span>
+        		<span style="display:inline-block; width:150px">
+        		<label>신고받은 회원 ID</label></span>
+        		<span id ="show-id"></span>
         	</div><br>
         	<div class="form-group">
-        		<span style="display:inline-block; width:100px">
-         		<label for="auth">회원 등급</label></span>
-         		<form:input path="auth" id="auth" class="form-control"/>
-         		<form:errors path="auth" cssClass="error-color"/>
+        		<span style="display:inline-block; width:150px">
+        		<label for="auth">회원 등급</label></span>
+        		<form:input path="auth" class="form-control"/>
+        		<form:errors path="auth" cssClass="error-color"/>
          	</div>
         </div>
-         	
+        
         <div class="modal-footer">
-        <div class="edit_btn">
-       		<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-			<input type="submit" value="수정" class="confirm_mod btn btn-primary">
+	        <div class="edit_btn">
+	       		<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+				<input type="submit" value="수정" class="confirm_mod btn btn-primary">
+			</div>
+        </div>     
+		</form:form>
 		</div>
-        </div>
-        </form:form>
-   </div>
-   </div>
-</div> --%>
+	</div>
+</div>

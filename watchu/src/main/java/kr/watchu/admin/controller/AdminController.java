@@ -77,6 +77,10 @@ public class AdminController {
 	public UserCommand initUserCommand() {
 		return new UserCommand();
 	}
+	@ModelAttribute("reportCommand")
+	public UserCommand initUserCommand2() {
+		return new UserCommand();
+	}
 
 	//페이징을 위한 변수 선언
 	private int rowCount = 50;
@@ -562,7 +566,7 @@ public class AdminController {
 	}
 	
 	//05_2_회원 상세보기 & 수정 폼 호출
-	@RequestMapping(value= "/admin/userDetail.do", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/userDetail.do", method=RequestMethod.GET)
 	public ModelAndView user_detail(@RequestParam("id") String id, Model model) {
 		//로그 출력
 		if(log.isDebugEnabled()) {
@@ -571,7 +575,6 @@ public class AdminController {
 
 		UserCommand user = userService.selectUser(id);
 		model.addAttribute("user_command", user);
-		model.addAttribute("report_command", new UserCommand());
 
 		return new ModelAndView("userDetail", "user", user);
 	}
@@ -650,43 +653,66 @@ public class AdminController {
 		return "redirect:reportedUser.do";
 	}
 	
-/*	//신고회원 등급 변경
+	//신고회원 등급 변경	
 	//수정폼 호출
-	@RequestMapping(value="/admin/reportModify.do", method=RequestMethod.GET)
+	@RequestMapping(value= "/admin/reportModify.do", method=RequestMethod.GET)
+	/*@ResponseBody
+	public Map<String, String> report(@RequestParam("id") String id){
+		if(log.isDebugEnabled()) {
+			log.debug("<<ajax id>>: " + id);
+		}
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		UserCommand user = userService.selectUser(id);
+		
+		if(log.isDebugEnabled()) {
+			log.debug("<<ajax user>>: " + user);
+		}
+		
+		if(user != null) {
+			map.put("result", "success");
+		}else {
+			map.put("result", "fail");
+		}
+		
+		return map;
+	}*/
+	
 	public ModelAndView report_modify(@RequestParam("id") String id, Model model) {
 		//로그 출력
 		if(log.isDebugEnabled()) {
-			log.debug("<<id>>: " + id);
+			log.debug("<<id222>>: " + id);
 		}
-		
-		//자바빈 생성
-		UserCommand report = new UserCommand();
-		report = userService.selectUser(id); //객체에 id에 따른 정보 저장
 
-		model.addAttribute("report_command", report);
-		
-		return new ModelAndView("reportModify", "report", report);
+		UserCommand user = userService.selectUser(id);
+		model.addAttribute("reportCommand", user);
+
+		if(log.isDebugEnabled()) {
+			log.debug("<<user222>>: " + user);
+		}
+		return new ModelAndView("reportModify", "user", user);
 	}
+	
 
 	//수정 폼에서 전송된 데이터 처리
 	@RequestMapping(value="/admin/reportModify.do", method=RequestMethod.POST)
-	public String report_submit(@ModelAttribute("user_command") @Valid UserCommand userCommand, BindingResult result, HttpSession session, HttpServletRequest request) {
+	public String reported_modify(@ModelAttribute("reportModify") @Valid UserCommand reportCommand, BindingResult result, HttpSession session, HttpServletRequest request) {
 		//로그 출력
 		if(log.isDebugEnabled()) {
-			log.debug("<<userCommand>>: " + userCommand);
+			log.debug("<<reportCommand11111>>: " + reportCommand);
 		}
-			
-		//회원 정보 수정
-		userService.adminUpdate2(userCommand);//회원 등급 수정
-			
-		return "redirect:reportedUser.do";
-	}*/
+		
+		//글 수정
+		userService.adminUpdate2(reportCommand);
+		
+		return "reportModify";
+	}
+	
 	//====================07_고객 지원_고객 문의====================//
 	@RequestMapping("/admin/support.do")
 	public String process6() {
 
 		return "support";
 	}
-	
-	//======이미지 뷰====///
 }

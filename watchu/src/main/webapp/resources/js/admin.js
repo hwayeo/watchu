@@ -43,11 +43,29 @@ $('.confirm_search').submit(function(){
 //reportModify 모달에 id 넘기기
 	$('.report_modify').on('click', function () {
 		var id = $(this).attr('data-whatever');
-		console.log("id: " + id);		
-		$('#id').val(id);
-		$('#show-num').text(id);
+		$('#report_user').val(id);
+		console.log($('#report_user').val());
+		$('#show-id').text(id);
+		
+		/*$.ajax({
+			type: 'get',
+			url: 'reportModify.do',
+			data: {id:id},
+			dataType: 'json',
+			success: function (data) {
+				if(data.result == 'success'){
+					console.log(data);
+				}else if(data.result == 'fail'){
+					console.log('fail');
+				}
+			},
+			error: function(){
+				alert('등급변경실패');
+			}
+		});*/
 	});
-	
+
+ 
 //======감독_자동완성=====//
 var directorList = new Array();
 $('.auto_director').keyup(function (event) {

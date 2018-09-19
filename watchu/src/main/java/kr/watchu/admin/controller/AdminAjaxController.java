@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.watchu.movie.domain.GenreCommand;
 import kr.watchu.movie.domain.MovieCommand;
@@ -23,7 +22,6 @@ import kr.watchu.movie.service.GenreService;
 import kr.watchu.movie.service.MovieService;
 import kr.watchu.movie.service.MovieratedService;
 import kr.watchu.movie.service.OfficialsService;
-import kr.watchu.util.PagingUtil;
 
 @Controller
 public class AdminAjaxController {	
@@ -128,6 +126,6 @@ public class AdminAjaxController {
 		}
 	}
 	
-	//======================관계자 구분======================//
+	//======================신고 회원 등급 변경======================//
 
 }
