@@ -36,21 +36,27 @@
 		<p class="subTitle2">선호 배우</p>
 
 		<div class="actors">
-			<c:forEach var="offList1" items="${offList1}" varStatus="status">
-				<div class="actor${status.count}">
-					<div class="w_img">
-						<img src="${pageContext.request.contextPath}/resources/images/${offList1.off_photo}.jpg" alt="배우${status.count}">
-	
-						<div class="txt">
-							<p class="actor_Name">${offList1.name}/${offList1.jobs}</p>
-						</div>
-						
-						<p class="score">
-							<span class="im">${offList1.rate * 20}</span>점 / ${offList1.cnt}편
-						</p>
+		<c:forEach var="offList1" items="${offList1}" varStatus="status">
+			<div class="actor${status.count}">
+				<div class="w_img">
+					<!-- 사진 출력 -->
+					<c:if test="${!empty offList1.off_photo}">
+						<img src="${pageContext.request.contextPath}/movie/actorView.do?off_num=${offList1.off_num}" alt="배우${status.count}">
+					</c:if>
+					<c:if test="${empty offList1.off_photo}">
+						<img src="${pageContext.request.contextPath}/resources/images/default.jpg" alt="기본 이미지">
+					</c:if>
+					
+					<div class="txt">
+						<p class="actor_Name">${offList1.name}/${offList1.jobs}</p>
 					</div>
+					
+					<p class="score">
+						<span class="im">${offList1.rate * 20}</span>점 / ${offList1.cnt}편
+					</p>
 				</div>
-			</c:forEach>
+			</div>
+		</c:forEach>
 		</div>
 	</div>
 	
@@ -61,8 +67,14 @@
 			<c:forEach var="offList2" items="${offList2}" varStatus="status">
 				<div class="director${status.count}">
 					<div class="w_img">
-						<img src="${pageContext.request.contextPath}/resources/images/${offList2.off_photo}.jpg" alt="감독${status.count}">
-	
+						<!-- 사진 출력 -->
+						<c:if test="${!empty offList2.off_photo}">
+						<img src="${pageContext.request.contextPath}/movie/actorView.do?off_num=${offList2.off_num}" alt="감독${status.count}">
+						</c:if>
+						<c:if test="${empty offList2.off_photo}">
+						<img src="${pageContext.request.contextPath}/resources/images/default.jpg" alt="기본 이미지">
+						</c:if>
+						
 						<div class="txt">
 							<p class="actor_Name">${offList2.name}/${offList2.jobs}</p>
 						</div>

@@ -115,9 +115,4 @@ $(document).ready(function(){
 	    }
 	  });
 	}
-	
-	//더보기 클릭 이벤트
-	$('.clickChange').click(function(){
-		
-	});
 });
