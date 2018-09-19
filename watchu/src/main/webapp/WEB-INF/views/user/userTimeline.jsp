@@ -6,7 +6,7 @@
 	<div class="container">
 	  <div class="row">
 	    <div class="col-xs-12 col-md-12">
-	      <h2 class="page-header text-center">소식</h2>
+	      <h2 class="page-header text-center">타임라인</h2>
 	      
 	      <c:if test="${empty recommendList}">
 			<div class="text-center">
