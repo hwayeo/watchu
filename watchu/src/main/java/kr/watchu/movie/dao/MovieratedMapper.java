@@ -19,6 +19,8 @@ public interface MovieratedMapper {
    @Select("SELECT * FROM movie_rated WHERE movie_num=#{movie_num} AND id=#{id}")
    public MovieratedCommand selectMovierated(Map<String,Object> map);
    
+   @Select("SELECT COUNT(*) FROM movie_rated WHERE id=#{id}")
+   public Integer selectCheckRated(String id);
    //영화 점수 재평가(update) -> 동일한 영화를 평가했는지 확인 후 있으면 업데이트
    @Update("UPDATE movie_rated SET rate=#{rate}, reg_date=sysdate WHERE movie_num=#{movie_num} and id=#{id}")
    public void updateMovierated(MovieratedCommand im);
