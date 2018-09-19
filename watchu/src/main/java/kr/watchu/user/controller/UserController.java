@@ -73,6 +73,10 @@ public class UserController {
 	public ReportCommand initReportCommand() {
 		return new ReportCommand();
 	}
+	@ModelAttribute("timelineCommand")
+	public TimelineCommand initTimelineCommand() {
+		return new TimelineCommand();
+	}
 	//==========================================회원가입========================================
 	//회원가입 폼 호출
 	@RequestMapping(value="/user/write.do",method=RequestMethod.GET)
@@ -398,27 +402,36 @@ public class UserController {
 	
 	// ========================================타임라인================================================
 	@RequestMapping("/user/userTimeline.do")
-	public ModelAndView selectTimeline(@RequestParam(value="pageNum",defaultValue="1") int currentPage,HttpSession session) {
-		int rowCount = 1;
+	public ModelAndView selectTimeline(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage,HttpSession session) {
+		int rowCount = 10;
 		int pageCount = 10;
-		
+
 		String id = (String) session.getAttribute("user_id");
-		Map<String,Object> map = new HashMap<String,Object>();
-				
-		/*PagingUtil page = new PagingUtil(currentPage, rowCount, pageCount, pageCount, "userTimeline.do");
+		if (log.isDebugEnabled()) {
+			log.debug("[[[ID]]] : " + id);
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		Integer count = commentService.selectTimelineCnt(map);
+		if (log.isDebugEnabled()) {
+			log.debug("<<<+++count+++>>> : " + count);
+		}
+
+		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "userTimeline.do");
 		map.put("start", page.getStartCount());
 		map.put("end", page.getEndCount());
-		map.put("id", id);*/
-					
+
 		List<TimelineCommand> recommendList = commentService.selectTimeline(map);
-		
-		if(log.isDebugEnabled()) {
+
+		if (log.isDebugEnabled()) {
 			log.debug("<<<<recommendList>>>> : " + recommendList);
 		}
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("userTimeline");
 		mav.addObject("recommendList", recommendList);
-		//mav.addObject("pagingHtml", page.getPagingHtml());
+		mav.addObject("count", count);
+		mav.addObject("pagingHtml", page.getPagingHtml());
 
 		return mav;
 	}

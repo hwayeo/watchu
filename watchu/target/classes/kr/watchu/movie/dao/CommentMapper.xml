@@ -11,7 +11,7 @@
 		(SELECT r.movie_num, r.id ,r.rate, 
 		u.name, r.reg_date reg_date 
 		FROM user_info u JOIN movie_rated r ON u.id=r.id 
-		WHERE r.id IN (#{id},#{follow}) ORDER BY r.reg_date DESC)ru ON i.movie_num=ru.movie_num)tt
+		WHERE r.id IN (#{id}) ORDER BY r.reg_date DESC)ru ON i.movie_num=ru.movie_num)tt
 	</select>
 	<select id="selectTimeline" parameterType="map" resultType="TimelineCommand">
 	 	SELECT * FROM

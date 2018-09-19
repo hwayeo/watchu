@@ -77,8 +77,7 @@ public class TimelineCommand {
 	@Override
 	public String toString() {
 		return "TimelineCommand [movie_num=" + movie_num + ", title=" + title + ", country=" + country + ", main_genre="
-				+ main_genre + ", sub_genre=" + sub_genre + ", poster_img=" + Arrays.toString(poster_img) + ", id=" + id
-				+ ", name=" + name + ", rate=" + rate + ", reg_date=" + reg_date + "]";
+				+ main_genre + ", sub_genre=" + sub_genre + ", id=" + id + ", name=" + name + ", rate=" + rate
+				+ ", reg_date=" + reg_date + "]";
 	}
-	
 }
