@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div id="main-content">
 	<div class="container text-center">
-		<h2>좋아요</h2><hr/>
+		<h2>좋아요한 코멘트</h2><hr/>
 	</div>
 	
 	<c:if test="${empty commentList}">
