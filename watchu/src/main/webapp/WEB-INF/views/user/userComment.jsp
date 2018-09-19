@@ -9,7 +9,7 @@
 	
 	<div class="tab-content container">
 		<div id="home" class="tab-pane fade in active">
-			<div class="nav-collapse">
+			<!-- <div class="nav-collapse">
 					<ul class="nav">
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b>&nbsp;작성 순</a>
 							<ul class="dropdown-menu">
@@ -20,7 +20,7 @@
 								<li><a href="#">신작 순</a></li>
 							</ul></li>
 					</ul><hr>
-			</div> 
+			</div>  -->
 		
 		<c:if test="${empty commentList}">
 			<div class="text-center">
