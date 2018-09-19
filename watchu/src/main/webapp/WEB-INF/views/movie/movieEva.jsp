@@ -6,7 +6,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/movieEvaAjax.js"></script>
 <input type="hidden" class="page-type" value="movieEva">
 
-<div class="movieratefont"><span id="ratecount"></span>개</div>
+<div class="movieratefont"><span id="ratecount"></span></div>
 <nav class="navbar navbar-default navWatch">
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-movie">
