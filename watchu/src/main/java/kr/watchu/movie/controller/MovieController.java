@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -14,12 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.watchu.movie.domain.GenreCommand;
 import kr.watchu.movie.domain.MovieCommand;
-import kr.watchu.movie.domain.OfficialsCommand;
 import kr.watchu.movie.service.GenreService;
 import kr.watchu.movie.service.MovieService;
-import kr.watchu.movie.service.OfficialsService;
+import kr.watchu.movie.service.RecommendService;
 import kr.watchu.util.PagingUtil;
-import kr.watchu.util.StringUtil;
 
 @Controller
 public class MovieController {
@@ -31,22 +30,25 @@ public class MovieController {
 	private GenreService genreService;  
 	
 	@Resource
-	private OfficialsService officialsService;
+	private RecommendService recommendService;
 
 	@RequestMapping("/movie/movieHome.do")
-	public String movieHome() {
-		return "movieHome";
+	public ModelAndView movieHome() {
+		
+		String recomment = recommendService.selectRanGenre();
+		
+		ModelAndView mav = new ModelAndView();	
+		mav.setViewName("movieHome");
+		mav.addObject("recomment",recomment);
+		return mav;
 	}
-	/*@RequestMapping("/movie/movieList.do")
-	public String movieList() {
-		return "movieList";
-	}*/
 
 	@RequestMapping("/movie/movieList.do")
 	public ModelAndView mlist2(
 			@RequestParam(value="pageNum",defaultValue="1") int currentPage,
 			@RequestParam(value="keyfield",defaultValue="") String keyfield,
-			@RequestParam(value="keyword",defaultValue="" ) String keyword){
+			@RequestParam(value="keyword",defaultValue="" ) String keyword,
+			HttpSession session){
 
 		int rowCount = 24;
 		int pageCount = 10;
@@ -71,13 +73,19 @@ public class MovieController {
 
 		movieInfo = movieService.selectMovieList(map);
 		movieGenre = genreService.selectGenreList(map);
-
+		
+		String id = (String)session.getAttribute("user_id");
+		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("movieList");
-		mav.addObject("count",count);
-		mav.addObject("movieInfo",movieInfo);
-		mav.addObject("movieGenre",movieGenre);
-		mav.addObject("pagingHtml",page.getPagingHtml());
+		if(id != null) {
+			mav.setViewName("movieList");
+			mav.addObject("count",count);
+			mav.addObject("movieInfo",movieInfo);
+			mav.addObject("movieGenre",movieGenre);
+			mav.addObject("pagingHtml",page.getPagingHtml());
+		}else {
+			mav.setViewName("redirect:/user/login.do");
+		}
 
 		return mav;
 	}
@@ -86,7 +94,8 @@ public class MovieController {
 	public ModelAndView mlist3(
 			@RequestParam(value="pageNum",defaultValue="1") int currentPage,
 			@RequestParam(value="keyfield",defaultValue="") String keyfield,
-			@RequestParam(value="keyword",defaultValue="" ) String keyword) {
+			@RequestParam(value="keyword",defaultValue="" ) String keyword,
+			HttpSession session) {
 
 		int rowCount = 24;
 		int pageCount = 10;
@@ -102,23 +111,29 @@ public class MovieController {
 			log.debug("<<count>> : " + count);
 		}
 
-		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"movieList.do");
+		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"movieEva.do");
 		map.put("start", page.getStartCount());
 		map.put("end", page.getEndCount());
 
 		List<MovieCommand> movieInfo = null;
 		List<GenreCommand> movieGenre = null;
-
+		
 		movieInfo = movieService.selectMovieList(map);
 		movieGenre = genreService.selectGenreList(map);
-
+		
+		String id = (String)session.getAttribute("user_id");
+		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("movieEva");
-		mav.addObject("count",count);
-		mav.addObject("movieInfo",movieInfo);
-		mav.addObject("movieGenre",movieGenre);
-		mav.addObject("pagingHtml",page.getPagingHtml());
-
+		if(id != null) {
+			mav.setViewName("movieEva");
+			mav.addObject("count",count);
+			mav.addObject("movieInfo",movieInfo);
+			mav.addObject("movieGenre",movieGenre);
+			mav.addObject("pagingHtml",page.getPagingHtml());
+		}else {
+			mav.setViewName("redirect:/user/login.do");
+		}
+		
 		return mav;
 	}
 
@@ -141,18 +156,6 @@ public class MovieController {
 			mav.addObject("imageFile", movie.getPoster_img());
 		}
 
-		return mav;
-	}
-	@RequestMapping("/movie/actorView.do")
-	public ModelAndView viewImage3(@RequestParam("off_num") Integer off_num) {
-		OfficialsCommand officials = officialsService.detailOfficials(off_num);
-		if(log.isDebugEnabled()) {
-			log.debug("[[off_num]] : " + off_num);
-		}
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("imageView");
-			mav.addObject("filename","actor.jpg");
-			mav.addObject("imageFile",officials.getOff_photo());
 		return mav;
 	}
 }

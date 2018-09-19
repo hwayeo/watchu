@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.watchu.movie.domain.MovieCommand;
 import kr.watchu.movie.service.MovieService;
+import kr.watchu.movie.service.RecommendService;
 import kr.watchu.util.PagingUtil;
 
 	@Controller
@@ -24,6 +25,9 @@ import kr.watchu.util.PagingUtil;
 	
 	@Resource 
 	private MovieService movieService;
+	
+	@Resource
+	private RecommendService recommendService;
 	
 	@ModelAttribute("command")
 	public MovieCommand initCommand() {
@@ -79,7 +83,8 @@ import kr.watchu.util.PagingUtil;
 			@RequestParam(value="keyfield",defaultValue="") String keyfield,
 			@RequestParam(value="keyword",defaultValue="" ) String keyword,
 			@RequestParam(value="keyword2",defaultValue="" ) String keyword2,
-			@RequestParam(value="keyword3",defaultValue="" ) String keyword3){
+			@RequestParam(value="keyword3",defaultValue="" ) String keyword3,
+			HttpSession session){
 		
 		int rowCount = 24;
 		int pageCount = 10;
@@ -104,15 +109,22 @@ import kr.watchu.util.PagingUtil;
 		List<MovieCommand> list = null;
 		
 		if(log.isDebugEnabled()) {
-			log.debug("<<ajax2count>> : " + count);
+			log.debug("<<+ajax2count+>> : " + count);
 		}
 		
 		if(count > 0) {
 			list = movieService.selectMovieAjaxList2(map);
 		}
+		
+		Map<String,Object> movierate = new HashMap<String,Object>();
+		String id = (String)session.getAttribute("user_id");
+		Integer movierated = recommendService.selectRatedCntById(id);
+		movierate.put("id", id);
+		movierate.put("movierated", movierated);
 		 
 		Map<String,Object> mapJson = new HashMap<String,Object>();
 		mapJson.put("count", count);
+		mapJson.put("movierate", movierate);
 		mapJson.put("rowCount", rowCount);
 		mapJson.put("list", list);
 		return mapJson;

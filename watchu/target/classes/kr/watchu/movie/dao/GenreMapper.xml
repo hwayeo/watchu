@@ -12,12 +12,6 @@
 			FROM (SELECT
 					*
 				FROM movie_genre
-				 
-				<where> 
-			 		<if test="keyword != '' and keyfield == 'genre'">
-			 			genre like '%' || #{keyword} || '%'
-			 		</if>
-		 		</where>
 				
 				ORDER BY genre_num)a)
 	<![CDATA[WHERE rnum >= #{start} AND rnum <= #{end}]]>

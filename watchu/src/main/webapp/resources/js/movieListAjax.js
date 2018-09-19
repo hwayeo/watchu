@@ -107,6 +107,12 @@ $(document).ready(function(){
 
 	/*---------------검색창에서 이벤트 발생시 호출---------------------*/
 	$('.gbutton').on('click',function(event){
+		if($('#movie-search-keyword').val() == ''){
+			alert('검색어를 입력해주세요!');
+			$('#movie-search-keyword').focus();
+			return false;
+		}
+		
 		keyfield = 'search';
 		keyword = $('#movie-search-keyword').val();
 		if(type == 'movieList'){
@@ -114,19 +120,38 @@ $(document).ready(function(){
 		}
 	});
 	$('.gbutton2').on('click',function(){
+		if($('#movie-search-keyword2').val() == ''){
+			alert('검색어를 입력해주세요!');
+			$('#movie-search-keyword2').focus();
+			return false;
+		}
+		
 		keyfield = 'search';
 		keyword = $('#movie-search-keyword2').val();
 		if(type == 'movieList'){
 			selectList(1,keyword,keyfield);
 		}
 	});
+	
 	$('#movieSearch').on('submit',function(e){
+		if($('#movie-search-keyword').val() == ''){
+			alert('검색어를 입력해주세요!');
+			$('#movie-search-keyword').focus();
+			return false;
+		}
+		
 		keyfield = 'search';
 		keyword = $('#movie-search-keyword').val();
 		selectList(1,keyword,keyfield);
 		e.preventDefault();
 	});
 	$('#movieSearch2').on('submit',function(e){
+		if($('#movie-search-keyword2').val() == ''){
+			alert('검색어를 입력해주세요!');
+			$('#movie-search-keyword2').focus();
+			return false;
+		}
+		
 		keyfield = 'search';
 		keyword = $('#movie-search-keyword2').val();
 		selectList(1,keyword,keyfield);
@@ -225,6 +250,7 @@ $(document).ready(function(){
 				count = data.count;
 				rowCount = data.rowCount;
 				var list = data.list;
+				
 				if(count < 0 || list == null){
 				}else{
 					$(list).each(function(index,item){
@@ -275,6 +301,7 @@ $(document).ready(function(){
 				count = data.count;
 				rowCount = data.rowCount;
 				var list = data.list;
+
 				if(count < 0 || list == null){
 				}else{
 					$(list).each(function(index,item){

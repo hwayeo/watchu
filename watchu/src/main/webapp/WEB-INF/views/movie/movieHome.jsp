@@ -31,14 +31,15 @@
 
 <!-- 추천 영화 태그1 --> 
 <div class="row">
-	<div class="home-text1">미국영화
-	<a href="movieList.do?keyfield=country&keyword=미국" class="home-text2">모두보기</a></div>
+	<div class="home-text1">추천 ${recomment}영화
+	<input type="hidden" value="${recomment}" id="rangenre">
+	<a href="movieList.do?keyfield=genre&keyword=${recomment}" class="home-text2">모두보기</a></div>
 	<div class="mlist2"></div>
 </div>
 
 <!-- 추천 영화 태그2 -->
 <div class="row">
-	<div class="home-text1">리암 니슨 출연작
-	<a href="movieList.do?keyfield=search&keyword=리암 니슨" class="home-text2">모두보기</a></div>
+	<div class="home-text1">추천 랜덤영화
+	<a href="movieList.do?keyfield=ran&keyword=ran" class="home-text2">모두보기</a></div>
 	<div class="mlist3"></div>
 </div>

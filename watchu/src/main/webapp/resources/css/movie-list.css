@@ -71,7 +71,8 @@
 	overflow-y:scroll;
 }
 #categoryHr{
-	margin-bottom:15px;
+	margin-top:50px;
+	margin-bottom:10px;
 }
 .navWatch{
 	display:none;
@@ -97,6 +98,7 @@
 	color:#999;
 }
 #category-menu{
+	text-align:center;
 	padding:10px;
 	font-weight:bold;
 	color:gray;
@@ -175,6 +177,7 @@
 	color:#999;
 }
 #category-menu{
+	text-align:center;
 	padding:10px;
 	font-weight:bold;
 	color:gray;
@@ -253,6 +256,7 @@
 	color:#999;
 }
 #category-menu{
+	text-align:center;
 	padding:5px;
 }
 .rate-menu{
@@ -264,8 +268,8 @@
 #main-category{
 	margin:5px 0;
 	padding:10px;
-	min-height:530px;
-	max-height:530px;
+	min-height:540px;
+	max-height:540px;
 }
 div.thumbnail{
 	margin:10px;
@@ -335,6 +339,7 @@ select.all-category{
 	color:#999;
 }
 #category-menu{
+	text-align:center;
 	padding:5px;
 }
 .rate-menu{
@@ -418,6 +423,7 @@ select.all-category{
 	color:#999;
 }
 #category-menu{
+	text-align:center;
 	padding:5px;
 }
 .rate-menu{
@@ -429,8 +435,8 @@ select.all-category{
 #main-category{
 	margin:5px 0;
 	padding:10px;
-	min-height:280px;
-	max-height:280px;
+	min-height:310px;
+	max-height:310px;
 }
 div.thumbnail{
 	margin:10px;

@@ -7,7 +7,28 @@ $(document).ready(function(){
 	var keyword;
 	var type = $('.page-type').val();
 	
+	$('#movieSearch').submit(function(){
+		if($('#movie-search-keyword').val() == ''){
+			alert('검색어를 입력해주세요!');
+			$('#movie-search-keyword').focus();
+			return false;
+		}
+	});
+	$('#movieSearch2').submit(function(){
+		if($('#movie-search-keyword2').val() == ''){
+			alert('검색어를 입력해주세요!');
+			$('#movie-search-keyword2').focus();
+			return false;
+		}
+	});
+	
 	$('.gbutton').on('click',function(event){
+		if($('#movie-search-keyword').val() == ''){
+			alert('검색어를 입력해주세요!');
+			$('#movie-search-keyword').focus();
+			return false;
+		}
+		
 		keyfield = 'search';
 		keyword = $('#movie-search-keyword').val();		
 		if(type == 'movieHome'){
@@ -15,12 +36,20 @@ $(document).ready(function(){
 		}
 	});
 	$('.gbutton2').on('click',function(){
+		if($('#movie-search-keyword2').val() == ''){
+			alert('검색어를 입력해주세요!');
+			$('#movie-search-keyword2').focus();
+			return false;
+		}
+		
 		keyfield = 'search';
 		keyword = $('#movie-search-keyword2').val();		
 		if(type == 'movieHome'){
 			$('#movieSearch2').submit();
 		}
 	});
+	
+	
 	
 	
  	//영화 홈 화면 출력
@@ -110,7 +139,7 @@ $(document).ready(function(){
 			}
 		});
 	}
-	selectHome2(1,'country','미국');
+	selectHome2(1,'search',$('#rangenre').val());
 	
 	function selectHome3(pageNum,keyfield,keyword){
 		var mlist = '';
@@ -154,6 +183,6 @@ $(document).ready(function(){
 			}
 		});
 	}
-	selectHome3(1,'search','리암 니슨');
+	selectHome3(1,'ran','ran');
 	
 });

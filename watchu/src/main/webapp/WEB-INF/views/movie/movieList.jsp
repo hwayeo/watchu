@@ -33,9 +33,19 @@
 	</select>
 	<select class="visible-xs col-xs-4  form-control country-category all-category" name="keyword2">
     	  <option value="" selected>모든 국가</option>
-	   <c:forEach var="gl" items="${movieInfo}">
-	      <option value="${gl.country}">${gl.country}</option>
-	   </c:forEach>
+	      <option value="미국">미국</option>
+	      <option value="한국">한국</option>
+	      <option value="프랑스">프랑스</option>
+	      <option value="영국">영국</option>
+	      <option value="캐나다">캐나다</option>
+	      <option value="중국">중국</option>
+	      <option value="일본">일본</option>
+	      <option value="홍콩">홍콩</option>
+	      <option value="대만">대만</option>
+	      <option value="인도">인도</option>
+	      <option value="독일">독일</option>
+	      <option value="스페인">스페인</option>
+	      <option value="오스트레일리아">오스트레일리아</option>
 	</select>
 	<select class="visible-xs col-xs-4  form-control order-category all-category" name="keyword3"> 
     	  <option value="" selected>최신 순</option>
@@ -50,9 +60,19 @@
 	</select>
 	<select id="category-menu" class="hidden-xs country-category2 all-category2" name="keyword2">
     	  <option value="" selected>모든 국가</option>
-	   <c:forEach var="gl" items="${movieInfo}">
-    	  <option value="${gl.country}">${gl.country}</option>
-	   </c:forEach>
+	      <option value="미국">미국</option>
+	      <option value="한국">한국</option>
+	      <option value="프랑스">프랑스</option>
+	      <option value="영국">영국</option>
+	      <option value="캐나다">캐나다</option>
+	      <option value="중국">중국</option>
+	      <option value="일본">일본</option>
+	      <option value="홍콩">홍콩</option>
+	      <option value="대만">대만</option>
+	      <option value="인도">인도</option>
+	      <option value="독일">독일</option>
+	      <option value="스페인">스페인</option>
+	      <option value="오스트레일리아">오스트레일리아</option>
 	</select>
 	<select id="category-menu" class="hidden-xs category-right order-category2 all-category2" name="keyword3"> 
     	  <option value="" selected>최신 순</option>
@@ -63,7 +83,7 @@
 
 <div class="row">
    <div id="slist"></div>
-  	 <div class="movieListButton">
-   		<input class="form-control" type="button" value="영화 더보기">
+  	 <div class="movieListButton" style="display:none;">
+   		<input class="form-control btn btn-info" type="button" value="영화 더보기">
    	 </div>
 </div>

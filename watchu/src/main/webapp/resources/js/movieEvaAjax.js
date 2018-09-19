@@ -9,16 +9,37 @@ $(document).ready(function(){
 	var keyword3;
 	var type = $('.page-type').val();
 	var width = $(document).width();
+	var movierate;
 	
 	//평가창에서의 브라우저 창 넓이
 	$(window).on('resize',function(){
 		width = $(document).width();
 		if(width <= 425){
-			selectEva(1,keyword,keyfield);
+			selectEva(1,'ran','ran');
 		}
 	});
 	
-	//버튼 클릭시
+	//ajax로 영화 평점 갯수 출력
+	$(document).on('click','.star5',function(){
+		ratecount($('#movierate').val());
+	});
+	$(document).on('click','.star4',function(){
+		ratecount(movierate);
+	});
+	$(document).on('click','.star3',function(){
+		ratecount(movierate);
+	});
+	$(document).on('click','.star2',function(){
+		ratecount(movierate);
+	});
+	$(document).on('click','.star1',function(){
+		ratecount();
+	});
+
+	ratecount();
+	//ajax로 영화 평점 갯수 출력
+	
+	//버튼 클릭시 목록 추가 호출
 	$('.movieListButton input').click(function(){
 			if(currentPage>=Math.ceil(count/rowCount)){
 			}else if(keyfield == 'allcategory'){
@@ -113,18 +134,45 @@ $(document).ready(function(){
 	});
 	
 	/*---------------movieList 호출---------------------*/
+	$('#movieSearch').submit(function(){
+		if($('#movie-search-keyword').val() == ''){
+			alert('검색어를 입력해주세요!');
+			$('#movie-search-keyword').focus();
+			return false;
+		}
+	});
+	$('#movieSearch2').submit(function(){
+		if($('#movie-search-keyword2').val() == ''){
+			alert('검색어를 입력해주세요!');
+			$('#movie-search-keyword2').focus();
+			return false;
+		}
+	});
+	
 	$('.gbutton').on('click',function(event){
+		if($('#movie-search-keyword').val() == ''){
+			alert('검색어를 입력해주세요!');
+			$('#movie-search-keyword').focus();
+			return false;
+		}
+		
 		keyfield = 'search';
-		keyword = $('#movie-search-keyword').val();
-		if(type == 'movieList'){
-			selectEva(1,keyword,keyfield);
+		keyword = $('#movie-search-keyword').val();		
+		if(type == 'movieHome'){
+			$('#movieSearch').submit(); 
 		}
 	});
 	$('.gbutton2').on('click',function(){
+		if($('#movie-search-keyword2').val() == ''){
+			alert('검색어를 입력해주세요!');
+			$('#movie-search-keyword2').focus();
+			return false;
+		}
+		
 		keyfield = 'search';
-		keyword = $('#movie-search-keyword2').val();
-		if(type == 'movieList'){
-			selectEva(1,keyword,keyfield);
+		keyword = $('#movie-search-keyword2').val();		
+		if(type == 'movieHome'){
+			$('#movieSearch2').submit();
 		}
 	});
 	
@@ -240,26 +288,26 @@ $(document).ready(function(){
 							elist += '<p class="year">'+released.substring(0,4)+'</p>';
 							elist += '<div class="starRating">';
 							elist += '<fieldset class="rating">';
-							elist += '<input type="radio" id="star5-'+item.movie_num+'" name="rating" value="5" data-num="'+item.movie_num+'"/>';
-							elist += '<label class = "full" for="star5-'+item.movie_num+'" title="Awesome - 5 stars"></label>';
-							elist += '<input type="radio" id="star4half-'+item.movie_num+'" name="rating" value="4.5" data-num="'+item.movie_num+'"/>';
-							elist += '<label class="half" for="star4half-'+item.movie_num+'" title="Pretty good - 4.5 stars"></label>';
-							elist += '<input type="radio" id="star4-'+item.movie_num+'" name="rating" value="4" data-num="'+item.movie_num+'"/>';
-							elist += '<label class = "full" for="star4-'+item.movie_num+'" title="Pretty good - 4 stars"></label>';
-							elist += '<input type="radio" id="star3half-'+item.movie_num+'" name="rating" value="3.5" data-num="'+item.movie_num+'"/>';
-							elist += '<label class="half" for="star3half-'+item.movie_num+'" title="better than good - 3.5 stars"></label>';
-							elist += '<input type="radio" id="star3-'+item.movie_num+'" name="rating" value="3" data-num="'+item.movie_num+'"/>';
-							elist += '<label class = "full" for="star3-'+item.movie_num+'" title="Good - 3 stars"></label>';
-							elist += '<input type="radio" id="star2half-'+item.movie_num+'" name="rating" value="2.5" data-num="'+item.movie_num+'"/>';
-							elist += '<label class="half" for="star2half-'+item.movie_num+'" title="so so - 2.5 stars"></label> ';
-							elist += '<input type="radio" id="star2-'+item.movie_num+'" name="rating" value="2" data-num="'+item.movie_num+'"/>';
-							elist += '<label class = "full" for="star2-'+item.movie_num+'" title="not bad - 2 stars"></label>';
-							elist += '<input type="radio" id="star1half-'+item.movie_num+'" name="rating" value="1.5" data-num="'+item.movie_num+'"/>';
-							elist += '<label class="half" for="star1half-'+item.movie_num+'" title="bad - 1.5 stars"></label>';
-							elist += '<input type="radio" id="star1-'+item.movie_num+'" name="rating" value="1" data-num="'+item.movie_num+'"/>';
-							elist += '<label class = "full" for="star1-'+item.movie_num+'" title="so bad - 1 star"></label>';
-							elist += '<input type="radio" id="starhalf-'+item.movie_num+'" name="rating" value="0.5" data-num="'+item.movie_num+'"/>';
-							elist += '<label class="half" for="starhalf-'+item.movie_num+'" title="Worst - 0.5 stars"></label>';
+							elist += '<input type="radio" class="star5" id="star5-'+item.movie_num+'" name="rating" value="5" data-num="'+item.movie_num+'"/>';
+							elist += '<label class = "full" for="star5-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star5" id="star4half-'+item.movie_num+'" name="rating" value="4.5" data-num="'+item.movie_num+'"/>';
+							elist += '<label class="half" for="star4half-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star4" id="star4-'+item.movie_num+'" name="rating" value="4" data-num="'+item.movie_num+'"/>';
+							elist += '<label class = "full" for="star4-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star4" id="star3half-'+item.movie_num+'" name="rating" value="3.5" data-num="'+item.movie_num+'"/>';
+							elist += '<label class="half" for="star3half-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star3" id="star3-'+item.movie_num+'" name="rating" value="3" data-num="'+item.movie_num+'"/>';
+							elist += '<label class = "full" for="star3-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star3" id="star2half-'+item.movie_num+'" name="rating" value="2.5" data-num="'+item.movie_num+'"/>';
+							elist += '<label class="half" for="star2half-'+item.movie_num+'"></label> ';
+							elist += '<input type="radio" class="star2" id="star2-'+item.movie_num+'" name="rating" value="2" data-num="'+item.movie_num+'"/>';
+							elist += '<label class = "full" for="star2-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star2" id="star1half-'+item.movie_num+'" name="rating" value="1.5" data-num="'+item.movie_num+'"/>';
+							elist += '<label class="half" for="star1half-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star1" id="star1-'+item.movie_num+'" name="rating" value="1" data-num="'+item.movie_num+'"/>';
+							elist += '<label class = "full" for="star1-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star1" id="starhalf-'+item.movie_num+'" name="rating" value="0.5" data-num="'+item.movie_num+'"/>';
+							elist += '<label class="half" for="starhalf-'+item.movie_num+'"></label>';
 							elist += '</fieldset>';
 							elist += '</div>';
 							elist += '</div>';
@@ -287,26 +335,26 @@ $(document).ready(function(){
 							elist += '	   <div class="col-xs-12">';
 							elist += '		  <div class="starRating">';
 							elist += '			<fieldset class="rating">';
-							elist += '				<input type="radio" id="star5-'+item.movie_num+'" name="rating" value="5" data-num="'+item.movie_num+'"/>';
-							elist += '				<label class = "full" for="star5-'+item.movie_num+'" title="Awesome - 5 stars"></label>';
-							elist += ' 				<input type="radio" id="star4half-'+item.movie_num+'" name="rating" value="4.5" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class="half" for="star4half-'+item.movie_num+'" title="Pretty good - 4.5 stars"></label>';
-							elist += ' 				<input type="radio" id="star4-'+item.movie_num+'" name="rating" value="4" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class = "full" for="star4-'+item.movie_num+'" title="Pretty good - 4 stars"></label>';
-							elist += ' 				<input type="radio" id="star3half-'+item.movie_num+'" name="rating" value="3.5" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class="half" for="star3half-'+item.movie_num+'" title="better than good - 3.5 stars"></label>';
-							elist += ' 				<input type="radio" id="star3-'+item.movie_num+'" name="rating" value="3" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class = "full" for="star3-'+item.movie_num+'" title="Good - 3 stars"></label>';
-							elist += ' 				<input type="radio" id="star2half-'+item.movie_num+'" name="rating" value="2.5" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class="half" for="star2half-'+item.movie_num+'" title="so so - 2.5 stars"></label>';
-							elist += ' 				<input type="radio" id="star2-'+item.movie_num+'" name="rating" value="2" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class = "full" for="star2-'+item.movie_num+'" title="not bad - 2 stars"></label>';
-							elist += ' 				<input type="radio" id="star1half-'+item.movie_num+'" name="rating" value="1.5" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class="half" for="star1half-'+item.movie_num+'" title="bad - 1.5 stars"></label>';
-							elist += ' 				<input type="radio" id="star1-'+item.movie_num+'" name="rating" value="1" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class = "full" for="star1-'+item.movie_num+'" title="so bad - 1 star"></label>';
-							elist += ' 				<input type="radio" id="starhalf-'+item.movie_num+'" name="rating" value="0.5" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class="half" for="starhalf-'+item.movie_num+'" title="Worst - 0.5 stars"></label>';
+							elist += '				<input type="radio" class="star5" id="star5-'+item.movie_num+'" name="rating" value="5" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class = "full" for="star5-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star5" id="star4half-'+item.movie_num+'" name="rating" value="4.5" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class="half" for="star4half-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star4" id="star4-'+item.movie_num+'" name="rating" value="4" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class = "full" for="star4-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star4" id="star3half-'+item.movie_num+'" name="rating" value="3.5" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class="half" for="star3half-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star3" id="star3-'+item.movie_num+'" name="rating" value="3" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class = "full" for="star3-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star3" id="star2half-'+item.movie_num+'" name="rating" value="2.5" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class="half" for="star2half-'+item.movie_num+'"></label> ';
+							elist += '				<input type="radio" class="star2" id="star2-'+item.movie_num+'" name="rating" value="2" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class = "full" for="star2-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star2" id="star1half-'+item.movie_num+'" name="rating" value="1.5" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class="half" for="star1half-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star1" id="star1-'+item.movie_num+'" name="rating" value="1" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class = "full" for="star1-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star1" id="starhalf-'+item.movie_num+'" name="rating" value="0.5" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class="half" for="starhalf-'+item.movie_num+'"></label>';
 							elist += '			</fieldset>';
 							elist += '	     </div>';
 							elist += '	   </div>';
@@ -335,6 +383,7 @@ $(document).ready(function(){
  		});
 	}
 	
+	//영화 평가 카테고리 변경시 목록 호출
 	function selectCategory(pageNum,keyword,keyword2,keyword3,keyfield){
 		var elist = '';
 		currentPage = pageNum;
@@ -370,26 +419,26 @@ $(document).ready(function(){
 							elist += '<p class="year">'+released.substring(0,4)+'</p>';
 							elist += '<div class="starRating">';
 							elist += '<fieldset class="rating">';
-							elist += '<input type="radio" id="star5-'+item.movie_num+'" name="rating" value="5" data-num="'+item.movie_num+'"/>';
-							elist += '<label class = "full" for="star5-'+item.movie_num+'" title="Awesome - 5 stars"></label>';
-							elist += '<input type="radio" id="star4half-'+item.movie_num+'" name="rating" value="4.5" data-num="'+item.movie_num+'"/>';
-							elist += '<label class="half" for="star4half-'+item.movie_num+'" title="Pretty good - 4.5 stars"></label>';
-							elist += '<input type="radio" id="star4-'+item.movie_num+'" name="rating" value="4" data-num="'+item.movie_num+'"/>';
-							elist += '<label class = "full" for="star4-'+item.movie_num+'" title="Pretty good - 4 stars"></label>';
-							elist += '<input type="radio" id="star3half-'+item.movie_num+'" name="rating" value="3.5" data-num="'+item.movie_num+'"/>';
-							elist += '<label class="half" for="star3half-'+item.movie_num+'" title="better than good - 3.5 stars"></label>';
-							elist += '<input type="radio" id="star3-'+item.movie_num+'" name="rating" value="3" data-num="'+item.movie_num+'"/>';
-							elist += '<label class = "full" for="star3-'+item.movie_num+'" title="Good - 3 stars"></label>';
-							elist += '<input type="radio" id="star2half-'+item.movie_num+'" name="rating" value="2.5" data-num="'+item.movie_num+'"/>';
-							elist += '<label class="half" for="star2half-'+item.movie_num+'" title="so so - 2.5 stars"></label> ';
-							elist += '<input type="radio" id="star2-'+item.movie_num+'" name="rating" value="2" data-num="'+item.movie_num+'"/>';
-							elist += '<label class = "full" for="star2-'+item.movie_num+'" title="not bad - 2 stars"></label>';
-							elist += '<input type="radio" id="star1half-'+item.movie_num+'" name="rating" value="1.5" data-num="'+item.movie_num+'"/>';
-							elist += '<label class="half" for="star1half-'+item.movie_num+'" title="bad - 1.5 stars"></label>';
-							elist += '<input type="radio" id="star1-'+item.movie_num+'" name="rating" value="1" data-num="'+item.movie_num+'"/>';
-							elist += '<label class = "full" for="star1-'+item.movie_num+'" title="so bad - 1 star"></label>';
-							elist += '<input type="radio" id="starhalf-'+item.movie_num+'" name="rating" value="0.5" data-num="'+item.movie_num+'"/>';
-							elist += '<label class="half" for="starhalf-'+item.movie_num+'" title="Worst - 0.5 stars"></label>';
+							elist += '<input type="radio" class="star5" id="star5-'+item.movie_num+'" name="rating" value="5" data-num="'+item.movie_num+'"/>';
+							elist += '<label class = "full" for="star5-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star5" id="star4half-'+item.movie_num+'" name="rating" value="4.5" data-num="'+item.movie_num+'"/>';
+							elist += '<label class="half" for="star4half-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star4" id="star4-'+item.movie_num+'" name="rating" value="4" data-num="'+item.movie_num+'"/>';
+							elist += '<label class = "full" for="star4-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star4" id="star3half-'+item.movie_num+'" name="rating" value="3.5" data-num="'+item.movie_num+'"/>';
+							elist += '<label class="half" for="star3half-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star3" id="star3-'+item.movie_num+'" name="rating" value="3" data-num="'+item.movie_num+'"/>';
+							elist += '<label class = "full" for="star3-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star3" id="star2half-'+item.movie_num+'" name="rating" value="2.5" data-num="'+item.movie_num+'"/>';
+							elist += '<label class="half" for="star2half-'+item.movie_num+'"></label> ';
+							elist += '<input type="radio" class="star2" id="star2-'+item.movie_num+'" name="rating" value="2" data-num="'+item.movie_num+'"/>';
+							elist += '<label class = "full" for="star2-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star2" id="star1half-'+item.movie_num+'" name="rating" value="1.5" data-num="'+item.movie_num+'"/>';
+							elist += '<label class="half" for="star1half-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star1" id="star1-'+item.movie_num+'" name="rating" value="1" data-num="'+item.movie_num+'"/>';
+							elist += '<label class = "full" for="star1-'+item.movie_num+'"></label>';
+							elist += '<input type="radio" class="star1" id="starhalf-'+item.movie_num+'" name="rating" value="0.5" data-num="'+item.movie_num+'"/>';
+							elist += '<label class="half" for="starhalf-'+item.movie_num+'"></label>';
 							elist += '</fieldset>';
 							elist += '</div>';
 							elist += '</div>';
@@ -417,26 +466,26 @@ $(document).ready(function(){
 							elist += '	   <div class="col-xs-12">';
 							elist += '		  <div class="starRating">';
 							elist += '			<fieldset class="rating">';
-							elist += '				<input type="radio" id="star5-'+item.movie_num+'" name="rating" value="5" data-num="'+item.movie_num+'"/>';
-							elist += '				<label class = "full" for="star5-'+item.movie_num+'" title="Awesome - 5 stars"></label>';
-							elist += ' 				<input type="radio" id="star4half-'+item.movie_num+'" name="rating" value="4.5" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class="half" for="star4half-'+item.movie_num+'" title="Pretty good - 4.5 stars"></label>';
-							elist += ' 				<input type="radio" id="star4-'+item.movie_num+'" name="rating" value="4" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class = "full" for="star4-'+item.movie_num+'" title="Pretty good - 4 stars"></label>';
-							elist += ' 				<input type="radio" id="star3half-'+item.movie_num+'" name="rating" value="3.5" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class="half" for="star3half-'+item.movie_num+'" title="better than good - 3.5 stars"></label>';
-							elist += ' 				<input type="radio" id="star3-'+item.movie_num+'" name="rating" value="3" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class = "full" for="star3-'+item.movie_num+'" title="Good - 3 stars"></label>';
-							elist += ' 				<input type="radio" id="star2half-'+item.movie_num+'" name="rating" value="2.5" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class="half" for="star2half-'+item.movie_num+'" title="so so - 2.5 stars"></label>';
-							elist += ' 				<input type="radio" id="star2-'+item.movie_num+'" name="rating" value="2" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class = "full" for="star2-'+item.movie_num+'" title="not bad - 2 stars"></label>';
-							elist += ' 				<input type="radio" id="star1half-'+item.movie_num+'" name="rating" value="1.5" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class="half" for="star1half-'+item.movie_num+'" title="bad - 1.5 stars"></label>';
-							elist += ' 				<input type="radio" id="star1-'+item.movie_num+'" name="rating" value="1" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class = "full" for="star1-'+item.movie_num+'" title="so bad - 1 star"></label>';
-							elist += ' 				<input type="radio" id="starhalf-'+item.movie_num+'" name="rating" value="0.5" data-num="'+item.movie_num+'"/>';
-							elist += ' 				<label class="half" for="starhalf-'+item.movie_num+'" title="Worst - 0.5 stars"></label>';
+							elist += '				<input type="radio" class="star5" id="star5-'+item.movie_num+'" name="rating" value="5" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class = "full" for="star5-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star5" id="star4half-'+item.movie_num+'" name="rating" value="4.5" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class="half" for="star4half-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star4" id="star4-'+item.movie_num+'" name="rating" value="4" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class = "full" for="star4-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star4" id="star3half-'+item.movie_num+'" name="rating" value="3.5" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class="half" for="star3half-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star3" id="star3-'+item.movie_num+'" name="rating" value="3" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class = "full" for="star3-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star3" id="star2half-'+item.movie_num+'" name="rating" value="2.5" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class="half" for="star2half-'+item.movie_num+'"></label> ';
+							elist += '				<input type="radio" class="star2" id="star2-'+item.movie_num+'" name="rating" value="2" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class = "full" for="star2-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star2" id="star1half-'+item.movie_num+'" name="rating" value="1.5" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class="half" for="star1half-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star1" id="star1-'+item.movie_num+'" name="rating" value="1" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class = "full" for="star1-'+item.movie_num+'"></label>';
+							elist += '				<input type="radio" class="star1" id="starhalf-'+item.movie_num+'" name="rating" value="0.5" data-num="'+item.movie_num+'"/>';
+							elist += '				<label class="half" for="starhalf-'+item.movie_num+'"></label>';
 							elist += '			</fieldset>';
 							elist += '	     </div>';
 							elist += '	   </div>';
@@ -464,6 +513,30 @@ $(document).ready(function(){
 			}
  		});
 	}
-	/*기본 검색 및 호출시 상태*/
-	selectEva(1,keyword,keyfield);
+	/*평가 화면 초기 호출*/
+	selectEva(1,'ran','ran');
+	
+	function ratecount(){
+		var ratecount = '';
+		$('#ratecount').empty();
+		
+		$.ajax({
+			type:'post',
+			url:'movieMlist2.do',
+			dataType:'json',
+			cache:false,
+			timeout:30000,
+			success:function(data){	
+				movierate = data.movierate;
+				
+				$(movierate).each(function(index,item){
+					var ratecount = item.movierated;
+					
+					$('#ratecount').append(ratecount);
+				});
+			},error:function(){
+				
+			}
+		});
+	}
 });
