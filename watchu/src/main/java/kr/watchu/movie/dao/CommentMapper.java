@@ -57,8 +57,10 @@ public interface CommentMapper {
 	//좋아요 기록
 	@Insert("INSERT INTO movie_comment_like (comment_num,id,reg_date) VALUES (#{comment_num},#{id},sysdate)")
 	public void insertCommentLike(Map<String,Object> map);
+	@Select("SELECT id FROM movie_comment_like WHERE comment_num=#{comment_num} AND id=#{id}")
+	public String selectCommentLike(Map<String,Object>map);
 	//좋아요 삭제
-	@Delete("DELETE FROM movie_comment_like WHERE comment_num=#{comment_num} ANE id=#{id}")
+	@Delete("DELETE FROM movie_comment_like WHERE comment_num=#{comment_num} AND id=#{id}")
 	public void deleteCommentLike(Map<String,Object> map);
 	
 	/*//follow 구해오기

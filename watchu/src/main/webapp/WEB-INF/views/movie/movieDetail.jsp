@@ -265,7 +265,9 @@
 					<hr>
 					<div class="inner-box2">${list.content}</div>
 					<hr>
-					<div class="inner-box3 glyphicon glyphicon-thumbs-up">${list.likes}</div>  
+					<div class="inner-box3 glyphicon glyphicon-thumbs-up commentLikes" data-num="${list.comment_num}">
+						<span id="likes-${list.comment_num}">${list.likes}</span>
+					</div>  
 					<hr>
 					<div class="inner-box4">작성날짜 : ${list.reg_date}</div>                
 					</div>
@@ -292,13 +294,9 @@
 									<div class="poster-name">${list.title}</div>    
 							</div>
 						</c:forEach>
+					<div class="text-center">${pagingHtml}</div>
 				</div>
 			</div>	
-			<div class="row">
-				 	<div class="more">
-				 	<a style="cursor:pointer; color: #ffc0d3;" data-toggle="modal" data-target="#moreList">더보기</a>
-				 	</div>
-				</div>
 		</div>
 	</div>
 </div>
@@ -424,7 +422,9 @@
 					<hr>
 					<div class="inner-box2">${list.content}</div>
 					<hr>
-					<div class="inner-box3 glyphicon glyphicon-thumbs-up">${list.likes}</div>  
+					<div class="inner-box3 glyphicon glyphicon-thumbs-up commentLikes" data-num="${list.comment_num}">
+						<span id="likes2-${list.comment_num}">${list.likes}</span>
+					</div>  
 					<hr>
 					<div class="inner-box4">작성날짜 : ${list.reg_date}</div>                
 					</div>
@@ -439,23 +439,26 @@
 				
 				<h4><b>비슷한 작품</b></h4>
 				<div class="row">
-					<div class="othermovie">
 						<c:forEach var="list" items="${movieList}">
+							<div class="col-xs-3">
 							<div>
 								<c:if test="${!empty list.poster_img}">
-									<div><a href="movieDetail.do?movie_num=${list.movie_num}" class="thumbnail"><img src="imageView.do?movie_num=${list.movie_num}&type=poster" id="image4"></a></div>
+									<div><a href="movieDetail.do?movie_num=${list.movie_num}"><img src="imageView.do?movie_num=${list.movie_num}&type=poster" id="image4"></a></div>
 				 				</c:if> 
 								<c:if test="${empty list.poster_img}">
-									<div><a href="movieDetail.do?movie_num=${list.movie_num}" class="thumbnail"><img src="../resources/images/default-poster.jpg" id="image4"></a></div>
+									<div><a href="movieDetail.do?movie_num=${list.movie_num}"><img src="../resources/images/default-poster.jpg" id="image4"></a></div>
 								</c:if> 
 									<div class="poster-name">${list.title}</div>
 								</div>
+								</div>	
 							</c:forEach>
+						</div>
+						<div class="row">
+						<div class="text-center">${pagingHtml}</div>
+						</div>
 					</div>
-				</div>	
-		</div>
-		</div>
-		</div>
+				</div>
+			</div>
 <!-- 상세정보 끝 -->
 
 <!-- modal -->

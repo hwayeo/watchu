@@ -165,7 +165,6 @@ $(document).ready(function(){
     				$('#commentRegisterForm').submit();
     			}else if(data.result = 'failure'){
     				alert('영화평가 후 코멘트를 입력 해주세요');
-    				
     			}
     		},
     		error:function(){
@@ -173,6 +172,67 @@ $(document).ready(function(){
     		}
     	});
     });
+    
+    $('.commentLikes').on('click',function(){
+    	var comment_num = $(this).attr('data-num');
+    	var id = $('#user_id').val();
+    	
+    	$.ajax({
+    		url:'likeComment.do',
+    		type:'post',
+    		data:{comment_num:comment_num,id:id},
+    		dataType:'json',
+    		timeout:30000,
+    		cache:false,
+    		success:function(data){
+    			if(data.result == 'submit'){
+    				//좋아요 취소
+    				cancelLike(comment_num,id);
+    			}else if(data.result == 'failure'){
+    				//좋아요
+    				addLike(comment_num,id);
+    			}
+    		}
+    	});
+    });
+    
+    function addLike(comment_num,id){
+    	//좋아요
+    	$.ajax({
+    		url:'insertLike.do',
+    		type:'post',
+    		data:{comment_num:comment_num,id:id},
+    		dataType:'json',
+    		timeout:30000,
+    		cache:false,
+    		success:function(data){
+    			alert('증가');
+    			var like = $('#likes-'+comment_num).text();
+    			$('#likes-'+comment_num).text(Number(like)+1);
+    			
+    			var like2 = $('#likes2-'+comment_num).text();
+    			$('#likes2-'+comment_num).text(Number(like2)+1);
+    		}
+    	})
+    }
+    function cancelLike(comment_num,id){
+    	$.ajax({
+    		url:'deleteLike.do',
+    		type:'post',
+    		data:{comment_num:comment_num,id:id},
+    		dataType:'json',
+    		timeout:30000,
+    		cache:false,
+    		success:function(data){
+    			alert('감소');
+    			var like = $('#likes-'+comment_num).text();
+    			$('#likes-'+comment_num).text(like-1);
+    			
+    			var like2 = $('#likes2-'+comment_num).text();
+    			$('#likes2-'+comment_num).text(like2-1);
+    		}
+    	})
+    }
 });
 	
 
