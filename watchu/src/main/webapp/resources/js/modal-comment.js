@@ -7,8 +7,11 @@ $(document).ready(function(){
 		$('#modal-output-id').text(id);
 		
 		var imgUrl = '<img src="../main/imageView.do?id='+id+'" width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;">';
+		var imgUrl2 = '<img src="/watchu/resources/images/default-profile.jpg" width="35" height="35" class="img-circle" style="float: left; margin-right: 10px;">';
+		
 		$('#modal-output-title').html(imgUrl);
-
+		$('#modal-output-title2').html(imgUrl2);
+		
 		var content = $(this).parents('.division1').find('.inner-box2').text();
 		$('#modal-output-content').text(content);
 		
@@ -76,7 +79,7 @@ $(document).ready(function(){
 		}else{
 			var remain = 1000 - inputLength;
 			remain += '/1000';
-			if($(this).attr('id')=='text'){
+			if($(this).attr('id')=='text1' && $(this).attr('id')=='text2'){
 				//등록폼 글자수 
 				$('#re_first .letter-count').text(remain);
 			}else{
@@ -128,7 +131,7 @@ $(document).ready(function(){
 					alert('영화 평가가실패하였습니다. 관리자에게 문의하세요');
 				}
 				//radio 별 평가 후 초기화 
-				$('input[name=rating]').prop("checked", false);
+				$('input[name=rating]').prop("selectedIndex");
 			},
 			error:function(){
 				alert('네트워크 오류');
@@ -206,7 +209,6 @@ $(document).ready(function(){
     		timeout:30000,
     		cache:false,
     		success:function(data){
-    			alert('증가');
     			var like = $('#likes-'+comment_num).text();
     			$('#likes-'+comment_num).text(Number(like)+1);
     			
@@ -224,7 +226,6 @@ $(document).ready(function(){
     		timeout:30000,
     		cache:false,
     		success:function(data){
-    			alert('감소');
     			var like = $('#likes-'+comment_num).text();
     			$('#likes-'+comment_num).text(like-1);
     			

@@ -24,10 +24,12 @@ import kr.watchu.movie.domain.CommentCommand;
 import kr.watchu.movie.domain.MovieCommand;
 import kr.watchu.movie.domain.MovieratedCommand;
 import kr.watchu.movie.domain.OfficialsCommand;
+import kr.watchu.movie.domain.RecommentCommand;
 import kr.watchu.movie.service.CommentService;
 import kr.watchu.movie.service.MovieService;
 import kr.watchu.movie.service.MovieratedService;
 import kr.watchu.movie.service.OfficialsService;
+import kr.watchu.movie.service.RecommendService;
 import kr.watchu.user.controller.userConfirmIdAjaxController;
 import kr.watchu.user.service.UserService;
 import kr.watchu.util.PagingUtil;
@@ -46,6 +48,9 @@ public class MovieViewController {
 	private OfficialsService officialsService;
 	@Resource
 	private MovieratedService movieratedService;
+	@Resource 
+	private RecommendService recommendService;
+	
 	//ÀÚ¹Ùºó ÃÊ±âÈ­
 	@ModelAttribute("commentCommand")
 	public CommentCommand initCommentCommand() {
@@ -124,7 +129,22 @@ public class MovieViewController {
 		if(count > 0) {
 			movieList = movieService.selectMovieAjaxList2(map2);
 		}
+		
+		Map<String,Object> map3 = new HashMap<String,Object>();
 	
+		map3.put("genre", movie.getMain_genre());
+		map3.put("id", id);
+		
+		if(id!=null) {
+			float rate = recommendService.selectPredictionByGenre(map3);
+			mav.addObject("rate", rate);
+		}
+		
+		if(log.isDebugEnabled()) {
+			log.debug("<<======movie_genre======> : " + movie.getMain_genre());
+			log.debug("<<======id======> : " + id);
+		}
+		
 		mav.addObject("movie",movie);
 		mav.addObject("commentList",commentList);
 		mav.addObject("commentCnt",commentCnt);
@@ -132,7 +152,7 @@ public class MovieViewController {
 		mav.addObject("movieList",movieList);
 		mav.addObject("count",count);
 		mav.addObject("pagingHtml",page.getPagingHtml());
-		return mav;
+		return mav;	
 		
 	}
 	//ÄÚ¸àÆ® µî·Ï Æû 

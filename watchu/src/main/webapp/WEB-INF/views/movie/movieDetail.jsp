@@ -44,7 +44,9 @@
 		 <h3><b style="font-size:30px;">${movie.title}</b></h3>
 		 	<p style="font-size:18px;"><fmt:formatDate value="${movie.released}" pattern="yyyy"/>&nbsp;&middot;&nbsp;${movie.main_genre}&nbsp;&middot;&nbsp;${movie.country}</p>
 		 		<hr width="65%" align="left">	
-					<p style="font-size:18px;">평점★  ${movie.rate }</p>
+					<p style="font-size:18px; float:left">평점★  ${movie.rate }</p>
+					<c:if test="${rate > 5 && !empty user_id}"><p style="font-size:18px; color:#f74788;">&nbsp;&middot;&nbsp;예상별점★  5.0</p></c:if>
+					<c:if test="${rate <= 5 && !empty user_id}"><p style="font-size:18px; color:#f74788;">&nbsp;&middot;&nbsp;예상별점★  ${rate }</p></c:if>
 				<hr width="65%" align="left">
 			<div class="starRating" data-num="${movie.movie_num}">
 				<input type="hidden" id="user_id" value="${user_id}">	
@@ -85,7 +87,10 @@
 		<h3>${movie.title}</h3>
 		 	<p style="font-size:18px;"><fmt:formatDate value="${movie.released}" pattern="yyyy"/>&nbsp;&middot;&nbsp;${movie.main_genre}&nbsp;&middot;&nbsp;${movie.country}</p>
 		 		<hr width="98%" align="left">	
-					<p>평점★  ${movie.rate }</p>
+		 			<p style="font-size:18px;">평점★  ${movie.rate }</p>
+					<c:if test="${rate > 5 && !empty user_id}"><p style="font-size:18px; color:#f74788;">예상별점★  5.0</p></c:if>
+					<c:if test="${rate <= 5 && !empty user_id}"><p style="font-size:18px; color:#f74788;">예상별점★  ${rate }</p></c:if>
+					
 				<hr width="98%" align="left">
 		
 			<div class="starRating" data-num="${movie.movie_num}" style="width:183px; display:inline-block">
@@ -571,13 +576,12 @@
 				
 					<div class="comment-division">
 					<div class=inner-box1>
-					<div class="comment-title" id="modal-output-title"></div>
+					<c:if test="${!empty comment.profile_img}"><div class="comment-title" id="modal-output-title"></div></c:if>
+					<c:if test="${empty comment.profile_img}"><div class="comment-title" id="modal-output-title2"></div></c:if>
 					<div><h4 id="modal-output-id"></h4></div>
 					</div>
 					<hr>
 					<div class="modal-contentbox" id="modal-output-content" style="margin-left:20px; font-size:15px; height:100%;">${comment.content}</div>
-					<hr>
-					<div class="inner-box3" id="modal-output-likes">좋아요 : ${comment.likes}</div>  
 					<hr>
 					<div class="inner-box4" id="modal-output-reg_date">작성날짜 : ${comment.reg_date}</div>                
 					</div>
