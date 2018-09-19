@@ -118,5 +118,5 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public Integer likeCommentCnt(String id) {
 		return commentMapper.likeCommentCnt(id);
-	}
+	} 
 }

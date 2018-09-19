@@ -103,3 +103,4 @@ public class CommentCommand {
 				+ content + ", likes=" + likes + ", reg_date=" + reg_date + ", recomment_cnt=" + recomment_cnt + "]";
 	}
 }
+ 

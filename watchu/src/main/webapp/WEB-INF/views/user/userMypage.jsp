@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/mypagemovie.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/mypage.js"></script>
 <div id="main-content">
-<div class="container-fluid">
+<div class="container-fluid"> 
 		<div class="col-xs-12 col-md-12"><br><br>
 			<div class="col-xs-12 col-md-12"> 
 				<div class="col-xs-8 col-md-7">

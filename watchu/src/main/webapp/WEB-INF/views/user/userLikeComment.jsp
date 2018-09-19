@@ -59,7 +59,7 @@
 										<li>|</li> --%>
 									</ul>
 							</div>
-							</div>
+							</div> 
 						</div><br>
 						<a class="like2" href="#" style="padding-left:30px">좋아요</a> 
 						<!-- <a class="like2" href="userCommentWrite.do" data-toggle="modal" data-target="#CommentWrite">댓글</a>&emsp;

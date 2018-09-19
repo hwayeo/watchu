@@ -41,5 +41,5 @@ public interface CommentService {
 	public List<TimelineCommand> selectTimeline(Map<String,Object> map);
 	
 	public List<CommentCommand> likeComment(Map<String,Object> map);
-	public Integer likeCommentCnt(String id);
+	public Integer likeCommentCnt(String id); 
 }

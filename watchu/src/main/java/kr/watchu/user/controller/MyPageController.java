@@ -110,7 +110,7 @@ public class MyPageController {
 				blockList.clear();
 			}
 			
-			
+			 
 			//코맨트 숫자
 			Integer comment_count = commentService.selectMyCommentCnt(id);
 			Integer likecomment_count = commentService.likeCommentCnt(id);
