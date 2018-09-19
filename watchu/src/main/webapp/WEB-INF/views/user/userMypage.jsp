@@ -117,17 +117,6 @@
 							</div>
 						</li>
 
-						<li class="list-group-item"></li>
-
-
-						<li class="list-group-item">
-
-							<div class="">
-								<a href="#"><label>공지사항</label></a>
-							</div>
-						</li>
-
-
 						<li class="list-group-item">
 							<div class="">
 								<a onclick="location.href='userSupportList.do'"><label>고객센터</label></a>
