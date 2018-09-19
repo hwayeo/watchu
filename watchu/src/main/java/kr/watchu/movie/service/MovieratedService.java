@@ -15,4 +15,6 @@ public interface MovieratedService {
 	
 	//영화 삭제 전 평가 삭제
 	public void deleteRatedByMovie(Integer movie_num);
+	
+	public Integer selectCheckRated(String id);
 }

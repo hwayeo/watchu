@@ -32,4 +32,11 @@ public class MovieratedServiceImpl implements MovieratedService {
 	public void deleteRatedByMovie(Integer movie_num) {
 		mapper.deleteRatedByMovie(movie_num);
 	}
+
+	@Override
+	public Integer selectCheckRated(String id) {
+		return mapper.selectCheckRated(id);
+	}
+	
+	
 }

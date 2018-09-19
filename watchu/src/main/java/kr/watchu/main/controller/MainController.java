@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.watchu.movie.domain.MovieCommand;
 import kr.watchu.movie.service.MovieService;
+import kr.watchu.movie.service.MovieratedService;
 import kr.watchu.movie.service.RecommendService;
 import kr.watchu.user.domain.UserCommand;
 import kr.watchu.user.service.UserService;
@@ -39,6 +40,8 @@ public class MainController {
 	@Resource
 	private RecommendService recommendService;
 	
+	@Resource
+	private MovieratedService movieratedService;
 	@Resource
 	private CipherTemplate cipherAES;
 	
@@ -75,9 +78,16 @@ public class MainController {
 		MovieCommand ranActorMovie2= null;
 		MovieCommand ranActorMovie3= null;
 		//로그인 상태일때
-		if(id!=null) {
+		
+		Integer rateCnt = movieratedService.selectCheckRated(id);
+		
+		if(id!=null && rateCnt > 0) {
 			Map<String,Object> f_genre = new HashMap<String, Object>();
 			float tendency = recommendService.selectAvgTotalMovie(id);
+			if(log.isDebugEnabled()) {
+				log.debug("<<tendency>> : " + tendency);
+			}
+			
 			f_genre.put("tendency", tendency);
 			f_genre.put("id",id);
 			String favorite_genre = recommendService.selectFavoriteGenre(f_genre);
@@ -125,7 +135,7 @@ public class MainController {
 					log.debug("[[----recActorMovie----]] : " + f_actor_list);
 				}
 			}
-		}else  {
+		}else {
 			if(log.isDebugEnabled()) {
 				log.debug("[[-----비로그인------]] : ");
 			}
