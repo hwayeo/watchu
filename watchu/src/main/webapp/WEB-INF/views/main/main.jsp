@@ -100,7 +100,7 @@
 						<div class="text-box-col3">	
 							<p class="movie-title" style="font-size:1.1em;">${list.title}<p>
 							<p class="sub-title">${list.main_genre}&nbsp;&middot;&nbsp;${list.sub_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${list.released}" pattern="YYYY"/>&nbsp;&nbsp;
-								<span id="ratedCnt">예상 <span class="glyphicon glyphicon-star"><span id="rated">${list.rate}</span></span></span>
+								<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${list.rate}</span></span></span>
 							</p>
 						</div>
 					</div>
@@ -186,7 +186,7 @@
 						<div class="text-box-col3">	
 							<p class="movie-title" style="font-size:1.1em;">${list.title}<p>
 							<p class="sub-title">${list.main_genre}&nbsp;&middot;&nbsp;${list.sub_genre}&nbsp;&middot;&nbsp;<fmt:formatDate value="${list.released}" pattern="YYYY"/>&nbsp;&nbsp;
-								<span id="ratedCnt">예상 <span class="glyphicon glyphicon-star"><span id="rated">${list.rate}</span></span></span>
+								<span id="ratedCnt"><span class="glyphicon glyphicon-star"><span id="rated">${list.rate}</span></span></span>
 							</p>
 						</div>
 					</div>
