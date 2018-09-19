@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.watchu.movie.domain.TimelineCommand;
 import kr.watchu.movie.service.CommentService;
+import kr.watchu.movie.service.RecommendService;
 import kr.watchu.user.domain.ContactCommand;
 import kr.watchu.user.domain.ReportCommand;
 import kr.watchu.user.domain.UserCommand;
@@ -56,6 +57,9 @@ public class UserController {
 	
 	@Resource
 	private CommentService commentService;
+	
+	@Resource
+	private RecommendService recommendService;
 	
 	
 	/*@Resource
@@ -666,6 +670,8 @@ public class UserController {
 		
 		//코맨트 숫자
 		Integer comment_count = commentService.selectMyCommentCnt(id);
+		//영화숫자
+		Integer mypage_movielist_count = recommendService.selectRatedCntById(id);
 				
 		mav.setViewName("userPage");
 		mav.addObject("anotheruser",anotheruser);
@@ -675,6 +681,8 @@ public class UserController {
 		mav.addObject("mylist",user_follow3);
 		mav.addObject("blockList",blockList);
 		mav.addObject("comment_count",comment_count);
+		mav.addObject("mypage_movielist_count",mypage_movielist_count);
+		
 		
 		return mav;
 	}
