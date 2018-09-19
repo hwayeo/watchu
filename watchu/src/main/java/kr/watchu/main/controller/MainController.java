@@ -78,8 +78,10 @@ public class MainController {
 		MovieCommand ranActorMovie2= null;
 		MovieCommand ranActorMovie3= null;
 		//로그인 상태일때
-		
-		Integer rateCnt = movieratedService.selectCheckRated(id);
+		Integer rateCnt = 0;	
+		if(id!=null) {
+			rateCnt = movieratedService.selectCheckRated(id);
+		}
 		
 		if(id!=null && rateCnt > 0) {
 			Map<String,Object> f_genre = new HashMap<String, Object>();
