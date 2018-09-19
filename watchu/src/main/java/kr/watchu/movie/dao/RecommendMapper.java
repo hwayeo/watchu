@@ -53,7 +53,7 @@ public interface RecommendMapper {
 	@Select("SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT id, genre, ROUND(AVG(rate),1) rate, count(genre) cnt FROM analysis_genre GROUP BY genre,id HAVING id=#{id} ORDER BY rate DESC)a) WHERE rnum >=#{start} AND rnum <=#{end}")
 	public List<GenreCommand> selectRatedGenre(Map<String,Object> map);
 	//직업별 평가
-	@Select("SELECT r.* FROM (SELECT o.off_num, o.name, o.jobs, a.rate,a.cnt FROM officials o JOIN (SELECT name,avg(rate) rate,count(name) cnt FROM analysis_officials GROUP BY name, id HAVING id=#{id})a ON o.name=a.name WHERE jobs=#{jobs} ORDER BY a.rate DESC)r WHERE rownum >=#{start} AND rownum <=#{end}")
+	@Select("SELECT r.* FROM (SELECT o.off_num, o.name, o.jobs, o.off_photo, a.rate,a.cnt FROM officials o JOIN (SELECT name,avg(rate) rate,count(name) cnt FROM analysis_officials GROUP BY name, id HAVING id=#{id})a ON o.name=a.name WHERE jobs=#{jobs} ORDER BY a.rate DESC)r WHERE rownum >=#{start} AND rownum <=#{end}")
 	public List<OfficialsCommand> selectRatedOff(Map<String,Object> map);
 	
 	//추천 영화 목록

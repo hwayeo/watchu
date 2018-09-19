@@ -222,16 +222,24 @@ public class MyPageController {
 		map1.put("end",5);
 
 		List<OfficialsCommand> offList1 = recommendService.selectRatedOff(map1);
-
+		
+		if(log.isDebugEnabled()) {
+			log.debug("<offList1> : " + offList1);
+		}
+		
 		//선호 배우 List 최초 화면에서 3개를 보여주며 더보기를 클릭 시 늘림(3개씩)
 		Map<String,Object> map2 = new HashMap<String,Object>();
 		map2.put("id",id);
 		map2.put("jobs","DIRECTOR");
 		map2.put("start",1);
 		map2.put("end",5);
-
+		
 		List<OfficialsCommand> offList2 = recommendService.selectRatedOff(map2);
 
+		if(log.isDebugEnabled()) {
+			log.debug("<offList2> : " + offList2);
+		}
+		
 		//영화 선호장르 3개(장르별 평균점수, 총 본 횟수)
 		Map<String,Object> map3 = new HashMap<String,Object>();
 		map3.put("id",id);
@@ -240,6 +248,10 @@ public class MyPageController {
 		
 		List<GenreCommand> genreList2 = recommendService.selectRatedGenre(map3);
 
+		if(log.isDebugEnabled()) {
+			log.debug("<genreList2> : " + genreList2);
+		}
+		
 		//mav 반환
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("analysis");

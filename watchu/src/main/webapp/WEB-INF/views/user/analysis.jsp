@@ -38,20 +38,22 @@
 		<div class="actors">
 		<c:forEach var="offList1" items="${offList1}" varStatus="status">
 			<div class="actor${status.count}">
-				<div class="w_img">
+				<div class="w_img1">
 					<!-- 사진 출력 -->
 					<c:if test="${!empty offList1.off_photo}">
-						<img src="${pageContext.request.contextPath}/movie/actorView.do?off_num=${offList1.off_num}" alt="배우${status.count}">
+						<img class="noEmpty" src="${pageContext.request.contextPath}/movie/actorView.do?off_num=${offList1.off_num}" alt="배우${status.count}">
 					</c:if>
 					<c:if test="${empty offList1.off_photo}">
-						<img src="${pageContext.request.contextPath}/resources/images/default.jpg" alt="기본 이미지">
+						<img class="Empty" src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" alt="기본 이미지">
 					</c:if>
 					
-					<div class="txt">
-						<p class="actor_Name">${offList1.name}/${offList1.jobs}</p>
+					<div class="txt1">
+						<c:if test="${offList1.jobs.equals('ACTOR')}">
+							<p class="actor_Name">${offList1.name} / 배우</p>
+						</c:if>
 					</div>
 					
-					<p class="score">
+					<p class="score1">
 						<span class="im">${offList1.rate * 20}</span>점 / ${offList1.cnt}편
 					</p>
 				</div>
@@ -66,20 +68,22 @@
 		<div class="directors">
 			<c:forEach var="offList2" items="${offList2}" varStatus="status">
 				<div class="director${status.count}">
-					<div class="w_img">
+					<div class="w_img2">
 						<!-- 사진 출력 -->
 						<c:if test="${!empty offList2.off_photo}">
-						<img src="${pageContext.request.contextPath}/movie/actorView.do?off_num=${offList2.off_num}" alt="감독${status.count}">
+						<img class="noEmpty" src="${pageContext.request.contextPath}/movie/actorView.do?off_num=${offList2.off_num}" alt="감독${status.count}">
 						</c:if>
 						<c:if test="${empty offList2.off_photo}">
-						<img src="${pageContext.request.contextPath}/resources/images/default.jpg" alt="기본 이미지">
+						<img class="Empty" src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" alt="기본 이미지">
 						</c:if>
 						
-						<div class="txt">
-							<p class="actor_Name">${offList2.name}/${offList2.jobs}</p>
+						<div class="txt2">
+							<c:if test="${offList2.jobs.equals('DIRECTOR')}">
+								<p class="actor_Name">${offList2.name} / 감독</p>
+							</c:if>
 						</div>
 	
-						<p class="score"><span class="im">${offList2.rate * 20}</span>점 / ${offList2.cnt}편</p>
+						<p class="score2"><span class="im">${offList2.rate * 20}</span>점 / ${offList2.cnt}편</p>
 					</div>
 				</div>
 			</c:forEach>
@@ -88,7 +92,7 @@
 	
 	<div class="genreContext"> 
 		<p class="subTitle5">영화 선호장르</p>
-		<p class="subText2">영화장르영화장르영화장르</p>
+		<p class="subText2">본인이 선호하는 영화의 장르를 확인하세요.</p>
 		
 		<div class="content">
 		  <svg id="donut-chart"></svg>
