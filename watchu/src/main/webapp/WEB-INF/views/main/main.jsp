@@ -106,7 +106,7 @@
 					</div>
 				</div>
 			</c:forEach>
-		</c:if>
+		</c:if> 
 	</div>
 	<div class="row custom-row">
 		<c:if test="${empty user_id}">
