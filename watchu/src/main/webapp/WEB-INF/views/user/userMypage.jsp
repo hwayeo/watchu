@@ -9,10 +9,10 @@
 <div class="container-fluid">
 		<div class="col-xs-12 col-md-12"><br><br>
 			<div class="col-xs-12 col-md-12"> 
-				<div class="col-xs-8 col-md-10">
+				<div class="col-xs-8 col-md-7">
 				</div>
 				<div class="col-xs-4 col-md-2">
-					<a href="follow.do?id=${user_id}" class="glyphicon glyphicon-user" style="font-size:20px; color:gray;"></a>&emsp;
+					<a href="follow.do?id=${user_id}" class="glyphicon glyphicon-user" style="font-size:20px; color:gray;"></a> 
 					<a href="setup.do?id=${user_id}" class="glyphicon glyphicon-cog" style="font-size:20px; color:gray;" data-toggle="modal" data-target="#myModal2"></a>
 				</div><hr/>
 			</div>
@@ -56,7 +56,7 @@
 					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userComment.do?id=${user_id}'">코멘트</a></span> ${comment_count}<br>
 				</div>
 				<div class="col-xs-4 col-md-4">
-					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userLikeComment.do'">좋아요</a></span> ${likecomment_count}<br><br>
+					<span class="wc-StatLabel wcPc-block"><a class="mylike" onclick="location.href='userLikeComment.do?id=${user_id}'">좋아요</a></span> ${likecomment_count}<br><br>
 				</div>
 		</div>
 		</div>

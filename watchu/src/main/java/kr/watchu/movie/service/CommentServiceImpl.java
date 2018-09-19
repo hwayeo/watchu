@@ -109,4 +109,14 @@ public class CommentServiceImpl implements CommentService{
 	public String selectCommentLike(Map<String, Object> map) {
 		return commentMapper.selectCommentLike(map);
 	}
+
+	@Override
+	public List<CommentCommand> likeComment(Map<String, Object> map) {
+		return commentMapper.likeComment(map);
+	}
+
+	@Override
+	public Integer likeCommentCnt(String id) {
+		return commentMapper.likeCommentCnt(id);
+	}
 }

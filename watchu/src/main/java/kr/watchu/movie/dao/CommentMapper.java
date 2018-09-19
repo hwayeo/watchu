@@ -68,4 +68,10 @@ public interface CommentMapper {
 	public String selectMyFollow(String id);*/
 	public Integer selectTimelineCnt(Map<String,Object> map);
 	public List<TimelineCommand> selectTimeline(Map<String,Object> map);
+	
+	//좋아요한 코멘트 불러오기
+	@Select("SELECT i.comment_num, i.id id, c.id comment_id, i.reg_date, c.movie_num, c.content, c.likes, a.title, a.released,c.reg_date,a.poster_img FROM movie_comment_like i JOIN movie_comment c ON i.comment_num=c.comment_num JOIN movie_info a on c.movie_num=a.movie_num WHERE i.id=#{id}")
+	public List<CommentCommand> likeComment(Map<String,Object> map);
+	@Select("SELECT count(*) FROM movie_comment_like i JOIN movie_comment c ON i.comment_num=c.comment_num WHERE i.id=#{id}")
+	public Integer likeCommentCnt(String id);	
 }

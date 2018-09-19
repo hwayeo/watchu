@@ -24,12 +24,12 @@
 					<div class="media">
 						<div class="media-body">
 							<div class="container">
-								<a onclick="location.href='userMypage.do'" class="profile_img"> 
-									<c:if test="${empty user.profile_img}">
-										<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" class="img-circle" id="profile_img">&emsp;${user_id}
+								<a onclick="location.href='userPage.do?id=${list.comment_id}'" class="profile_img"> 
+									<c:if test="${empty list.profile_img}">
+										<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" class="img-circle" id="profile_img">&emsp;${list.comment_id}
 									</c:if> 
-									<c:if test="${!empty user.profile_img}">
-										<img src="${pageContext.request.contextPath}/main/imageView.do?id=${user.id}" class="img-circle review" style="width: 50px; height: 50px;">&emsp;${user_id}
+									<c:if test="${!empty list.profile_img}">
+										<img src="${pageContext.request.contextPath}/main/imageView.do?id=${list.comment_id}" class="img-circle review" style="width: 50px; height: 50px;">&emsp;${list.comment_id}
 									</c:if>
 								</a>	
 							</div><br>
@@ -55,15 +55,13 @@
 										<li>|</li>
 										<span><i class="glyphicon glyphicon-thumbs-up"></i> ${list.likes}</span>
 										<li>|</li>
-										<!-- <span><i class="glyphicon glyphicon-comment"></i> 2</span>
-										<li>|</li> -->
-										<span><i class="glyphicon glyphicon-star"></i> 4.5</span>
-										<li>|</li>
+										<%-- <span><i class="glyphicon glyphicon-star"></i> ${list.rate}</span>
+										<li>|</li> --%>
 									</ul>
 							</div>
 							</div>
 						</div><br>
-						<a class="like2" href="#" style="padding-left:30px">좋아요</a>&emsp;
+						<a class="like2" href="#" style="padding-left:30px">좋아요</a> 
 						<!-- <a class="like2" href="userCommentWrite.do" data-toggle="modal" data-target="#CommentWrite">댓글</a>&emsp;
 						<a class="like2" href="#">공유</a> -->
 					</div>

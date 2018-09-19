@@ -8,6 +8,7 @@ public class CommentCommand {
 	private Integer comment_num;  
 	private Integer movie_num;
 	private String id;
+	private String comment_id;
 	private String content;
 	private Integer likes;
 	private Date reg_date;
@@ -18,6 +19,12 @@ public class CommentCommand {
 	private byte[] profile_img;
 	private float rate;
 	
+	public String getComment_id() {
+		return comment_id;
+	}
+	public void setComment_id(String comment_id) {
+		this.comment_id = comment_id;
+	}
 	public float getRate() {
 		return rate;
 	}

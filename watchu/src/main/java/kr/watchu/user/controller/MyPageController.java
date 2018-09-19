@@ -113,7 +113,7 @@ public class MyPageController {
 			
 			//코맨트 숫자
 			Integer comment_count = commentService.selectMyCommentCnt(id);
-			Integer likecomment_count = commentService.selectMyCommentCnt(id); //바꺼야댕
+			Integer likecomment_count = commentService.likeCommentCnt(id);
 			Integer mypage_movielist_count = recommendService.selectRatedCntById(id);
 			
 			model.addAttribute("user", user);
@@ -122,7 +122,7 @@ public class MyPageController {
 			model.addAttribute("blockList",blockList);
 			model.addAttribute("comment_count",comment_count);	
 			model.addAttribute("likecomment_count",likecomment_count);	
-			model.addAttribute("mypage_movielist_count",mypage_movielist_count);	
+			model.addAttribute("mypage_movielist_count",mypage_movielist_count);
 			
 			
 			//최고의 작품
@@ -330,28 +330,48 @@ public class MyPageController {
 		return mav;
 	}*/
 	
-	//좋아요한 코멘트
+	// 좋아요한 코멘트
 	@RequestMapping("/user/userLikeComment.do")
-	public ModelAndView likeComment(HttpSession session) {
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView likeComment(HttpSession session, @RequestParam(value = "id") String user_id,
+			@RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
+
 		String id = (String) session.getAttribute("user_id");
 
+		UserCommand user = userService.selectUser(user_id);// 겟방식으로 아이디를 넘긴 사람의 커맨드
+		UserCommand loginUser = userService.selectUser(id);// 로그인한 사람의 커맨드
+
+		// 페이징처리
+		int count = commentService.likeCommentCnt(user_id);
+
 		if (log.isDebugEnabled()) {
-			log.debug("<<user_id>> : " + id);
+			log.debug("<<count>> : " + count);
 		}
 
-		int count = commentService.selectMyCommentCnt(id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "userLikeComment.do",
+				"&id=" + user_id);
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		map.put("id", user_id);
 
+		// 목록 리스트에 담기
 		List<CommentCommand> list = null;
 
 		if (count > 0) {
-			//list = commentService.selectMyCommentList(id); -> map넣어야함 
+			list = commentService.likeComment(map);
 		}
-		UserCommand user = userService.selectUser(id);
-		
+
+		if (log.isDebugEnabled()) {
+			log.debug("<<list>> : " + list);
+		}
+
+		ModelAndView mav = new ModelAndView();
 		mav.setViewName("userLikeComment");
 		mav.addObject("commentList", list);
 		mav.addObject("count", count);
+		mav.addObject("user", user);
+		mav.addObject("loginUser", loginUser);
+		mav.addObject("pagingHtml", page.getPagingHtml());
 
 		return mav;
 	}
