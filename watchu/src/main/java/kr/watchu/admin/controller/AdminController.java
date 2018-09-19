@@ -532,7 +532,7 @@ public class AdminController {
 		map.put("keyword", keyword);
 
 		//총 글의 갯수 또는 검색된 글의 갯수
-		int user_count = userService.selectUserCnt(map);
+		int user_count = userService.selectAdminCnt(map);
 
 		//로그 출력
 		if(log.isDebugEnabled()) {
@@ -547,7 +547,7 @@ public class AdminController {
 
 		List<UserCommand> user_list = null;
 		if(user_count > 0) {
-			user_list = userService.selectUserList(map);
+			user_list = userService.selectAdminUser(map);
 
 			//로그 출력
 			if(log.isDebugEnabled()) {
@@ -637,7 +637,7 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("reportedDetail");
 		mav.addObject("report", report);
-			
+
 		return mav;
 			
 		}
@@ -656,29 +656,6 @@ public class AdminController {
 	//신고회원 등급 변경	
 	//수정폼 호출
 	@RequestMapping(value= "/admin/reportModify.do", method=RequestMethod.GET)
-	/*@ResponseBody
-	public Map<String, String> report(@RequestParam("id") String id){
-		if(log.isDebugEnabled()) {
-			log.debug("<<ajax id>>: " + id);
-		}
-		
-		Map<String, String> map = new HashMap<String, String>();
-		
-		UserCommand user = userService.selectUser(id);
-		
-		if(log.isDebugEnabled()) {
-			log.debug("<<ajax user>>: " + user);
-		}
-		
-		if(user != null) {
-			map.put("result", "success");
-		}else {
-			map.put("result", "fail");
-		}
-		
-		return map;
-	}*/
-	
 	public ModelAndView report_modify(@RequestParam("id") String id, Model model) {
 		//로그 출력
 		if(log.isDebugEnabled()) {
@@ -706,7 +683,7 @@ public class AdminController {
 		//글 수정
 		userService.adminUpdate2(reportCommand);
 		
-		return "reportModify";
+		return "reportDetail";
 	}
 	
 	//====================07_고객 지원_고객 문의====================//

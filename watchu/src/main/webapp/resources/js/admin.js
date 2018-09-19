@@ -53,8 +53,17 @@ $('.confirm_search').submit(function(){
 			data: {id:id},
 			dataType: 'json',
 			success: function (data) {
+				var list = data.list;
+				console.log(list);
 				if(data.result == 'success'){
-					console.log(data);
+					$(list).each(function(index, item){
+						var	view = '<span style="display:inline-block; width:150px">';
+						view += '<label for="auth">회원등급</label></span>';
+						view += '<form:input path="'+item.auth+'" class="form-control"/>';
+						view += '<form:errors path="'+item.auth+'" cssClass="error-color"/>';
+					
+					$('#auth_form').append(view);
+					});
 				}else if(data.result == 'fail'){
 					console.log('fail');
 				}

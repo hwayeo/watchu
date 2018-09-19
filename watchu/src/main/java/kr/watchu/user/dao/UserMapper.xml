@@ -114,12 +114,42 @@
 				where id in ('')
 		     </otherwise>
 	     </choose>
-
-
-		
-		
-		
-		
 	</select>
 	
+	<!--  관리자 회원 목록 -->
+	<select id="selectAdminUser" parameterType="map" resultType="userCommand">
+		SELECT
+		*
+		FROM
+		(SELECT a.*,
+			ROWNUM rnum 
+				FROM 
+					(SELECT 
+						* 
+						FROM user_basic c 
+						JOIN user_info i 
+						ON c.id=i.id
+				<where>
+					<!-- <if test="keyword != '' && keyfield == 'name'">
+						i.name like '%' || #{keyword} || '%'
+					</if> -->
+				</where>
+				ORDER BY i.reg_date DESC)a)
+ 	<![CDATA[
+ 		WHERE rnum >= #{start} AND rnum <= #{end}
+ 	]]>
+	</select>
+	
+	<!-- 관리자 회원 카운트 -->
+	<select id="selectAdminCnt" parameterType="map"
+		resultType="integer">
+		SELECT
+		count(*)
+		FROM user_info
+		<where>
+			<!-- <if test="keyword != '' && keyfield == 'name'">
+				i.name like '%' || #{keyword} || '%'
+			</if> -->
+		</where>
+	</select>
 </mapper> 

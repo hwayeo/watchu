@@ -63,7 +63,8 @@
 		<put-attribute name="title" value="왓츄 -신고 상세내용"/>
 		<put-attribute name="body" value="/WEB-INF/views/admin/reportedDetail.jsp"/>
 	</definition>
-	<definition name="userSupportList" extends="admin">
+
+	<definition name="userSupportList" extends="default">
 		<put-attribute name="title" value="왓츄 -고객 문의"/>
 		<put-attribute name="body" value="/WEB-INF/views/user/userSupportList.jsp"/>
 	</definition>

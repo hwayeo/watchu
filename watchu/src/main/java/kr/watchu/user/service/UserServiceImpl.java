@@ -88,16 +88,25 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectsocialUser(id);
 	}
 
-	//관리자 회원정보 수정
+	//========관리자========//
 	@Override
 	public void adminUpdate(UserCommand user) {
-		userMapper.adminUpdate(user);	//회원 정보 수정(이름, 연락처, 이메일)
+		userMapper.adminUpdate(user);	//회원 정보 수정(이름, 연락처, 이메일) - user_info
 	}
 	@Override
 	public void adminUpdate2(UserCommand user) {
-		userMapper.adminUpdate2(user);	//회원 등급 수정	
+		userMapper.adminUpdate2(user);	//회원 등급 수정 - user_basic
 	}
-
+	@Override
+	public List<UserCommand> selectAdminUser(Map<String, Object> map) {
+		return userMapper.selectAdminUser(map); //회원 목록
+	}
+	@Override
+	public int selectAdminCnt(Map<String, Object> map) {
+		return userMapper.selectAdminCnt(map);	//회원 카운트
+	}
+	//========관리자========//
+	
 	@Override
 	public List<UserCommand> selectfollowList(Map<String, Object> map) {
 		return userMapper.selectfollowList(map);
@@ -112,5 +121,4 @@ public class UserServiceImpl implements UserService {
 	public List<String> selectUserId() {
 		return userMapper.selectUserId();
 	}
-
 }

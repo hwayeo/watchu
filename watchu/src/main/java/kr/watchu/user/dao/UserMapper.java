@@ -13,6 +13,9 @@ import kr.watchu.user.domain.NaverUserCommand;
 import kr.watchu.user.domain.UserCommand;
  
 public interface UserMapper {
+	//회원 목록
+	public List<UserCommand> selectUserList(Map<String,Object> map);
+	
 	//회원등록
 	@Insert("INSERT INTO user_basic (id,auth,permit) VALUES (#{id},1,#{permit})")
 	public void insertUser(UserCommand user);
@@ -57,16 +60,18 @@ public interface UserMapper {
 	//팔로잉,팔로워,블락 목록
 	public int selectfollowCnt(Map<String, Object> map);
 	public List<UserCommand> selectfollowList(Map<String,Object> map);
+	
 	//==============관리자==============//
 	//회원 목록
-	public List<UserCommand> selectUserList(Map<String,Object> map);
+	public List<UserCommand> selectAdminUser(Map<String,Object> map);
+	//회원 수 카운트
+	public int selectAdminCnt(Map<String, Object> map);
 	//회원 정보 수정
 	@Update("UPDATE user_info SET name=#{name}, phone=#{phone,jdbcType=VARCHAR}, email=#{email,jdbcType=VARCHAR} WHERE id=#{id}")
 	public void adminUpdate(UserCommand user);
 	@Update("UPDATE user_basic SET auth=#{auth} WHERE id=#{id}")
 	public void adminUpdate2(UserCommand user);
 	//==============관리자==============//
-	
 	
 	//친구관계(팔로우,팔로워,블락)
 	//회원가입시 user_relation 테이블에 등록

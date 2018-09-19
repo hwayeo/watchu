@@ -33,9 +33,11 @@ public interface UserService {
 	public int selectfollowCnt(Map<String, Object> map);
 	public List<UserCommand> selectfollowList(Map<String,Object> map);
 	
-	//관리자 회원 정보 수정
-	public void adminUpdate(UserCommand user);
-	public void adminUpdate2(UserCommand user);
+	//관리자
+	public List<UserCommand> selectAdminUser(Map<String,Object> map); //회원목록
+	public int selectAdminCnt(Map<String, Object> map); //회원 카운트
+	public void adminUpdate(UserCommand user);	//회원 정보 수정(user_info)
+	public void adminUpdate2(UserCommand user);	//회원 등급 수정(user_basic)
 	
 	//팔로우,팔로워,블락
 	public void insertFollow(UserCommand user);

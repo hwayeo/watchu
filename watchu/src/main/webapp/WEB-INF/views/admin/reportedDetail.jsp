@@ -94,7 +94,7 @@
         		<label>신고받은 회원 ID</label></span>
         		<span id ="show-id"></span>
         	</div><br>
-        	<div class="form-group">
+        	<div class="form-group" id="auth_form">
         		<span style="display:inline-block; width:150px">
         		<label for="auth">회원 등급</label></span>
         		<form:input path="auth" class="form-control"/>
