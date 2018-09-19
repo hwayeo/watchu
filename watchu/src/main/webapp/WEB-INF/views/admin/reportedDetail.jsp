@@ -33,7 +33,8 @@
 		</td>
 		<td width="90%">
 		<b>${report.report_user}</b> &nbsp; &nbsp;
-		<a class="report_modify btn btn-sm btn-default" data-toggle="modal" data-target="#reportModify" data-whatever="${report.report_user}" href="reportModify.do?id=${report.report_user}">회원등급변경</a>
+		<a class="report_modify btn btn-sm btn-default" data-toggle="modal" data-target="#reportModify"}">회원등급변경</a>
+		<%-- <a class="report_modify btn btn-sm btn-default" data-toggle="modal" data-target="#reportModify" data-whatever="${report.report_user}" href="reportModify.do?id=${report.report_user}">회원등급변경</a> --%>
 		<%-- <a href="#" onClick="window.open('userDetail.do?id=${report.report_user}','회원 등급 변경','width=950, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;" class="btn btn-sm btn-default">회원등급변경</a> --%>   
 		</td>
 	</tr>
@@ -79,8 +80,7 @@
 <div class="modal fade" id="reportModify" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
    <div class="modal-dialog">
       <div class="modal-content form-inline">
-      <form:form commandName="reportCommand" action="reportModify.do" id="modify_form">
-      <form:hidden path="id" id="report_user"/>
+      <form:form commandName="userCommand" action="reportModify.do" id="modify_form">
       <form:errors element="div" cssClass="error-color"/>
         <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -92,7 +92,9 @@
         	<div class="form-group">
         		<span style="display:inline-block; width:150px">
         		<label>신고받은 회원 ID</label></span>
-        		<span id ="show-id"></span>
+        		<form:hidden path="id"/>
+        		<form:hidden path="report_num"/>
+        		<span id ="show-id">${report.report_user}</span>
         	</div><br>
         	<div class="form-group" id="auth_form">
         		<span style="display:inline-block; width:150px">
@@ -101,7 +103,6 @@
         		<form:errors path="auth" cssClass="error-color"/>
          	</div>
         </div>
-        
         <div class="modal-footer">
 	        <div class="edit_btn">
 	       		<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>

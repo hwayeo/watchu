@@ -30,7 +30,18 @@ public class UserCommand {
 	private String permit;
 	private int total_likes;	//누적 좋아요 수
 	private int total_reported;	//누적 신고 수
+	private int report_num;
 	
+	
+	
+	public int getReport_num() {
+		return report_num;
+	}
+
+	public void setReport_num(int report_num) {
+		this.report_num = report_num;
+	}
+
 	public String getPermit() {
 		return permit;
 	}

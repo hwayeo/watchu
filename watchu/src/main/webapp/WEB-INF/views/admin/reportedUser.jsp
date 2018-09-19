@@ -38,8 +38,8 @@
 				<tr>
 					<td align="center">${report.report_num}</td>
 					<td align="center">${report.report_category}</td>
-					<td align="center" onclick="location.href='reportDetail.do?num=${report.report_num}'" style="cursor:pointer;">${report.report_user}</td>
-					<td align="center" onclick="location.href='reportDetail.do?num=${report.report_num}'" style="cursor:pointer;">${report.report_title}</td>
+					<td align="center" onclick="location.href='reportDetail.do?num=${report.report_num}&id=${report.report_user}'" style="cursor:pointer;">${report.report_user}</td>
+					<td align="center" onclick="location.href='reportDetail.do?num=${report.report_num}&id=${report.report_user}'" style="cursor:pointer;">${report.report_title}</td>
 					<td align="center" >${report.id}</td>
 					<td align="center" >${report.reg_date}</td>
 				</tr>

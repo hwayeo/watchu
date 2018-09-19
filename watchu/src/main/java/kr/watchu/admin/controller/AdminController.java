@@ -627,16 +627,18 @@ public class AdminController {
 	}
 	//상세정보
 	@RequestMapping("/admin/reportDetail.do")
-	public ModelAndView process55(@RequestParam(value="num") String num) {
+	public ModelAndView process55(@RequestParam(value="num") String num,@RequestParam(value="id") String id) {
 			
 		int report_num = Integer.parseInt(num);
 			
 		ReportCommand report = reportService.selectReport(report_num);
-			
+		UserCommand user = userService.selectUser(id);	
+		user.setReport_num(report_num);
 			
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("reportedDetail");
 		mav.addObject("report", report);
+		mav.addObject("userCommand", user);
 
 		return mav;
 			
@@ -653,37 +655,13 @@ public class AdminController {
 		return "redirect:reportedUser.do";
 	}
 	
-	//신고회원 등급 변경	
-	//수정폼 호출
-	@RequestMapping(value= "/admin/reportModify.do", method=RequestMethod.GET)
-	public ModelAndView report_modify(@RequestParam("id") String id, Model model) {
-		//로그 출력
-		if(log.isDebugEnabled()) {
-			log.debug("<<id222>>: " + id);
-		}
-
-		UserCommand user = userService.selectUser(id);
-		model.addAttribute("reportCommand", user);
-
-		if(log.isDebugEnabled()) {
-			log.debug("<<user222>>: " + user);
-		}
-		return new ModelAndView("reportModify", "user", user);
-	}
-	
-
-	//수정 폼에서 전송된 데이터 처리
+	//신고회원 등급 변경	(모달)
 	@RequestMapping(value="/admin/reportModify.do", method=RequestMethod.POST)
-	public String reported_modify(@ModelAttribute("reportModify") @Valid UserCommand reportCommand, BindingResult result, HttpSession session, HttpServletRequest request) {
-		//로그 출력
-		if(log.isDebugEnabled()) {
-			log.debug("<<reportCommand11111>>: " + reportCommand);
-		}
+	public String reported_modify(@ModelAttribute("userCommand") @Valid UserCommand userCommand, BindingResult result, HttpSession session, HttpServletRequest request) {
+		//등급 수정
+		userService.adminUpdate2(userCommand);
 		
-		//글 수정
-		userService.adminUpdate2(reportCommand);
-		
-		return "reportDetail";
+		return "redirect:reportDetail.do?num="+userCommand.getReport_num()+"&id="+userCommand.getId();
 	}
 	
 	//====================07_고객 지원_고객 문의====================//
