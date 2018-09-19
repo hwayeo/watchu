@@ -121,7 +121,7 @@
 				</div>												
 				<span>좋아요</span>
 				<div>
-					<a onclick="location.href='userLikeComment.do?id=${anotheruser.id}'">0</a>
+					<a onclick="location.href='userLikeComment.do?id=${anotheruser.id}'">${likecomment_count}</a>
 				</div>
 			</div>	
 		</div>

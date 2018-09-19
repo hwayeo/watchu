@@ -672,7 +672,9 @@ public class UserController {
 		Integer comment_count = commentService.selectMyCommentCnt(id);
 		//영화숫자
 		Integer mypage_movielist_count = recommendService.selectRatedCntById(id);
-				
+		//좋아요숫자
+		Integer likecomment_count = commentService.likeCommentCnt(id);
+		
 		mav.setViewName("userPage");
 		mav.addObject("anotheruser",anotheruser);
 		mav.addObject("user",user);
@@ -682,6 +684,7 @@ public class UserController {
 		mav.addObject("blockList",blockList);
 		mav.addObject("comment_count",comment_count);
 		mav.addObject("mypage_movielist_count",mypage_movielist_count);
+		mav.addObject("likecomment_count",likecomment_count);
 		
 		
 		return mav;
