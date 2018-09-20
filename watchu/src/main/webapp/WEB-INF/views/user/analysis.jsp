@@ -71,10 +71,10 @@
 					<div class="w_img2">
 						<!-- 사진 출력 -->
 						<c:if test="${!empty offList2.off_photo}">
-						<img class="noEmpty" src="${pageContext.request.contextPath}/movie/actorView.do?off_num=${offList2.off_num}" alt="감독${status.count}">
+							<img class="noEmpty" src="${pageContext.request.contextPath}/movie/actorView.do?off_num=${offList2.off_num}" alt="감독${status.count}">
 						</c:if>
 						<c:if test="${empty offList2.off_photo}">
-						<img class="Empty" src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" alt="기본 이미지">
+							<img class="Empty" src="${pageContext.request.contextPath}/resources/images/default-profile.jpg" alt="기본 이미지">
 						</c:if>
 						
 						<div class="txt2">
