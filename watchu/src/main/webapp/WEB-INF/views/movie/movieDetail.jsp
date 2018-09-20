@@ -43,8 +43,13 @@
 	<div class="col-sm-6 col-md-6 col-xs-6" id="poster2">
 		 <h3><b style="font-size:30px;">${movie.title}</b></h3>
 		 	<p style="font-size:18px;"><fmt:formatDate value="${movie.released}" pattern="yyyy"/>&nbsp;&middot;&nbsp;${movie.main_genre}&nbsp;&middot;&nbsp;${movie.country}</p>
-		 		<hr width="65%" align="left">	
+		 		<hr width="65%" align="left">
+		 			<c:if test="${!empty user_id}">
 					<p style="font-size:18px; float:left">평점★  ${movie.rate }</p>
+					</c:if>
+					<c:if test="${empty user_id}">
+					<p style="font-size:18px;">평점★  ${movie.rate }</p>
+					</c:if>
 					<c:if test="${rate > 5 && !empty user_id}"><p style="font-size:18px; color:#f74788;">&nbsp;&middot;&nbsp;예상별점★  5.0</p></c:if>
 					<c:if test="${rate <= 5 && !empty user_id}"><p style="font-size:18px; color:#f74788;">&nbsp;&middot;&nbsp;예상별점★  ${rate }</p></c:if>
 				<hr width="65%" align="left">
