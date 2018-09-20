@@ -15,8 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.watchu.movie.domain.GenreCommand;
 import kr.watchu.movie.domain.MovieCommand;
+import kr.watchu.movie.domain.OfficialsCommand;
 import kr.watchu.movie.service.GenreService;
 import kr.watchu.movie.service.MovieService;
+import kr.watchu.movie.service.OfficialsService;
 import kr.watchu.movie.service.RecommendService;
 import kr.watchu.util.PagingUtil;
 
@@ -28,15 +30,17 @@ public class MovieController {
 
 	@Resource
 	private GenreService genreService;  
-	
+
 	@Resource
 	private RecommendService recommendService;
 
+	@Resource
+	private OfficialsService officialsService;
 	@RequestMapping("/movie/movieHome.do")
 	public ModelAndView movieHome() {
-		
+
 		String recomment = recommendService.selectRanGenre();
-		
+
 		ModelAndView mav = new ModelAndView();	
 		mav.setViewName("movieHome");
 		mav.addObject("recomment",recomment);
@@ -73,9 +77,9 @@ public class MovieController {
 
 		movieInfo = movieService.selectMovieList(map);
 		movieGenre = genreService.selectGenreList(map);
-		
+
 		String id = (String)session.getAttribute("user_id");
-		
+
 		ModelAndView mav = new ModelAndView();
 		if(id != null) {
 			mav.setViewName("movieList");
@@ -117,12 +121,12 @@ public class MovieController {
 
 		List<MovieCommand> movieInfo = null;
 		List<GenreCommand> movieGenre = null;
-		
+
 		movieInfo = movieService.selectMovieList(map);
 		movieGenre = genreService.selectGenreList(map);
-		
+
 		String id = (String)session.getAttribute("user_id");
-		
+
 		ModelAndView mav = new ModelAndView();
 		if(id != null) {
 			mav.setViewName("movieEva");
@@ -133,7 +137,7 @@ public class MovieController {
 		}else {
 			mav.setViewName("redirect:/user/login.do");
 		}
-		
+
 		return mav;
 	}
 
@@ -156,6 +160,18 @@ public class MovieController {
 			mav.addObject("imageFile", movie.getPoster_img());
 		}
 
+		return mav;
+	}
+	@RequestMapping("/movie/actorView.do")
+	public ModelAndView viewImage3(@RequestParam("off_num") Integer off_num) {
+		OfficialsCommand officials = officialsService.detailOfficials(off_num);
+		if(log.isDebugEnabled()) {
+			log.debug("[[off_num]] : " + off_num);
+		}
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("imageView");
+		mav.addObject("filename","actor.jpg");
+		mav.addObject("imageFile",officials.getOff_photo());
 		return mav;
 	}
 }
