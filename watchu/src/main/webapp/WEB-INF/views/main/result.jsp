@@ -21,7 +21,6 @@
 										<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${list.movie_num}&type=poster" class="img-responsive">
 									</c:if>
 									<p>${list.title}</p>
-									<span>${list.rate}</span>
 								</div>
 							</c:if>
 							<c:if test="${status.index == 3}">
@@ -33,7 +32,6 @@
 										<img src="${pageContext.request.contextPath}/movie/imageView.do?movie_num=${list.movie_num}&type=poster" class="img-responsive">
 									</c:if>
 									<p>${list.title}</p>
-									<span>별점</span>
 								</div>
 							</c:if>
 						</c:forEach>

@@ -369,7 +369,7 @@ public class MainController {
 		
 		//검색된 영화
 		
-		List<MovieCommand> movieList = movieService.selectMovieAjaxList(map);
+		List<MovieCommand> movieList = movieService.selectMovieAjaxList2(map);
 		mav.setViewName("result");
 		mav.addObject("movieList", movieList);
 		return mav;
@@ -388,7 +388,7 @@ public class MainController {
 		data.put("end", 20);
 		
 		if(!keyword.equals("")) {
-			List<MovieCommand> list = movieService.selectMovieAjaxList(data);
+			List<MovieCommand> list = movieService.selectMovieAjaxList2(data);
 			jsonMap.put("list", list);
 		}
 		
