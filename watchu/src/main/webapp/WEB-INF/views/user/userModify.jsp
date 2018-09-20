@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/confirmId.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/profile_img.js"></script>
 
@@ -31,8 +32,15 @@
 														<!-- 선택한이미지 -->
 														<img id="MyProfileImg" src="#" class="img-circle" style="width:100px;height:100px;display: none;"/>
 														<!-- 기본이미지 -->
-														<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg"
+														<c:if test="${!empty command.profile_img}">
+															<img src="${pageContext.request.contextPath}/main/imageView.do?id=${command.id}" id="profile_img" class="img-circle" style="width:100px;height:100px;" >
+														</c:if>	
+														<c:if test="${empty command.profile_img}">
+															<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg"
 														class="img-circle" id="profile_img" style="width:100px;height:100px;">
+														</c:if>
+														<img src="${pageContext.request.contextPath}/resources/images/default-profile.jpg"
+														class="img-circle" id="profile_img2" style="width:100px;height:100px;display: none;"> 
 													</a>
 															
 													<ul class="dropdown-menu">

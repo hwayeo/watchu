@@ -9,6 +9,7 @@ $(document).ready(function(){
 	            	$('#MyProfileImg').attr('src', e.target.result);
 	            	$('#MyProfileImg').show();
 	            	$('#profile_img').hide();
+	            	$('#profile_img2').hide();
 	            	
 	            }                  
 	            reader.readAsDataURL(input.files[0]);//File내용을 읽어 dataURL형식의 문자열로 저장
@@ -24,7 +25,8 @@ $(document).ready(function(){
 	    
 	    $('.rollbackImage').click(function(){
 	    	$("#upload").val("");//input file 초기화
-	    	$('#profile_img').show();
+	    	$('#profile_img2').show();
+	    	$('#profile_img').hide();
 	    	$('#MyProfileImg').hide();
 	    });
 	    
