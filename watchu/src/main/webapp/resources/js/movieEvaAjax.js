@@ -17,6 +17,7 @@ $(document).ready(function(){
 		if(width <= 425){
 			selectEva(1,'ran','ran');
 		}
+		
 	});
 	
 	//ajax로 영화 평점 갯수 출력
@@ -272,6 +273,7 @@ $(document).ready(function(){
 				var list = data.list;
  				if(count < 0 || list == null){
  				}else{
+ 					$('#elist').empty();
 					$(list).each(function(index,item){
 						var released = item.released;
 						if(width > 425){
